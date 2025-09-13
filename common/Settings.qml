@@ -8,7 +8,7 @@ Singleton {
     readonly property var shellName: "miro"
 
     // readonly property var shellPath: Quickshell.env("HOME") + "/.config/" + shellName + "/"
-    readonly property var shellPath: Quickshell.env("HOME") + "/Public/miro-shell/quickshell/"
+    readonly property var shellPath: Quickshell.env("HOME") + "/Public/miro-shell/"
     readonly property var themesPath: shellPath + "themes/"
 
     // readonly property var configsPath: shellPath + "configs/"
