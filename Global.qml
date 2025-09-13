@@ -9,7 +9,7 @@ Singleton {
     // property bool enableNotification: true
     // property bool enableSysTray: false
 
-    property bool enableFoo: true
+    property bool enableFoo: false
     // property bool enableWallpaper: true
 
     // property bool enableDock: false

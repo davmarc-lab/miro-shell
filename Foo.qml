@@ -22,8 +22,11 @@ PanelWindow {
         anchors.fill: parent
         spacing: 5
 
-        MText {
-            text: STime.time
+        MRectangle {
+            id: foo
+            Layout.alignment: Qt.AlignHCenter
+
+            radius: Settings.buttonSoftRadius
         }
 
         MButton {
