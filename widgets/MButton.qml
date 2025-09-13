@@ -21,6 +21,8 @@ Button {
 
     property bool isRound: false
 
+    property string iconPath: ""
+
     property int sizex: 0
     property int sizey: 0
 
@@ -50,6 +52,9 @@ Button {
         verticalAlignment: Text.AlignVCenter
         color: root.hovered ? root.fgColorHovered : root.fgColor
     }
+
+    icon.source: root.iconPath
+    icon.cache: true
 
     font.pointSize: Settings.fontSize
 }

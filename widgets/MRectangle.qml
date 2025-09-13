@@ -9,6 +9,9 @@ Rectangle {
 
     property bool layout: true
 
+    radius: Settings.itemRadius
+    // border.color: Theme.colorOnSurface
+
     implicitWidth: {
         if (layout) {
             if (sizex <= 0) {

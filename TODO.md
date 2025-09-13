@@ -9,6 +9,10 @@
 
 ## Critical Fix
 
+- [X] Rename `BarItem` into `BarItemRow` or something else to define a single item with a group of elements
+
+- [ ] **Verify `bar` module's code**
+
 ## Other features
 
 - Colorscheme picker

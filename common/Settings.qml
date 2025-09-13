@@ -18,11 +18,15 @@ Singleton {
 
     readonly property var iconsPath: shellPath + "assets/icons/"
 
+    // bar
+    property int barHeight: 40
+
     // wallpaper
     property string wallpaperDir: Quickshell.env("HOME") + "/Pictures/Wallpapers/"
     property string wallpaperFile: "glow-moon.jpg"
 
-    // property int panelMargin: 10
+    // panels
+    property int panelMargin: 10
     property int itemMargin: 10
     property int itemRadius: 10
 
