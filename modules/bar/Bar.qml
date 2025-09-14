@@ -34,26 +34,27 @@ Scope {
                     id: left
                     Layout.alignment: Qt.AlignVCenter | Qt.AlignLeft
 
-                    Logo {
-                    }
+                    Logo {}
 
-                    BarItemRow {
-                        MRectangle {
-                            color: "red"
-                        }
-                    }
-                    BarItemRow {
-                        MRectangle {
-                            color: "white"
-                        }
-                    }
+                    Workspaces {}
+
+                    MediaPlayer {}
+
+                    // BarItemRow {
+                    //     MRectangle {
+                    //         color: "white"
+                    //     }
+                    // }
                 }
 
                 BarSection {
                     id: center
                     Layout.alignment: Qt.AlignVCenter | Qt.AlignHCenter
 
-                    BarItemRow {
+                    RowLayout {
+                        Layout.fillWidth: true
+                        Layout.fillHeight: true
+
                         MRectangle {
                             id: foo
 
@@ -68,7 +69,9 @@ Scope {
                     id: right
                     Layout.alignment: Qt.AlignRight
 
-                    BarItemRow {
+                    RowLayout {
+                        Layout.fillWidth: true
+                        Layout.fillHeight: true
                         MRectangle {
                             color: "red"
                         }
@@ -82,7 +85,9 @@ Scope {
                         color: "blue"
                     }
 
-                    BarItemRow {
+                    RowLayout {
+                        Layout.fillWidth: true
+                        Layout.fillHeight: true
                         Layout.alignment: Qt.AlignRight
                         MButton {
                             text: STime.day
