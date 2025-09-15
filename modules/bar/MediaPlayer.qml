@@ -6,14 +6,15 @@ import qs.services
 import qs.widgets
 
 RowLayout {
-    Layout.fillWidth: true
+    Layout.preferredWidth: container.width
     Layout.fillHeight: true
 
     MRectangle {
         id: container
         Layout.margins: 4
 
-        color: "yellow"
+        Layout.preferredWidth: 350
+        Layout.fillHeight: true
 
         RowLayout {
             anchors.fill: parent
@@ -22,7 +23,7 @@ RowLayout {
             anchors.rightMargin: anchors.leftMargin
 
             RowLayout {
-                // Layout.fillWidth: true
+                Layout.fillWidth: true
                 Layout.fillHeight: true
 
                 MIconClick {
@@ -84,7 +85,7 @@ RowLayout {
                     Layout.maximumWidth: container.width
                     Layout.alignment: Qt.AlignLeft | Qt.AlignVCenter
                     text: SMediaPlayer.barToString()
-                    color: "black"
+                    // color: "black"
                     clip: true
                 }
             }

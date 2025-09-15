@@ -7,36 +7,52 @@ import qs.common
 import qs.widgets
 import qs.services
 
-PanelWindow {
-    anchors {
-        top: true
-        left: true
-        bottom: true
-    }
-    exclusiveZone: 0
+FloatingWindow {
+    // anchors {
+    //     top: true
+    //     left: true
+    // bottom: true
+    // }
+    // exclusiveZone: 0
 
-    implicitWidth: 150
+    implicitWidth: 400
+    implicitHeight: 300
+
     color: Theme.colorSurface
 
-    ColumnLayout {
-        anchors.fill: parent
-        spacing: 5
+    Rectangle {
+        id: leftPanel
+        anchors.top: parent.top
+        anchors.bottom: parent.bottom
+        anchors.left: parent.left
+        anchors.right: center.left
 
-        MRectangle {
-            id: foo
-            Layout.alignment: Qt.AlignHCenter
+        width: 200
+        height: 300
+        color: "red"
+    }
 
-            radius: Settings.buttonSoftRadius
-        }
+    Rectangle {
+        id: center
+        anchors.top: parent.top
+        anchors.verticalCenter: parent.verticalCenter
+        anchors.horizontalCenter: parent.horizontalCenter
+        anchors.bottom: parent.bottom
 
-        MButton {
-            text: STime.day
-        }
+        width: 200
+        height: 300
+        color: "green"
+    }
 
-        MRButton {
-            text: "Hello"
-        }
+    Rectangle {
+        id: rightPanel
+        anchors.top: parent.top
+        anchors.bottom: parent.bottom
+        anchors.left: center.right
+        anchors.right: parent.right
 
-        MFillLayout {}
+        width: 200
+        height: 300
+        color: "blue"
     }
 }

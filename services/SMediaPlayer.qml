@@ -8,25 +8,25 @@ Singleton {
 
     readonly property Mpris manager: Mpris
 
-    property MprisPlayer current: manager.players.values[0] ?? null
+    property MprisPlayer currentPlayer: manager.players.values[0] ?? null
 
-    readonly property bool isPlaying: current.isPlaying
+    readonly property bool isPlaying: currentPlayer.isPlaying
 
     function getMediaTitle(): string {
-        return current.trackTitle;
+        return currentPlayer.trackTitle;
     }
 
     function getMediaArtist(): string {
-        return current.trackArtist || "";
+        return currentPlayer.trackArtist || "";
     }
 
     function barToString(divider = "-"): string {
-        var track = current.trackTitle;
+        var track = currentPlayer.trackTitle;
         if (track === "") {
             return "No Title";
         }
 
-        var artist = current.trackArtist;
+        var artist = currentPlayer.trackArtist;
         if (artist === "") {
             return track;
         }
@@ -35,8 +35,8 @@ Singleton {
     }
 
     function toggle(): void {
-        if (current.canTogglePlaying) {
-            root.current.togglePlaying();
+        if (currentPlayer.canTogglePlaying) {
+            root.currentPlayer.togglePlaying();
         } else {
             if (this.isPlaying) {
                 this.pause();
@@ -47,30 +47,26 @@ Singleton {
     }
 
     function play(): void {
-        if (current.canPlay) {
-            current.isPlaying = true;
+        if (currentPlayer.canPlay) {
+            currentPlayer.isPlaying = true;
         }
     }
 
     function pause(): void {
-        if (current.canPause) {
-            current.isPlaying = false;
+        if (currentPlayer.canPause) {
+            currentPlayer.isPlaying = false;
         }
     }
 
     function next(): void {
-        if (current.canGoNext) {
-            current.next();
+        if (currentPlayer.canGoNext) {
+            currentPlayer.next();
         }
     }
 
     function prev(): void {
-        if (current.canGoPrevious) {
-            current.previous();
+        if (currentPlayer.canGoPrevious) {
+            currentPlayer.previous();
         }
-    }
-
-    function test(): void {
-        console.log(current);
     }
 }

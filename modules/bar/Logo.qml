@@ -7,8 +7,10 @@ import qs.widgets
 
 MRectangle {
     id: root
+    Layout.preferredWidth: icon.implicitSize
+    Layout.fillHeight: true
+
     color: Theme.colorSurfaceVariant
-    sizex: icon.implicitSize
     radius: 0
 
     MIcon {

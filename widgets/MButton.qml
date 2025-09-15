@@ -56,9 +56,5 @@ Button {
     icon.source: root.iconPath
     icon.cache: true
 
-    Component.onCompleted: {
-        console.log(icon.source);
-    }
-
     font.pointSize: Settings.fontSize
 }

@@ -26,13 +26,17 @@ Scope {
             implicitWidth: screen.width
             implicitHeight: Settings.barHeight
 
-            RowLayout {
-                id: content
-                anchors.fill: parent
+            Item {
+                id: leftSection
 
-                BarSection {
-                    id: left
-                    Layout.alignment: Qt.AlignVCenter | Qt.AlignLeft
+                anchors.top: parent.top
+                anchors.bottom: parent.bottom
+                anchors.left: parent.left
+                anchors.right: middleSection.left
+
+                RowLayout {
+                    id: bar
+                    anchors.fill: parent
 
                     Logo {}
 
@@ -40,63 +44,61 @@ Scope {
 
                     MediaPlayer {}
 
-                    // BarItemRow {
-                    //     MRectangle {
-                    //         color: "white"
-                    //     }
-                    // }
-                }
-
-                BarSection {
-                    id: center
-                    Layout.alignment: Qt.AlignVCenter | Qt.AlignHCenter
-                    Layout.maximumWidth: content.width * 0.15
-
-                    RowLayout {
-                        Layout.fillWidth: true
-                        Layout.fillHeight: true
-
-                        MRectangle {
-                            id: foo
-
-                            color: "gray"
-
-                            radius: Settings.buttonSoftRadius
-                        }
+                    MFillLayout {
+                        dy: false
                     }
                 }
+            }
 
-                BarSection {
-                    id: right
-                    Layout.alignment: Qt.AlignRight
+            RowLayout {
+                id: middleSection
 
-                    RowLayout {
+                anchors.top: parent.top
+                anchors.bottom: parent.bottom
+                anchors.horizontalCenter: parent.horizontalCenter
+
+                MButton {
+                    text: STime.day
+                }
+
+                MButton {
+                    text: STime.time
+                }
+            }
+
+            Item {
+                id: rightSection
+
+                anchors.top: parent.top
+                anchors.bottom: parent.bottom
+                anchors.left: middleSection.right
+                anchors.right: parent.right
+
+                RowLayout {
+                    id: rightPanel
+                    anchors.fill: parent
+
+                    Layout.alignment: Qt.AlignVCenter | Qt.AlignRight
+                    Layout.fillWidth: true
+                    Layout.fillHeight: true
+
+                    MFillLayout {}
+
+                    MRectangle {
                         Layout.fillWidth: true
                         Layout.fillHeight: true
-                        MRectangle {
-                            color: "red"
-                        }
-
-                        MRectangle {
-                            color: "green"
-                        }
+                        color: "red"
                     }
 
                     MRectangle {
-                        color: "blue"
-                    }
-
-                    RowLayout {
                         Layout.fillWidth: true
                         Layout.fillHeight: true
-                        Layout.alignment: Qt.AlignRight
-                        MButton {
-                            text: STime.day
-                        }
-                        MButton {
-                            text: STime.time
-                        }
+                        color: "green"
                     }
+                }
+
+                MFillLayout {
+                    dy: false
                 }
             }
         }
