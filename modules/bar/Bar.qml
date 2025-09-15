@@ -50,6 +50,7 @@ Scope {
                 BarSection {
                     id: center
                     Layout.alignment: Qt.AlignVCenter | Qt.AlignHCenter
+                    Layout.maximumWidth: content.width * 0.15
 
                     RowLayout {
                         Layout.fillWidth: true

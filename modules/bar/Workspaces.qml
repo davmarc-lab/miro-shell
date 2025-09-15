@@ -18,8 +18,8 @@ RowLayout {
         model: Hyprland.workspaces.values.filter(w => w.id >= 0);
 
         MRButton {
-            Layout.preferredWidth: 70
-            Layout.fillHeight: true
+            Layout.preferredWidth: 30
+            // Layout.fillHeight: true
 
             required property HyprlandWorkspace modelData
             text: modelData.id
