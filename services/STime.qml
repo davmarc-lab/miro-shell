@@ -12,7 +12,7 @@ Singleton {
     }
 
     property string dayFormat: "dd-MM-yyyy, ddd"
-    readonly property string day: {
+    readonly property string date: {
         Qt.formatDateTime(clock.date, dayFormat);
     }
 

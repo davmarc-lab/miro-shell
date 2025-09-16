@@ -6,6 +6,7 @@ Singleton {
     id: root
 
     property bool enableBar: true
+    property bool enableRightPanel: false
     // property bool enableNotification: true
     // property bool enableSysTray: false
 

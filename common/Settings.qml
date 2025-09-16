@@ -11,9 +11,6 @@ Singleton {
     readonly property var shellPath: Quickshell.env("HOME") + "/Public/miro-shell/"
     readonly property var themesPath: shellPath + "themes/"
 
-    // readonly property var configsPath: shellPath + "configs/"
-    // readonly property var configsPath: Quickshell.env("HOME") + "/git-packages/personal/config/quickshell/configs/"
-
     readonly property var scriptPath: shellPath + "scripts/"
 
     readonly property var iconsPath: shellPath + "assets/icons/"
@@ -21,13 +18,16 @@ Singleton {
     // bar
     property int barHeight: 40
 
+    // workspaces
+    property int numWorkspaces: 10
+
     // wallpaper
     property string wallpaperDir: Quickshell.env("HOME") + "/Pictures/Wallpapers/"
     property string wallpaperFile: "glow-moon.jpg"
 
     // panels
     property int panelMargin: 10
-    property int itemMargin: 10
+    property int itemMargin: 8
     property int itemRadius: 10
 
     // property int thumbWidth: 280
@@ -37,12 +37,16 @@ Singleton {
     property int buttonOutlineSize: 1
     property int buttonSoftRadius: 10
     property int buttonRadius: 20
+    property double iconButtonMargins: 5
 
     // font
     property string font: ""
     property int fontSize: 12
     property int fontTitle: 18
     property int fontSubTitle: 16
+
+    // right panel
+    property int rightIconsSize: 40
 
     // bar
     // property int topBarMargin: panelMargin

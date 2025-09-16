@@ -10,17 +10,24 @@ Singleton {
 
     property MprisPlayer currentPlayer: manager.players.values[0] ?? null
 
-    readonly property bool isPlaying: currentPlayer.isPlaying
+    readonly property bool isPlaying: currentPlayer?.isPlaying ?? false
 
     function getMediaTitle(): string {
+        if (currentPlayer == null)
+            return "";
         return currentPlayer.trackTitle;
     }
 
     function getMediaArtist(): string {
+        if (currentPlayer == null)
+            return "";
         return currentPlayer.trackArtist || "";
     }
 
     function barToString(divider = "-"): string {
+        if (currentPlayer == null)
+            return "";
+
         var track = currentPlayer.trackTitle;
         if (track === "") {
             return "No Title";
@@ -35,6 +42,8 @@ Singleton {
     }
 
     function toggle(): void {
+        if (currentPlayer == null)
+            return;
         if (currentPlayer.canTogglePlaying) {
             root.currentPlayer.togglePlaying();
         } else {
@@ -47,24 +56,32 @@ Singleton {
     }
 
     function play(): void {
+        if (currentPlayer == null)
+            return;
         if (currentPlayer.canPlay) {
             currentPlayer.isPlaying = true;
         }
     }
 
     function pause(): void {
+        if (currentPlayer == null)
+            return;
         if (currentPlayer.canPause) {
             currentPlayer.isPlaying = false;
         }
     }
 
     function next(): void {
+        if (currentPlayer == null)
+            return;
         if (currentPlayer.canGoNext) {
             currentPlayer.next();
         }
     }
 
     function prev(): void {
+        if (currentPlayer == null)
+            return;
         if (currentPlayer.canGoPrevious) {
             currentPlayer.previous();
         }

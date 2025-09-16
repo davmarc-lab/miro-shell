@@ -1,10 +1,8 @@
 import Quickshell
 
-import QtQuick
-import QtQuick.Layouts
-
-import qs.modules.bar
 import qs
+import qs.modules.bar
+import qs.modules.rightPanel
 
 ShellRoot {
     LazyLoader {
@@ -15,5 +13,10 @@ ShellRoot {
     LazyLoader {
         active: Global.enableBar
         component: Bar {}
+    }
+
+    LazyLoader {
+        active: Global.enableRightPanel
+        component: RightPanel {}
     }
 }

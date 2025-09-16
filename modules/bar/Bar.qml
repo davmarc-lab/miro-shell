@@ -3,6 +3,7 @@ import Quickshell
 import QtQuick
 import QtQuick.Layouts
 
+import qs
 import qs.common
 import qs.widgets
 import qs.services
@@ -58,11 +59,11 @@ Scope {
                 anchors.horizontalCenter: parent.horizontalCenter
 
                 MButton {
-                    text: STime.day
-                }
-
-                MButton {
-                    text: STime.time
+                    property bool flag: false
+                    text: flag ? STime.date : STime.time
+                    onClicked: {
+                        flag = !flag;
+                    }
                 }
             }
 
@@ -94,6 +95,22 @@ Scope {
                         Layout.fillWidth: true
                         Layout.fillHeight: true
                         color: "green"
+                    }
+
+                    MIconButton {
+                        Layout.fillHeight: true
+                        Layout.preferredWidth: this.height
+                        iconName: Global.enableRightPanel ? "down-arrow.svg" : "right-arrow.svg"
+
+                        color: Theme.colorSurfaceVariant
+                        onIconClick: {
+                            Global.enableRightPanel = !Global.enableRightPanel;
+                        }
+
+                        // MIconClick {
+                        //     anchors.fill: parent
+                        //     anchors.margins: Settings.itemMargin
+                        // }
                     }
                 }
 
