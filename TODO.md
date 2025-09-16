@@ -19,7 +19,7 @@
 - [ ] Implement colorscheme loader
 - [ ] Implement colorscheme save system
 - [ ] Resource Usage
-- [ ] mpd && playerctl
+- [X] mpd && playerctl
 - [ ] Notification popups
 - [ ] Volume mixer
 - [ ] Keyboard layout

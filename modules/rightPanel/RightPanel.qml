@@ -5,6 +5,7 @@ import QtQuick.Layouts
 
 import qs.common
 import qs.widgets
+import qs.services
 
 MPanelWindow {
     id: root
@@ -68,6 +69,8 @@ MPanelWindow {
                         name: "wifi.svg"
                         onIconClick: {
                             itemsArea.tryExpand(name);
+                            if (itemsArea.isExpanded())
+                                SNetwork.scanWifi();
                         }
                     }
 

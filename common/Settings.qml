@@ -7,6 +7,8 @@ Singleton {
 
     readonly property var shellName: "miro"
 
+    readonly property string cacheDir: Quickshell.env("HOME") + "/.cache/quickshell/" + shellName + "-shell/"
+
     // readonly property var shellPath: Quickshell.env("HOME") + "/.config/" + shellName + "/"
     readonly property var shellPath: Quickshell.env("HOME") + "/Public/miro-shell/"
     readonly property var themesPath: shellPath + "themes/"
@@ -78,4 +80,3 @@ Singleton {
 
     // property int notifSumFontSize: 10
 }
-

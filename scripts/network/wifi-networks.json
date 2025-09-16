@@ -1,0 +1,51 @@
+[
+  {
+    "in-use": " ",
+    "network": "FASTWEB-9250C5",
+    "rate": "130 Mbit/s",
+    "signal": "70",
+    "security": "WPA2"
+  },
+  {
+    "in-use": " ",
+    "network": "Vodafone-A68880434",
+    "rate": "195 Mbit/s",
+    "signal": "52",
+    "security": "WPA2"
+  },
+  {
+    "in-use": "*",
+    "network": "FASTWEB-9250C5",
+    "rate": "1170 Mbit/s",
+    "signal": "52",
+    "security": "WPA2"
+  },
+  {
+    "in-use": " ",
+    "network": "DIRECT-RDASUS555msin",
+    "rate": "65 Mbit/s",
+    "signal": "40",
+    "security": "WPA2"
+  },
+  {
+    "in-use": " ",
+    "network": "SKYWIFI_FFAYR",
+    "rate": "260 Mbit/s",
+    "signal": "32",
+    "security": "WPA2"
+  },
+  {
+    "in-use": " ",
+    "network": "Unistudio Guest",
+    "rate": "130 Mbit/s",
+    "signal": "27",
+    "security": "WPA1 WPA2"
+  },
+  {
+    "in-use": " ",
+    "network": "Vodafone-A68880434",
+    "rate": "1170 Mbit/s",
+    "signal": "14",
+    "security": "WPA2"
+  }
+]

@@ -1,0 +1,37 @@
+[
+  {
+    "in-use": " ",
+    "network": "FASTWEB-9250C5",
+    "rate": "130 Mbit/s",
+    "signal": "80",
+    "security": "WPA2"
+  },
+  {
+    "in-use": "*",
+    "network": "FASTWEB-9250C5",
+    "rate": "1170 Mbit/s",
+    "signal": "51",
+    "security": "WPA2"
+  },
+  {
+    "in-use": " ",
+    "network": "Vodafone-A68880434",
+    "rate": "195 Mbit/s",
+    "signal": "45",
+    "security": "WPA2"
+  },
+  {
+    "in-use": " ",
+    "network": "Samsung Fridge_E50AJTRB090W",
+    "rate": "135 Mbit/s",
+    "signal": "44",
+    "security": "WPA2"
+  },
+  {
+    "in-use": " ",
+    "network": "SKYWIFI_FFAYR",
+    "rate": "260 Mbit/s",
+    "signal": "27",
+    "security": "WPA2"
+  }
+]
