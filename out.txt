@@ -1,8 +1,0 @@
-IN-USE  SSID                  SIGNAL 
-        FASTWEB-9250C5        64     
-*       FASTWEB-9250C5        50     
-        Vodafone-A68880434    49     
-        DIRECT-RDASUS555msin  42     
-        SKYWIFI_FFAYR         32     
-        Unistudio             25     
-        Unistudio Guest       22     

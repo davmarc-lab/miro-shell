@@ -1,10 +1,19 @@
 import Quickshell
 
+import QtQuick
+
 import qs
 import qs.modules.bar
 import qs.modules.rightPanel
+import qs.services
 
 ShellRoot {
+
+    Component.onCompleted: {
+        SNetwork.init();
+        console.log("INIT");
+    }
+
     LazyLoader {
         active: Global.enableFoo
         component: Foo {}

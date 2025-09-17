@@ -69,8 +69,12 @@ MPanelWindow {
                         name: "wifi.svg"
                         onIconClick: {
                             itemsArea.tryExpand(name);
-                            if (itemsArea.isExpanded())
-                                SNetwork.scanWifi();
+                            if (itemsArea.isExpanded()) {
+                                // console.log(SNetwork.getAvailableNetworks());
+                                // for (var elem of SNetwork.getAvailableNetworks()) {
+                                //     console.log(elem.network);
+                                // }
+                            }
                         }
                     }
 
