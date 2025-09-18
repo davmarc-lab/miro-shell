@@ -1,58 +1,81 @@
-import Quickshell
-
 import QtQuick
 import QtQuick.Layouts
 
-import qs.common
+import Quickshell
+
 import qs.widgets
 import qs.services
+import qs.common
 
-FloatingWindow {
-    // anchors {
-    //     top: true
-    //     left: true
-    // bottom: true
-    // }
-    // exclusiveZone: 0
+MPanelWindow {
+    id: root
+    visible: false
 
-    implicitWidth: 400
-    implicitHeight: 300
+    anchors {
+        top: true
+        right: true
+    }
 
+    margins {
+        right: 10
+    }
+
+    implicitWidth: 100
+    implicitHeight: 100
     color: Theme.colorSurface
 
-    Rectangle {
-        id: leftPanel
-        anchors.top: parent.top
-        anchors.bottom: parent.bottom
-        anchors.left: parent.left
-        anchors.right: center.left
+    ColumnLayout {
+        anchors.fill: parent
+        anchors.rightMargin: Settings.notifItemBorder
+        anchors.leftMargin: Settings.notifItemBorder
 
-        width: 200
-        height: 300
-        color: "red"
-    }
+        MRButton {
+            id: clear
 
-    Rectangle {
-        id: center
-        anchors.top: parent.top
-        anchors.verticalCenter: parent.verticalCenter
-        anchors.horizontalCenter: parent.horizontalCenter
-        anchors.bottom: parent.bottom
+            Layout.alignment: Qt.AlignRight
 
-        width: 200
-        height: 300
-        color: "green"
-    }
+            text: "Clear"
 
-    Rectangle {
-        id: rightPanel
-        anchors.top: parent.top
-        anchors.bottom: parent.bottom
-        anchors.left: center.right
-        anchors.right: parent.right
+            onClicked: () => {
+                // it works
+                SNotification.clearAll();
+            }
+        }
 
-        width: 200
-        height: 300
-        color: "blue"
+        ListView {
+            id: notifs
+            Layout.fillWidth: true
+            Layout.fillHeight: true
+            model: ScriptModel {
+                id: notifModel
+                values: [...SNotification.notifications]
+            }
+
+            spacing: 10
+
+            delegate: Rectangle {
+                id: notif
+                required property SNotification.Notif modelData
+
+                color: Theme.colorSurfaceVariant
+
+                implicitWidth: Settings.notifItemWidth - 2 * Settings.notifItemBorder
+                implicitHeight: Settings.notifItemHeight
+                Layout.alignment: Qt.AlignHCenter
+
+                MText {
+                    id: notifSum
+                    color: Theme.colorOnSurfaceVariant
+                    font.pointSize: Settings.notifSumFontSize
+                    text: notif.modelData.summary
+                    // used to print font.pointSize
+                    // text: "<a href=\"http://qt-project.org\">Qt Project website</a>"
+                    // onLinkHovered: {
+                    //     console.log(notifSum.fontInfo.pointSize);
+                    // }
+                }
+            }
+        }
     }
 }
+

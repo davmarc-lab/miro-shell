@@ -1,11 +1,9 @@
 #!/usr/bin/env bash
 
-OUT_DIR="scripts/network/"
-
-echo "START script"
+OUT_DIR="$HOME/.cache/quickshell/miro-shell/network/"
 
 printf '%s' "$(nmcli -f in-use,ssid,rate,signal,security -t dev wifi)" | \
-jq -sR 'split("\n") | map(split(":")) | map({"in-use": .[0],
+jq -sR 'split("\n") | map(split(":")) | map({"inUse": .[0],
                                              "network": .[1],
                                              "rate": .[2],
                                              "signal": .[3],

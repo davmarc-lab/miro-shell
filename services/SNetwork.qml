@@ -19,24 +19,39 @@ Singleton {
 
     function init(): void {
         root.scanWifi();
-        console.log("SIU");
-        // detectedNet = JSON.parse(netFile.text());
-        console.log("SIU");
         root.isInit = true;
+    }
+
+    function dump(): void {
+        if (detectedNet.length != 0) {
+            for (var elem of detectedNet) {
+                console.log(elem.inUse + " - " + elem.network + " - " + elem.signal + " - " + elem.security + " - ");
+            }
+        }
     }
 
     FileView {
         id: netFile
-        path: "scripts/network/wifi-networks.json"
+        path: Settings.cacheDir + "network/wifi-networks.json"
 
-        blockLoading: true
+        blockLoading: false
         watchChanges: true
+        printErrors: true
 
         onFileChanged: reload()
         onPathChanged: reload()
+
+        onLoaded: {
+            if (this.text().length > 0) {
+                root.detectedNet = JSON.parse(this.text());
+            }
+        }
+        onLoadFailed: {
+            console.log("failed -> " + this.path);
+        }
     }
 
-    property list<JsonObject> detectedNet: []
+    property var detectedNet: []
 
     function getAvailableNetworks(): list<JsonObject> {
         if (this.init)
@@ -51,15 +66,12 @@ Singleton {
         command: ["sh", "-c", Settings.scriptPath + "network/get-wifi.sh"]
         stdout: StdioCollector {
             onStreamFinished: {
-                console.log(this.text);
-                console.log("END");
                 getWifi.running = false;
             }
         }
     }
 
     function scanWifi(): void {
-        console.log("CALLED");
         getWifi.running = true;
     }
 }

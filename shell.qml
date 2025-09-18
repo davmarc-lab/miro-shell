@@ -15,7 +15,7 @@ ShellRoot {
     }
 
     LazyLoader {
-        active: Global.enableFoo
+        active: true
         component: Foo {}
     }
 

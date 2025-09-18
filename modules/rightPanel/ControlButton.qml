@@ -8,7 +8,7 @@ MIconButton {
 
     required property string name
 
-    Layout.fillWidth: true
+    Layout.preferredWidth: Layout.preferredHeight
     Layout.preferredHeight: Settings.rightIconsSize
     color: {
         if (this.pressed)
