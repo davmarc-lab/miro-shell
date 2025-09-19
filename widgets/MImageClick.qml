@@ -31,8 +31,9 @@ Rectangle {
             anchors.fill: parent
             hoverEnabled: true
 
-            onClicked: root.imageClicked(root.imgIdx)
+            onClicked: {
+                root.imageClicked(root.imgIdx);
+            }
         }
     }
 }
-

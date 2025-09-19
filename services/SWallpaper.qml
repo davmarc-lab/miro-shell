@@ -22,7 +22,7 @@ Singleton {
     Process {
         id: update
         running: false
-        command: []
+        command: ["sh", "-c", Settings.scriptPath + "wallpaper/update.sh " + root.current]
         stdout: StdioCollector {
             onStreamFinished: {
                 update.running = false;
@@ -47,21 +47,22 @@ Singleton {
     property string name: Settings.wallpaperFile
     property string current: name
 
-    function updateWallpaper(name: string): void {
-    }
-
     function getCurrent(): string {
         return path + current ?? "";
     }
 
     function setCurrentByIndex(index: int): void {
-        if (index >= 0 && index < data.names.length)
+        if (index >= 0 && index < data.names.length) {
             this.current = data.names[index];
+            update.running = true;
+        }
     }
 
     function setCurrent(name: string): void {
-        if (data.names.filter(s => s == (path + name)).length)
-            this.current = path + name;
+        if (data.names.filter(s => s == (path + name)).length) {
+            this.current = name;
+            update.running = true;
+        }
     }
 
     function getDetected(fullPath = true): bool {

@@ -15,6 +15,10 @@ MPopupPane {
     sizey: root.height * 0.2
     align: Qt.AlignBottom | Qt.AlignHCenter
 
+    onOpenChanged: {
+        Global.enableWPSelector = this.open;
+    }
+
     ColumnLayout {
         anchors.fill: parent
         anchors.margins: Settings.panelMargin
@@ -52,13 +56,5 @@ MPopupPane {
                 }
             }
         }
-    }
-
-    onClickIn: {
-        console.log("clicked area");
-    }
-
-    onClickOut: {
-        Global.enableWPSelector = false;
     }
 }

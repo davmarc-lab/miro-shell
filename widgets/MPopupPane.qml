@@ -26,11 +26,17 @@ MPanelWindow {
 
     required property double sizex
     required property double sizey
+
     property string panelColor: Theme.colorSurface
     property int align: Qt.AlignCenter
 
-    signal clickOut
-    signal clickIn
+    property bool mouseDown: rootArea.pressed
+    property bool hovered: hover.hovered
+    property bool open: false
+
+    onMouseDownChanged: {
+        this.open = this.mouseDown && this.hovered;
+    }
 
     anchors {
         top: true
@@ -60,13 +66,5 @@ MPanelWindow {
         id: rootArea
         anchors.fill: parent
         propagateComposedEvents: true
-
-        onClicked: {
-            if (!hover.hovered) {
-                root.clickOut();
-            } else {
-                root.clickIn();
-            }
-        }
     }
 }
