@@ -11,7 +11,7 @@ Singleton {
     // property bool enableSysTray: false
 
     property bool enableFoo: false
-    // property bool enableWallpaper: true
+    property bool enableWallpaper: true
 
     property bool enableDock: false
     property bool enablePowerMenu: false

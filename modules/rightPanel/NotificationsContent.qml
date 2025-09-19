@@ -15,9 +15,11 @@ ColumnLayout {
 
             Layout.alignment: Qt.AlignTop
             Layout.fillWidth: true
-            Layout.fillHeight: true
+            // Layout.fillHeight: true
 
             text: modelData.summary
         }
     }
+
+    MFillLayout {}
 }

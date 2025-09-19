@@ -3,41 +3,56 @@ import Quickshell
 import QtQuick
 
 import qs
+import qs.modules.wallpaper
 import qs.modules.bar
-import qs.modules.rightPanel
 import qs.modules.dock
+import qs.modules.rightPanel
 import qs.modules.settings
 import qs.services
 
 ShellRoot {
+    id: root
+
+    property bool init: false
 
     Component.onCompleted: {
         SNetwork.init();
-        console.log("INIT");
+        SWallpaper.init();
+        init = true;
     }
 
     LazyLoader {
-        active: true
+        active: root.init && Global.enableFoo
         component: Foo {}
     }
 
     LazyLoader {
-        active: Global.enableBar
+        active: root.init && Global.enableWallpaper
+        component: Wallpaper {}
+    }
+
+    LazyLoader {
+        active: root.init && Global.enableBar
         component: Bar {}
     }
 
     LazyLoader {
-        active: Global.enableDock
+        active: root.init && Global.enableDock
         component: Dock {}
     }
 
     LazyLoader {
-        active: Global.enableSettings
+        active: root.init && Global.enableWPSelector
+        component: WallpaperPicker {}
+    }
+
+    LazyLoader {
+        active: root.init && Global.enableSettings
         component: SettingsApp {}
     }
 
     LazyLoader {
-        active: Global.enableRightPanel
+        active: root.init && Global.enableRightPanel
         component: RightPanel {}
     }
 }

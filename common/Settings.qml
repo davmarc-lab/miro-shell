@@ -25,15 +25,15 @@ Singleton {
 
     // wallpaper
     property string wallpaperDir: Quickshell.env("HOME") + "/Pictures/Wallpapers/"
-    property string wallpaperFile: "glow-moon.jpg"
+    property string wallpaperFile: ""
 
     // panels
     property int panelMargin: 10
     property int itemMargin: 8
     property int itemRadius: 10
 
-    // property int thumbWidth: 280
-    // property int thumbHeight: 200
+    property int thumbWidth: 280
+    property int thumbHeight: 200
 
     // buttons
     property int buttonOutlineSize: 1

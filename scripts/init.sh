@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 CACHE_DIR="$HOME/.cache/quickshell/miro-shell/"
 
@@ -6,6 +6,12 @@ CACHE_DIR="$HOME/.cache/quickshell/miro-shell/"
 if [[ ! -e $CACHE_DIR ]] then
     mkdir -p $CACHE_DIR
     echo "Cache dir created"
+fi
+
+# create wallpaper cache dir
+if [[ ! -e "${CACHE_DIR}wallpaper/" ]] then
+    mkdir "${CACHE_DIR}wallpaper"
+    echo "-- cache: wallpaper dir created--"
 fi
 
 # create network cache dir

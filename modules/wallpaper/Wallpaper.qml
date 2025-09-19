@@ -4,11 +4,12 @@ import Quickshell.Wayland
 import QtQuick
 
 import qs.widgets
+import qs.services
 
 Scope {
     Variants {
         model: Quickshell.screens
-        MPopup {
+        PanelWindow {
             WlrLayershell.layer: WlrLayer.Background
             exclusionMode: ExclusionMode.Ignore
 
@@ -17,10 +18,6 @@ Scope {
             required property var modelData
             screen: modelData
 
-            exclusionMode: ExclusionMode.Ignore
-
-            WlrLayershell.layer: WlrLayer.Background
-            aboveWindows: false
             color: "transparent"
 
             implicitWidth: screen.width
