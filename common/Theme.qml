@@ -3,6 +3,8 @@ pragma Singleton
 import Quickshell
 import Quickshell.Io
 
+import qs.common
+
 Singleton {
     id: root
 
@@ -18,6 +20,22 @@ Singleton {
     readonly property var themeData: JSON.parse(themeFile.text())
 
     property string themeStyle: "dark"
+
+    function toggleTheme(style = ""): void {
+        // simple toggle if no style is passed
+        if (style == "") {
+            this.themeStyle = this.themeStyle == "dark" ? "light" : "dark";
+            return;
+        }
+
+        // fallback for default style
+        if (style != "dark" || style != "light") {
+            this.themeStyle = "dark";
+            return;
+        }
+
+        this.themeStyle = style;
+    }
 
     // These properties are used to draw elements
     property string colorPrimary: themeStyle == "dark" ? darkPrimary : lightPrimary
@@ -66,4 +84,3 @@ Singleton {
     property string lightOutline: root.themeData.light.mOutline
     property string lightShadow: root.themeData.light.mShadow
 }
-

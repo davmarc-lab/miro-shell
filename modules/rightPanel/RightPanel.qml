@@ -91,7 +91,8 @@ MPopup {
                         ControlButton {
                             name: "sun.svg"
                             onIconClick: {
-                                itemsArea.tryExpand(name);
+                                // itemsArea.tryExpand(name);
+                                Theme.toggleTheme();
                             }
                         }
 

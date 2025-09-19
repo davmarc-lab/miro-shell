@@ -4,15 +4,23 @@ import qs.common
 
 MRectangle {
     id: root
-    color: mouse.containsMouse ? Theme.colorPrimaryHover : Theme.colorPrimary
+
     required property string iconName
 
     readonly property bool hovered: mouse.containsMouse
     readonly property bool pressed: mouse.pressed
     readonly property bool clicked: mouse.clicked
+
     property double iconMargins: Settings.iconButtonMargins
 
     signal iconClick
+
+    color: {
+        if (this.pressed)
+            return Theme.colorSecondary;
+
+        return this.hovered ? Theme.colorPrimaryHover : Theme.colorPrimary;
+    }
 
     MIcon {
         anchors.fill: parent

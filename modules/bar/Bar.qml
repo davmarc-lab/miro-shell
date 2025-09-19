@@ -59,10 +59,9 @@ Scope {
                 anchors.horizontalCenter: parent.horizontalCenter
 
                 MButton {
-                    property bool flag: false
-                    text: flag ? STime.date : STime.time
+                    text: STime.time
                     onClicked: {
-                        flag = !flag;
+                        Global.enableDock = !Global.enableDock;
                     }
                 }
             }

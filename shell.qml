@@ -5,6 +5,8 @@ import QtQuick
 import qs
 import qs.modules.bar
 import qs.modules.rightPanel
+import qs.modules.dock
+import qs.modules.settings
 import qs.services
 
 ShellRoot {
@@ -22,6 +24,16 @@ ShellRoot {
     LazyLoader {
         active: Global.enableBar
         component: Bar {}
+    }
+
+    LazyLoader {
+        active: Global.enableDock
+        component: Dock {}
+    }
+
+    LazyLoader {
+        active: Global.enableSettings
+        component: SettingsApp {}
     }
 
     LazyLoader {

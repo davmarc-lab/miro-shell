@@ -5,17 +5,17 @@ import Quickshell
 Singleton {
     id: settings
 
-    readonly property var shellName: "miro"
+    readonly property string shellName: "miro"
 
     readonly property string cacheDir: Quickshell.env("HOME") + "/.cache/quickshell/" + shellName + "-shell/"
 
     // readonly property var shellPath: Quickshell.env("HOME") + "/.config/" + shellName + "/"
-    readonly property var shellPath: Quickshell.env("HOME") + "/Public/miro-shell/"
-    readonly property var themesPath: shellPath + "themes/"
+    readonly property string shellPath: Quickshell.env("HOME") + "/Public/miro-shell/"
+    readonly property string themesPath: shellPath + "themes/"
 
-    readonly property var scriptPath: shellPath + "scripts/"
+    readonly property string scriptPath: shellPath + "scripts/"
 
-    readonly property var iconsPath: shellPath + "assets/icons/"
+    readonly property string iconsPath: shellPath + "assets/icons/"
 
     // bar
     property int barHeight: 40

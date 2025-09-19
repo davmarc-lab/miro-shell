@@ -1,0 +1,134 @@
+import QtQuick
+import QtQuick.Layouts
+
+import qs
+import qs.common
+import qs.widgets
+import qs.services
+
+MPopup {
+    id: root
+    MRectangle {
+        Layout.alignment: Qt.AlignTop | Qt.AlignHCenter
+        Layout.preferredWidth: root.screen.width * 0.4
+        Layout.preferredHeight: root.screen.height * 0.3
+        Layout.topMargin: Settings.barHeight
+
+        color: Theme.colorSurface
+
+        MRectangle {
+            id: back
+            anchors.fill: parent
+            anchors.margins: Settings.itemMargin
+
+            RowLayout {
+                anchors.fill: parent
+
+                ColumnLayout {
+                    id: leftSide
+                    Layout.alignment: Qt.AlignLeft
+                    Layout.fillWidth: true
+                    Layout.fillHeight: true
+
+                    MRectangle {
+                        Layout.fillWidth: true
+                        Layout.fillHeight: true
+                        color: Theme.colorPrimary
+
+                        ColumnLayout {
+                            id: timeDate
+                            anchors.fill: parent
+                            anchors.margins: Settings.itemMargin
+
+                            Item {
+                                id: time
+                                Layout.alignment: Qt.AlignHCenter
+                                Layout.fillWidth: true
+                                Layout.fillHeight: true
+                                MText {
+                                    anchors.centerIn: parent
+                                    text: STime.time
+                                    color: Theme.colorOnPrimary
+                                }
+                            }
+
+                            Item {
+                                id: date
+                                Layout.alignment: Qt.AlignHCenter
+                                Layout.fillWidth: true
+                                Layout.fillHeight: true
+                                MText {
+                                    anchors.centerIn: parent
+                                    text: STime.date
+                                    color: Theme.colorOnPrimary
+                                }
+                            }
+                        }
+                    }
+
+                    Item {
+                        Layout.fillWidth: true
+                        Layout.fillHeight: true
+                        GridLayout {
+                            anchors.centerIn: parent
+                            rows: 1
+                            columns: 4
+                            MIconButton {
+                                Layout.preferredWidth: Layout.preferredHeight
+                                Layout.preferredHeight: Settings.rightIconsSize
+                                iconName: "settings.svg"
+
+                                onIconClick: {
+                                    Global.enableDock = false;
+                                    Global.enableSettings = true;
+                                }
+                            }
+
+                            MIconButton {
+                                Layout.preferredWidth: Layout.preferredHeight
+                                Layout.preferredHeight: Settings.rightIconsSize
+                                iconName: "wallpaper.svg"
+
+                                onIconClick: {
+                                    Global.enableDock = false;
+                                    Global.enableWPSelector = true;
+                                }
+                            }
+
+                            MIconButton {
+                                Layout.preferredWidth: Layout.preferredHeight
+                                Layout.preferredHeight: Settings.rightIconsSize
+                                iconName: "power.svg"
+
+                                onIconClick: {
+                                    Global.enableDock = false;
+                                    Global.enablePowerMenu = true;
+                                }
+                            }
+
+                            MButton {
+                                Layout.fillWidth: true
+                                Layout.fillHeight: true
+                                text: "BOH"
+                            }
+                        }
+                    }
+                }
+
+                MRectangle {
+                    id: middle
+                    Layout.preferredWidth: parent.width * 0.4
+                    Layout.fillHeight: true
+                    color: "green"
+                }
+
+                MRectangle {
+                    id: rightSide
+                    Layout.fillWidth: true
+                    Layout.fillHeight: true
+                    color: "blue"
+                }
+            }
+        }
+    }
+}
