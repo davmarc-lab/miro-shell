@@ -42,6 +42,11 @@ ShellRoot {
     }
 
     LazyLoader {
+        active: root.init && Global.enablePowerMenu
+        component: PowerMenu {}
+    }
+
+    LazyLoader {
         active: root.init && Global.enableWPSelector
         component: WallpaperPicker {}
     }

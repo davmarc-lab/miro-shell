@@ -66,5 +66,6 @@ MPanelWindow {
         id: rootArea
         anchors.fill: parent
         propagateComposedEvents: true
+
     }
 }
