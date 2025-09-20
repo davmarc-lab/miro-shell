@@ -1,4 +1,5 @@
 import Quickshell
+import Quickshell.Hyprland
 import Quickshell.Wayland
 
 import QtQuick.Layouts
@@ -15,6 +16,8 @@ MPanelWindow {
 
     WlrLayershell.layer: WlrLayer.Top
     exclusionMode: ExclusionMode.Ignore
+
+    property bool open: false
 
     aboveWindows: true
 
@@ -36,5 +39,13 @@ MPanelWindow {
     ColumnLayout {
         id: content
         anchors.fill: parent
+    }
+
+    HyprlandFocusGrab {
+        active: root.open
+        windows: [root]
+        onCleared: {
+            root.open = false;
+        }
     }
 }

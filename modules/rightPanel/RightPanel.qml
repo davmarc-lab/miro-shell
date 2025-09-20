@@ -3,12 +3,18 @@ import Quickshell
 import QtQuick
 import QtQuick.Layouts
 
+import qs
 import qs.common
 import qs.widgets
 import qs.services
 
 MPopup {
     id: root
+
+    open: Global.enableRightPanel
+    onOpenChanged: {
+        Global.enableRightPanel = root.open;
+    }
 
     MRectangle {
         id: panel

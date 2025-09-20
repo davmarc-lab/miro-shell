@@ -1,4 +1,7 @@
 pragma ComponentBehavior: Bound
+
+import Quickshell
+
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
@@ -8,48 +11,53 @@ import qs.common
 import qs.widgets
 import qs.services
 
-MPopupPane {
+MPopup {
     id: root
 
-    sizex: root.width * 0.4
-    sizey: root.height * 0.2
-    align: Qt.AlignBottom | Qt.AlignHCenter
-
+    open: Global.enableWPSelector
     onOpenChanged: {
-        Global.enableWPSelector = this.open;
+        Global.enableWPSelector = root.open;
     }
 
-    ColumnLayout {
-        anchors.fill: parent
-        anchors.margins: Settings.panelMargin
-        spacing: Settings.panelMargin
+    MRectangle {
+        Layout.alignment: Qt.AlignHCenter | Qt.AlignBottom
+        Layout.preferredWidth: root.width * 0.4
+        Layout.preferredHeight: root.height * 0.2
 
-        MRectangle {
-            Layout.fillWidth: true
-            Layout.fillHeight: true
-            color: Theme.colorSurface
+        color: Theme.colorSurface
 
-            ScrollView {
-                id: scroll
-                anchors.fill: parent
+        ColumnLayout {
+            anchors.fill: parent
+            anchors.margins: Settings.panelMargin
+            spacing: Settings.panelMargin
 
-                RowLayout {
+            MRectangle {
+                Layout.fillWidth: true
+                Layout.fillHeight: true
+                color: Theme.colorSurface
+
+                ScrollView {
+                    id: scroll
                     anchors.fill: parent
 
-                    Repeater {
-                        model: SWallpaper.getDetected()
+                    RowLayout {
+                        anchors.fill: parent
 
-                        delegate: MImageClick {
-                            id: wp
-                            required property int index
-                            required property string modelData
+                        Repeater {
+                            model: SWallpaper.getDetected()
 
-                            imgIdx: index
-                            path: modelData
+                            delegate: MImageClick {
+                                id: wp
+                                required property int index
+                                required property string modelData
 
-                            // no click detected
-                            onImageClicked: elem => {
-                                SWallpaper.setCurrentByIndex(elem);
+                                imgIdx: index
+                                path: modelData
+
+                                // no click detected
+                                onImageClicked: elem => {
+                                    SWallpaper.setCurrentByIndex(elem);
+                                }
                             }
                         }
                     }

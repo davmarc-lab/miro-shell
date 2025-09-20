@@ -8,6 +8,12 @@ import qs.services
 
 MPopup {
     id: root
+
+    open: Global.enableDock
+    onOpenChanged: {
+        Global.enableDock = root.open;
+    }
+
     MRectangle {
         Layout.alignment: Qt.AlignTop | Qt.AlignHCenter
         Layout.preferredWidth: root.screen.width * 0.4
