@@ -125,7 +125,43 @@ MPopup {
                     id: middle
                     Layout.preferredWidth: parent.width * 0.4
                     Layout.fillHeight: true
-                    color: "green"
+                    Layout.margins: Settings.itemMargin
+
+                    ColumnLayout {
+                        anchors.fill: parent
+
+                        MRectangle {
+                            Layout.fillWidth: true
+                            Layout.fillHeight: true
+                            color: Theme.colorSurface
+
+                            RowLayout {
+                                anchors.fill: parent
+                                anchors.margins: Settings.itemMargin
+
+                                MRIcon {
+                                    cache: true
+                                    mipmap: true
+                                    dir: "/home/mil/Pictures/"
+                                    name: "DOGGO.jpg"
+                                    Layout.preferredWidth: 100
+                                    Layout.preferredHeight: 100
+                                }
+
+                                MRectangle {
+                                    Layout.fillWidth: true
+                                    Layout.fillHeight: true
+                                    color: "blue"
+                                }
+                            }
+                        }
+
+                        MRectangle {
+                            Layout.fillWidth: true
+                            Layout.fillHeight: true
+                            color: Theme.colorSurface
+                        }
+                    }
                 }
 
                 MRectangle {

@@ -57,8 +57,8 @@ ShellRoot {
         component: SettingsApp {}
     }
 
-    LazyLoader {
-        active: root.init && Global.enableRightPanel
-        component: RightPanel {}
-    }
+    // LazyLoader {
+    //     active: root.init && Global.enableRightPanel
+    //     component: RightPanel {}
+    // }
 }
