@@ -6,6 +6,7 @@ import qs
 import qs.modules.wallpaper
 import qs.modules.bar
 import qs.modules.dock
+import qs.modules.powermenu
 import qs.modules.rightPanel
 import qs.modules.settings
 import qs.services

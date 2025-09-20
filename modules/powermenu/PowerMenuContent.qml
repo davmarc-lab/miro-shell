@@ -2,6 +2,7 @@ import QtQuick
 import QtQuick.Layouts
 
 import qs.common
+import qs.widgets
 
 GridLayout {
     id: root
@@ -10,8 +11,8 @@ GridLayout {
 
     default property list<PowerMenuButton> buttons
 
-    width: parent.width * 0.75
-    height: parent.height * 0.75
+    width: parent.width
+    height: parent.height
 
     columns: 3
     columnSpacing: 0
@@ -38,12 +39,13 @@ GridLayout {
                 onClicked: elem.modelData.exec()
             }
 
-            Image {
+            MIcon {
                 id: icon
                 anchors.centerIn: parent
-                source: `${Settings.iconsPath}powermenu/${elem.modelData.icon}.png`
-                width: parent.width * 0.25
-                height: parent.width * 0.25
+                name: `${elem.modelData.icon}.svg`
+                implicitSize: parent.width * 0.25
+                backer.cache: true
+                backer.asynchronous: true
             }
 
             Text {
@@ -60,4 +62,3 @@ GridLayout {
         }
     }
 }
-
