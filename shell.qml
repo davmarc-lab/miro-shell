@@ -18,6 +18,7 @@ ShellRoot {
 
     Component.onCompleted: {
         SNetwork.init();
+        SUser.init();
         SWallpaper.init();
         init = true;
     }

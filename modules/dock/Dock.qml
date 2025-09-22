@@ -35,6 +35,7 @@ MPopup {
                     Layout.alignment: Qt.AlignLeft
                     Layout.fillWidth: true
                     Layout.fillHeight: true
+                    Layout.margins: Settings.itemMargin
 
                     MRectangle {
                         Layout.fillWidth: true
@@ -142,8 +143,8 @@ MPopup {
                                 MRIcon {
                                     cache: true
                                     mipmap: true
-                                    dir: "/home/mil/Pictures/"
-                                    name: "DOGGO.jpg"
+                                    dir: SUser.getUserImageDir()
+                                    name: SUser.getUserImageFile()
                                     Layout.preferredWidth: 100
                                     Layout.preferredHeight: 100
                                 }
@@ -151,7 +152,33 @@ MPopup {
                                 MRectangle {
                                     Layout.fillWidth: true
                                     Layout.fillHeight: true
-                                    color: "blue"
+                                    // color: "blue"
+
+                                    ColumnLayout {
+                                        id: info
+                                        anchors.fill: parent
+                                        anchors.margins: Settings.itemMargin
+
+                                        MFillLayout {}
+
+                                        MText {
+                                            id: name
+                                            Layout.fillWidth: true
+                                            Layout.preferredHeight: contentHeight
+                                            Layout.alignment: Qt.AlignVCenter
+                                            text: SUser.getName() + " " + SUser.getSecondName()
+                                        }
+
+                                        MText {
+                                            id: username
+                                            Layout.fillWidth: true
+                                            Layout.preferredHeight: contentHeight
+                                            Layout.alignment: Qt.AlignVCenter
+                                            text: SUser.getUsername()
+                                        }
+
+                                        MFillLayout {}
+                                    }
                                 }
                             }
                         }
@@ -168,7 +195,33 @@ MPopup {
                     id: rightSide
                     Layout.fillWidth: true
                     Layout.fillHeight: true
-                    color: "blue"
+                    Layout.margins: Settings.itemMargin
+
+                    color: Theme.colorSurface
+
+                    ColumnLayout {
+                        anchors.fill: parent
+                        anchors.margins: Settings.itemMargin
+
+                        MTitle {
+                            Layout.preferredWidth: contentWidth
+                            Layout.preferredHeight: contentHeight
+                            Layout.alignment: Qt.AlignHCenter | Qt.AlignTop
+                            text: "Calendar"
+                        }
+
+                        MRectangle {
+                            Layout.fillWidth: true
+                            Layout.preferredHeight: 1
+                            Layout.alignment: Qt.AlignTop
+                            color: Theme.colorPrimary
+                        }
+
+                        CalendarWidget {
+                            Layout.fillWidth: true
+                            Layout.fillHeight: true
+                        }
+                    }
                 }
             }
         }

@@ -19,3 +19,9 @@ if [[ ! -e "${CACHE_DIR}network/" ]] then
     mkdir "${CACHE_DIR}network"
     echo "-- cache: network dir created--"
 fi
+
+# create user cache dir
+if [[ ! -e "${CACHE_DIR}user/" ]] then
+    mkdir "${CACHE_DIR}user"
+    echo "-- cache: user dir created--"
+fi
