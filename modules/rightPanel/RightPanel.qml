@@ -11,11 +11,6 @@ import qs.services
 MPopup {
     id: root
 
-    open: Global.enableRightPanel
-    onOpenChanged: {
-        Global.enableRightPanel = root.open;
-    }
-
     MRectangle {
         id: panel
         Layout.alignment: Qt.AlignRight

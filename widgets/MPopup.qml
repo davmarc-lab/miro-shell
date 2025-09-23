@@ -4,6 +4,7 @@ import Quickshell.Wayland
 
 import QtQuick.Layouts
 
+import qs
 import qs.widgets
 
 /* This component just creates an invisible window with a mask region defined
@@ -17,7 +18,7 @@ MPanelWindow {
     WlrLayershell.layer: WlrLayer.Top
     exclusionMode: ExclusionMode.Ignore
 
-    property bool open: false
+    property bool open: true
 
     aboveWindows: true
 
@@ -42,7 +43,7 @@ MPanelWindow {
     }
 
     HyprlandFocusGrab {
-        active: root.open
+        active: Global.enableRightPanel
         windows: [root]
         onCleared: {
             root.open = false;

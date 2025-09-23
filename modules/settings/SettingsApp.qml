@@ -1,14 +1,25 @@
 pragma ComponentBehavior: Bound
 
 import QtQuick
+import QtQuick.Controls
 import QtQuick.Layouts
 
+import qs
 import qs.common
 import qs.widgets
 
-// change to CApplicationWindow
-MFloating {
+ApplicationWindow {
     id: root
+
+    topPadding: 0
+
+    visible: Global.enableSettings
+
+    color: Theme.colorSurface
+
+    onClosing: {
+        Global.enableSettings = false;
+    }
 
     property var sections: [
         {
@@ -26,93 +37,81 @@ MFloating {
         contentLoader.source = root.sections[root.currentSection].content;
     }
 
-    ColumnLayout {
+    MRectangle {
         anchors.fill: parent
-        anchors.topMargin: Settings.panelMargin
-        anchors.bottomMargin: anchors.topMargin
-        anchors.leftMargin: Settings.panelMargin
-        anchors.rightMargin: anchors.leftMargin
+        implicitWidth: parent.width * 0.6
 
-        spacing: Settings.panelMargin
+        radius: Settings.itemRadius
 
-        Rectangle {
-            Layout.alignment: Qt.AlignHCenter
-            Layout.fillHeight: true
-            Layout.minimumWidth: 1000
-            implicitWidth: parent.width * 0.6
+        color: root.color
 
-            radius: Settings.itemRadius
+        RowLayout {
+            anchors.fill: parent
+            anchors.topMargin: Settings.panelMargin
+            anchors.bottomMargin: anchors.topMargin
+            anchors.leftMargin: Settings.panelMargin
+            anchors.rightMargin: anchors.leftMargin
 
-            color: Theme.colorOutline
+            spacing: Settings.panelMargin
 
-            RowLayout {
-                anchors.fill: parent
-                anchors.topMargin: Settings.panelMargin
-                anchors.bottomMargin: anchors.topMargin
-                anchors.leftMargin: Settings.panelMargin
-                anchors.rightMargin: anchors.leftMargin
+            Rectangle {
+                id: indexPanel
+                Layout.fillHeight: true
+                Layout.minimumWidth: 200
+                implicitWidth: parent.width * 0.3
 
-                spacing: Settings.panelMargin
+                color: Theme.colorSurfaceVariant
 
-                Rectangle {
-                    id: indexPanel
-                    Layout.fillHeight: true
-                    Layout.minimumWidth: 200
-                    implicitWidth: parent.width * 0.3
+                radius: Settings.itemRadius
 
-                    color: Theme.colorSurfaceVariant
+                ColumnLayout {
+                    anchors {
+                        top: parent.top
+                        // bottom: parent.bottom
+                        left: parent.left
+                        right: parent.right
+                    }
 
-                    radius: Settings.itemRadius
+                    anchors.topMargin: Settings.panelMargin
+                    anchors.bottomMargin: anchors.topMargin
+                    anchors.leftMargin: Settings.panelMargin
+                    anchors.rightMargin: anchors.leftMargin
 
-                    ColumnLayout {
-                        anchors {
-                            top: parent.top
-                            // bottom: parent.bottom
-                            left: parent.left
-                            right: parent.right
-                        }
+                    Repeater {
+                        model: root.sections
 
-                        anchors.topMargin: Settings.panelMargin
-                        anchors.bottomMargin: anchors.topMargin
-                        anchors.leftMargin: Settings.panelMargin
-                        anchors.rightMargin: anchors.leftMargin
+                        delegate: IndexItem {
+                            id: item
+                            required property int index
+                            required property var modelData
 
-                        Repeater {
-                            model: root.sections
+                            entry: modelData.text
 
-                            delegate: IndexItem {
-                                id: item
-                                required property int index
-                                required property var modelData
-
-                                entry: modelData.text
-
-                                onClicked: {
-                                    root.currentSection = index;
-                                }
+                            onClicked: {
+                                root.currentSection = index;
                             }
                         }
                     }
                 }
+            }
 
-                Rectangle {
-                    id: contentPanel
-                    Layout.fillHeight: true
-                    Layout.fillWidth: true
+            Rectangle {
+                id: contentPanel
+                Layout.fillHeight: true
+                Layout.fillWidth: true
 
-                    color: Theme.colorSurfaceVariant
+                color: Theme.colorSurfaceVariant
 
-                    radius: Settings.itemRadius
+                radius: Settings.itemRadius
 
-                    Loader {
-                        id: contentLoader
-                        anchors.fill: contentPanel
+                Loader {
+                    id: contentLoader
+                    anchors.fill: contentPanel
 
-                        active: true
-                        Component.onCompleted: {
-                            if (root.currentSection >= 0)
-                                source = root.sections[root.currentSection].content;
-                        }
+                    active: true
+                    Component.onCompleted: {
+                        if (root.currentSection >= 0)
+                            source = root.sections[root.currentSection].content;
                     }
                 }
             }
