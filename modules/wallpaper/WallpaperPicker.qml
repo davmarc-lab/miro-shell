@@ -32,6 +32,7 @@ MPopup {
             spacing: Settings.panelMargin
 
             MRectangle {
+                id: contentPanel
                 Layout.fillWidth: true
                 Layout.fillHeight: true
                 color: Theme.colorSurface
@@ -39,9 +40,11 @@ MPopup {
                 ScrollView {
                     id: scroll
                     anchors.fill: parent
+                    ScrollBar.vertical.policy: ScrollBar.AlwaysOff
 
                     RowLayout {
                         anchors.fill: parent
+                        Layout.margins: 0
 
                         Repeater {
                             model: SWallpaper.getDetected()
@@ -54,7 +57,11 @@ MPopup {
                                 imgIdx: index
                                 path: modelData
 
-                                // no click detected
+                                // don't know why with this line vertical scroll is fixed
+                                sizey: scroll.availableHeight + 1
+                                // Layout.fillWidth: true
+                                // Layout.fillHeight: true
+
                                 onImageClicked: elem => {
                                     SWallpaper.setCurrentByIndex(elem);
                                 }

@@ -94,17 +94,16 @@ MPopup {
                         }
 
                         ControlButton {
-                            name: "sun.svg"
+                            name: "moon.svg"
                             onIconClick: {
-                                // itemsArea.tryExpand(name);
-                                Theme.toggleTheme();
+                                itemsArea.tryExpand(name);
                             }
                         }
 
                         ControlButton {
-                            name: "moon.svg"
+                            name: "sun.svg"
                             onIconClick: {
-                                itemsArea.tryExpand(name);
+                                Theme.toggleTheme();
                             }
                         }
                     }

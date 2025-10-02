@@ -93,7 +93,17 @@ Scope {
                     MRectangle {
                         Layout.fillWidth: true
                         Layout.fillHeight: true
-                        color: "green"
+                        // color: "green"
+
+                        RowLayout {
+                            anchors.fill: parent
+
+                            // MFillLayout {}
+
+                            VolumeInfo {
+                                Layout.margins: Settings.itemMargin
+                            }
+                        }
                     }
 
                     MIconButton {
