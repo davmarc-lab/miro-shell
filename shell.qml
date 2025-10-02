@@ -17,9 +17,9 @@ ShellRoot {
     property bool init: false
 
     Component.onCompleted: {
-        SNetwork.init();
-        SUser.init();
         SWallpaper.init();
+        SUser.init();
+        SNetwork.init();
         init = true;
     }
 
@@ -58,8 +58,8 @@ ShellRoot {
         component: SettingsApp {}
     }
 
-    // LazyLoader {
-    //     active: root.init && Global.enableRightPanel
-    //     component: RightPanel {}
-    // }
+    LazyLoader {
+        active: root.init && Global.enableRightPanel
+        component: RightPanel {}
+    }
 }

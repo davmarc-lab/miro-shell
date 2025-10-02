@@ -43,7 +43,7 @@ MPanelWindow {
     }
 
     HyprlandFocusGrab {
-        active: Global.enableRightPanel
+        active: root.open
         windows: [root]
         onCleared: {
             root.open = false;

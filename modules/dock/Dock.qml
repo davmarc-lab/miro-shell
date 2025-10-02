@@ -9,14 +9,13 @@ import qs.services
 MPopup {
     id: root
 
-    open: Global.enableDock
     onOpenChanged: {
-        Global.enableDock = root.open;
+        Global.enableDock = this.open;
     }
 
     MRectangle {
         Layout.alignment: Qt.AlignTop | Qt.AlignHCenter
-        Layout.preferredWidth: root.screen.width * 0.4
+        Layout.preferredWidth: root.screen.width * 0.3
         Layout.preferredHeight: root.screen.height * 0.3
         Layout.topMargin: Settings.barHeight
 
@@ -124,7 +123,7 @@ MPopup {
 
                 MRectangle {
                     id: middle
-                    Layout.preferredWidth: parent.width * 0.4
+                    Layout.preferredWidth: parent.width * 0.6
                     Layout.fillHeight: true
                     Layout.margins: Settings.itemMargin
 
@@ -152,7 +151,6 @@ MPopup {
                                 MRectangle {
                                     Layout.fillWidth: true
                                     Layout.fillHeight: true
-                                    // color: "blue"
 
                                     ColumnLayout {
                                         id: info
@@ -187,39 +185,8 @@ MPopup {
                             Layout.fillWidth: true
                             Layout.fillHeight: true
                             color: Theme.colorSurface
-                        }
-                    }
-                }
 
-                MRectangle {
-                    id: rightSide
-                    Layout.fillWidth: true
-                    Layout.fillHeight: true
-                    Layout.margins: Settings.itemMargin
-
-                    color: Theme.colorSurface
-
-                    ColumnLayout {
-                        anchors.fill: parent
-                        anchors.margins: Settings.itemMargin
-
-                        MTitle {
-                            Layout.preferredWidth: contentWidth
-                            Layout.preferredHeight: contentHeight
-                            Layout.alignment: Qt.AlignHCenter | Qt.AlignTop
-                            text: "Calendar"
-                        }
-
-                        MRectangle {
-                            Layout.fillWidth: true
-                            Layout.preferredHeight: 1
-                            Layout.alignment: Qt.AlignTop
-                            color: Theme.colorPrimary
-                        }
-
-                        CalendarWidget {
-                            Layout.fillWidth: true
-                            Layout.fillHeight: true
+                            
                         }
                     }
                 }

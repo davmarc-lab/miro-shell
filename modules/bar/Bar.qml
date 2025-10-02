@@ -103,7 +103,7 @@ Scope {
 
                         color: Theme.colorSurfaceVariant
                         onIconClick: {
-                            Global.enableRightPanel = !Global.enableRightPanel;
+                            Global.enableRightPanel = true;
                         }
 
                         // MIconClick {

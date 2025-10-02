@@ -18,8 +18,7 @@ Singleton {
     property bool enableSettings: false
     property bool enableWPSelector: false
 
-    // control panel
-    // property bool ctlPanelOpen: false
-    // property bool ctlPanelButtonHover: false
+    // misc
+    property bool enableBattery: false
 }
 
