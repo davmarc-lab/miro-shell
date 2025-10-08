@@ -100,9 +100,7 @@ Scope {
 
                             // MFillLayout {}
 
-                            VolumeInfo {
-                                Layout.margins: Settings.itemMargin
-                            }
+                            VolumeInfo {}
                         }
                     }
 
