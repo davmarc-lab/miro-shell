@@ -116,6 +116,9 @@ MPopup {
                                 Layout.fillWidth: true
                                 Layout.fillHeight: true
                                 text: "BOH"
+                                onClicked: {
+                                    Global.enableFirstRun();
+                                }
                             }
                         }
                     }
@@ -185,8 +188,6 @@ MPopup {
                             Layout.fillWidth: true
                             Layout.fillHeight: true
                             color: Theme.colorSurface
-
-                            
                         }
                     }
                 }

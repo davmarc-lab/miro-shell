@@ -6,6 +6,7 @@
 - [ ] Phone link
 
 ## Fix
+- [ ] First time using shell
 
 ## Critical Fix
 

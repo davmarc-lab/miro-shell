@@ -1,10 +1,14 @@
 pragma Singleton
 
 import Quickshell
+import Quickshell.Io
+
+import qs.common
 
 Singleton {
     id: root
 
+    // modules loading
     property bool enableBar: true
     property bool enableRightPanel: false
     // property bool enableNotification: true
@@ -20,5 +24,41 @@ Singleton {
 
     // misc
     property bool enableBattery: false
-}
 
+    // shell
+    property bool firstRun: false
+
+    // If the file "first-run.txt" exists than it doesn't need to do anything
+    // else it needs to initialize cache shell directories and files.
+    FileView {
+        id: hFirstRun
+
+        path: Settings.cacheUserDir + "first-run.txt"
+        printErrors: false
+
+        onLoadFailed: error => {
+            if (error == FileViewError.FileNotFound) {
+                root.enableFirstRun();
+                root.firstRun = true;
+            }
+        }
+
+        onLoaded: {
+            root.firstRun = false;
+        }
+    }
+
+    function checkFirstRun(): bool {
+        hFirstRun.reload();
+    }
+
+    // split these two
+    function enableFirstRun(flag = true): void {
+        if (flag) {
+            Quickshell.execDetached(["bash", "-c", `touch ${hFirstRun.path}`]);
+        } else {
+            Quickshell.execDetached(["bash", "-c", `rm ${hFirstRun.path}`]);
+            console.log(`${hFirstRun.path} removed`);
+        }
+    }
+}

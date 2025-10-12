@@ -3,6 +3,7 @@ import Quickshell
 import QtQuick
 
 import qs
+import qs.modules.greeter
 import qs.modules.wallpaper
 import qs.modules.bar
 import qs.modules.dock
@@ -17,6 +18,10 @@ ShellRoot {
     property bool init: false
 
     Component.onCompleted: {
+        Helper.prepareCache();
+
+        Global.checkFirstRun();
+
         SWallpaper.init();
         SUser.init();
         SNetwork.init();
@@ -26,6 +31,11 @@ ShellRoot {
     LazyLoader {
         active: root.init && Global.enableFoo
         component: Foo {}
+    }
+
+    LazyLoader {
+        active: root.init && Global.firstRun
+        component: Greeter {}
     }
 
     LazyLoader {

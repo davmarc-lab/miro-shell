@@ -24,4 +24,7 @@ fi
 if [[ ! -e "${CACHE_DIR}user/" ]] then
     mkdir "${CACHE_DIR}user"
     echo "-- cache: user dir created--"
+
 fi
+touch "${CACHE_DIR}user/data.json"
+echo "-- cache: --user file \"data.json\" created"

@@ -8,6 +8,7 @@ Singleton {
     readonly property string shellName: "miro"
 
     readonly property string cacheDir: Quickshell.env("HOME") + "/.cache/quickshell/" + shellName + "-shell/"
+    readonly property string cacheUserDir: cacheDir + "user/"
 
     // readonly property var shellPath: Quickshell.env("HOME") + "/.config/" + shellName + "/"
     readonly property string shellPath: Quickshell.env("HOME") + "/Public/miro-shell/"
