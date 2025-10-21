@@ -25,6 +25,7 @@ ShellRoot {
         SWallpaper.init();
         SUser.init();
         SNetwork.init();
+        SLayout;
         init = true;
     }
 

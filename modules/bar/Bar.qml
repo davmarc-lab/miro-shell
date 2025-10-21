@@ -84,24 +84,25 @@ Scope {
 
                     MFillLayout {}
 
-                    MRectangle {
-                        Layout.fillWidth: true
+                    MWrapRectangle {
                         Layout.fillHeight: true
-                        color: "red"
+
+                        RowLayout {
+                            anchors.fill: parent
+                            anchors.leftMargin: 6
+
+                            KeyboardInfo {}
+
+                            VolumeInfo {}
+
+                            MFillLayout {}
+                        }
                     }
 
                     MRectangle {
                         Layout.fillWidth: true
                         Layout.fillHeight: true
                         // color: "green"
-
-                        RowLayout {
-                            anchors.fill: parent
-
-                            // MFillLayout {}
-
-                            VolumeInfo {}
-                        }
                     }
 
                     MIconButton {
