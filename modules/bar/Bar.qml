@@ -103,6 +103,10 @@ Scope {
                         Layout.fillWidth: true
                         Layout.fillHeight: true
                         // color: "green"
+
+                        SystemTray {
+                            anchors.fill: parent
+                        }
                     }
 
                     MIconButton {
