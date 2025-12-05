@@ -18,19 +18,11 @@ MWrapRectangle {
 
         spacing: 0
 
-        MIcon {
-            id: icon
-            name: "sound"
-
-            Layout.preferredWidth: height
-            Layout.fillHeight: true
-        }
-
         MText {
-            id: vol
-            text: SAudio.muted ? "M " : `${SAudio.getVolume()} %`
+            id: battery
+            text: SPower.device.percentage * 100 + " %"
 
-            Layout.alignment: Qt.AlignVCenter
+            Layout.alignment: Qt.AlignVCenter | Qt.AlignHCenter
             color: Theme.colorOnPrimary
         }
     }

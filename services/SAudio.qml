@@ -10,6 +10,8 @@ Singleton {
     property PwNode sink: Pipewire.defaultAudioSink
     property PwNode source: Pipewire.defaultAudioSource
 
+    property bool muted: sink.audio.muted
+
     PwObjectTracker {
         objects: [root.sink, root.source]
     }

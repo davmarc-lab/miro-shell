@@ -95,6 +95,8 @@ Scope {
 
                             VolumeInfo {}
 
+                            BatteryInfo {}
+
                             MFillLayout {}
                         }
                     }
