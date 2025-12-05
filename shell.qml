@@ -9,6 +9,7 @@ import qs.modules.bar
 import qs.modules.dock
 import qs.modules.powermenu
 import qs.modules.rightPanel
+import qs.modules.utility
 import qs.modules.settings
 import qs.services
 
@@ -25,6 +26,10 @@ ShellRoot {
         SWallpaper.init();
         SUser.init();
         SNetwork.init();
+
+        if (Global.enableWeather)
+            SWeather.init();
+
         init = true;
     }
 
@@ -71,5 +76,10 @@ ShellRoot {
     LazyLoader {
         active: root.init && Global.enableRightPanel
         component: RightPanel {}
+    }
+
+    LazyLoader {
+        active: root.init && Global.enableUtility
+        component: Utility {}
     }
 }

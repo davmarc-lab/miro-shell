@@ -24,7 +24,13 @@ fi
 if [[ ! -e "${CACHE_DIR}user/" ]] then
     mkdir "${CACHE_DIR}user"
     echo "-- cache: user dir created--"
-
 fi
+
 touch "${CACHE_DIR}user/data.json"
 echo "-- cache: --user file \"data.json\" created"
+
+# create weather cache dir
+if [[ ! -e "${CACHE_DIR}weather/" ]] then
+    mkdir "${CACHE_DIR}weather"
+    echo "-- cache: weather dir created--"
+fi

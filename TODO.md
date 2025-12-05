@@ -4,6 +4,7 @@
 - [ ] Wallpaper picker
 - [ ] **Screen lock**
 - [ ] Phone link
+- [ ] Change Weather API [wttr](https://github.com/chubin/wttr.in#usage) (needs to be evaluated since it could be inaccurate)
 
 ## Fix
 - [ ] First time using shell

@@ -5,6 +5,8 @@ import QtQuick.Layouts
 import qs.common
 import qs.widgets
 
+import qs
+
 MRectangle {
     id: root
     Layout.preferredWidth: icon.implicitSize
@@ -13,12 +15,16 @@ MRectangle {
     color: Theme.colorSurfaceVariant
     radius: 0
 
-    MIcon {
+    MIconClick {
         id: icon
         anchors.fill: parent
 
         implicitSize: Settings.barHeight
 
         name: "arch-logo.svg"
+
+        onIconClick: {
+            Global.enableUtility = true;
+        }
     }
 }

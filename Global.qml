@@ -18,12 +18,16 @@ Singleton {
     property bool enableWallpaper: true
 
     property bool enableDock: false
-    property bool enablePowerMenu: false
     property bool enableSettings: false
     property bool enableWPSelector: false
+    property bool enableUtility: true
+
+    property bool enablePowerMenu: false
 
     // misc
     property bool enableBattery: false
+
+    property bool enableWeather: true
 
     // shell
     property bool firstRun: false

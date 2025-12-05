@@ -10,9 +10,5 @@ import qs
 Singleton {
     id: root
 
-    readonly property UPowerDevice device: UPower.displayDevice
-
-    function init() {
-        console.log("AA");
-    }
+    readonly property UPowerDevice battery: UPower.displayDevice
 }
