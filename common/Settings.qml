@@ -44,7 +44,7 @@ Singleton {
 
     // font
     property string font: ""
-    property int fontSize: 12
+    property int fontSize: 20
     property int fontTitle: 18
     property int fontSubTitle: 16
 

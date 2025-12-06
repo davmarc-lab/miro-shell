@@ -29,6 +29,12 @@ fi
 touch "${CACHE_DIR}user/data.json"
 echo "-- cache: --user file \"data.json\" created"
 
+# create todo cache dir
+if [[ ! -e "${CACHE_DIR}todo/" ]] then
+    mkdir "${CACHE_DIR}todo"
+    echo "-- cache: weather dir created--"
+fi
+
 # create weather cache dir
 if [[ ! -e "${CACHE_DIR}weather/" ]] then
     mkdir "${CACHE_DIR}weather"
