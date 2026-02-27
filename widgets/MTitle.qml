@@ -7,5 +7,5 @@ MText {
 
     font.pointSize: subtitle ? Settings.fontSubTitle : Settings.fontTitle
     font.preferShaping: true
-    font.weight: Font.Medium
+    font.weight: Font.Bold
 }

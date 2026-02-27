@@ -1,10 +1,14 @@
-import QtQuick
+import QtQuick.Controls
 
 import qs.common
 
-TextInput {
+TextField {
     id: root
 
     color: Theme.colorOnSurface
     font.pointSize: Settings.fontSize
+
+    background: MRectangle {
+        color: Theme.colorSurface
+    }
 }

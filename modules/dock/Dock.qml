@@ -115,9 +115,9 @@ MPopup {
                             MButton {
                                 Layout.fillWidth: true
                                 Layout.fillHeight: true
-                                text: "BOH"
+                                text: "UT"
                                 onClicked: {
-                                    Global.enableFirstRun();
+                                    Global.enableUtility = !Global.enableUtility;
                                 }
                             }
                         }

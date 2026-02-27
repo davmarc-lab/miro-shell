@@ -44,9 +44,9 @@ Singleton {
 
     // font
     property string font: ""
-    property int fontSize: 20
-    property int fontTitle: 18
-    property int fontSubTitle: 16
+    property int fontSize: 12
+    property int fontTitle: 16
+    property int fontSubTitle: 14
 
     // right panel
     property int rightIconsSize: 40

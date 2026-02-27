@@ -24,6 +24,7 @@ Singleton {
 
     function dump(): void {
         if (detectedNet.length != 0) {
+            console.log(detectedNet.length);
             for (var elem of detectedNet) {
                 console.log(elem.inUse + " - " + elem.network + " - " + elem.signal + " - " + elem.security + " - ");
             }

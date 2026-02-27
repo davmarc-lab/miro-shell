@@ -27,8 +27,8 @@ ApplicationWindow {
             content: "ThemeSettings.qml"
         },
         {
-            text: "World",
-            content: "World.qml"
+            text: "Interface",
+            content: "UiSettings.qml"
         }
     ]
     property int currentSection: 0
@@ -64,7 +64,9 @@ ApplicationWindow {
 
                 radius: Settings.itemRadius
 
+                // pages section indexing
                 ColumnLayout {
+                    id: pages
                     anchors {
                         top: parent.top
                         // bottom: parent.bottom
@@ -91,6 +93,26 @@ ApplicationWindow {
                                 root.currentSection = index;
                             }
                         }
+                    }
+                }
+
+                // close buttom at the bottom
+                MButton {
+                    id: close
+
+                    anchors.bottom: parent.bottom
+                    anchors.left: parent.left
+                    anchors.right: parent.right
+
+                    anchors.topMargin: Settings.panelMargin
+                    anchors.bottomMargin: anchors.topMargin
+                    anchors.leftMargin: Settings.panelMargin
+                    anchors.rightMargin: anchors.leftMargin
+
+                    text: "Close"
+
+                    onClicked: {
+                        Global.enableSettings = false;
                     }
                 }
             }
