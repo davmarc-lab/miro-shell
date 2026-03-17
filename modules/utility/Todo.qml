@@ -19,24 +19,28 @@ ColumnLayout {
             id: newTodo
 
             Layout.fillWidth: true
+            focus: true
 
             leftPadding: 10
 
             placeholderText: "New Todo item"
             placeholderTextColor: Theme.colorOnSurfaceVariant
+
+            Keys.onPressed: event => {
+                if (event.key === Qt.Key_Return) {
+                    newTodoAdd.addTodo();
+                    event.accepted = true;
+                }
+            }
         }
 
         MButton {
+            id: newTodoAdd
             text: "Add"
 
-            Keys.onReturnPressed: {
-                console.log("ENTER");
-            }
-            Keys.onEnterPressed: {
-                console.log("ENTER");
-            }
+            onPressed: () => addTodo()
 
-            onPressed: () => {
+            function addTodo() {
                 const text = newTodo.text;
                 if (text.length) {
                     // add todo
