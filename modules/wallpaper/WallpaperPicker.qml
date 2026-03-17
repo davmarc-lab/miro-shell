@@ -14,7 +14,6 @@ import qs.services
 MPopup {
     id: root
 
-    // open: Global.enableWPSelector
     onOpenChanged: {
         Global.enableWPSelector = this.open;
     }

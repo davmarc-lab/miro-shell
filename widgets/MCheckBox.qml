@@ -55,6 +55,6 @@ CheckBox {
 
         leftPadding: root.indicator.width + root.spacing
 
-        wrapMode: Text.WordWrap
+        wrapMode: Text.Wrap
     }
 }

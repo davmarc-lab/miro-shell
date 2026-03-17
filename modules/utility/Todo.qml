@@ -29,6 +29,13 @@ ColumnLayout {
         MButton {
             text: "Add"
 
+            Keys.onReturnPressed: {
+                console.log("ENTER");
+            }
+            Keys.onEnterPressed: {
+                console.log("ENTER");
+            }
+
             onPressed: () => {
                 const text = newTodo.text;
                 if (text.length) {

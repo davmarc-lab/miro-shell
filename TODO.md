@@ -9,9 +9,12 @@
 
 ## Fix
 - [ ] First time using shell
+- [ ] Press ESC to close a Popup
+- [ ] Press ENTER to press a button (TODO => Add button)
 
 ## Critical Fix
 - [X] Write to JSON files (JSONAdapter)
+- [ ] Fix Popup focus (key detection not working)
 
 ## Other features
 
