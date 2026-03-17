@@ -3,7 +3,7 @@
 - [X] Powermenu
 - [ ] Wallpaper picker
 - [X] **Screen lock**
-- [X] Phone link
+- [ ] Phone link
 - [ ] Change Weather API [wttr](https://github.com/chubin/wttr.in#usage) (needs to be evaluated since it could be inaccurate)
 
 ## Fix
@@ -14,12 +14,12 @@
 
 ## Other features
 
-- Colorscheme picker
+- [ ] Colorscheme picker
 - [ ] Implement colorscheme loader
 - [ ] Implement colorscheme save system
 - [ ] Resource Usage
 - [X] mpd && playerctl
 - [ ] Notification popups
 - [ ] Volume mixer
-- [ ] Keyboard layout
+- [X] Keyboard layout
 
