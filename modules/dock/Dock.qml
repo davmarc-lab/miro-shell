@@ -1,6 +1,8 @@
 import QtQuick
 import QtQuick.Layouts
 
+import Quickshell
+
 import qs
 import qs.common
 import qs.widgets
@@ -176,7 +178,7 @@ MPopup {
                                             Layout.fillWidth: true
                                             Layout.preferredHeight: contentHeight
                                             Layout.alignment: Qt.AlignVCenter
-                                            text: SUser.getUsername()
+                                            text: Quickshell.env("USER")
                                         }
 
                                         MFillLayout {}

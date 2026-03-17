@@ -19,6 +19,9 @@ Singleton {
 
     readonly property string iconsPath: shellPath + "assets/icons/"
 
+    // default user icon
+    readonly property string defaultUserIcon: iconsPath + "user.svg"
+
     // bar
     property int barHeight: 40
 

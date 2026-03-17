@@ -57,6 +57,8 @@ MPopup {
                                 imgIdx: index
                                 path: modelData
 
+                                fillMode: Image.PreserveAspectCrop
+
                                 // don't know why with this line vertical scroll is fixed
                                 sizey: scroll.availableHeight + 1
                                 // Layout.fillWidth: true

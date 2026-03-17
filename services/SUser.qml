@@ -41,7 +41,7 @@ Singleton {
 
         path: Settings.cacheDir + "user/data.json"
 
-        watchChanges: true
+        watchChanges: false
         onFileChanged: reload()
 
         JsonAdapter {

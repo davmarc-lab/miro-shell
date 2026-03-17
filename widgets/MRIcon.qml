@@ -1,7 +1,5 @@
 pragma ComponentBehavior: Bound
 
-import Quickshell.Widgets
-
 import QtQuick
 import Qt5Compat.GraphicalEffects
 
@@ -15,6 +13,8 @@ Image {
     source: Qt.resolvedUrl(this.dir + this.name)
 
     fillMode: Image.PreserveAspectCrop
+
+    signal loadFailed
 
     layer.enabled: true
     layer.effect: OpacityMask {

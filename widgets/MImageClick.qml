@@ -7,6 +7,8 @@ Rectangle {
     required property int imgIdx
     required property string path
 
+    property int fillMode: Image.Stretch
+
     property int sizex: Settings.thumbWidth
     property int sizey: Settings.thumbHeight
     property bool imageHovered: mouse.containsMouse
@@ -21,8 +23,9 @@ Rectangle {
         anchors.fill: parent
 
         source: root.path
-
         asynchronous: true
+
+        fillMode: root.fillMode
 
         MouseArea {
             id: mouse
