@@ -1,43 +1,64 @@
 import QtQuick
 import QtQuick.Layouts
 
+import qs.common
+import qs.services
 import qs.widgets
 
 ColumnLayout {
     spacing: 0
-    TodoItem {
-        Layout.fillWidth: true
-        Layout.alignment: Qt.AlignTop
 
-        text: "hello"
+    RowLayout {
+        id: add
+
+        Layout.fillWidth: true
+        Layout.margins: Settings.itemMargin
+        Layout.bottomMargin: 0
+
+        MTextInput {
+            id: newTodo
+
+            Layout.fillWidth: true
+
+            leftPadding: 10
+
+            placeholderText: "New Todo item"
+            placeholderTextColor: Theme.colorOnSurfaceVariant
+        }
+
+        MButton {
+            text: "Add"
+
+            onPressed: () => {
+                const text = newTodo.text;
+                if (text.length) {
+                    // add todo
+                    STodo.addTodo(text, false);
+                    newTodo.text = "";
+                }
+            }
+        }
     }
 
-    TodoItem {
-        Layout.fillWidth: true
-        Layout.alignment: Qt.AlignTop
+    Repeater {
+        model: STodo.getTodo()
 
-        text: "Gioji"
-    }
+        delegate: TodoItem {
+            id: elem
 
-    TodoItem {
-        Layout.fillWidth: true
-        Layout.alignment: Qt.AlignTop
+            required property var model
 
-        text: "sei"
-    }
+            Layout.fillWidth: true
+            Layout.alignment: Qt.AlignTop
 
-    TodoItem {
-        Layout.fillWidth: true
-        Layout.alignment: Qt.AlignTop
+            text: model.content
+            checked: model.check
 
-        text: "un"
-    }
+            onTodoCheck: STodo.checkTodo(model.content, true)
+            onTodoUncheck: STodo.checkTodo(model.content, false)
 
-    TodoItem {
-        Layout.fillWidth: true
-        Layout.alignment: Qt.AlignTop
-
-        text: "gae"
+            onTodoDelete: STodo.removeTodo(model.content)
+        }
     }
 
     MFillLayout {}

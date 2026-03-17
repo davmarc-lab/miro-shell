@@ -117,7 +117,8 @@ MPopup {
                                 Layout.fillHeight: true
                                 text: "UT"
                                 onClicked: {
-                                    Global.enableUtility = !Global.enableUtility;
+                                    // Global.enableUtility = !Global.enableUtility;
+                                    STodo.addTodo("prova", false);
                                 }
                             }
                         }

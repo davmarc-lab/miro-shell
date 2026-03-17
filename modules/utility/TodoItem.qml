@@ -7,11 +7,21 @@ import qs.widgets
 RowLayout {
     id: root
     property string text: ""
+    property bool checked: false
+
+    signal todoCheck
+    signal todoUncheck
+
+    signal todoDelete
 
     MCheckBox {
         id: check
         Layout.fillWidth: true
         text: root.text
+        checked: root.checked
+
+        onCheck: root.todoCheck()
+        onUncheck: root.todoUncheck()
     }
 
     MIconClick {
@@ -21,5 +31,7 @@ RowLayout {
         Layout.alignment: Qt.AlignVCenter
 
         name: "delete.svg"
+
+        onIconClick: root.todoDelete()
     }
 }
