@@ -18,6 +18,10 @@ Singleton {
         return this.availables;
     }
 
+    function getActives(): list<int> {
+        return Hyprland.workspaces.values.filter(w => w.toplevels != undefined).map(w => w.id);
+    }
+
     function isFocused(index: int): bool {
         return Hyprland.focusedWorkspace != null && Hyprland.focusedWorkspace.id == index;
     }

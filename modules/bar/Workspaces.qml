@@ -16,13 +16,13 @@ RowLayout {
     Layout.fillHeight: true
 
     Repeater {
-        model: SWorkspaces.getAvailables()
+        model: SWorkspaces.getActives()
 
         MRButton {
             Layout.preferredWidth: 30
 
             required property int modelData
-            property int wId: modelData + 1
+            property int wId: modelData
             property HyprlandWorkspace w: Hyprland.workspaces.values[modelData] ?? null
 
             text: wId
