@@ -55,6 +55,10 @@ Singleton {
     // right panel
     property int rightIconsSize: 40
 
+    // utility panel
+    property int utilityPanelWidth: 600
+    property int utilityPanelHeight: 200
+
     // bar
     // property int topBarMargin: panelMargin
 

@@ -17,13 +17,13 @@ MPopup {
 
     MRectangle {
         Layout.alignment: Qt.AlignLeft | Qt.AlignVCenter
-        Layout.preferredWidth: 600
-        Layout.preferredHeight: 600
+        Layout.preferredWidth: Settings.utilityPanelWidth
+        Layout.preferredHeight: Settings.utilityPanelHeight
 
         bottomLeftRadius: 0
         topLeftRadius: 0
 
-        color: "gray"
+        color: Theme.colorSurface
 
         ColumnLayout {
             id: base
