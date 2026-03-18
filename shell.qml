@@ -26,6 +26,7 @@ ShellRoot {
         SWallpaper.init();
         SUser.init();
         SNetwork.init();
+        SNotification.init();
 
         if (Global.enableWeather)
             SWeather.init();

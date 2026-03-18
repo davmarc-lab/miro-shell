@@ -57,7 +57,7 @@ Singleton {
 
     // utility panel
     property int utilityPanelWidth: 600
-    property int utilityPanelHeight: 200
+    property int utilityPanelHeight: 600
 
     // bar
     // property int topBarMargin: panelMargin

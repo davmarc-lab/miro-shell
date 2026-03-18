@@ -149,9 +149,10 @@ MPopup {
 
                     MTitle {
                         Layout.fillWidth: true
-                        Layout.preferredHeight: this.height
+                        // Layout.preferredHeight: this.height
 
                         text: "Notifications"
+                        font.pointSize: Settings.fontTitle + 8
                     }
 
                     NotificationsContent {

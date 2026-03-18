@@ -8,7 +8,7 @@ import qs.common
 Singleton {
     id: root
 
-    property int active: 0
+    property int active: Hyprland.focusedWorkspace.id
     property list<int> urgents: Hyprland.workspaces.values.filter(w => w.urgent).map(w => w.id)
     property list<int> availables: Array.from({
         length: Settings.numWorkspaces
@@ -31,8 +31,8 @@ Singleton {
     }
 
     function activate(index: int): void {
-        if (index >= 1 && index <= Settings.numWorkspaces) {
-            active = index;
+        if (index >= 1 && index <= Settings.numWorkspaces && index != this.active) {
+            this.active = index;
             Hyprland.dispatch(`workspace ${index}`);
         }
     }
