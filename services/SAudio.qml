@@ -13,11 +13,10 @@ Singleton {
     property PwNode source: Pipewire.defaultAudioSource
 
     property var nodes: Pipewire.nodes
-
-    property bool muted: sink.audio.muted
+    property var applicationsNode: Pipewire.ready ? Pipewire.nodes.values.filter(n => n.audio !== null && n.isStream) : []
 
     PwObjectTracker {
-        objects: [root.sink, root.source, Pipewire.nodes.values]
+        objects: Pipewire.nodes.values
     }
 
     function getSourceDescription() {
@@ -46,13 +45,4 @@ Singleton {
         }
         return [];
     }
-
-    Component.onCompleted: {
-    console.log("Pipewire ready:", Pipewire.ready)
-    console.log("Nodes count:", Pipewire.nodes.values.length)
-    
-    Pipewire.nodes.values.forEach(n => {
-        console.log("Node:", n.name, "| isStream:", n.isStream, "| audio:", n.audio)
-    })
-}
 }

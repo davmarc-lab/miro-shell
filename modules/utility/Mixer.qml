@@ -11,12 +11,13 @@ Item {
         anchors.fill: parent
         clip: true
 
-        model: SAudio.getApplicationsNode()
+        model: SAudio.applicationsNode
 
         delegate: MText {
+            id: tt
             required property var modelData
 
-            text: modelData.name
+            text: modelData.properties["application.name"]
         }
     }
 }
