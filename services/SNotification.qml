@@ -21,7 +21,6 @@ Singleton {
         persistenceSupported: false
 
         onNotification: function (notif) {
-            console.log(notif.summary);
             notif.tracked = true;
             root.notifications.push(notifComp.createObject(root, {
                 notification: notif,

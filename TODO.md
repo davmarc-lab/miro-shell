@@ -7,6 +7,9 @@
 - [ ] Change Weather API [wttr](https://github.com/chubin/wttr.in#usage) (needs to be evaluated since it could be inaccurate)
 - [X] TODO list
 - [ ] Wifi Networks
+    - [X] network list
+    - [ ] network interactions
+    - [ ] network icon
 - [ ] Bluetooth devices
 - [ ] Do Not Disturb
 - [ ] Notifications

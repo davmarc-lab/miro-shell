@@ -59,7 +59,6 @@ MPopup {
 
                         this.current = name;
                         this.expand = true;
-                        console.log(name);
                     }
 
                     function resetExpand(): void {

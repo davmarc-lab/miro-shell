@@ -8,10 +8,13 @@ MRectangle {
     id: root
     required property var wifi
 
+    property bool connect: wifi.inUse !== "*"
+
     width: ListView.view.width
-    height: childrenRect.height * 2
+    height: layout.height + 2 * Settings.itemMargin
 
     RowLayout {
+        id: layout
         anchors.verticalCenter: parent.verticalCenter
         anchors.right: parent.right
         anchors.left: parent.left
@@ -30,7 +33,11 @@ MRectangle {
         MButton {
             id: connect
             Layout.alignment: Qt.AlignRight
-            text: root.wifi.inUse !== "*" ? "Connect" : "Disconnect"
+            text: connect ? "Connect" : "Disconnect"
+
+            onClicked: {
+                console.log(connect ? "Connect" : "Disconnect")
+            }
         }
     }
 
