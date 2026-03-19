@@ -15,6 +15,8 @@ Singleton {
 
     readonly property string netData: Settings.cacheDir + "network/"
 
+    property list<var> detectedNet: []
+
     property bool isInit: false
 
     function init(): void {
@@ -44,7 +46,21 @@ Singleton {
 
         onLoaded: {
             if (this.text().length > 0) {
-                root.detectedNet = JSON.parse(this.text());
+                const parsed = JSON.parse(this.text());
+                if (parsed) {
+                    const ordered = parsed.sort((a, b) => b.signal - a.signal);
+                    const uniq = new Set();
+                    root.detectedNet = [];
+                    ordered.forEach(o => {
+                        if (!uniq.has(o.ssid) && o.ssid.length) {
+                            uniq.add(o.ssid);
+                            root.detectedNet.push(o);
+                        }
+                    });
+                    // console.log("------DBG-------");
+                    // networks.forEach(o => console.log(o.ssid + ", " + o.signal));
+                    // console.log("------END-------");
+                }
             }
         }
         onLoadFailed: {
@@ -52,11 +68,10 @@ Singleton {
         }
     }
 
-    property var detectedNet: []
-
-    function getAvailableNetworks(): list<JsonObject> {
-        if (this.init)
+    function getAvailableNetworks(): list<var> {
+        if (this.isInit) {
             return detectedNet;
+        }
         return [];
     }
 

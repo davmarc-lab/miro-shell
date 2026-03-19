@@ -15,12 +15,13 @@
 - [ ] First time using shell
 - [ ] Press ESC to close a Popup
 - [X] Press ENTER to press a button (TODO => Add button)
+- [ ] Fix battery percentage
 
 ## Critical Fix
 - [X] Write to JSON files (JSONAdapter)
 - [ ] Fix Popup focus
 - [ ] Fix Utility scrollable item
-
+- [ ] Fix NotificationItem size
 ## Other features
 
 - [ ] Colorscheme picker
@@ -31,4 +32,4 @@
 - [ ] Notification popups
 - [ ] Volume mixer
 - [X] Keyboard layout
-
+- [ ] Refactor RightPanel module

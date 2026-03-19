@@ -59,6 +59,7 @@ MPopup {
 
                         this.current = name;
                         this.expand = true;
+                        console.log(name);
                     }
 
                     function resetExpand(): void {
@@ -78,9 +79,9 @@ MPopup {
                             id: foo
                             name: "wifi.svg"
                             onIconClick: {
-                                itemsArea.tryExpand(name);
+                                itemsArea.tryExpand("Wifi");
                                 if (itemsArea.isExpanded()) {
-                                    SNetwork.dump();
+                                    // SNetwork.dump();
                                 }
                             }
                         }
@@ -88,15 +89,15 @@ MPopup {
                         ControlButton {
                             name: "bluetooth.svg"
                             onIconClick: {
-                                itemsArea.tryExpand(name);
-                                SNetwork.scanWifi();
+                                itemsArea.tryExpand("Bluetooth");
+                                // SNetwork.scanWifi();
                             }
                         }
 
                         ControlButton {
                             name: "moon.svg"
                             onIconClick: {
-                                itemsArea.tryExpand(name);
+                                itemsArea.tryExpand("Disturb");
                             }
                         }
 
@@ -114,17 +115,17 @@ MPopup {
                         Layout.margins: Settings.itemMargin
                         Layout.topMargin: 0
 
-                        MRectangle {
+                        Loader {
+                            id: bar
+                            active: itemsArea.expand
                             anchors.fill: parent
 
-                            LazyLoader {
-                                active: itemsArea.expand
-                                component: {
-                                    return null;
-                                }
+                            source: {
+                                if (itemsArea.current != "")
+                                    return itemsArea.current + ".qml";
+                                return "";
                             }
                         }
-                        visible: itemsArea.isExpanded()
                     }
                 }
             }
