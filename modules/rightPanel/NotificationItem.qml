@@ -1,26 +1,43 @@
+import Quickshell.Widgets
+
 import QtQuick
 import QtQuick.Layouts
 
 import qs.common
 import qs.widgets
 
-MWrapRectangle {
+MRectangle {
     id: root
+    Layout.fillWidth: true
+    Layout.preferredHeight: layout.implicitHeight
 
     required property var notif
 
     color: Theme.colorSurface
+    RowLayout {
+        id: layout
+        anchors {
+            left: parent.left
+            right: parent.right
+        }
+        anchors.verticalCenter: parent.verticalCenter
 
-    Item {
-        anchors.fill: parent
-        anchors.margins: Settings.itemMargin
+        IconImage {
+            Layout.margins: Settings.itemMargin
+            implicitSize: 32
+
+            source: root.notif.image
+        }
 
         ColumnLayout {
-            anchors.fill: parent
+            Layout.fillWidth: true
+            spacing: 0
 
             MTitle {
                 id: appName
                 Layout.fillWidth: true
+                Layout.margins: Settings.itemMargin
+                Layout.bottomMargin: 0
                 subtitle: true
 
                 color: Theme.colorOnSurface
@@ -35,12 +52,13 @@ MWrapRectangle {
             MText {
                 id: content
                 Layout.fillWidth: true
+                Layout.margins: Settings.itemMargin
+                Layout.topMargin: 0
 
                 color: Theme.colorOnSurface
+                clip: true
                 text: root.notif.body
             }
-
-            MFillLayout {}
         }
     }
 }

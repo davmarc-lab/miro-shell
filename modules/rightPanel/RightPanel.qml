@@ -147,8 +147,16 @@ MPopup {
                     anchors.fill: parent
                     anchors.margins: Settings.itemMargin
 
+                    // MRectangle {
+                    //     Layout.fillWidth: true
+                    //     Layout.fillHeight: true
+                    //
+                    //     color: "red"
+                    // }
+
                     MTitle {
                         Layout.fillWidth: true
+                        Layout.alignment: Qt.AlignTop
                         // Layout.preferredHeight: this.height
 
                         text: "Notifications"

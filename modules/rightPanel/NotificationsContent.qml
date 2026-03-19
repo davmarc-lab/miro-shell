@@ -5,33 +5,36 @@ import qs.common
 import qs.widgets
 import qs.services
 
-ColumnLayout {
+Item {
     id: root
 
-    Repeater {
-        model: SNotification.notifications
+    ColumnLayout {
+        anchors.fill: parent
 
-        NotificationItem {
-            required property var modelData
+        Repeater {
+            model: SNotification.notifications
 
-            notif: modelData
+            delegate: NotificationItem {
+                required property var modelData
 
-            Layout.alignment: Qt.AlignTop
-            Layout.fillWidth: true
-            Layout.fillHeight: true
-            Layout.maximumHeight: (screen.height - Settings.barHeight) * 0.05
+                notif: modelData
+
+                Layout.alignment: Qt.AlignTop
+                Layout.fillWidth: true
+            }
         }
-    }
 
-    MFillLayout {}
 
-    MButton {
-        id: clearBtn
+        MFillLayout {}
 
-        text: "Clear"
+        MButton {
+            id: clearBtn
 
-        onClicked: {
-            SNotification.clearAll();
+            text: "Clear"
+
+            onClicked: {
+                SNotification.clearAll();
+            }
         }
     }
 }

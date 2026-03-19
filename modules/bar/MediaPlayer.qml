@@ -84,8 +84,8 @@ RowLayout {
                     Layout.fillWidth: true
                     Layout.maximumWidth: container.width
                     Layout.alignment: Qt.AlignLeft | Qt.AlignVCenter
+
                     text: SMediaPlayer.barToString()
-                    // color: "black"
                     clip: true
                 }
             }

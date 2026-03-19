@@ -31,10 +31,10 @@ Singleton {
     }
 
     function clearAll() {
-        root.notifications = [];
         for (var notif of root.notifications) {
             notif.clear();
         }
+        root.notifications = [];
     }
 
     function init() {
