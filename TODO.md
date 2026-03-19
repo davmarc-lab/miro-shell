@@ -13,6 +13,9 @@
 - [ ] Bluetooth devices
 - [ ] Do Not Disturb
 - [ ] Notifications
+    - [X] notification panel
+    - [ ] notification popup
+    - [ ] single notification dismiss
 
 ## Fix
 - [ ] First time using shell
