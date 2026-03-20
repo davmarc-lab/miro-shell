@@ -119,7 +119,7 @@ MPopup {
                 Loader {
                     id: content
                     anchors.fill: parent
-                    source: "Todo.qml"
+                    source: "Mixer.qml"
                 }
             }
         }

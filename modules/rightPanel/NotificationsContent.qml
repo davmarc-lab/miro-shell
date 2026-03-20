@@ -24,7 +24,6 @@ Item {
             }
         }
 
-
         MFillLayout {}
 
         MButton {

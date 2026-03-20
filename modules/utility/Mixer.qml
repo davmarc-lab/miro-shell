@@ -1,23 +1,27 @@
 import QtQuick
+import QtQuick.Layouts
 
+import qs.common
 import qs.services
 import qs.widgets
 
-Item {
+MRectangle {
     id: root
+    anchors.fill: parent
+    anchors.margins: Settings.itemMargin
+
+    color: "green"
 
     ListView {
-        id: list
-        anchors.fill: parent
-        clip: true
-
         model: SAudio.applicationsNode
+        spacing: Settings.itemMargin
+        anchors.fill: parent
+        anchors.margins: Settings.itemMargin
 
-        delegate: MText {
-            id: tt
+        delegate: MixerItem {
             required property var modelData
 
-            text: modelData.properties["application.name"]
+            item: modelData
         }
     }
 }

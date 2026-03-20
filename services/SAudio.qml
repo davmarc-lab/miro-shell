@@ -15,16 +15,15 @@ Singleton {
     property var nodes: Pipewire.nodes
     property var applicationsNode: Pipewire.ready ? Pipewire.nodes.values.filter(n => n.audio !== null && n.isStream) : []
 
+    property bool muted: this.sink.ready ? sink.audio.muted : false
+    property int volume: this.sink.ready ? Math.round(this.sink.audio.volume * 100) : -1
+
     PwObjectTracker {
         objects: Pipewire.nodes.values
     }
 
     function getSourceDescription() {
         return this.source.description;
-    }
-
-    function getVolume(): int {
-        return this.sink.ready ? Math.round(this.sink.audio.volume * 100) : "";
     }
 
     function setVolume(val: real) {

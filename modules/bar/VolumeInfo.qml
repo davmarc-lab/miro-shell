@@ -28,7 +28,7 @@ MWrapRectangle {
 
         MText {
             id: vol
-            text: SAudio.muted ? "M " : `${SAudio.getVolume()} %`
+            text: SAudio.muted ? "M " : `${SAudio.volume} %`
 
             Layout.alignment: Qt.AlignVCenter
             color: Theme.colorOnPrimary

@@ -15,7 +15,6 @@ MRectangle {
         anchors.margins: Settings.itemMargin
 
         spacing: 5
-        clip: true
 
         model: SNetwork.getAvailableNetworks()
         delegate: WifiItem {
