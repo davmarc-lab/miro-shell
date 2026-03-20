@@ -9,13 +9,26 @@
 - [ ] Wifi Networks
     - [X] network list
     - [ ] network interactions
-    - [ ] network icon
+    - [ ] network icons
+    - [ ] add support for wired networks
 - [ ] Bluetooth devices
 - [ ] Do Not Disturb
 - [ ] Notifications
     - [X] notification panel
     - [ ] notification popup
     - [ ] single notification dismiss
+- [ ] Weather
+    - [X] prepare Weather service
+    - [ ] position/orginize elements
+- [ ] Volume mixer
+    - [X] volume manipulation
+    - [ ] better layout (maybe icon on the left, name above and slider below, mute on the right)
+- [ ] Calendar
+    - [X] calendar basic structure
+    - [X] highlight current day
+    - [ ] move around months
+    - [ ] add events
+    - [ ] change view??
 
 ## Fix
 - [ ] First time using shell
@@ -26,8 +39,9 @@
 ## Critical Fix
 - [X] Write to JSON files (JSONAdapter)
 - [ ] Fix Popup focus
-- [ ] Fix Utility scrollable item
+- [ ] Fix Utility => TODO scrollable item
 - [ ] Fix NotificationItem size
+
 ## Other features
 
 - [ ] Colorscheme picker
@@ -36,6 +50,6 @@
 - [ ] Resource Usage
 - [X] mpd && playerctl
 - [ ] Notification popups
-- [ ] Volume mixer
+- [X] Volume mixer
 - [X] Keyboard layout
 - [ ] Refactor RightPanel module

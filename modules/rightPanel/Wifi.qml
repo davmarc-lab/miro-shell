@@ -14,6 +14,7 @@ MRectangle {
         anchors.fill: parent
         anchors.margins: Settings.itemMargin
 
+        clip: true
         spacing: 5
 
         model: SNetwork.getAvailableNetworks()

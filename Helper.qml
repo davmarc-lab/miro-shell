@@ -14,6 +14,10 @@ Singleton {
         Quickshell.execDetached(["sh", "-c", `${Settings.scriptPath}/init.sh`]);
     }
 
+    function capitalizeString(str: string): string {
+        return str.charAt(0).toLocaleUpperCase() + str.slice(1);
+    }
+
     function getDesktopEntryByName(name: string): DesktopEntry {
         return DesktopEntries.byId(name) ?? DesktopEntries.applications.values.find(e => e.name.toLowerCase() === name.toLowerCase() || e.id.toLowerCase().startsWith(name.toLowerCase()));
     }

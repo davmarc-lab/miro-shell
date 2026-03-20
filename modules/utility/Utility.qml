@@ -119,7 +119,7 @@ MPopup {
                 Loader {
                     id: content
                     anchors.fill: parent
-                    source: "Mixer.qml"
+                    source: "Calendar.qml"
                 }
             }
         }
