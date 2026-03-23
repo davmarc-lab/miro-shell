@@ -19,7 +19,7 @@ MPopup {
         id: panel
         Layout.alignment: Qt.AlignRight
 
-        Layout.preferredWidth: parent.width * 0.25
+        Layout.preferredWidth: parent.width * 0.2
         Layout.fillHeight: true
         Layout.topMargin: Settings.barHeight
 

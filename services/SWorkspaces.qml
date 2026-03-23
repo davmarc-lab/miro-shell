@@ -31,7 +31,7 @@ Singleton {
     }
 
     function activate(index: int): void {
-        if (index >= 1 && index <= Settings.numWorkspaces && index != this.active) {
+        if (index >= 1 && index <= Settings.numWorkspaces) {
             this.active = index;
             Hyprland.dispatch(`workspace ${index}`);
         }

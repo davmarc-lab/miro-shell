@@ -29,9 +29,13 @@ ApplicationWindow {
         {
             text: "Interface",
             content: "UiSettings.qml"
+        },
+        {
+            text: "Controls",
+            content: "ControlsViewer.qml"
         }
     ]
-    property int currentSection: 0
+    property int currentSection: 2
 
     onCurrentSectionChanged: {
         contentLoader.source = root.sections[root.currentSection].content;

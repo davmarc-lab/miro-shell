@@ -48,6 +48,9 @@
 - [ ] Doesn't change workspaces with mouse sometimes
 - [ ] `SystemTray.qml::trimUrl()` needs refactor
 - [ ] fix system tray menu icons
+- [ ] volume mixer value reset when next()
+- [ ] fix slider sizes
+- [ ] vertical slider doesn't work
 
 ## Critical Fix
 - [X] Write to JSON files (JSONAdapter)

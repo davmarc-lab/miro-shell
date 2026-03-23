@@ -52,11 +52,23 @@ MPopup {
                                 id: time
                                 Layout.alignment: Qt.AlignHCenter
                                 Layout.fillWidth: true
-                                Layout.fillHeight: true
-                                MText {
-                                    anchors.centerIn: parent
-                                    text: STime.time
-                                    color: Theme.colorOnPrimary
+                                Layout.preferredHeight: childrenRect.height
+                                ColumnLayout {
+                                    anchors.horizontalCenter: parent.horizontalCenter
+                                    spacing: 0
+
+                                    MText {
+                                        id: hour
+                                        font.pointSize: 40
+                                        text: STime.hour
+                                        color: Theme.colorOnPrimary
+                                    }
+
+                                    MText {
+                                        font.pointSize: hour.font.pointSize
+                                        text: STime.minute
+                                        color: Theme.colorOnPrimary
+                                    }
                                 }
                             }
 
@@ -64,9 +76,10 @@ MPopup {
                                 id: date
                                 Layout.alignment: Qt.AlignHCenter
                                 Layout.fillWidth: true
-                                Layout.fillHeight: true
+                                Layout.preferredHeight: childrenRect.height
                                 MText {
-                                    anchors.centerIn: parent
+                                    anchors.horizontalCenter: parent.horizontalCenter
+                                    font.pointSize: 18
                                     text: STime.date
                                     color: Theme.colorOnPrimary
                                 }
@@ -120,7 +133,6 @@ MPopup {
                                 text: "UT"
                                 onClicked: {
                                     // Global.enableUtility = !Global.enableUtility;
-                                    STodo.addTodo("prova", false);
                                 }
                             }
                         }

@@ -2,6 +2,8 @@ pragma Singleton
 
 import Quickshell
 
+import QtQuick
+
 Singleton {
     id: root
 
@@ -10,6 +12,9 @@ Singleton {
     readonly property string time: {
         Qt.formatDateTime(clock.date, "hh:mm");
     }
+
+    readonly property int hour: Qt.formatDateTime(clock.date, "hh");
+    readonly property int minute: Qt.formatDateTime(clock.date, "mm");
 
     property string dayFormat: "dd-MM-yyyy, ddd"
     readonly property string date: {

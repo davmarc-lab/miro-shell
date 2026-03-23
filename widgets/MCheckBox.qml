@@ -20,7 +20,7 @@ CheckBox {
         anchors.margins: Settings.itemMargin
 
         radius: 2
-        color: Theme.colorOnSurface
+        color: Theme.colorOutline
 
         MRectangle {
             id: inner
