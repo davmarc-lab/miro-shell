@@ -5,12 +5,15 @@ import QtQuick.Controls
 
 import qs
 import qs.common
+import qs.services
 import qs.widgets
 
 Item {
     id: root
     anchors.fill: parent
     anchors.margins: Settings.itemMargin
+
+    property var events: SCalendarEvents.getEvents()
 
     MRectangle {
         anchors.fill: parent
@@ -21,12 +24,43 @@ Item {
             anchors.fill: parent
             anchors.margins: Settings.itemMargin
 
-            MTitle {
-                id: month
+            RowLayout {
                 Layout.alignment: Qt.AlignCenter
-                text: Helper.capitalizeString(Qt.locale().standaloneMonthName(grid.month))
-                subtitle: true
-                font.weight: Font.Bold
+                MButton {
+                    id: pre
+                    borderRadius: 4
+                    text: "<"
+
+                    onClicked: {
+                        if (grid.month === 0)
+                            grid.year--;
+                        grid.month = (grid.month + 11) % 12;
+                    }
+                }
+
+                MFillLayout {}
+
+                MTitle {
+                    id: month
+                    Layout.alignment: Qt.AlignCenter
+                    text: Helper.capitalizeString(Qt.locale().standaloneMonthName(grid.month)) + " - " + grid.year
+                    subtitle: true
+                    font.weight: Font.Bold
+                }
+
+                MFillLayout {}
+
+                MButton {
+                    id: next
+                    borderRadius: 4
+                    text: ">"
+
+                    onClicked: {
+                        if (grid.month === 11)
+                            grid.year++;
+                        grid.month = (grid.month + 1) % 12;
+                    }
+                }
             }
 
             DayOfWeekRow {
@@ -68,6 +102,11 @@ Item {
                     color: model.today ? Theme.colorPrimary : Theme.colorSurfaceVariant
                 }
             }
+        }
+
+        function addEvent(desc: string, calModel: var, hour: int, minute: int, duration: int) {
+            const eventDate = new Date(calModel.year, calModel.month, calModel.day);
+            SCalendarEvents.addEvent(desc, calModel, hour, minute, duration);
         }
     }
 }

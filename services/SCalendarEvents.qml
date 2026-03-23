@@ -10,8 +10,7 @@ import qs.common
 
 Singleton {
     id: root
-
-    readonly property string source: Settings.cacheTodoDir + "todo.json"
+    property string source: Settings.cacheCalendarDir + "calendar.json"
 
     FileView {
         id: file
@@ -36,29 +35,19 @@ Singleton {
         }
     }
 
-    function getTodo() {
-        return data.data;
-    }
-
-    function addTodo(source: string, checked: bool) {
+    function addEvent(desc: string, eventDate: date, hour: int, minutes: int, duration: int) {
         data.data.push({
-            content: source,
-            check: checked
+            description: desc,
+            eventDate: eventDate.toISOString().split("T")[0],
+            eventTime: {
+                hour: hour,
+                minutes: minutes
+            },
+            eventDuration: duration
         });
     }
 
-    function removeTodo(source: string) {
-        data.data = data.data.filter(t => t.content != source);
-    }
-
-    function checkTodo(content: string, check: bool) {
-        // find todo
-        data.data.filter(s => s.content == content).forEach(t => {
-            t.check = check;
-        });
-    }
-
-    function dump() {
-        console.log(file.data.data);
+    function getEvents(): list<var> {
+        return data.data;
     }
 }

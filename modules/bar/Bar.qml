@@ -104,7 +104,7 @@ Scope {
                     MRectangle {
                         Layout.fillWidth: true
                         Layout.fillHeight: true
-                        // color: "green"
+                        Layout.maximumWidth: 150
 
                         SystemTray {
                             anchors.fill: parent
@@ -120,11 +120,6 @@ Scope {
                         onIconClick: {
                             Global.enableRightPanel = true;
                         }
-
-                        // MIconClick {
-                        //     anchors.fill: parent
-                        //     anchors.margins: Settings.itemMargin
-                        // }
                     }
                 }
 

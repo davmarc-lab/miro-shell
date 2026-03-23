@@ -6,6 +6,10 @@
 - [ ] Phone link
 - [ ] Change Weather API [wttr](https://github.com/chubin/wttr.in#usage) (needs to be evaluated since it could be inaccurate)
 - [X] TODO list
+- [X] System Tray
+    - [X] icons
+    - [X] applications menu/actions
+    - [X] menu positioning
 - [ ] Wifi Networks
     - [X] network list
     - [ ] network interactions
@@ -28,13 +32,20 @@
     - [X] highlight current day
     - [ ] move around months
     - [ ] add events
+    - [ ] events in bar??
+    - [ ] event dot below day number
     - [ ] change view??
+
+- [ ] Calendar appliction to manage events categories and other stuff?
+- [ ] Sample control widgets panel to show
 
 ## Fix
 - [ ] First time using shell
 - [ ] Press ESC to close a Popup
 - [X] Press ENTER to press a button (TODO => Add button)
 - [ ] Fix battery percentage
+- [ ] Doesn't change workspaces with mouse sometimes
+- [ ] `SystemTray.qml::trimUrl()` needs refactor
 
 ## Critical Fix
 - [X] Write to JSON files (JSONAdapter)

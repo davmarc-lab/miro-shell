@@ -1,3 +1,5 @@
+pragma ComponentBehavior: Bound
+
 import Quickshell
 import Quickshell.Widgets
 import Quickshell.Services.SystemTray
@@ -9,47 +11,66 @@ import qs.common
 import qs.widgets
 import qs.services
 
-MWrapRectangle {
-    id: root
+ListView {
+    id: systrayList
+    anchors.fill: parent
+    anchors.verticalCenter: parent.verticalCenter
+    anchors.margins: Settings.itemMargin
+    spacing: Settings.itemMargin
 
-    margin: 4
+    clip: true
+    orientation: ListView.Horizontal
 
-    RowLayout {
-        anchors.fill: parent
-        anchors.margins: 2
+    model: SSystemTray.getItems()
 
-        spacing: 2
+    delegate: Item {
+        id: item
+        width: ListView.view.height
+        height: parent.height
+        anchors.verticalCenter: parent.verticalCenter
 
-        Repeater {
-            model: SSystemTray.getItems()
+        required property SystemTrayItem modelData
 
-            delegate: MWrapRectangle {
-                id: base
-                required property SystemTrayItem modelData
+        QsMenuAnchor {
+            id: menuOpener
+            menu: item.modelData.menu
 
-                margin: 10
+            anchor {
+                item: item
+                edges: Edges.Left | Edges.Bottom
+                margins.top: Settings.panelMargin
+            }
+        }
 
-                IconImage {
-                    source: trimUrl(base.modelData.icon)
+        MouseArea {
+            anchors.fill: icon
 
-                    anchors.fill: parent
+            onClicked: {
+                menuOpener.open();
+            }
+        }
 
-                    function trimUrl(source: string): string {
-                        var escape = "?path=";
-                        var index = source.indexOf(escape);
-                        if (index !== -1) {
-                            var start = source.indexOf("icon/") + 5;
-                            if (start === -1)
-                                return "";
+        IconImage {
+            id: icon
+            anchors.centerIn: parent
+            implicitSize: 24
 
-                            var dir = base.modelData.icon.substr(index + escape.length) + "/";
-                            var name = source.substr(start, index - start);
-                            return Qt.resolvedUrl(dir + name);
-                        }
+            source: trimUrl(item.modelData.icon)
 
-                        return source;
-                    }
+            function trimUrl(source: string): string {
+                var escape = "?path=";
+                var index = source.indexOf(escape);
+                if (index !== -1) {
+                    var start = source.indexOf("icon/") + 5;
+                    if (start === -1)
+                        return "";
+
+                    var dir = item.modelData.icon.substr(index + escape.length) + "/";
+                    var name = source.substr(start, index - start);
+                    return Qt.resolvedUrl(dir + name);
                 }
+
+                return source;
             }
         }
     }
