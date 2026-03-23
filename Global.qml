@@ -14,6 +14,8 @@ Singleton {
     // property bool enableNotification: true
     // property bool enableSysTray: false
 
+    property bool enableNotifPopups: true
+
     property bool enableFoo: false
     property bool enableWallpaper: true
 

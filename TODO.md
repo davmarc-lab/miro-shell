@@ -19,7 +19,8 @@
 - [ ] Do Not Disturb
 - [ ] Notifications
     - [X] notification panel
-    - [ ] notification popup
+    - [X] notification popup
+    - [X] popup auto close
     - [ ] single notification dismiss
 - [ ] Weather
     - [X] prepare Weather service
@@ -36,7 +37,7 @@
     - [ ] event dot below day number
     - [ ] change view??
 
-- [ ] Calendar appliction to manage events categories and other stuff?
+- [ ] Calendar application to manage events categories and other stuff?
 - [ ] Sample control widgets panel to show
 
 ## Fix
@@ -46,12 +47,14 @@
 - [ ] Fix battery percentage
 - [ ] Doesn't change workspaces with mouse sometimes
 - [ ] `SystemTray.qml::trimUrl()` needs refactor
+- [ ] fix system tray menu icons
 
 ## Critical Fix
 - [X] Write to JSON files (JSONAdapter)
 - [ ] Fix Popup focus
 - [ ] Fix Utility => TODO scrollable item
 - [ ] Fix NotificationItem size
+- [ ] Whole code refactor
 
 ## Other features
 
@@ -60,7 +63,7 @@
 - [ ] Implement colorscheme save system
 - [ ] Resource Usage
 - [X] mpd && playerctl
-- [ ] Notification popups
+- [X] Notification popups
 - [X] Volume mixer
 - [X] Keyboard layout
 - [ ] Refactor RightPanel module

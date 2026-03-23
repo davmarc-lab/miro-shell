@@ -11,6 +11,7 @@ import qs.modules.bar
 import qs.modules.dock
 import qs.modules.powermenu
 import qs.modules.rightPanel
+import qs.modules.notifications
 import qs.modules.utility
 import qs.modules.settings
 import qs.services
@@ -79,6 +80,11 @@ ShellRoot {
     LazyLoader {
         active: root.init && Global.enableRightPanel
         component: RightPanel {}
+    }
+
+    LazyLoader {
+        active: root.init && Global.enableNotifPopups
+        component: NotificationsPopup {}
     }
 
     LazyLoader {

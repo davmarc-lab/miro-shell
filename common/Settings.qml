@@ -60,6 +60,11 @@ Singleton {
     property int utilityPanelWidth: 600
     property int utilityPanelHeight: 600
 
+    // notif popup panel
+    property int notifPopupSize: 400
+    property int notifPopupTimer: 5
+    property int notifPopupBorderSize: 2
+
     // bar
     // property int topBarMargin: panelMargin
 
