@@ -36,19 +36,32 @@ MRectangle {
             Layout.fillWidth: true
             spacing: 0
 
-            MTitle {
-                id: appName
+            RowLayout {
                 Layout.fillWidth: true
                 Layout.margins: Settings.itemMargin
                 Layout.bottomMargin: 0
-                subtitle: true
 
-                color: Theme.colorOnSurface
-                font.weight: Font.Bold
-                text: {
-                    if (root.notif.summary.length)
-                        return root.notif.summary;
-                    return root.notif.appName;
+                MTitle {
+                    id: appName
+                    Layout.fillWidth: true
+                    Layout.alignment: Qt.AlignTop | Qt.AlignLeft
+                    subtitle: true
+
+                    color: Theme.colorOnSurface
+                    font.weight: Font.Bold
+                    text: {
+                        if (root.notif.summary.length)
+                            return root.notif.summary;
+                        return root.notif.appName;
+                    }
+                }
+
+                MRButton {
+                    Layout.alignment: Qt.AlignRight
+                    text: "X"
+
+                    // trigger timer callback
+                    onClicked: alive.triggered()
                 }
             }
 

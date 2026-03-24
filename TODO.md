@@ -1,7 +1,7 @@
 # TODO
 
 - [X] Powermenu
-- [ ] Wallpaper picker
+- [X] Wallpaper picker
 - [X] **Screen lock**
 - [ ] Phone link
 - [ ] Change Weather API [wttr](https://github.com/chubin/wttr.in#usage) (needs to be evaluated since it could be inaccurate)
@@ -21,6 +21,7 @@
     - [X] notification panel
     - [X] notification popup
     - [X] popup auto close
+    - [X] single notification toast dismiss
     - [ ] single notification dismiss
 - [ ] Weather
     - [X] prepare Weather service
