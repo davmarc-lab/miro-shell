@@ -8,6 +8,8 @@ import qs.common
 Button {
     id: root
 
+    text: "Button"
+
     property string bgColor: Theme.colorPrimary
     property string bgColorHovered: Theme.colorPrimaryHover
     property string fgColor: Theme.colorOnPrimary

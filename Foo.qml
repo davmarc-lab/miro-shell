@@ -12,21 +12,45 @@ MPanelWindow {
     visible: true
 
     anchors {
-        top: true
+        bottom: true
         right: true
+        left: true
     }
 
     margins {
-        right: 10
+        bottom: 10
     }
 
-    implicitWidth: 400
-    implicitHeight: 400
-    color: Theme.colorSurface
+    color: Theme.colorSurfaceVariant
 
-    Loader {
-        id: content
-        anchors.fill: parent
-        source: "./modules/utility/Mixer.qml"
+    // ColumnLayout {
+    //     id: l
+    //     anchors.centerIn: parent
+    //     MSwitch {
+    //         // text: "Layout"
+    //     }
+    // }
+
+    // RowLayout {
+    //     anchors.fill: parent
+    //
+    //     ColumnLayout {
+    //         MSlider {
+    //             // padding: 10
+    //             isVertical: false
+    //         }
+    //     }
+    // }
+
+    Rectangle {
+        width: parent.height
+        height: parent.height
+        anchors.centerIn: parent
+        color: "white"
+
+        MSlider {
+            anchors.centerIn: parent
+            isVertical: false
+        }
     }
 }

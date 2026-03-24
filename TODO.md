@@ -45,13 +45,14 @@
 - [ ] First time using shell
 - [ ] Press ESC to close a Popup
 - [X] Press ENTER to press a button (TODO => Add button)
-- [ ] Fix battery percentage
+- [X] Fix battery percentage
 - [ ] Doesn't change workspaces with mouse sometimes
 - [ ] `SystemTray.qml::trimUrl()` needs refactor
-- [ ] fix system tray menu icons
+- [X] fix system tray menu icons
 - [ ] volume mixer value reset when next()
-- [ ] fix slider sizes
-- [ ] vertical slider doesn't work
+- [X] fix slider sizes
+- [X] vertical slider doesn't work
+- [ ] refactor `ColorEdit`
 
 ## Critical Fix
 - [X] Write to JSON files (JSONAdapter)

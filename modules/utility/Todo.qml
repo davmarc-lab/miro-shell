@@ -7,6 +7,7 @@ import qs.widgets
 
 ColumnLayout {
     spacing: 0
+    Layout.margins: Settings.itemMargin
 
     RowLayout {
         id: add
@@ -26,12 +27,7 @@ ColumnLayout {
             placeholderText: "New Todo item"
             placeholderTextColor: Theme.colorOnSurfaceVariant
 
-            Keys.onPressed: event => {
-                if (event.key === Qt.Key_Return) {
-                    newTodoAdd.addTodo();
-                    event.accepted = true;
-                }
-            }
+            onAccepted: newTodoAdd.addTodo()
         }
 
         MButton {
@@ -60,6 +56,8 @@ ColumnLayout {
             required property var model
 
             Layout.fillWidth: true
+            Layout.leftMargin: 10
+            Layout.rightMargin: Layout.leftMargin
             Layout.alignment: Qt.AlignTop
 
             text: model.content

@@ -6,17 +6,19 @@ import qs.common
 CheckBox {
     id: root
 
+    text: "Text"
+
     signal check
     signal uncheck
 
     containmentMask: this.indicator
 
     indicator: MRectangle {
+        id: outer
         implicitWidth: Settings.fontSize * 2 + 4
         implicitHeight: implicitWidth
 
-        anchors.top: parent.top
-        anchors.left: parent.left
+        anchors.verticalCenter: parent.verticalCenter
         anchors.margins: Settings.itemMargin
 
         radius: 2
@@ -24,23 +26,25 @@ CheckBox {
 
         MRectangle {
             id: inner
-            width: Settings.fontSize * 2 - 4
+            width: Settings.fontSize * 2 - 8
             height: width
-            anchors.centerIn: parent
-            radius: 4
+            anchors.centerIn: outer
+            radius: outer.radius
 
             color: Theme.colorPrimary
             visible: root.checked
         }
 
         MouseArea {
-            anchors.fill: parent
+            anchors.fill: outer
 
             onClicked: () => {
-                if (inner.visible)
+                if (root.checked) {
                     root.uncheck();
-                else
+                } else {
                     root.check();
+                }
+                root.toggle();
             }
         }
     }
@@ -50,9 +54,6 @@ CheckBox {
 
         horizontalAlignment: Text.AlignLeft
         verticalAlignment: Text.AlignVCenter
-        anchors.top: root.indicator.top
-        // anchors.left: root.indicator.right
-
         leftPadding: root.indicator.width + root.spacing
 
         wrapMode: Text.Wrap

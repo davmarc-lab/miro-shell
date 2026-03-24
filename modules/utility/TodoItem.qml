@@ -17,6 +17,7 @@ RowLayout {
     MCheckBox {
         id: check
         Layout.fillWidth: true
+        Layout.alignment: Qt.AlignVCenter
         text: root.text
         checked: root.checked
 
@@ -25,9 +26,8 @@ RowLayout {
     }
 
     MIconClick {
-        Layout.preferredWidth: check.indicator.width
-        Layout.preferredHeight: check.indicator.height
-        Layout.margins: Settings.itemMargin
+        Layout.preferredWidth: check.indicator.width - 2
+        Layout.preferredHeight: width
         Layout.alignment: Qt.AlignVCenter
 
         name: "delete.svg"

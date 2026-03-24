@@ -80,20 +80,22 @@ MContentItem {
                         }
 
                         MSwitch {
-                            content: "Switch"
                             checked: false
                         }
                     }
 
                     RowLayout {
+                        Layout.fillWidth: true
+                        Layout.preferredHeight: 100
+                        Layout.margins: 10
                         MSlider {
-                            Layout.fillHeight: true
                             Layout.fillWidth: true
+                            Layout.maximumWidth: parent.width / 2
                         }
 
                         MSlider {
-                            Layout.fillHeight: true
                             Layout.fillWidth: true
+                            Layout.preferredHeight: 100
                             isVertical: true
                         }
                     }

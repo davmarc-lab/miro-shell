@@ -1,63 +1,53 @@
 import QtQuick
-import QtQuick.Layouts
+import QtQuick.Controls
 
 import qs.common
 
-RowLayout {
+Switch {
     id: root
 
-    required property string content
+    signal enable
+    signal disable
 
-    property bool down: false
-    required property bool checked
+    implicitWidth: indicator.implicitWidth
+    implicitHeight: indicator.implicitHeight
 
-    function toggle() {
-        this.checked = !this.checked;
-    }
+    indicator: MRectangle {
+        id: track
 
-    MText {
-        Layout.alignment: Qt.AlignLeft
-        text: root.content
-        color: Theme.colorOnSurface
-        verticalAlignment: Text.AlignVCenter
-    }
+        implicitWidth: Settings.fontSize * 4
+        implicitHeight: Settings.fontSize * 2 + 4
 
-    signal onCheckedChanged
+        anchors.fill: parent
 
-    Rectangle {
-        id: bar
-        Layout.alignment: Qt.AlignRight
-        implicitWidth: 48
-        implicitHeight: 26
-        radius: 13
-        color: root.checked ? Theme.colorPrimary : "#ffffff"
-        border.color: root.checked ? Theme.colorPrimary : "#cccccc"
+        radius: height / 2
+        color: root.checked ? Theme.colorPrimary : Theme.colorOutline
 
-        Rectangle {
-            x: root.checked ? parent.width - this.width : 0
-            width: 26
-            height: 26
-            radius: 13
-            color: root.down ? "#cccccc" : "#ffffff"
-            border.color: root.checked ? Theme.colorSecondary : "#999999"
+        MRectangle {
+            id: thumb
+
+            width: Settings.fontSize * 2 - 4
+            height: width
+            anchors.verticalCenter: parent.verticalCenter
+
+            x: root.checked ? track.width - width - 2 : 2
+
+            radius: height / 2
+            color: Theme.colorSecondary
         }
 
         MouseArea {
-            id: mouse
             anchors.fill: parent
-
-            onClicked: event => {
-                root.checked = !root.checked;
-                root.onCheckedChanged();
-            }
-
-            onPressed: {
-                root.down = true;
-            }
-
-            onReleased: {
-                root.down = false;
+            onClicked: {
+                if (root.checked) {
+                    root.disable();
+                } else {
+                    root.enable();
+                }
+                root.toggle();
             }
         }
     }
+
+    contentItem: null
 }

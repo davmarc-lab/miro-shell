@@ -10,49 +10,50 @@ Slider {
     property alias end: root.to
     property bool isVertical: false
 
-    from: 0
-    to: 100
-    value: root.to / 2
+    visible: !(this.availableWidth == 0 || this.availableHeight == 0)
 
-    property int bgWidth: 200
-    property int bgHeight: 4
+    orientation: this.isVertical ? Qt.Vertical : Qt.Horizontal
+    padding: parent.anchors.margins
 
-    property string bgRightColor: Theme.colorPrimary
-    property string bgLeftColor: Theme.colorOutline
+    implicitWidth: this.horizontal ? parent.width : thumb.implicitWidth
+    implicitHeight: this.vertical ? parent.height : thumb.implicitHeight
 
-    property int handleSize: 20
-    property int handleRadius: 13
+    value: this.to / 2
 
-    orientation: isVertical ? Qt.Vertical : Qt.Horizontal
+    background: MRectangle {
+        id: bar
+        anchors.centerIn: parent
 
-    property int trackHeight: 4
-    property int trackRadius: 13
-    property color trackColor: Theme.colorOutline
-    property color trackFillColor: Theme.colorPrimary
+        width: root.horizontal ? root.availableWidth : thumb.height / 3
+        height: root.vertical ? root.availableHeight : thumb.height / 3
 
-    background: Rectangle {
-        x: root.leftPadding
-        y: root.topPadding + root.availableHeight / 2 - height / 2
-        width: root.availableWidth
-        height: root.trackHeight
-        radius: root.trackRadius
-        color: root.trackColor
+        radius: Settings.itemRadius
+        color: Theme.colorOutline
 
-        Rectangle {
-            width: root.visualPosition * parent.width
-            height: parent.height
-            radius: root.trackRadius
-            color: root.trackFillColor
+        MRectangle {
+            width: root.horizontal ? root.visualPosition * parent.width : parent.width
+            height: root.vertical ? root.visualPosition * parent.height : parent.height
+            radius: parent.radius
+            color: Theme.colorPrimary
         }
     }
 
     handle: MRectangle {
-        x: root.leftPadding + root.visualPosition * (root.availableWidth - width)
-        y: root.topPadding + root.availableHeight / 2 - height / 2
-        implicitWidth: root.handleSize
-        implicitHeight: root.handleSize
-        radius: root.handleRadius
-        color: Theme.colorPrimary
-        border.color: Theme.colorOutline
+        id: thumb
+
+        implicitWidth: 20
+        implicitHeight: implicitWidth
+
+        x: root.horizontal ? bar.x + root.visualPosition * (root.availableWidth - width) : bar.x - bar.width
+        y: root.vertical ? bar.y + root.visualPosition * (root.availableHeight - height) : bar.y - bar.height
+
+        radius: height / 2
+        color: root.pressed ? Theme.colorSecondary : Theme.colorPrimary
+
+        Behavior on color {
+            ColorAnimation {
+                duration: 80
+            }
+        }
     }
 }

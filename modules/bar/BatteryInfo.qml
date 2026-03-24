@@ -20,7 +20,7 @@ MWrapRectangle {
 
         MText {
             id: battery
-            text: SPower.battery.percentage * 100 + " %"
+            text: Math.round(SPower.battery.percentage * 100) + " %"
 
             Layout.alignment: Qt.AlignVCenter | Qt.AlignHCenter
             color: Theme.colorOnPrimary

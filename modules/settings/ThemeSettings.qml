@@ -1,5 +1,6 @@
 pragma ComponentBehavior: Bound
 
+import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 
@@ -36,17 +37,23 @@ MContentItem {
                 sizex: content.itemWidth
                 sizey: content.itemHeight
 
-                MSwitch {
-                    id: themeSwitch
+                RowLayout {
                     anchors.fill: parent
+                    MText {
+                        id: themeText
+                        text: "Dark Mode"
+                    }
 
-                    content: "Dark Mode"
-                    checked: isDark
+                    MSwitch {
+                        id: themeSwitch
+                        Layout.alignment: Qt.AlignRight
+                        checked: isDark
 
-                    property bool isDark: Theme.themeStyle == "dark"
+                        property bool isDark: Theme.themeStyle == "dark"
 
-                    onCheckedChanged: {
-                        Theme.themeStyle = this.checked ? "dark" : "light";
+                        onCheckedChanged: {
+                            Theme.themeStyle = this.checked ? "dark" : "light";
+                        }
                     }
                 }
             }
@@ -76,4 +83,3 @@ MContentItem {
         }
     }
 }
-
