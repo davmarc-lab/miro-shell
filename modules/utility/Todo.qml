@@ -27,7 +27,9 @@ ColumnLayout {
             placeholderText: "New Todo item"
             placeholderTextColor: Theme.colorOnSurfaceVariant
 
-            onAccepted: newTodoAdd.addTodo()
+            onAccepted: {
+                newTodoAdd.addTodo();
+            }
         }
 
         MButton {

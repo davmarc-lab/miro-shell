@@ -35,11 +35,12 @@ Button {
 
     background: Rectangle {
         id: back
-        implicitHeight: {
+        implicitWidth: {
             if (root.isRound)
-                return this.width;
-            return 0;
+                return Math.max(this.width, this.height);
+            return this.width;
         }
+        implicitHeight: root.isRound ? this.implicitWidth : this.height
 
         color: root.hovered ? (root.pressed ? root.colorClicked : root.bgColorHovered) : root.bgColor
         border.color: root.outlineColor

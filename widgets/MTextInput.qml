@@ -30,6 +30,12 @@ TextField {
     onEscaped: this.focus = false
 
     Keys.onEscapePressed: this.escaped()
-    Keys.onReturnPressed: this.focus = false;
-    Keys.onEnterPressed: this.focus = false;
+    Keys.onReturnPressed: {
+        this.focus = false;
+        this.accepted();
+    }
+    Keys.onEnterPressed: {
+        this.focus = false;
+        this.accepted();
+    }
 }
