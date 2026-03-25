@@ -3,7 +3,7 @@ import QtQuick.Layouts
 import qs.common
 import qs.widgets
 
-MIconButton {
+MThemeIconButton {
     id: root
 
     required property string name

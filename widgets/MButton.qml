@@ -7,7 +7,6 @@ import qs.common
 
 Button {
     id: root
-
     text: "Button"
 
     property string bgColor: Theme.colorPrimary
@@ -20,13 +19,9 @@ Button {
     property int outlineSize: Settings.buttonOutlineSize
 
     property int borderRadius: Settings.buttonSoftRadius
-
     property bool isRound: false
 
     property string iconPath: ""
-
-    property int sizex: 0
-    property int sizey: 0
 
     anchors {
         leftMargin: Settings.itemMargin
@@ -35,24 +30,22 @@ Button {
 
     background: Rectangle {
         id: back
-        implicitWidth: {
-            if (root.isRound)
-                return Math.max(this.width, this.height);
-            return this.width;
-        }
-        implicitHeight: root.isRound ? this.implicitWidth : this.height
+        anchors.fill: parent
+
+        implicitWidth: root.isRound ? implicitHeight : root.contentItem.implicitWidth + root.padding * 2
+        implicitHeight: root.contentItem.implicitHeight + root.padding * 2
 
         color: root.hovered ? (root.pressed ? root.colorClicked : root.bgColorHovered) : root.bgColor
         border.color: root.outlineColor
         border.width: root.outlineSize
-        radius: root.isRound ? this.width / 2 : root.borderRadius
+        radius: root.isRound ? this.height / 2 : root.borderRadius
     }
 
     contentItem: MText {
         text: root.text
         font: root.font
-        horizontalAlignment: Text.AlignHCenter
         verticalAlignment: Text.AlignVCenter
+        horizontalAlignment: Text.AlignHCenter
         color: root.hovered ? root.fgColorHovered : root.fgColor
     }
 

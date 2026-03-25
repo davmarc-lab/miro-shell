@@ -4,7 +4,7 @@ import qs.common
 
 WrapperRectangle {
     radius: Settings.itemRadius
-    // border.color: Theme.colorOnSurface
+    border.color: Theme.colorOutline
 
     margin: 5
 

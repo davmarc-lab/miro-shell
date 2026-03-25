@@ -94,7 +94,7 @@ MPopup {
                             anchors.centerIn: parent
                             rows: 1
                             columns: 4
-                            MIconButton {
+                            MThemeIconButton {
                                 Layout.preferredWidth: Layout.preferredHeight
                                 Layout.preferredHeight: Settings.rightIconsSize
                                 iconName: "settings.svg"
@@ -105,7 +105,7 @@ MPopup {
                                 }
                             }
 
-                            MIconButton {
+                            MThemeIconButton {
                                 Layout.preferredWidth: Layout.preferredHeight
                                 Layout.preferredHeight: Settings.rightIconsSize
                                 iconName: "wallpaper.svg"
@@ -116,7 +116,7 @@ MPopup {
                                 }
                             }
 
-                            MIconButton {
+                            MThemeIconButton {
                                 Layout.preferredWidth: Layout.preferredHeight
                                 Layout.preferredHeight: Settings.rightIconsSize
                                 iconName: "power.svg"

@@ -42,7 +42,7 @@ Singleton {
     property int thumbHeight: 200
 
     // buttons
-    property int buttonOutlineSize: 1
+    property int buttonOutlineSize: 2
     property int buttonSoftRadius: 10
     property int buttonRadius: 20
     property double iconButtonMargins: 5

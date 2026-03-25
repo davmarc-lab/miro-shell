@@ -1,6 +1,6 @@
 import QtQuick
 
-MIcon {
+MThemeIcon {
     id: root
     readonly property bool clicked: mouse.clicked
 
@@ -14,4 +14,5 @@ MIcon {
             root.iconClick();
         }
     }
+
 }

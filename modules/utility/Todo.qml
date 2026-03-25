@@ -29,6 +29,7 @@ ColumnLayout {
 
             onAccepted: {
                 newTodoAdd.addTodo();
+                this.focus = true;
             }
         }
 

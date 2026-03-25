@@ -26,7 +26,7 @@ RowLayout {
                 Layout.fillWidth: true
                 Layout.fillHeight: true
 
-                MIconClick {
+                MThemeIconClick {
                     Layout.preferredWidth: 20
                     Layout.preferredHeight: 20
 
@@ -37,7 +37,7 @@ RowLayout {
                     }
                 }
 
-                MIconClick {
+                MThemeIconClick {
                     Layout.preferredWidth: 20
                     Layout.preferredHeight: 20
 
@@ -49,7 +49,7 @@ RowLayout {
                     visible: !SMediaPlayer.isPlaying
                 }
 
-                MIconClick {
+                MThemeIconClick {
                     Layout.preferredWidth: 20
                     Layout.preferredHeight: 20
 
@@ -61,7 +61,7 @@ RowLayout {
                     visible: SMediaPlayer.isPlaying
                 }
 
-                MIconClick {
+                MThemeIconClick {
                     Layout.preferredWidth: 20
                     Layout.preferredHeight: 20
 

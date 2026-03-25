@@ -22,11 +22,11 @@ MRectangle {
         }
         anchors.verticalCenter: parent.verticalCenter
 
-        IconImage {
+        MIcon {
             Layout.margins: Settings.itemMargin
             implicitSize: 32
 
-            source: root.notif.image
+            name: root.notif.image
         }
 
         ColumnLayout {

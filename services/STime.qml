@@ -13,8 +13,8 @@ Singleton {
         Qt.formatDateTime(clock.date, "hh:mm");
     }
 
-    readonly property int hour: Qt.formatDateTime(clock.date, "hh");
-    readonly property int minute: Qt.formatDateTime(clock.date, "mm");
+    readonly property string hour: Qt.formatDateTime(clock.date, "hh");
+    readonly property string minute: Qt.formatDateTime(clock.date, "mm");
 
     property string dayFormat: "dd-MM-yyyy, ddd"
     readonly property string date: {

@@ -12,8 +12,8 @@ MPanelWindow {
     visible: true
 
     anchors {
+        top: true
         bottom: true
-        right: true
         left: true
     }
 
@@ -30,22 +30,12 @@ MPanelWindow {
         Rectangle {
             Layout.fillWidth: true
             Layout.fillHeight: true
-            color: "black"
+            color: "red"
 
-            MColorEdit {
+            MThemeIcon {
                 anchors.fill: parent
-                color: "red"
+                name: "keyboard"
             }
         }
     }
-
-    // Rectangle {
-    //     anchors.fill: parent
-    //     color: "black"
-    //
-    //     MColorEdit {
-    //         anchors.fill: parent
-    //         color: "red"
-    //     }
-    // }
 }

@@ -18,7 +18,7 @@ MWrapRectangle {
 
         spacing: 0
 
-        MIcon {
+        MThemeIcon {
             id: icon
             name: "sound"
 

@@ -22,10 +22,10 @@ MRectangle {
         anchors.left: parent.left
         anchors.margins: Settings.itemMargin
 
-        IconImage {
+        MIcon {
             property DesktopEntry entry: Helper.getDesktopEntryByName(root.node.name)
             implicitSize: Settings.rightIconsSize
-            source: "image://icon/" + (entry?.icon ?? "audio-x-generic")
+            name: "image://icon/" + (entry?.icon ?? "audio-x-generic")
         }
 
         MText {
@@ -47,7 +47,7 @@ MRectangle {
             }
         }
 
-        MIconClick {
+        MThemeIconClick {
             id: volIcon
             property string state: root.node.audio.muted ? "null" : this.val == 0 ? "mute" : this.val < 33 ? "low" : this.val < 66 ? "medium" : "high"
             property alias val: nodeVol.text

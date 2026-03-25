@@ -16,7 +16,7 @@ Singleton {
 
     property bool enableNotifPopups: true
 
-    property bool enableFoo: false
+    property bool enableFoo: true
     property bool enableWallpaper: true
 
     property bool enableDock: false

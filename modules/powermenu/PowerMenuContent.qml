@@ -39,7 +39,7 @@ GridLayout {
                 onClicked: elem.modelData.exec()
             }
 
-            MIcon {
+            MThemeIcon {
                 id: icon
                 anchors.centerIn: parent
                 name: `${elem.modelData.icon}.svg`

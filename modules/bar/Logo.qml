@@ -15,7 +15,7 @@ MRectangle {
     color: Theme.colorSurfaceVariant
     radius: 0
 
-    MIconClick {
+    MThemeIconClick {
         id: icon
         anchors.fill: parent
 

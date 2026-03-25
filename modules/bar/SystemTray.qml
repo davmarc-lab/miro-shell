@@ -5,7 +5,6 @@ import Quickshell.Widgets
 import Quickshell.Services.SystemTray
 
 import QtQuick
-import QtQuick.Layouts
 
 import qs.common
 import qs.widgets
@@ -50,12 +49,12 @@ ListView {
             }
         }
 
-        IconImage {
+        MIcon {
             id: icon
             anchors.centerIn: parent
             implicitSize: 24
 
-            source: trimUrl(item.modelData.icon)
+            name: trimUrl(item.modelData.icon)
 
             function trimUrl(source: string): string {
                 var escape = "?path=";

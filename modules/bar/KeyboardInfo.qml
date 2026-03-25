@@ -1,3 +1,4 @@
+import QtQuick
 import QtQuick.Layouts
 
 import qs.common
@@ -17,9 +18,10 @@ MWrapRectangle {
 
         spacing: 3
 
-        MIcon {
+        MThemeIcon {
             id: icon
             name: "keyboard"
+            theme: true
 
             Layout.preferredWidth: height
             Layout.fillHeight: true

@@ -111,7 +111,7 @@ Scope {
                         }
                     }
 
-                    MIconButton {
+                    MThemeIconButton {
                         Layout.fillHeight: true
                         Layout.preferredWidth: this.height
                         iconName: Global.enableRightPanel ? "down-arrow.svg" : "right-arrow.svg"
