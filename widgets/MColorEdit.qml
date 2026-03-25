@@ -1,43 +1,54 @@
 import QtQuick
 import QtQuick.Layouts
 
-RowLayout {
-    id: root
+import qs.common
 
+Item {
+    id: root
     property string text: "Color"
     required property string color
 
-    property var itemWidth: parent.width / 3
-
     signal onColorChanged
 
-    MText {
-        Layout.alignment: Qt.AlignLeft
-        Layout.preferredWidth: root.itemWidth
-        Layout.fillHeight: true
+    RowLayout {
+        anchors.fill: parent
+        anchors.margins: Settings.itemMargin
 
-        text: root.text
-    }
+        spacing: Settings.itemMargin
 
-    MTextInput {
-        id: colorVal
-        Layout.alignment: Qt.AlignHCenter
-        Layout.preferredWidth: root.itemWidth
-        Layout.fillHeight: true
-
-        text: root.color
-
-        onTextEdited: {
-            root.color = text;
-            root.onColorChanged();
+        MText {
+            Layout.alignment: Qt.AlignLeft | Qt.AlignVCenter
+            text: root.text
         }
-    }
 
-    Rectangle {
-        Layout.alignment: Qt.AlignRight
-        Layout.preferredWidth: 50
-        Layout.fillHeight: true
+        MFillLayout {}
 
-        color: colorVal.text
+        MTextInput {
+            id: colorVal
+            Layout.alignment: Qt.AlignRight | Qt.AlignVCenter
+
+            Layout.fillWidth: true
+            Layout.maximumWidth: 100
+            text: root.color
+
+            onTextEdited: {
+                root.color = text;
+                root.onColorChanged();
+            }
+
+            onAccepted: this.focus = false
+        }
+
+        Rectangle {
+            Layout.fillHeight: true
+            Layout.alignment: Qt.AlignRight | Qt.AlignVCenter
+            Layout.preferredWidth: 50
+            Layout.maximumHeight: colorVal.height
+
+            border.color: Theme.colorOutline
+            border.width: 2
+
+            color: colorVal.text
+        }
     }
 }

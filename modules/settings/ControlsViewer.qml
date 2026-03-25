@@ -72,6 +72,13 @@ MContentItem {
                         value: "Value"
                     }
 
+                    MColorEdit {
+                        Layout.fillWidth: true
+                        Layout.preferredHeight: 50
+                        text: "Color Edit"
+                        color: "#ff0000"
+                    }
+
                     RowLayout {
                         MCheckBox {
                             text: "Checkbox"
@@ -98,13 +105,6 @@ MContentItem {
                             Layout.preferredHeight: 100
                             isVertical: true
                         }
-                    }
-
-                    MColorEdit {
-                        Layout.fillWidth: true
-                        Layout.preferredHeight: 50
-                        text: "Color Edit"
-                        color: "#ff0000"
                     }
                 }
             }

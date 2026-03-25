@@ -30,4 +30,6 @@ TextField {
     onEscaped: this.focus = false
 
     Keys.onEscapePressed: this.escaped()
+    Keys.onReturnPressed: this.focus = false;
+    Keys.onEnterPressed: this.focus = false;
 }

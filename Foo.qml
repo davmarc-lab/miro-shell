@@ -23,34 +23,29 @@ MPanelWindow {
 
     color: Theme.colorSurfaceVariant
 
-    // ColumnLayout {
-    //     id: l
-    //     anchors.centerIn: parent
-    //     MSwitch {
-    //         // text: "Layout"
-    //     }
-    // }
-
-    // RowLayout {
-    //     anchors.fill: parent
-    //
-    //     ColumnLayout {
-    //         MSlider {
-    //             // padding: 10
-    //             isVertical: false
-    //         }
-    //     }
-    // }
-
-    Rectangle {
-        width: parent.height
-        height: parent.height
+    RowLayout {
+        width: 300
+        height: 100
         anchors.centerIn: parent
-        color: "white"
+        Rectangle {
+            Layout.fillWidth: true
+            Layout.fillHeight: true
+            color: "black"
 
-        MSlider {
-            anchors.centerIn: parent
-            isVertical: false
+            MColorEdit {
+                anchors.fill: parent
+                color: "red"
+            }
         }
     }
+
+    // Rectangle {
+    //     anchors.fill: parent
+    //     color: "black"
+    //
+    //     MColorEdit {
+    //         anchors.fill: parent
+    //         color: "red"
+    //     }
+    // }
 }
