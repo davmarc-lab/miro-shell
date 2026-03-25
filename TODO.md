@@ -60,6 +60,13 @@
 - [ ] Fix Utility => TODO scrollable item
 - [ ] Fix NotificationItem size
 - [ ] Whole code refactor
+- [ ] Errors with shell path
+- [ ] Init script doesn't work
+- [ ] Keayboard layout dependencies???
+- [ ] Wifi JSON file problem if not exist (i think)
+- [ ] Errors while closing notification toast
+- [ ] Errors during `ClearAll` notification from `RightPanel`
+- [ ] Checkbox in controls viewer doesn't work
 
 ## Other features
 
