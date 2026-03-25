@@ -24,51 +24,30 @@ MPopup {
         Layout.preferredHeight: root.height * 0.2
 
         color: Theme.colorSurface
+        bottomLeftRadius: 0
+        bottomRightRadius: this.bottomLeftRadius
 
-        ColumnLayout {
+        ListView {
             anchors.fill: parent
             anchors.margins: Settings.panelMargin
-            spacing: Settings.panelMargin
+            orientation: ListView.Horizontal
+            clip: true
+            spacing: Settings.itemMargin
 
-            MRectangle {
-                id: contentPanel
-                Layout.fillWidth: true
-                Layout.fillHeight: true
-                color: Theme.colorSurface
+            model: SWallpaper.getDetected()
 
-                ScrollView {
-                    id: scroll
-                    anchors.fill: parent
-                    ScrollBar.vertical.policy: ScrollBar.AlwaysOff
+            delegate: MImageClick {
+                id: wp
+                required property int index
+                required property string modelData
 
-                    RowLayout {
-                        anchors.fill: parent
-                        Layout.margins: 0
+                imgIdx: index
+                path: modelData
 
-                        Repeater {
-                            model: SWallpaper.getDetected()
+                fillMode: Image.PreserveAspectCrop
 
-                            delegate: MImageClick {
-                                id: wp
-                                required property int index
-                                required property string modelData
-
-                                imgIdx: index
-                                path: modelData
-
-                                fillMode: Image.PreserveAspectCrop
-
-                                // don't know why with this line vertical scroll is fixed
-                                sizey: scroll.availableHeight + 1
-                                // Layout.fillWidth: true
-                                // Layout.fillHeight: true
-
-                                onImageClicked: elem => {
-                                    SWallpaper.setCurrentByIndex(elem);
-                                }
-                            }
-                        }
-                    }
+                onImageClicked: elem => {
+                    SWallpaper.setCurrentByIndex(elem);
                 }
             }
         }
