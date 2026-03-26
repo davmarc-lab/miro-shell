@@ -67,6 +67,7 @@
 - [ ] Errors while closing notification toast (not consistent)
 - [X] Errors during `ClearAll` notification from `RightPanel` (on `dismiss()`)
 - [X] Checkbox in controls viewer doesn't work
+- [ ] Sometimes `segmentation fault` due to Notifications (i think)
 
 ## Other features
 
