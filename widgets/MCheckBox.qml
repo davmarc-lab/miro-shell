@@ -44,7 +44,6 @@ CheckBox {
                 } else {
                     root.check();
                 }
-                root.toggle();
             }
         }
     }

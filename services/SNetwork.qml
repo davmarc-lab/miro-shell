@@ -39,10 +39,9 @@ Singleton {
 
         blockLoading: false
         watchChanges: true
-        printErrors: true
+        printErrors: false
 
         onFileChanged: reload()
-        onPathChanged: reload()
 
         onLoaded: {
             if (this.text().length > 0) {
@@ -63,9 +62,8 @@ Singleton {
                 }
             }
         }
-        onLoadFailed: {
-            console.log("failed -> " + this.path);
-        }
+
+        onLoadFailed: {}
     }
 
     function getAvailableNetworks(): list<var> {

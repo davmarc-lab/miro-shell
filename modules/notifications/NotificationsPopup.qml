@@ -1,3 +1,5 @@
+import Quickshell.Wayland
+
 import QtQuick
 import QtQuick.Layouts
 
@@ -20,6 +22,8 @@ MPopupPane {
         right: Settings.panelMargin
     }
 
+    WlrLayershell.keyboardFocus: WlrKeyboardFocus.None
+
     implicitWidth: Settings.notifPopupSize
 
     color: "transparent"
@@ -35,7 +39,7 @@ MPopupPane {
         Layout.fillHeight: true
         Layout.topMargin: Settings.panelMargin
 
-        spacing: Settings.panelMargin
+        spacing: Settings.panelMargin / 2
         model: root.notifications
 
         delegate: NotificationToast {

@@ -11,23 +11,26 @@ Item {
     ColumnLayout {
         anchors.fill: parent
 
-        Repeater {
-            model: SNotification.notifications
+        ListView {
+            Layout.fillWidth: true
+            Layout.fillHeight: true
+            clip: true
+            spacing: Settings.itemMargin
 
+            model: SNotification.notifications
             delegate: NotificationItem {
                 required property var modelData
 
                 notif: modelData
+                width: ListView.view.width
 
                 Layout.alignment: Qt.AlignTop
-                Layout.fillWidth: true
             }
         }
 
-        MFillLayout {}
-
         MButton {
             id: clearBtn
+            Layout.preferredHeight: this.implicitHeight
 
             text: "Clear"
 

@@ -8,8 +8,8 @@ import qs.widgets
 
 MRectangle {
     id: root
-    Layout.fillWidth: true
-    Layout.preferredHeight: layout.implicitHeight
+
+    height: layout.height
 
     required property var notif
 

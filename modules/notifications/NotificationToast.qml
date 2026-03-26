@@ -25,11 +25,11 @@ MRectangle {
         }
         anchors.verticalCenter: parent.verticalCenter
 
-        MIcon{
+        MIcon {
             Layout.margins: Settings.itemMargin
             implicitSize: 32
 
-            name: root.notif.image
+            name: root.notif?.image ?? ""
         }
 
         ColumnLayout {
@@ -50,6 +50,8 @@ MRectangle {
                     color: Theme.colorOnSurface
                     font.weight: Font.Bold
                     text: {
+                        if (root.notif == null)
+                            return "";
                         if (root.notif.summary.length)
                             return root.notif.summary;
                         return root.notif.appName;
@@ -73,7 +75,7 @@ MRectangle {
 
                 color: Theme.colorOnSurface
                 clip: true
-                text: root.notif.body
+                text: root.notif?.body ?? ""
             }
         }
     }
