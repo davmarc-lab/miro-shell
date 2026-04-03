@@ -62,14 +62,14 @@ MPopup {
 
                     MText {
                         anchors.centerIn: parent
-                        text: "Weather"
+                        text: "Docker"
                     }
 
                     MouseArea {
                         anchors.fill: parent
 
                         onClicked: {
-                            content.setSource("Weather.qml");
+                            content.setSource("Docker.qml");
                         }
                     }
                 }

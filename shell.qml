@@ -31,6 +31,8 @@ ShellRoot {
         SNetwork.init();
         SNotification.init();
 
+        SDocker.init();
+
         if (Global.enableWeather)
             SWeather.init();
 

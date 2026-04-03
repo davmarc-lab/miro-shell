@@ -37,6 +37,12 @@ if [[ ! -e "${CACHE_DIR}todo/" ]] then
     echo "-- cache: todo dir created--"
 fi
 
+# create docker cache dir
+if [[ ! -e "${CACHE_DIR}docker/" ]] then
+    mkdir "${CACHE_DIR}docker"
+    echo "-- cache: docker dir created--"
+fi
+
 # create weather cache dir
 if [[ ! -e "${CACHE_DIR}weather/" ]] then
     mkdir "${CACHE_DIR}weather"
