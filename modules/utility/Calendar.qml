@@ -26,7 +26,7 @@ Item {
 
             RowLayout {
                 Layout.alignment: Qt.AlignCenter
-                MButton {
+                MRButton {
                     id: pre
                     borderRadius: 4
                     text: "<"
@@ -50,7 +50,7 @@ Item {
 
                 MFillLayout {}
 
-                MButton {
+                MRButton {
                     id: next
                     borderRadius: 4
                     text: ">"

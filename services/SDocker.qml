@@ -10,32 +10,30 @@ Singleton {
     id: root
 
     readonly property string source: Settings.cacheDockerDir + "data.json"
-
-    function init() {
-    }
-
-    FileView {
-        id: file
-
-        path: root.source
-
-        watchChanges: true
-        onFileChanged: reload()
-
-        onLoadFailed: err => {
-            if (err == FileViewError.FileNotFound) {
-                // this.writeAdapter();
-            }
-        }
-    }
+    property bool ready: false
+    property string dockerData: ""
 
     function getData() {
-        return JSON.parse(file.text());
+        if (!this.ready) {
+            this.scan();
+            return undefined;
+        }
+        return JSON.parse(dockerData);
+    }
+
+    function scan() {
+        scanProc.running = true;
     }
 
     Process {
-        id: scan
+        id: scanProc
         running: false
-        command: ["sudo", "docker", "ps", "--format=\"json\""]
+        command: ["sh", "-c", Settings.scriptPath + "docker/scan.sh"]
+        stdout: StdioCollector {
+            onStreamFinished: {
+                root.ready = true;
+                root.dockerData = this.text;
+            }
+        }
     }
 }

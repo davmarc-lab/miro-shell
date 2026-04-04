@@ -12,9 +12,6 @@ import qs.services
 RowLayout {
     id: root
 
-    Layout.fillWidth: true
-    Layout.fillHeight: true
-
     Repeater {
         model: SWorkspaces.getActives()
 
@@ -22,15 +19,14 @@ RowLayout {
             Layout.preferredWidth: 30
 
             required property int modelData
-            property int wId: modelData
             property HyprlandWorkspace w: Hyprland.workspaces.values[modelData] ?? null
 
-            text: wId
-            fgColor: SWorkspaces.isFocused(wId) ? "lightblue" : Theme.colorOnPrimary
-            bgColor: SWorkspaces.isUrgent(wId) ? Theme.colorError : Theme.colorPrimary
+            text: modelData
+            fgColor: SWorkspaces.isFocused(modelData) ? "lightblue" : Theme.colorOnPrimary
+            // bgColor: SWorkspaces.isUrgent(modelData) ? Theme.colorError : Theme.colorPrimary
 
             onClicked: {
-                SWorkspaces.activate(wId);
+                SWorkspaces.activate(modelData);
             }
         }
     }

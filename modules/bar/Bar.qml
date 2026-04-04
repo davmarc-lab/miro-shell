@@ -58,12 +58,7 @@ Scope {
                 anchors.bottom: parent.bottom
                 anchors.horizontalCenter: parent.horizontalCenter
 
-                MButton {
-                    text: STime.time
-                    onClicked: {
-                        Global.enableDock = !Global.enableDock;
-                    }
-                }
+                Clock {}
             }
 
             Item {

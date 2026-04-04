@@ -10,6 +10,10 @@ import qs.services
 MRectangle {
     radius: 0
 
+    Component.onCompleted: {
+        SDocker.scan();
+    }
+
     ColumnLayout {
         anchors.fill: parent
         anchors.margins: Settings.panelMargin

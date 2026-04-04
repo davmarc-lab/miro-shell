@@ -8,6 +8,8 @@ import qs.services
 MWrapRectangle {
     id: root
 
+    visible: SPower.isBattery()
+
     margin: 4
 
     color: Theme.colorPrimary

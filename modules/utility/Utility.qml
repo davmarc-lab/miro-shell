@@ -62,14 +62,14 @@ MPopup {
 
                     MText {
                         anchors.centerIn: parent
-                        text: "Docker"
+                        text: "Calendar"
                     }
 
                     MouseArea {
                         anchors.fill: parent
 
                         onClicked: {
-                            content.setSource("Docker.qml");
+                            content.setSource("Calendar.qml");
                         }
                     }
                 }
@@ -98,14 +98,14 @@ MPopup {
 
                     MText {
                         anchors.centerIn: parent
-                        text: "Calendar"
+                        text: "Docker"
                     }
 
                     MouseArea {
                         anchors.fill: parent
 
                         onClicked: {
-                            content.setSource("Calendar.qml");
+                            content.setSource("Docker.qml");
                         }
                     }
                 }

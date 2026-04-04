@@ -32,16 +32,14 @@ Button {
         id: back
         anchors.fill: parent
 
-        implicitWidth: root.isRound ? implicitHeight : root.contentItem.implicitWidth + root.padding * 2
-        implicitHeight: root.contentItem.implicitHeight + root.padding * 2
-
         color: root.hovered ? (root.pressed ? root.colorClicked : root.bgColorHovered) : root.bgColor
         border.color: root.outlineColor
         border.width: root.outlineSize
-        radius: root.isRound ? this.height / 2 : root.borderRadius
+        radius: root.isRound ? this.width / 2 : root.borderRadius
     }
 
     contentItem: MText {
+        id: label
         text: root.text
         font: root.font
         verticalAlignment: Text.AlignVCenter

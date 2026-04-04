@@ -61,6 +61,7 @@ MRectangle {
                 MRButton {
                     Layout.alignment: Qt.AlignRight
                     text: "X"
+                    Layout.preferredWidth: this.height
 
                     // trigger timer callback
                     onClicked: alive.triggered()
