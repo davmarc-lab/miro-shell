@@ -6,7 +6,7 @@ import qs.common
 
 IconImage {
     required property string name
-    property string dir: Settings.iconsPath
+    property string dir: Settings.dirs.icons
     property bool theme: false
 
     source: {

@@ -9,7 +9,7 @@ import qs.common
 Singleton {
     id: root
 
-    readonly property string source: Settings.cacheDockerDir + "data.json"
+    readonly property string source: Settings.cache.docker + "data.json"
     property bool ready: false
     property string dockerData: ""
 
@@ -28,7 +28,7 @@ Singleton {
     Process {
         id: scanProc
         running: false
-        command: ["sh", "-c", Settings.scriptPath + "docker/scan.sh"]
+        command: ["sh", "-c", Settings.dirs.scripts + "docker/scan.sh"]
         stdout: StdioCollector {
             onStreamFinished: {
                 root.ready = true;

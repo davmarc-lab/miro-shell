@@ -10,7 +10,7 @@ Singleton {
 
     FileView {
         id: themeFile
-        path: Settings.themesPath + "colorscheme.json"
+        path: Settings.dirs.themes + "colorscheme.json"
 
         blockLoading: true
         watchChanges: true

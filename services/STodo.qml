@@ -11,7 +11,7 @@ import qs.common
 Singleton {
     id: root
 
-    readonly property string source: Settings.cacheTodoDir + "todo.json"
+    readonly property string source: Settings.cache.todo + "todo.json"
 
     FileView {
         id: file

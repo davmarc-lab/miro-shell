@@ -5,6 +5,6 @@ import QtQuick
 import qs.common
 
 MIcon {
-    dir: Settings.iconsPath
+    dir: Settings.dirs.icons
     theme: true
 }

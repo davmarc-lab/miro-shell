@@ -1,28 +1,26 @@
+pragma ComponentBehavior: Bound
 pragma Singleton
 
 import Quickshell
 
 Singleton {
-    id: settings
+    id: root
 
     readonly property string shellName: "miro"
 
-    readonly property string cacheDir: Quickshell.env("HOME") + "/.cache/quickshell/" + shellName + "-shell/"
-    readonly property string cacheUserDir: cacheDir + "user/"
-    readonly property string cacheTodoDir: cacheDir + "todo/"
-    readonly property string cacheDockerDir: cacheDir + "docker/"
-    readonly property string cacheCalendarDir: cacheDir + "calendar/"
+    property CacheDirs cache: CacheDirs {
+        shellName: root.shellName
+    }
 
-    // readonly property var shellPath: Quickshell.env("HOME") + "/.config/" + shellName + "/"
-    readonly property string shellPath: Quickshell.shellDir + "/"
-    readonly property string themesPath: shellPath + "themes/"
+    property ShellDirs dirs: ShellDirs {}
 
-    readonly property string scriptPath: shellPath + "scripts/"
-
-    readonly property string iconsPath: shellPath + "assets/icons/"
+    property BarSettings bar: BarSettings {}
+    property PanelSettings panel: PanelSettings {}
+    property ItemSettings item: ItemSettings {}
+    property ButtonSettings button: ButtonSettings {}
 
     // default user icon
-    readonly property string defaultUserIcon: iconsPath + "user.svg"
+    readonly property string defaultUserIcon: dirs.icons + "user.svg"
 
     // bar
     property int barHeight: 40

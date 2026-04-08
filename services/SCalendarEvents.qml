@@ -10,7 +10,7 @@ import qs.common
 
 Singleton {
     id: root
-    property string source: Settings.cacheCalendarDir + "calendar.json"
+    property string source: Settings.cache.calendar + "calendar.json"
 
     FileView {
         id: file

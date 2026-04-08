@@ -39,7 +39,7 @@ Singleton {
     FileView {
         id: userData
 
-        path: Settings.cacheDir + "user/data.json"
+        path: Settings.cache.user + "data.json"
 
         watchChanges: false
         onFileChanged: reload()

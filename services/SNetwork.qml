@@ -13,7 +13,7 @@ Singleton {
     readonly property bool wifi: false
     readonly property bool ethernet: false
 
-    readonly property string netData: Settings.cacheDir + "network/"
+    readonly property string netData: Settings.cache.base + "network/"
 
     property list<var> detectedNet: []
 
@@ -35,7 +35,7 @@ Singleton {
 
     FileView {
         id: netFile
-        path: Settings.cacheDir + "network/wifi-networks.json"
+        path: Settings.cache.base + "network/wifi-networks.json"
 
         blockLoading: false
         watchChanges: true
@@ -77,7 +77,7 @@ Singleton {
         id: getWifi
         running: false
 
-        command: ["sh", "-c", Settings.scriptPath + "network/get-wifi.sh"]
+        command: ["sh", "-c", Settings.dirs.scripts + "network/get-wifi.sh"]
         stdout: StdioCollector {
             onStreamFinished: {
                 getWifi.running = false;

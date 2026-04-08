@@ -39,7 +39,7 @@ Singleton {
     FileView {
         id: hFirstRun
 
-        path: Settings.cacheUserDir + "first-run.txt"
+        path: Settings.cache.user + "first-run.txt"
         printErrors: false
 
         onLoadFailed: error => {
