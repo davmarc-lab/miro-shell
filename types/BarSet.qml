@@ -15,7 +15,7 @@ QtObject {
 
     property int position: BarSet.Position.Top
 
-    // read obnly helpers
+    // read only helpers
     readonly property bool isHorizontal: position === BarSet.Position.Top || position === BarSet.Position.Bottom
     readonly property bool isVertical: position === BarSet.Position.Left || position === BarSet.Position.Right
     readonly property int orientation: isHorizontal ? BarSet.Orientation.Horizontal : BarSet.Orientation.Vertical

@@ -8,7 +8,7 @@ JsonObject {
     property int barHeight: 40
     property int barWidth: 40
 
-    property Margins margins
+    property Margins margins: Margins {}
 
-    property BarSet align
+    property BarSet align: BarSet {}
 }

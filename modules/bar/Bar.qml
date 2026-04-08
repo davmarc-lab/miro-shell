@@ -1,4 +1,5 @@
 import Quickshell
+import Quickshell.Wayland
 
 import QtQuick
 import QtQuick.Layouts
@@ -14,18 +15,20 @@ Scope {
 
         MPanelWindow {
             id: root
+            WlrLayershell.keyboardFocus: WlrKeyboardFocus.None
 
             required property var modelData
             screen: modelData
 
             anchors {
-                top: true
-                left: true
-                right: true
+                top: Settings.bar.align.isTop || Settings.bar.align.isVertical
+                left: Settings.bar.align.isLeft || Settings.bar.align.isHorizontal
+                right: Settings.bar.align.isRight || Settings.bar.align.isHorizontal
+                bottom: Settings.bar.align.isBottom || Settings.bar.align.isVertical
             }
 
-            implicitWidth: screen.width
-            implicitHeight: Settings.barHeight
+            implicitWidth: Settings.bar.align.isHorizontal ? screen.width : Settings.bar.barHeight
+            implicitHeight: Settings.bar.align.isVertical ? screen.height : Settings.bar.barWidth
 
             Item {
                 id: leftSection
