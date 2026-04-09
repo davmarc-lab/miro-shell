@@ -14,4 +14,6 @@ IconImage {
             return Qt.resolvedUrl(this.dir + Theme.themeStyle + "/" + this.name);
         return this.name;
     }
+
+    visible: source !== ""
 }

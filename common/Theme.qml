@@ -52,6 +52,7 @@ Singleton {
     property string colorOnSurfaceVariant: themeStyle == "dark" ? darkOnSurfaceVariant : lightOnSurfaceVariant
     property string colorOutline: themeStyle == "dark" ? darkOutline : lightOutline
     property string colorShadow: themeStyle == "dark" ? darkShadow : lightShadow
+// primary, primaryHover, onPrimary, secondary, secondaryHover, onSecondary, error, onError, surface, onSurface, surfaceVariant, onSurfaceVariant, outline, shadow
 
     // These properties are used to edit purpose
     property string darkPrimary: root.themeData.dark.mPrimary

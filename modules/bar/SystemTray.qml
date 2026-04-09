@@ -54,6 +54,8 @@ ListView {
             anchors.centerIn: parent
             implicitSize: 24
 
+            visible: item.modelData.icon != ""
+
             name: trimUrl(item.modelData.icon)
 
             function trimUrl(source: string): string {
