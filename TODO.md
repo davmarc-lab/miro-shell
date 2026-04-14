@@ -53,6 +53,7 @@
 - [X] fix slider sizes
 - [X] vertical slider doesn't work
 - [ ] refactor `ColorEdit`
+- [ ] wifi used not tracked
 
 ## Critical Fix
 - [X] Write to JSON files (JSONAdapter)
@@ -71,12 +72,10 @@
 
 ## Other features
 
+- [ ] Calendar events in Dock panel
+
 - [ ] Colorscheme picker
 - [ ] Implement colorscheme loader
 - [ ] Implement colorscheme save system
 - [ ] Resource Usage
-- [X] mpd && playerctl
-- [X] Notification popups
-- [X] Volume mixer
-- [X] Keyboard layout
 - [ ] Refactor RightPanel module

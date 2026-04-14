@@ -53,7 +53,7 @@ Singleton {
     property int fontSubTitle: 14
 
     // right panel
-    property int rightIconsSize: 40
+    property int rightIconsSize: barHeight
 
     // utility panel
     property int utilityPanelWidth: 600

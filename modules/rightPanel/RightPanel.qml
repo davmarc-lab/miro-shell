@@ -163,6 +163,10 @@ MPopup {
                         font.pointSize: Settings.fontTitle + 8
                     }
 
+                    MDivider {
+                        Layout.bottomMargin: Settings.itemMargin
+                    }
+
                     NotificationsContent {
                         Layout.fillWidth: true
                         Layout.fillHeight: true
