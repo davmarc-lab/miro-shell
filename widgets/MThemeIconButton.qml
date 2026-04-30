@@ -11,7 +11,7 @@ MRectangle {
     readonly property bool pressed: mouse.pressed
     readonly property bool clicked: mouse.clicked
 
-    property double iconMargins: Settings.iconButtonMargins
+    property double iconMargins: Settings.button.iconMargin
 
     signal iconClick
 

@@ -15,7 +15,7 @@ CheckBox {
 
     indicator: MRectangle {
         id: outer
-        implicitWidth: Settings.fontSize * 2 + 4
+        implicitWidth: Settings.font.size * 2 + 4
         implicitHeight: implicitWidth
 
         anchors.verticalCenter: parent.verticalCenter
@@ -26,7 +26,7 @@ CheckBox {
 
         MRectangle {
             id: inner
-            width: Settings.fontSize * 2 - 8
+            width: Settings.font.size * 2 - 8
             height: width
             anchors.centerIn: outer
             radius: outer.radius

@@ -15,8 +15,8 @@ Switch {
     indicator: MRectangle {
         id: track
 
-        implicitWidth: Settings.fontSize * 4
-        implicitHeight: Settings.fontSize * 2 + 4
+        implicitWidth: Settings.font.size * 4
+        implicitHeight: Settings.font.size * 2 + 4
 
         anchors.fill: parent
 
@@ -26,7 +26,7 @@ Switch {
         MRectangle {
             id: thumb
 
-            width: Settings.fontSize * 2 - 4
+            width: Settings.font.size * 2 - 4
             height: width
             anchors.verticalCenter: parent.verticalCenter
 

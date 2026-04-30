@@ -9,7 +9,7 @@ MThemeIconButton {
     required property string name
 
     Layout.preferredWidth: Layout.preferredHeight
-    Layout.preferredHeight: Settings.rightIconsSize
+    Layout.preferredHeight: Settings.rightPanel.iconSize
     color: {
         if (this.pressed)
             return Theme.colorSecondary;

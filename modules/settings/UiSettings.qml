@@ -82,10 +82,10 @@ MContentItem {
                         MTextInput {
                             Layout.alignment: Qt.AlignRight
                             Layout.fillHeight: true
-                            text: Settings.numWorkspaces
+                            text: Settings.workspaces.size
 
                             onTextEdited: {
-                                Settings.numWorkspaces = this.text;
+                                Settings.workspaces.size = this.text;
                             }
                         }
                     }

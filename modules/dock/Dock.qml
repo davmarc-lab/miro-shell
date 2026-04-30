@@ -96,7 +96,7 @@ MPopup {
                             columns: 4
                             MThemeIconButton {
                                 Layout.preferredWidth: Layout.preferredHeight
-                                Layout.preferredHeight: Settings.rightIconsSize
+                                Layout.preferredHeight: Settings.rightPanel.iconSize
                                 iconName: "settings.svg"
 
                                 onIconClick: {
@@ -107,7 +107,7 @@ MPopup {
 
                             MThemeIconButton {
                                 Layout.preferredWidth: Layout.preferredHeight
-                                Layout.preferredHeight: Settings.rightIconsSize
+                                Layout.preferredHeight: Settings.rightPanel.iconSize
                                 iconName: "wallpaper.svg"
 
                                 onIconClick: {
@@ -118,7 +118,7 @@ MPopup {
 
                             MThemeIconButton {
                                 Layout.preferredWidth: Layout.preferredHeight
-                                Layout.preferredHeight: Settings.rightIconsSize
+                                Layout.preferredHeight: Settings.rightPanel.iconSize
                                 iconName: "power.svg"
 
                                 onIconClick: {

@@ -14,8 +14,8 @@ MPopup {
 
     MRectangle {
         Layout.alignment: Qt.AlignLeft | Qt.AlignVCenter
-        Layout.preferredWidth: Settings.utilityPanelWidth
-        Layout.preferredHeight: Settings.utilityPanelHeight
+        Layout.preferredWidth: Settings.utilityPanel.width
+        Layout.preferredHeight: Settings.utilityPanel.height
 
         bottomLeftRadius: 0
         topLeftRadius: 0

@@ -24,7 +24,7 @@ MPopupPane {
 
     WlrLayershell.keyboardFocus: WlrKeyboardFocus.None
 
-    implicitWidth: Settings.notifPopupSize
+    implicitWidth: Settings.notification.popup.size
 
     color: "transparent"
 

@@ -157,7 +157,7 @@ MPopup {
                         // Layout.preferredHeight: this.height
 
                         text: "Notifications"
-                        font.pointSize: Settings.fontTitle + 8
+                        font.pointSize: Settings.font.titleSize + 8
                     }
 
                     MDivider {

@@ -9,7 +9,7 @@ MRectangle {
     required property var notif
 
     border.color: Theme.colorOutline
-    border.width: Settings.notifPopupBorderSize
+    border.width: Settings.notification.popup.borderSize
 
     height: layout.height
 
@@ -84,7 +84,7 @@ MRectangle {
         running: true
         repeat: false
 
-        interval: Settings.notifPopupTimer * 1000
+        interval: Settings.notification.popup.timer * 1000
 
         onTriggered: root.deadToast()
     }

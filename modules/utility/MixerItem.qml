@@ -24,7 +24,7 @@ MRectangle {
 
         MIcon {
             property DesktopEntry entry: Helper.getDesktopEntryByName(root.node.name)
-            implicitSize: Settings.rightIconsSize
+            implicitSize: Settings.rightPanel.iconSize
             name: "image://icon/" + (entry?.icon ?? "audio-x-generic")
         }
 
