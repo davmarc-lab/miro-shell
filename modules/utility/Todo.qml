@@ -7,13 +7,13 @@ import qs.widgets
 
 ColumnLayout {
     spacing: 0
-    Layout.margins: Settings.itemMargin
+    Layout.margins: Settings.item.margin
 
     RowLayout {
         id: add
 
         Layout.fillWidth: true
-        Layout.margins: Settings.itemMargin
+        Layout.margins: Settings.item.margin
         Layout.bottomMargin: 0
 
         MTextInput {

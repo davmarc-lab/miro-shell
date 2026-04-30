@@ -11,7 +11,7 @@ import qs.widgets
 Item {
     id: root
     anchors.fill: parent
-    anchors.margins: Settings.itemMargin
+    anchors.margins: Settings.item.margin
 
     property var events: SCalendarEvents.getEvents()
 
@@ -22,7 +22,7 @@ Item {
 
         ColumnLayout {
             anchors.fill: parent
-            anchors.margins: Settings.itemMargin
+            anchors.margins: Settings.item.margin
 
             RowLayout {
                 Layout.alignment: Qt.AlignCenter

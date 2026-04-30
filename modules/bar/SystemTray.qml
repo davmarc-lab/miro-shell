@@ -14,8 +14,8 @@ ListView {
     id: systrayList
     anchors.fill: parent
     anchors.verticalCenter: parent.verticalCenter
-    anchors.margins: Settings.itemMargin
-    spacing: Settings.itemMargin
+    anchors.margins: Settings.item.margin
+    spacing: Settings.item.margin
 
     clip: true
     orientation: ListView.Horizontal
@@ -37,7 +37,7 @@ ListView {
             anchor {
                 item: item
                 edges: Edges.Left | Edges.Bottom
-                margins.top: Settings.panelMargin
+                margins.top: Settings.panel.margin
             }
         }
 

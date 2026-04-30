@@ -4,7 +4,7 @@ import QtQuick.Layouts
 import qs.common
 
 Rectangle {
-    radius: Settings.itemRadius
+    radius: Settings.item.radius
 
     color: Theme.colorSurfaceVariant
 }

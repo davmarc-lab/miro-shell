@@ -9,9 +9,9 @@ Item {
 
     ListView {
         model: SAudio.applicationsNode
-        spacing: Settings.itemMargin
+        spacing: Settings.item.margin
         anchors.fill: parent
-        anchors.margins: Settings.itemMargin
+        anchors.margins: Settings.item.margin
         clip: true
 
         delegate: MixerItem {

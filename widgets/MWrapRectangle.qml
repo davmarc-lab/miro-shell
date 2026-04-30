@@ -3,7 +3,7 @@ import Quickshell.Widgets
 import qs.common
 
 WrapperRectangle {
-    radius: Settings.itemRadius
+    radius: Settings.item.radius
     border.color: Theme.colorOutline
 
     margin: 5

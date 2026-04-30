@@ -16,7 +16,7 @@ MRectangle {
 
     ColumnLayout {
         anchors.fill: parent
-        anchors.margins: Settings.panelMargin
+        anchors.margins: Settings.panel.margin
 
         MTitle {
             Layout.fillWidth: true
@@ -29,20 +29,20 @@ MRectangle {
             Layout.fillHeight: true
             clip: true
             model: SDocker.getData()
-            spacing: Settings.itemMargin * 2
+            spacing: Settings.item.margin * 2
 
             delegate: MRectangle {
                 id: item
                 required property var modelData
                 width: ListView.view.width
-                height: childrenRect.height + 2 * Settings.itemMargin
+                height: childrenRect.height + 2 * Settings.item.margin
                 color: Theme.colorSurface
 
                 ColumnLayout {
                     anchors.verticalCenter: parent.verticalCenter
                     anchors.left: parent.left
                     anchors.right: parent.right
-                    anchors.margins: Settings.itemMargin
+                    anchors.margins: Settings.item.margin
 
                     RowLayout {
                         Layout.fillWidth: true

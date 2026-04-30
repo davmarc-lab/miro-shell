@@ -16,14 +16,14 @@ TextField {
     color: Theme.colorOnSurface
     font.pointSize: Settings.fontSize
 
-    leftPadding: Settings.itemMargin
-    rightPadding: Settings.itemMargin
+    leftPadding: Settings.item.margin
+    rightPadding: Settings.item.margin
 
     verticalAlignment: TextInput.AlignVCenter
 
     background: MRectangle {
         color: root.bgColor
-        radius: Settings.itemRadius / 2
+        radius: Settings.item.radius / 2
     }
 
     // lose input focus

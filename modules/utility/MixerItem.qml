@@ -12,7 +12,7 @@ MRectangle {
     id: root
     required property var node
 
-    height: layout.height + 2 * Settings.itemMargin
+    height: layout.height + 2 * Settings.item.margin
     color: Theme.colorSurface
 
     RowLayout {
@@ -20,7 +20,7 @@ MRectangle {
         anchors.verticalCenter: parent.verticalCenter
         anchors.right: parent.right
         anchors.left: parent.left
-        anchors.margins: Settings.itemMargin
+        anchors.margins: Settings.item.margin
 
         MIcon {
             property DesktopEntry entry: Helper.getDesktopEntryByName(root.node.name)
@@ -49,10 +49,10 @@ MRectangle {
 
         MThemeIconClick {
             id: volIcon
-            property string state: root.node.audio.muted ? "null" : this.val == 0 ? "mute" : this.val < 33 ? "low" : this.val < 66 ? "medium" : "high"
+            property string streamState: root.node.audio.muted ? "null" : this.val == 0 ? "mute" : this.val < 33 ? "low" : this.val < 66 ? "medium" : "high"
             property alias val: nodeVol.text
 
-            name: "volume-" + state
+            name: "volume-" + streamState
             implicitSize: 28
 
             onIconClick: {

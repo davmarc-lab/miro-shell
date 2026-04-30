@@ -1,12 +1,9 @@
-import Quickshell
-
 import QtQuick
 import QtQuick.Layouts
 
 import qs
 import qs.common
 import qs.widgets
-import qs.services
 
 MPopup {
     id: root
@@ -21,7 +18,7 @@ MPopup {
 
         Layout.preferredWidth: parent.width * 0.2
         Layout.fillHeight: true
-        Layout.topMargin: Settings.barHeight
+        Layout.topMargin: Settings.bar.height
 
         topRightRadius: 0
         bottomRightRadius: 0
@@ -30,12 +27,12 @@ MPopup {
 
         ColumnLayout {
             anchors.fill: parent
-            anchors.margins: Settings.panelMargin
-            spacing: Settings.panelMargin
+            anchors.margins: Settings.panel.margin
+            spacing: Settings.panel.margin
 
             MRectangle {
                 id: controlsBack
-                Layout.preferredHeight: itemsArea.isExpanded() ? panel.height * 0.3 : controls.height + 2 * Settings.itemMargin
+                Layout.preferredHeight: itemsArea.isExpanded() ? panel.height * 0.3 : controls.height + 2 * Settings.item.margin
                 Layout.maximumHeight: parent.height * 0.3
                 Layout.fillWidth: true
 
@@ -69,8 +66,8 @@ MPopup {
                     RowLayout {
                         id: controls
                         Layout.fillWidth: true
-                        Layout.margins: Settings.itemMargin
-                        spacing: Settings.itemMargin
+                        Layout.margins: Settings.item.margin
+                        spacing: Settings.item.margin
 
                         // Layout.alignment: Qt.AlignHCenter
 
@@ -111,7 +108,7 @@ MPopup {
                     Item {
                         Layout.fillWidth: true
                         Layout.fillHeight: true
-                        Layout.margins: Settings.itemMargin
+                        Layout.margins: Settings.item.margin
                         Layout.topMargin: 0
 
                         Loader {
@@ -145,7 +142,7 @@ MPopup {
 
                 ColumnLayout {
                     anchors.fill: parent
-                    anchors.margins: Settings.itemMargin
+                    anchors.margins: Settings.item.margin
 
                     // MRectangle {
                     //     Layout.fillWidth: true
@@ -164,7 +161,7 @@ MPopup {
                     }
 
                     MDivider {
-                        Layout.bottomMargin: Settings.itemMargin
+                        Layout.bottomMargin: Settings.item.margin
                     }
 
                     NotificationsContent {

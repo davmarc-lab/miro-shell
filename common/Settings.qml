@@ -22,20 +22,12 @@ Singleton {
     // default user icon
     readonly property string defaultUserIcon: dirs.icons + "user.svg"
 
-    // bar
-    property int barHeight: 40
-
     // workspaces
     property int numWorkspaces: 10
 
     // wallpaper
     property string wallpaperDir: Quickshell.env("HOME") + "/Pictures/Wallpapers/"
     property string wallpaperFile: ""
-
-    // panels
-    property int panelMargin: 10
-    property int itemMargin: 8
-    property int itemRadius: 10
 
     property int thumbWidth: 280
     property int thumbHeight: 200
@@ -53,7 +45,7 @@ Singleton {
     property int fontSubTitle: 14
 
     // right panel
-    property int rightIconsSize: barHeight
+    property int rightIconsSize: bar.height
 
     // utility panel
     property int utilityPanelWidth: 600

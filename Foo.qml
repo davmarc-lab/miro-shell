@@ -1,10 +1,7 @@
 import QtQuick
 import QtQuick.Layouts
 
-import Quickshell
-
 import qs.widgets
-import qs.services
 import qs.common
 
 MPanelWindow {

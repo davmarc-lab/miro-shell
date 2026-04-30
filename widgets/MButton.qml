@@ -16,16 +16,16 @@ Button {
 
     property string colorClicked: Theme.colorSecondary
     property string outlineColor: Theme.colorOutline
-    property int outlineSize: Settings.buttonOutlineSize
+    property int outlineSize: Settings.button.outlineSize
 
-    property int borderRadius: Settings.buttonSoftRadius
+    property int borderRadius: Settings.button.softRadius
     property bool isRound: false
 
     property string iconPath: ""
 
     anchors {
-        leftMargin: Settings.itemMargin
-        topMargin: Settings.itemMargin
+        leftMargin: Settings.item.margin
+        topMargin: Settings.item.margin
     }
 
     background: Rectangle {

@@ -16,8 +16,8 @@ MRectangle {
         anchors.left: parent.left
         anchors.right: parent.right
 
-        spacing: Settings.itemMargin
-        anchors.margins: Settings.itemMargin
+        spacing: Settings.item.margin
+        anchors.margins: Settings.item.margin
 
         RowLayout {
             MThemeIconClick {

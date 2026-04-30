@@ -1,12 +1,9 @@
 import QtQuick
 import QtQuick.Layouts
 
-import Quickshell
-
 import qs
 import qs.common
 import qs.widgets
-import qs.services
 
 MPopup {
     id: root
@@ -28,9 +25,9 @@ MPopup {
         ColumnLayout {
             id: base
             anchors.fill: parent
-            anchors.margins: Settings.panelMargin
+            anchors.margins: Settings.panel.margin
 
-            spacing: Settings.panelMargin
+            spacing: Settings.panel.margin
 
             RowLayout {
                 id: head

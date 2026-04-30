@@ -12,7 +12,7 @@ MRectangle {
     ListView {
         id: wifiList
         anchors.fill: parent
-        anchors.margins: Settings.itemMargin
+        anchors.margins: Settings.item.margin
 
         clip: true
         spacing: 5

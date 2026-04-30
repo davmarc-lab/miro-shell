@@ -1,5 +1,3 @@
-import Quickshell.Widgets
-
 import QtQuick
 import QtQuick.Layouts
 
@@ -26,7 +24,7 @@ MRectangle {
         anchors.verticalCenter: parent.verticalCenter
 
         MIcon {
-            Layout.margins: Settings.itemMargin
+            Layout.margins: Settings.item.margin
             implicitSize: 32
 
             name: root.notif?.image ?? ""
@@ -38,7 +36,7 @@ MRectangle {
 
             RowLayout {
                 Layout.fillWidth: true
-                Layout.margins: Settings.itemMargin
+                Layout.margins: Settings.item.margin
                 Layout.bottomMargin: 0
 
                 MTitle {
@@ -71,7 +69,7 @@ MRectangle {
             MText {
                 id: content
                 Layout.fillWidth: true
-                Layout.margins: Settings.itemMargin
+                Layout.margins: Settings.item.margin
                 Layout.topMargin: 0
 
                 color: Theme.colorOnSurface

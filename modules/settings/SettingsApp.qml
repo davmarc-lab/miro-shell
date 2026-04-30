@@ -45,18 +45,18 @@ ApplicationWindow {
         anchors.fill: parent
         implicitWidth: parent.width * 0.6
 
-        radius: Settings.itemRadius
+        radius: Settings.item.radius
 
         color: root.color
 
         RowLayout {
             anchors.fill: parent
-            anchors.topMargin: Settings.panelMargin
+            anchors.topMargin: Settings.panel.margin
             anchors.bottomMargin: anchors.topMargin
-            anchors.leftMargin: Settings.panelMargin
+            anchors.leftMargin: Settings.panel.margin
             anchors.rightMargin: anchors.leftMargin
 
-            spacing: Settings.panelMargin
+            spacing: Settings.panel.margin
 
             Rectangle {
                 id: indexPanel
@@ -66,7 +66,7 @@ ApplicationWindow {
 
                 color: Theme.colorSurfaceVariant
 
-                radius: Settings.itemRadius
+                radius: Settings.item.radius
 
                 // pages section indexing
                 ColumnLayout {
@@ -78,9 +78,9 @@ ApplicationWindow {
                         right: parent.right
                     }
 
-                    anchors.topMargin: Settings.panelMargin
+                    anchors.topMargin: Settings.panel.margin
                     anchors.bottomMargin: anchors.topMargin
-                    anchors.leftMargin: Settings.panelMargin
+                    anchors.leftMargin: Settings.panel.margin
                     anchors.rightMargin: anchors.leftMargin
 
                     Repeater {
@@ -108,9 +108,9 @@ ApplicationWindow {
                     anchors.left: parent.left
                     anchors.right: parent.right
 
-                    anchors.topMargin: Settings.panelMargin
+                    anchors.topMargin: Settings.panel.margin
                     anchors.bottomMargin: anchors.topMargin
-                    anchors.leftMargin: Settings.panelMargin
+                    anchors.leftMargin: Settings.panel.margin
                     anchors.rightMargin: anchors.leftMargin
 
                     text: "Close"
@@ -128,7 +128,7 @@ ApplicationWindow {
 
                 color: Theme.colorSurfaceVariant
 
-                radius: Settings.itemRadius
+                radius: Settings.item.radius
 
                 Loader {
                     id: contentLoader

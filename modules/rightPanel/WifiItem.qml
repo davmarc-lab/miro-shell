@@ -11,14 +11,14 @@ MRectangle {
     property bool connect: wifi.inUse !== "*"
 
     width: ListView.view.width
-    height: layout.height + 2 * Settings.itemMargin
+    height: layout.height + 2 * Settings.item.margin
 
     RowLayout {
         id: layout
         anchors.verticalCenter: parent.verticalCenter
         anchors.right: parent.right
         anchors.left: parent.left
-        anchors.margins: Settings.itemMargin
+        anchors.margins: Settings.item.margin
 
         MText {
             text: root.wifi.signal

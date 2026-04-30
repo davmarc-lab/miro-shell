@@ -18,8 +18,8 @@ MPopupPane {
     }
 
     margins {
-        top: Settings.barHeight
-        right: Settings.panelMargin
+        top: Settings.bar.height
+        right: Settings.panel.margin
     }
 
     WlrLayershell.keyboardFocus: WlrKeyboardFocus.None
@@ -37,9 +37,9 @@ MPopupPane {
         id: notifList
         Layout.fillWidth: true
         Layout.fillHeight: true
-        Layout.topMargin: Settings.panelMargin
+        Layout.topMargin: Settings.panel.margin
 
-        spacing: Settings.panelMargin / 2
+        spacing: Settings.panel.margin / 2
         model: root.notifications
 
         delegate: NotificationToast {

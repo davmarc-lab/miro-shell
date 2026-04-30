@@ -15,7 +15,7 @@ Item {
             Layout.fillWidth: true
             Layout.fillHeight: true
             clip: true
-            spacing: Settings.itemMargin
+            spacing: Settings.item.margin
 
             model: SNotification.notifications
             delegate: NotificationItem {

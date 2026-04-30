@@ -27,8 +27,8 @@ Scope {
                 bottom: Settings.bar.align.isBottom || Settings.bar.align.isVertical
             }
 
-            implicitWidth: Settings.bar.align.isHorizontal ? screen.width : Settings.bar.barHeight
-            implicitHeight: Settings.bar.align.isVertical ? screen.height : Settings.bar.barWidth
+            implicitWidth: Settings.bar.align.isHorizontal ? screen.width : Settings.bar.height
+            implicitHeight: Settings.bar.align.isVertical ? screen.height : Settings.bar.width
 
             Item {
                 id: leftSection

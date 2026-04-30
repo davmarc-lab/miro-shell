@@ -1,9 +1,6 @@
 pragma ComponentBehavior: Bound
 
-import Quickshell
-
 import QtQuick
-import QtQuick.Controls
 import QtQuick.Layouts
 
 import qs
@@ -29,10 +26,10 @@ MPopup {
 
         ListView {
             anchors.fill: parent
-            anchors.margins: Settings.panelMargin
+            anchors.margins: Settings.panel.margin
             orientation: ListView.Horizontal
             clip: true
-            spacing: Settings.itemMargin
+            spacing: Settings.item.margin
 
             model: SWallpaper.getDetected()
 

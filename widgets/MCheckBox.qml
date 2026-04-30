@@ -19,7 +19,7 @@ CheckBox {
         implicitHeight: implicitWidth
 
         anchors.verticalCenter: parent.verticalCenter
-        anchors.margins: Settings.itemMargin
+        anchors.margins: Settings.item.margin
 
         radius: 2
         color: Theme.colorOutline

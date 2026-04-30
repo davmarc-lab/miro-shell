@@ -19,14 +19,14 @@ MPopup {
         Layout.alignment: Qt.AlignTop | Qt.AlignHCenter
         Layout.preferredWidth: root.screen.width * 0.3
         Layout.preferredHeight: root.screen.height * 0.3
-        Layout.topMargin: Settings.barHeight
+        Layout.topMargin: Settings.bar.height
 
         color: Theme.colorSurface
 
         MRectangle {
             id: back
             anchors.fill: parent
-            anchors.margins: Settings.itemMargin
+            anchors.margins: Settings.item.margin
 
             RowLayout {
                 anchors.fill: parent
@@ -36,7 +36,7 @@ MPopup {
                     Layout.alignment: Qt.AlignLeft
                     Layout.fillWidth: true
                     Layout.fillHeight: true
-                    Layout.margins: Settings.itemMargin
+                    Layout.margins: Settings.item.margin
 
                     MRectangle {
                         Layout.fillWidth: true
@@ -46,7 +46,7 @@ MPopup {
                         ColumnLayout {
                             id: timeDate
                             anchors.fill: parent
-                            anchors.margins: Settings.itemMargin
+                            anchors.margins: Settings.item.margin
 
                             Item {
                                 id: time
@@ -143,7 +143,7 @@ MPopup {
                     id: middle
                     Layout.preferredWidth: parent.width * 0.6
                     Layout.fillHeight: true
-                    Layout.margins: Settings.itemMargin
+                    Layout.margins: Settings.item.margin
 
                     ColumnLayout {
                         anchors.fill: parent
@@ -155,7 +155,7 @@ MPopup {
 
                             RowLayout {
                                 anchors.fill: parent
-                                anchors.margins: Settings.itemMargin
+                                anchors.margins: Settings.item.margin
 
                                 MRIcon {
                                     cache: true
@@ -173,7 +173,7 @@ MPopup {
                                     ColumnLayout {
                                         id: info
                                         anchors.fill: parent
-                                        anchors.margins: Settings.itemMargin
+                                        anchors.margins: Settings.item.margin
 
                                         MFillLayout {}
 
