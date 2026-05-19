@@ -30,7 +30,7 @@ MWrapRectangle {
         MText {
             id: layout
             text: `${SLayout.current}`
-
+            
             Layout.alignment: Qt.AlignVCenter
             color: Theme.colorOnPrimary
         }

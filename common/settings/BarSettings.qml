@@ -5,8 +5,8 @@ import qs.types
 JsonObject {
     id: root
 
-    property int height: 40
-    property int width: 40
+    property int height: 30
+    property int width: 30
 
     property Margins margins: Margins {}
 

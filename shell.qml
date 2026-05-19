@@ -29,7 +29,8 @@ ShellRoot {
         SWallpaper.init();
         SUser.init();
         SNetwork.init();
-        SNotification.init();
+        if (Global.enableNotification)
+            SNotification.init();
 
         if (Global.enableWeather)
             SWeather.init();
@@ -83,7 +84,7 @@ ShellRoot {
     }
 
     LazyLoader {
-        active: root.init && Global.enableNotifPopups
+        active: root.init && Global.enableNotification && Global.enableNotifPopups
         component: NotificationsPopup {}
     }
 

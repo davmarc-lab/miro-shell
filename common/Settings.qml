@@ -3,6 +3,8 @@ pragma Singleton
 
 import Quickshell
 
+import qs.common.settings
+
 Singleton {
     id: root
 

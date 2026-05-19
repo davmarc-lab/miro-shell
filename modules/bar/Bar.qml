@@ -7,7 +7,6 @@ import QtQuick.Layouts
 import qs
 import qs.common
 import qs.widgets
-import qs.services
 
 Scope {
     Variants {
@@ -20,6 +19,8 @@ Scope {
             required property var modelData
             screen: modelData
 
+            color: "transparent"
+
             anchors {
                 top: Settings.bar.align.isTop || Settings.bar.align.isVertical
                 left: Settings.bar.align.isLeft || Settings.bar.align.isHorizontal
@@ -27,20 +28,22 @@ Scope {
                 bottom: Settings.bar.align.isBottom || Settings.bar.align.isVertical
             }
 
-            implicitWidth: Settings.bar.align.isHorizontal ? screen.width : Settings.bar.height
-            implicitHeight: Settings.bar.align.isVertical ? screen.height : Settings.bar.width
+            width: Settings.bar.align.isHorizontal ? screen.width : Settings.bar.width
+            height: Settings.bar.align.isHorizontal ? Settings.bar.height : screen.height
 
-            Item {
-                id: leftSection
+            MRectangle {
+                id: base
+                anchors.fill: parent
+                anchors.margins: Settings.item.margin / 4
 
-                anchors.top: parent.top
-                anchors.bottom: parent.bottom
-                anchors.left: parent.left
-                anchors.right: middleSection.left
+                color: "red"
 
                 RowLayout {
-                    id: bar
-                    anchors.fill: parent
+                    id: leftSection
+                    anchors.top: parent.top
+                    anchors.bottom: parent.bottom
+                    anchors.left: parent.left
+                    anchors.right: middleSection.left
 
                     Logo {}
 
@@ -52,29 +55,23 @@ Scope {
                         dy: false
                     }
                 }
-            }
-
-            RowLayout {
-                id: middleSection
-
-                anchors.top: parent.top
-                anchors.bottom: parent.bottom
-                anchors.horizontalCenter: parent.horizontalCenter
-
-                Clock {}
-            }
-
-            Item {
-                id: rightSection
-
-                anchors.top: parent.top
-                anchors.bottom: parent.bottom
-                anchors.left: middleSection.right
-                anchors.right: parent.right
 
                 RowLayout {
-                    id: rightPanel
-                    anchors.fill: parent
+                    id: middleSection
+
+                    anchors.top: parent.top
+                    anchors.bottom: parent.bottom
+                    anchors.horizontalCenter: parent.horizontalCenter
+
+                    Clock {}
+                }
+
+                RowLayout {
+                    id: rightSection
+                    anchors.top: parent.top
+                    anchors.bottom: parent.bottom
+                    anchors.left: middleSection.right
+                    anchors.right: parent.right
 
                     Layout.alignment: Qt.AlignVCenter | Qt.AlignRight
                     Layout.fillWidth: true
@@ -119,10 +116,6 @@ Scope {
                             Global.enableRightPanel = true;
                         }
                     }
-                }
-
-                MFillLayout {
-                    dy: false
                 }
             }
         }

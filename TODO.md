@@ -11,7 +11,7 @@
     - [X] applications menu/actions
     - [X] menu positioning
 - [ ] Wifi Networks
-    - [X] network list
+    - [ ] network list
     - [ ] network interactions
     - [ ] network icons
     - [ ] add support for wired networks

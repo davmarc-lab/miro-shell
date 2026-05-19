@@ -7,63 +7,57 @@ import qs.widgets
 
 MRectangle {
     id: container
-    Layout.minimumWidth: 350
     Layout.fillHeight: true
-    Layout.margins: 4
+    Layout.fillWidth: true
+
+    readonly property double iconScale: 0.7
 
     RowLayout {
         anchors.verticalCenter: parent.verticalCenter
         anchors.left: parent.left
         anchors.right: parent.right
+        anchors.top: parent.top
+        anchors.bottom: parent.bottom
+
+        anchors.margins: 2
 
         spacing: Settings.item.margin
-        anchors.margins: Settings.item.margin
 
-        RowLayout {
-            MThemeIconClick {
-                Layout.preferredWidth: 20
-                Layout.preferredHeight: 20
+        MThemeIconClick {
+            implicitSize: parent.height * container.iconScale
+            name: "prev.svg"
 
-                name: "prev.svg"
-
-                onIconClick: {
-                    SMediaPlayer.prev();
-                }
+            onIconClick: {
+                SMediaPlayer.prev();
             }
+        }
 
-            MThemeIconClick {
-                Layout.preferredWidth: 20
-                Layout.preferredHeight: 20
+        MThemeIconClick {
+            implicitSize: parent.height * container.iconScale
+            name: "play.svg"
 
-                name: "play.svg"
-
-                onIconClick: {
-                    SMediaPlayer.play();
-                }
-                visible: !SMediaPlayer.isPlaying
+            onIconClick: {
+                SMediaPlayer.play();
             }
+            visible: !SMediaPlayer.isPlaying
+        }
 
-            MThemeIconClick {
-                Layout.preferredWidth: 20
-                Layout.preferredHeight: 20
+        MThemeIconClick {
+            implicitSize: parent.height * container.iconScale
+            name: "pause.svg"
 
-                name: "pause.svg"
-
-                onIconClick: {
-                    SMediaPlayer.pause();
-                }
-                visible: SMediaPlayer.isPlaying
+            onIconClick: {
+                SMediaPlayer.pause();
             }
+            visible: SMediaPlayer.isPlaying
+        }
 
-            MThemeIconClick {
-                Layout.preferredWidth: 20
-                Layout.preferredHeight: 20
+        MThemeIconClick {
+            implicitSize: parent.height * container.iconScale
+            name: "next.svg"
 
-                name: "next.svg"
-
-                onIconClick: {
-                    SMediaPlayer.next();
-                }
+            onIconClick: {
+                SMediaPlayer.next();
             }
         }
 
@@ -83,5 +77,13 @@ MRectangle {
                 clip: true
             }
         }
+
+        // MThemeIcon {
+        //     Layout.fillHeight: true
+        //     Layout.preferredWidth: 20
+        //     name: "prev.svg"
+        // }
+
+        //
     }
 }

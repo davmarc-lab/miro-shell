@@ -17,7 +17,6 @@ MRectangle {
     MThemeIcon {
         id: icon
         anchors.fill: parent
-        anchors.margins: Settings.item.margin / 2
 
         implicitSize: Settings.bar.height
 
