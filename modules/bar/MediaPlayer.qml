@@ -9,6 +9,7 @@ MRectangle {
     id: container
     Layout.fillHeight: true
     Layout.fillWidth: true
+    Layout.maximumWidth: parent.width * 0.3
 
     readonly property double iconScale: 0.7
 
