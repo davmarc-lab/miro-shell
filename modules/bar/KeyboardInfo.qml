@@ -5,34 +5,22 @@ import qs.common
 import qs.widgets
 import qs.services
 
-MWrapRectangle {
-    id: root
+RowLayout {
+    spacing: 3
 
-    margin: 4
+    MThemeIcon {
+        id: icon
+        name: "keyboard"
 
-    color: Theme.colorPrimary
+        Layout.preferredWidth: height
+        Layout.fillHeight: true
+    }
 
-    RowLayout {
-        anchors.fill: parent
-        anchors.margins: 2
+    MText {
+        id: layout
+        text: `${SLayout.current}`
 
-        spacing: 3
-
-        MThemeIcon {
-            id: icon
-            name: "keyboard"
-            theme: true
-
-            Layout.preferredWidth: height
-            Layout.fillHeight: true
-        }
-
-        MText {
-            id: layout
-            text: `${SLayout.current}`
-            
-            Layout.alignment: Qt.AlignVCenter
-            color: Theme.colorOnPrimary
-        }
+        Layout.alignment: Qt.AlignVCenter
+        color: Theme.colorOnSurface
     }
 }

@@ -9,7 +9,8 @@ MRectangle {
     id: container
     Layout.fillHeight: true
     Layout.fillWidth: true
-    Layout.maximumWidth: parent.width * 0.3
+    Layout.preferredWidth: parent.width * 0.5
+    Layout.maximumWidth: parent.width * 0.5
 
     readonly property double iconScale: 0.7
 
@@ -17,10 +18,10 @@ MRectangle {
         anchors.verticalCenter: parent.verticalCenter
         anchors.left: parent.left
         anchors.right: parent.right
-        anchors.top: parent.top
-        anchors.bottom: parent.bottom
 
         anchors.margins: 2
+        anchors.leftMargin: Settings.item.margin
+        anchors.rightMargin: Settings.item.margin
 
         spacing: Settings.item.margin
 

@@ -5,27 +5,17 @@ import qs.common
 import qs.widgets
 import qs.services
 
-MWrapRectangle {
-    id: root
+RowLayout {
+    anchors.fill: parent
+    anchors.margins: 2
 
-    visible: SPower.isBattery()
+    spacing: 0
 
-    margin: 4
+    MText {
+        id: battery
+        text: Math.round(SPower.battery.percentage * 100) + " %"
 
-    color: Theme.colorPrimary
-
-    RowLayout {
-        anchors.fill: parent
-        anchors.margins: 2
-
-        spacing: 0
-
-        MText {
-            id: battery
-            text: Math.round(SPower.battery.percentage * 100) + " %"
-
-            Layout.alignment: Qt.AlignVCenter | Qt.AlignHCenter
-            color: Theme.colorOnPrimary
-        }
+        Layout.alignment: Qt.AlignVCenter | Qt.AlignHCenter
+        color: Theme.colorOnSurface
     }
 }

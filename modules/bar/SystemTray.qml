@@ -10,69 +10,91 @@ import qs.common
 import qs.widgets
 import qs.services
 
-ListView {
-    id: systrayList
-    anchors.fill: parent
-    anchors.verticalCenter: parent.verticalCenter
-    anchors.margins: Settings.item.margin
-    spacing: Settings.item.margin
+Item {
+    id: root
 
-    clip: true
-    orientation: ListView.Horizontal
+    implicitWidth: Settings.bar.align.isHorizontal ? view.contentWidth : root.width
+    implicitHeight: Settings.bar.align.isHorizontal ? root.height : view.contentHeight
 
-    model: SSystemTray.getItems()
+    ListView {
+        id: view
 
-    delegate: Item {
-        id: item
-        width: ListView.view.height
-        height: parent.height
-        anchors.verticalCenter: parent.verticalCenter
+        anchors.fill: parent
 
-        required property SystemTrayItem modelData
-
-        QsMenuAnchor {
-            id: menuOpener
-            menu: item.modelData.menu
-
-            anchor {
-                item: item
-                edges: Edges.Left | Edges.Bottom
-                margins.top: Settings.panel.margin
-            }
+        anchors {
+            topMargin: Settings.bar.align.isHorizontal ? 0 : Settings.item.margin
+            bottomMargin: topMargin
+            leftMargin: Settings.bar.align.isHorizontal ? Settings.item.margin : 0
+            rightMargin: leftMargin
         }
 
-        MouseArea {
-            anchors.fill: icon
+        // anchors.margins: Settings.item.margin
+        // anchors.topMargin: 5
+        // anchors.bottomMargin: 5
 
-            onClicked: {
-                menuOpener.open();
-            }
-        }
+        spacing: 10
 
-        MIcon {
-            id: icon
-            anchors.centerIn: parent
-            implicitSize: 24
+        clip: true
+        orientation: Settings.bar.align.isHorizontal ? ListView.Horizontal : ListView.Vertical
+        width: Settings.bar.align.isHorizontal ? root.implicitWidth : 10
+        height: Settings.bar.align.isHorizontal ? 10 : root.implicitHeight
 
-            visible: item.modelData.icon != ""
+        model: SSystemTray.getItems()
 
-            name: trimUrl(item.modelData.icon)
+        delegate: Item {
+            id: item
+            width: icon.implicitSize
+            height: root.height - Settings.item.margin * 1.4
 
-            function trimUrl(source: string): string {
-                var escape = "?path=";
-                var index = source.indexOf(escape);
-                if (index !== -1) {
-                    var start = source.indexOf("icon/") + 5;
-                    if (start === -1)
-                        return "";
+            anchors.verticalCenter: parent.verticalCenter
 
-                    var dir = item.modelData.icon.substr(index + escape.length) + "/";
-                    var name = source.substr(start, index - start);
-                    return Qt.resolvedUrl(dir + name);
+            required property SystemTrayItem modelData
+
+            MIcon {
+                id: icon
+                anchors.fill: parent
+                implicitSize: parent.height
+
+                visible: item.modelData.icon != ""
+
+                name: trimUrl(item.modelData.icon)
+
+                function trimUrl(source: string): string {
+                    var escape = "?path=";
+                    var index = source.indexOf(escape);
+                    if (index !== -1) {
+                        const start = source.indexOf("icon/") + 5;
+                        if (start === -1)
+                            return "";
+
+                        const dir = item.modelData.icon.substr(index + escape.length) + "/";
+                        const name = source.substr(start, index - start);
+                        return Qt.resolvedUrl(dir + name);
+                    }
+
+                    return source;
                 }
-
-                return source;
             }
+
+            // QsMenuAnchor {
+            //     id: menuOpener
+            //     menu: item.modelData.menu
+
+            //     anchor {
+            //         item: item
+            //         edges: Edges.Left | Edges.Bottom
+            //         margins.top: Settings.panel.margin
+            //     }
+            // }
+
+            // MouseArea {
+            //     anchors.fill: icon
+
+            //     onClicked: {
+            //         menuOpener.open();
+            //     }
+            // }
+
         }
     }
 }

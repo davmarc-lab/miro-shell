@@ -4,7 +4,7 @@ import Quickshell.Wayland
 import QtQuick
 import QtQuick.Layouts
 
-import qs
+import qs.services
 import qs.common
 import qs.widgets
 
@@ -28,96 +28,186 @@ Scope {
                 bottom: Settings.bar.align.isBottom || Settings.bar.align.isVertical
             }
 
-            width: Settings.bar.align.isHorizontal ? screen.width : Settings.bar.width
-            height: Settings.bar.align.isHorizontal ? Settings.bar.height : screen.height
+            implicitWidth: Settings.bar.align.isHorizontal ? screen.width : Settings.bar.width
+            implicitHeight: Settings.bar.align.isHorizontal ? Settings.bar.height : screen.height
 
-            MRectangle {
-                id: base
+            margins {
+                top: Settings.bar.align.isTop ? Settings.bar.margins.top : 0
+                left: Settings.bar.align.isLeft ? Settings.bar.margins.left : 0
+                right: Settings.bar.align.isRight ? Settings.bar.margins.right : 0
+                bottom: Settings.bar.align.isBottom ? Settings.bar.margins.bottom : 0
+            }
+
+            RowLayout {
                 anchors.fill: parent
-                anchors.margins: Settings.item.margin / 4
-
-                color: "red"
-
-                RowLayout {
+                Item {
                     id: leftSection
-                    anchors.top: parent.top
-                    anchors.bottom: parent.bottom
-                    anchors.left: parent.left
-                    anchors.right: middleSection.left
 
-                    Logo {}
-
-                    Workspaces {}
-
-                    MediaPlayer {}
-
-                    MFillLayout {
-                        dy: false
-                    }
-                }
-
-                RowLayout {
-                    id: middleSection
-
-                    anchors.top: parent.top
-                    anchors.bottom: parent.bottom
-                    anchors.horizontalCenter: parent.horizontalCenter
-
-                    Clock {}
-                }
-
-                RowLayout {
-                    id: rightSection
-                    anchors.top: parent.top
-                    anchors.bottom: parent.bottom
-                    anchors.left: middleSection.right
-                    anchors.right: parent.right
-
-                    Layout.alignment: Qt.AlignVCenter | Qt.AlignRight
                     Layout.fillWidth: true
                     Layout.fillHeight: true
 
-                    MFillLayout {}
+                    RowLayout {
+                        anchors.fill: parent
 
-                    MWrapRectangle {
-                        Layout.fillHeight: true
+                        Logo {}
 
-                        RowLayout {
-                            anchors.fill: parent
-                            anchors.leftMargin: 6
+                        MRectangle {
+                            Layout.fillHeight: true
+                            Layout.preferredWidth: workspaces.implicitWidth + Settings.item.margin * 2
 
-                            KeyboardInfo {}
-
-                            VolumeInfo {}
-
-                            BatteryInfo {}
-
-                            MFillLayout {}
+                            Workspaces {
+                                id: workspaces
+                                anchors.centerIn: parent
+                            }
                         }
+
+                        MediaPlayer {}
+
+                        MFillLayout {}
                     }
+                }
 
-                    MRectangle {
-                        Layout.fillWidth: true
-                        Layout.fillHeight: true
-                        Layout.maximumWidth: 150
+                Item {
+                    id: middleSection
 
-                        SystemTray {
-                            anchors.fill: parent
+                    Layout.fillWidth: true
+                    Layout.fillHeight: true
+
+                    RowLayout {
+                        anchors.fill: parent
+                        MFillLayout {}
+
+                        Clock {
+                            Layout.alignment: Qt.AlignCenter
                         }
+
+                        MFillLayout {}
                     }
+                }
 
-                    MThemeIconButton {
-                        Layout.fillHeight: true
-                        Layout.preferredWidth: this.height
-                        iconName: Global.enableRightPanel ? "down-arrow.svg" : "right-arrow.svg"
+                Item {
+                    id: rightSection
 
-                        color: Theme.colorSurfaceVariant
-                        onIconClick: {
-                            Global.enableRightPanel = true;
+                    Layout.fillWidth: true
+                    Layout.fillHeight: true
+
+                    RowLayout {
+                        anchors.fill: parent
+
+                        MFillLayout {}
+
+                        MRectangle {
+                            Layout.fillHeight: true
+                            Layout.preferredWidth: key.implicitWidth + Settings.item.margin * 2
+
+                            KeyboardInfo {
+                                id: key
+                                anchors.centerIn: parent
+                            }
+                        }
+
+                        MRectangle {
+                            Layout.fillHeight: true
+                            Layout.preferredWidth: vol.implicitWidth + Settings.item.margin * 2
+
+                            VolumeInfo {
+                                id: vol
+                                anchors.centerIn: parent
+                            }
+                        }
+
+                        MRectangle {
+                            visible: SPower.isBattery()
+
+                            Layout.fillHeight: true
+                            Layout.preferredWidth: bat.implicitWidth + Settings.item.margin * 2
+
+                            BatteryInfo {
+                                id: bat
+                                anchors.centerIn: parent
+                            }
+                        }
+
+                        MRectangle {
+                            Layout.fillHeight: true
+                            Layout.preferredWidth: 100
+
+                            SystemTray {
+                                id: sys
+                                anchors.fill: parent
+                            }
+
+                            Component.onCompleted: {
+                                Layout.preferredWidth = sys.width;
+                            }
                         }
                     }
                 }
             }
+
+            //     Item {
+            //         id: rightSection
+            //         anchors.top: parent.top
+            //         anchors.bottom: parent.bottom
+            //         anchors.left: middleSection.right
+            //         anchors.right: parent.right
+
+            //         RowLayout {
+            //             anchors.fill: parent
+
+            //             Layout.alignment: Qt.AlignVCenter | Qt.AlignRight
+            //             Layout.fillWidth: true
+            //             Layout.fillHeight: true
+
+            //             // MFillLayout {}
+
+            //             MRectangle {
+            //                 Layout.fillWidth: true
+            //                 Layout.fillHeight: true
+
+            //                 color: "red"
+            //             }
+
+            //             // MWrapRectangle {
+            //             //     Layout.fillHeight: true
+
+            //             //     RowLayout {
+            //             //         anchors.fill: parent
+            //             //         anchors.leftMargin: 6
+
+            //             //         KeyboardInfo {}
+
+            //             //         VolumeInfo {}
+
+            //             //         BatteryInfo {}
+
+            //             //         MFillLayout {}
+            //             //     }
+            //             // }
+
+            //             MRectangle {
+            //                 Layout.fillWidth: true
+            //                 Layout.fillHeight: true
+            //                 Layout.maximumWidth: 150
+
+            //                 SystemTray {
+            //                     anchors.fill: parent
+            //                 }
+            //             }
+
+            //             MThemeIconButton {
+            //                 Layout.fillHeight: true
+            //                 Layout.preferredWidth: this.height
+            //                 iconName: Global.enableRightPanel ? "down-arrow.svg" : "right-arrow.svg"
+
+            //                 color: Theme.colorSurfaceVariant
+            //                 onIconClick: {
+            //                     Global.enableRightPanel = true;
+            //                 }
+            //             }
+            //         }
+            //     }
+            // }
         }
     }
 }
