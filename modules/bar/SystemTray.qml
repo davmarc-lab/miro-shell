@@ -1,7 +1,6 @@
 pragma ComponentBehavior: Bound
 
 import Quickshell
-import Quickshell.Widgets
 import Quickshell.Services.SystemTray
 
 import QtQuick
@@ -12,9 +11,6 @@ import qs.services
 
 Item {
     id: root
-
-    implicitWidth: Settings.bar.align.isHorizontal ? view.contentWidth : root.width
-    implicitHeight: Settings.bar.align.isHorizontal ? root.height : view.contentHeight
 
     ListView {
         id: view
@@ -28,22 +24,16 @@ Item {
             rightMargin: leftMargin
         }
 
-        // anchors.margins: Settings.item.margin
-        // anchors.topMargin: 5
-        // anchors.bottomMargin: 5
-
-        spacing: 10
+        spacing: 5
 
         clip: true
         orientation: Settings.bar.align.isHorizontal ? ListView.Horizontal : ListView.Vertical
-        width: Settings.bar.align.isHorizontal ? root.implicitWidth : 10
-        height: Settings.bar.align.isHorizontal ? 10 : root.implicitHeight
 
         model: SSystemTray.getItems()
 
         delegate: Item {
             id: item
-            width: icon.implicitSize
+            width: height
             height: root.height - Settings.item.margin * 1.4
 
             anchors.verticalCenter: parent.verticalCenter
@@ -76,25 +66,24 @@ Item {
                 }
             }
 
-            // QsMenuAnchor {
-            //     id: menuOpener
-            //     menu: item.modelData.menu
+            QsMenuAnchor {
+                id: menuOpener
+                menu: item.modelData.menu
 
-            //     anchor {
-            //         item: item
-            //         edges: Edges.Left | Edges.Bottom
-            //         margins.top: Settings.panel.margin
-            //     }
-            // }
+                anchor {
+                    item: icon
+                    // edges: Edges.Left | Edges.Bottom
+                    margins.top: icon.implicitSize + (view.height - icon.height) / 2
+                }
+            }
 
-            // MouseArea {
-            //     anchors.fill: icon
+            MouseArea {
+                anchors.fill: icon
 
-            //     onClicked: {
-            //         menuOpener.open();
-            //     }
-            // }
-
+                onClicked: {
+                    menuOpener.open();
+                }
+            }
         }
     }
 }

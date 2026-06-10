@@ -19,7 +19,7 @@ MPopup {
         Layout.alignment: Qt.AlignTop | Qt.AlignHCenter
         Layout.preferredWidth: root.screen.width * 0.3
         Layout.preferredHeight: root.screen.height * 0.3
-        Layout.topMargin: Settings.bar.height
+        Layout.topMargin: Settings.bar.height + Settings.item.margin / 2
 
         color: Theme.colorSurface
 

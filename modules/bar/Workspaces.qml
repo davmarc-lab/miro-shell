@@ -13,9 +13,12 @@ RowLayout {
     id: root
 
     Repeater {
+        id: item
         model: SWorkspaces.getActives()
 
         MRButton {
+            visible: modelData >= 0
+
             Layout.preferredWidth: Settings.bar.width - Settings.panel.margin * 1.3
             Layout.preferredHeight: Settings.bar.height - Settings.panel.margin * 1.3
 
@@ -23,8 +26,7 @@ RowLayout {
             property HyprlandWorkspace w: Hyprland.workspaces.values[modelData] ?? null
 
             text: ""
-            fgColor: SWorkspaces.isFocused(modelData) ? "lightblue" : Theme.colorOnPrimary
-            // bgColor: SWorkspaces.isUrgent(modelData) ? Theme.colorError : Theme.colorPrimary
+            bgColor: SWorkspaces.isFocused(modelData) ? Theme.colorPrimary : Theme.colorSecondary
 
             onClicked: {
                 SWorkspaces.activate(modelData);

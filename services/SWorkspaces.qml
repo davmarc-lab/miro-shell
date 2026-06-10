@@ -33,7 +33,7 @@ Singleton {
     function activate(index: int): void {
         if (index >= 1 && index <= Settings.workspaces.size) {
             this.active = index;
-            Hyprland.dispatch(`workspace ${index}`);
+            Hyprland.dispatch(`hl.dsp.focus({workspace = ${this.active}})`);
         }
     }
 }
