@@ -11,4 +11,6 @@ JsonObject {
     property Margins margins: Margins {}
 
     property BarSet align: BarSet {}
+
+    property int size: align.isHorizontal ? (height + margins.top + margins.bottom) : (width + margins.left + margins.right)
 }

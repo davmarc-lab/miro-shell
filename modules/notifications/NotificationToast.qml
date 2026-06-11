@@ -25,6 +25,7 @@ MRectangle {
 
         MIcon {
             Layout.margins: Settings.item.margin
+            Layout.alignment: Qt.AlignTop | Qt.AlignHCenter
             implicitSize: 32
 
             name: root.notif?.image ?? ""
@@ -32,11 +33,14 @@ MRectangle {
 
         ColumnLayout {
             Layout.fillWidth: true
+            Layout.fillHeight: true
             spacing: 0
 
             RowLayout {
                 Layout.fillWidth: true
-                Layout.margins: Settings.item.margin
+                Layout.fillHeight: true
+                Layout.topMargin: Settings.notification.margin
+                Layout.rightMargin: Layout.topMargin
                 Layout.bottomMargin: 0
 
                 MTitle {
@@ -47,6 +51,7 @@ MRectangle {
 
                     color: Theme.colorOnSurface
                     font.weight: Font.Bold
+
                     text: {
                         if (root.notif == null)
                             return "";
@@ -56,21 +61,23 @@ MRectangle {
                     }
                 }
 
-                MRButton {
-                    Layout.alignment: Qt.AlignRight
-                    text: "X"
-                    Layout.preferredWidth: this.height
+                MThemeIconClick {
+                    Layout.preferredWidth: parent.height * 0.7
+                    Layout.preferredHeight: width
+                    Layout.alignment: Qt.AlignVCenter
 
-                    // trigger timer callback
-                    onClicked: alive.triggered()
+                    name: "delete.svg"
+
+                    onIconClick: alive.triggered()
                 }
             }
 
             MText {
                 id: content
                 Layout.fillWidth: true
-                Layout.margins: Settings.item.margin
-                Layout.topMargin: 0
+                Layout.rightMargin: Settings.item.margin
+                Layout.bottomMargin: Settings.item.margin
+                wrapMode: Text.Wrap
 
                 color: Theme.colorOnSurface
                 clip: true

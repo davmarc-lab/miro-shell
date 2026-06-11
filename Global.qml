@@ -11,9 +11,9 @@ Singleton {
     // modules loading
     property bool enableBar: true
     property bool enableRightPanel: false
-    property bool enableNotification: false
+    property bool enableNotification: true
 
-    property bool enableNotifPopups: false
+    property bool enableNotifPopups: true
 
     property bool enableFoo: false
     property bool enableWallpaper: true

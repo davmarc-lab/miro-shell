@@ -42,14 +42,24 @@ Singleton {
     }
 
     function clearAll() {
-        for (var notif of root.notifications) {
+        for (const notif of root.notifications) {
             notif.dismiss();
         }
         root.notifications = [];
         root.popupsNotifications.clear();
     }
 
+    function clear(notification) {
+        const nIndex = root.notifications.indexOf(notification);
+        if (nIndex > -1) {
+            notification.dismiss();
+            root.notifications = root.notifications.filter(n => n != notification);
+            console.log(root.notifications.length)
+        }
+    }
+
     function addPopup(notification) {
+        console.log(notification)
         popupsModel.append({
             notification: notification
         });

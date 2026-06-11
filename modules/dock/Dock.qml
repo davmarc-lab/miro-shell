@@ -19,7 +19,8 @@ MPopup {
         Layout.alignment: Qt.AlignTop | Qt.AlignHCenter
         Layout.preferredWidth: root.screen.width * 0.3
         Layout.preferredHeight: root.screen.height * 0.3
-        Layout.topMargin: Settings.bar.height + Settings.item.margin / 2
+
+        Layout.topMargin: Settings.bar.size
 
         color: Theme.colorSurface
 
@@ -124,15 +125,6 @@ MPopup {
                                 onIconClick: {
                                     Global.enableDock = false;
                                     Global.enablePowerMenu = true;
-                                }
-                            }
-
-                            MButton {
-                                Layout.fillWidth: true
-                                Layout.fillHeight: true
-                                text: "UT"
-                                onClicked: {
-                                    // Global.enableUtility = !Global.enableUtility;
                                 }
                             }
                         }

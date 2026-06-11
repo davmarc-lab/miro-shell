@@ -6,14 +6,19 @@ import qs.widgets
 import qs.services
 
 RowLayout {
-    anchors.fill: parent
-    anchors.margins: 2
+    spacing: 3
 
-    spacing: 0
+    MThemeIcon {
+        id: icon
+        name: "battery"
+
+        Layout.preferredWidth: height
+        Layout.fillHeight: true
+    }
 
     MText {
         id: battery
-        text: Math.round(SPower.battery.percentage * 100) + " %"
+        text: Math.round(SPower.battery.percentage * 100)
 
         Layout.alignment: Qt.AlignVCenter | Qt.AlignHCenter
         color: Theme.colorOnSurface

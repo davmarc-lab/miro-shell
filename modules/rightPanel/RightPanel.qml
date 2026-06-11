@@ -18,7 +18,7 @@ MPopup {
 
         Layout.preferredWidth: parent.width * 0.2
         Layout.fillHeight: true
-        Layout.topMargin: Settings.bar.height
+        Layout.topMargin: Settings.bar.size
 
         topRightRadius: 0
         bottomRightRadius: 0

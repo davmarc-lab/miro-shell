@@ -18,7 +18,7 @@ MPopupPane {
     }
 
     margins {
-        top: Settings.bar.height
+        top: Settings.bar.size
         right: Settings.panel.margin
     }
 
@@ -37,7 +37,6 @@ MPopupPane {
         id: notifList
         Layout.fillWidth: true
         Layout.fillHeight: true
-        Layout.topMargin: Settings.panel.margin
 
         spacing: Settings.panel.margin / 2
         model: root.notifications
