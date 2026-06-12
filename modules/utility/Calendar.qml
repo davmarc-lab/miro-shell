@@ -96,10 +96,64 @@ Item {
                         opacity: base.model.month === grid.month ? 1 : 0.4
 
                         text: grid.locale.toString(base.model.date, "d")
-                        color: base.model.today ? Theme.colorOnPrimary : Theme.colorOnSurfaceVariant
+                        // color: base.model.today ? Theme.colorOnPrimary : Theme.colorOnSurfaceVariant
                     }
 
-                    color: model.today ? Theme.colorPrimary : Theme.colorSurfaceVariant
+                    color: base.model.date.getTime() == events.current.getTime() ? Theme.colorPrimary : Theme.colorSurfaceVariant
+                    border.color: model.today ? Theme.colorPrimary : this.color
+                }
+
+                onClicked: date => {
+                    events.current = date;
+                    console.log(events.current);
+                }
+
+                Component.onCompleted: {
+                    const today = new Date();
+                    today.setHours(0, 0, 0, 0);
+                    events.current = today;
+                }
+            }
+
+            MDivider {}
+
+            Item {
+                id: events
+
+                property date current: new Date()
+
+                Layout.preferredHeight: parent.height * 0.3
+                Layout.fillWidth: true
+
+                ColumnLayout {
+                    anchors.fill: parent
+                    anchors.margins: Settings.item.margin
+
+                    MTitle {
+                        Layout.alignment: Qt.AlignTop
+                        text: "Events"
+                    }
+
+                    // all event cards
+                    ListView {
+                        id: eventCards
+                        Layout.fillWidth: true
+                        Layout.fillHeight: true
+
+                        orientation: ListView.Horizontal
+                        clip: true
+                        spacing: 5
+
+                        model: ["1", "2", "3", "4"]
+
+                        delegate: EventCard {
+                            height: parent.height
+                            width: this.height
+
+                            required property var modelData
+                            title: modelData
+                        }
+                    }
                 }
             }
         }

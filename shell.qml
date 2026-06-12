@@ -35,6 +35,8 @@ ShellRoot {
         if (Global.enableWeather)
             SWeather.init();
 
+        SCalendarEvents.init();
+
         init = true;
     }
 

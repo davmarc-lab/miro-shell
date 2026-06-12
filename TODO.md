@@ -22,17 +22,14 @@
     - [X] notification popup
     - [X] popup auto close
     - [X] single notification toast dismiss
-    - [ ] single notification dismiss
-- [ ] Weather
-    - [X] prepare Weather service
-    - [ ] position/orginize elements
+    - [X] single notification dismiss
 - [ ] Volume mixer
     - [X] volume manipulation
     - [ ] better layout (maybe icon on the left, name above and slider below, mute on the right)
 - [ ] Calendar
     - [X] calendar basic structure
     - [X] highlight current day
-    - [ ] move around months
+    - [X] move around months
     - [ ] add events
     - [ ] events in bar??
     - [ ] event dot below day number

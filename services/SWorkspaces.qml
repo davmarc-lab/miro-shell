@@ -12,7 +12,7 @@ Singleton {
     property list<int> urgents: Hyprland.workspaces.values.filter(w => w.urgent).map(w => w.id)
     property list<int> availables: Array.from({
         length: Settings.workspaces.size
-    }, (_, i) => i)
+    }, (_, i) => i + 1)
 
     function getAvailables(): list<int> {
         return this.availables;

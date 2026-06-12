@@ -1,5 +1,5 @@
-pragma Singleton
 pragma ComponentBehavior: Bound
+pragma Singleton
 
 import Quickshell
 import Quickshell.Io
@@ -25,7 +25,7 @@ Singleton {
         JsonAdapter {
             id: data
 
-            property list<var> data
+            property list<var> events
         }
 
         onLoadFailed: err => {
@@ -36,9 +36,9 @@ Singleton {
     }
 
     function addEvent(desc: string, eventDate: date, hour: int, minutes: int, duration: int) {
-        data.data.push({
+        data.events.push({
             description: desc,
-            eventDate: eventDate.toISOString().split("T")[0],
+            eventDate: eventDate,
             eventTime: {
                 hour: hour,
                 minutes: minutes
@@ -48,6 +48,13 @@ Singleton {
     }
 
     function getEvents(): list<var> {
-        return data.data;
+        return data.events;
+    }
+
+    function getEventsByDate(date) {
+        return data.events.filter(d => d == date);
+    }
+
+    function init() {
     }
 }

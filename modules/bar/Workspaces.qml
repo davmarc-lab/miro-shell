@@ -14,13 +14,13 @@ RowLayout {
 
     Repeater {
         id: item
-        model: SWorkspaces.getActives()
+    model: SWorkspaces.getAvailables()
 
-        MRButton {
-            visible: modelData >= 0
+    MRButton {
+        visible: modelData >= 0
 
-            Layout.preferredWidth: Settings.bar.width - Settings.panel.margin * 1.3
-            Layout.preferredHeight: Settings.bar.height - Settings.panel.margin * 1.3
+        Layout.preferredWidth: (Settings.bar.height - Settings.panel.margin) * (SWorkspaces.isFocused(modelData) ? 0.8 : 0.6)
+            Layout.preferredHeight: this.width
 
             required property int modelData
             property HyprlandWorkspace w: Hyprland.workspaces.values[modelData] ?? null
