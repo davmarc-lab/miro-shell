@@ -7,6 +7,7 @@ import Quickshell.Io
 import QtQuick
 
 import qs.common
+import qs.types
 
 Singleton {
     id: root
@@ -25,7 +26,7 @@ Singleton {
         JsonAdapter {
             id: data
 
-            property list<var> events
+            property list<var> events: []
         }
 
         onLoadFailed: err => {
@@ -35,14 +36,10 @@ Singleton {
         }
     }
 
-    function addEvent(desc: string, eventDate: date, hour: int, minutes: int, duration: int) {
+    function addEvent(desc: string, eventDate: date, duration: int) {
         data.events.push({
             description: desc,
             eventDate: eventDate,
-            eventTime: {
-                hour: hour,
-                minutes: minutes
-            },
             eventDuration: duration
         });
     }
@@ -52,7 +49,11 @@ Singleton {
     }
 
     function getEventsByDate(date) {
-        return data.events.filter(d => d == date);
+        return data.events.filter(d => {
+            const day = new Date(d.eventDate);
+            day.setHours(0, 0, 0, 0);
+            return day.getTime() == date.getTime();
+        });
     }
 
     function init() {

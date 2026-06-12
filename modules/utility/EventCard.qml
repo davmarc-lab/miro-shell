@@ -7,8 +7,9 @@ import qs.widgets
 MWrapRectangle {
     id: root
 
-    property string title
+    property string eventDate
     property string desc: "foo"
+    readonly property date parsedDate: new Date(eventDate)
 
     color: Theme.colorPrimary
 
@@ -16,26 +17,31 @@ MWrapRectangle {
         anchors.fill: parent
         anchors.margins: Settings.item.margin
 
-        MTitle {
+        spacing: 0
+
+        // time
+        MText {
             id: tDay
             Layout.fillWidth: true
-            Layout.fillHeight: true
+            Layout.preferredHeight: this.contentHeight
             Layout.alignment: Qt.AlignTop
+            clip: true
 
-            text: root.title
-            subtitle: true
+            text: root.parsedDate.getHours() + ":" + root.parsedDate.getMinutes()
+            font.bold: true
         }
 
         MText {
             id: tDesc
             Layout.fillWidth: true
             Layout.fillHeight: true
-            text: "very very long desc wtf\nasdhgajhg sahgd hgd sgd gd agd jagd ja"
-            wrapMode: Text.Wrap
-
             Layout.alignment: Qt.AlignTop
+            text: root.desc
+
+            elide: Text.ElideRight
+            wrapMode: Text.Wrap
         }
 
-        MFillLayout {}
+        // MFillLayout {}
     }
 }
