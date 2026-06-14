@@ -29,6 +29,8 @@ MWrapRectangle {
 
             text: root.parsedDate.getHours() + ":" + root.parsedDate.getMinutes()
             font.bold: true
+
+            color: Theme.colorOnPrimary
         }
 
         MText {
@@ -40,6 +42,39 @@ MWrapRectangle {
 
             elide: Text.ElideRight
             wrapMode: Text.Wrap
+
+            color: Theme.colorOnPrimary
+        }
+
+        Item {
+            Layout.fillWidth: true
+            Layout.preferredHeight: parent.height * 0.2
+
+            MRectangle {
+                anchors.fill: parent
+
+                RowLayout {
+                    anchors.fill: parent
+                    anchors.margins: Settings.item.margin
+                    MThemeIcon {
+                        Layout.fillWidth: true
+                        Layout.fillHeight: true
+                        // implicitSize: parent.height
+                        name: "play"
+                    }
+
+                    MDivider {
+                        vertical: true
+                    }
+
+                    MThemeIcon {
+                        Layout.fillWidth: true
+                        Layout.fillHeight: true
+                        // implicitSize: parent.height
+                        name: "pause"
+                    }
+                }
+            }
         }
 
         // MFillLayout {}

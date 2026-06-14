@@ -21,105 +21,208 @@ Item {
         color: Theme.colorSurface
 
         ColumnLayout {
+            id: main
             anchors.fill: parent
             anchors.margins: Settings.item.margin
 
             RowLayout {
-                Layout.alignment: Qt.AlignCenter
-                MRButton {
-                    id: pre
-                    borderRadius: 4
-                    text: "<"
-
-                    onClicked: {
-                        if (grid.month === 0)
-                            grid.year--;
-                        grid.month = (grid.month + 11) % 12;
-                    }
-                }
-
-                MFillLayout {}
-
-                MTitle {
-                    id: month
-                    Layout.alignment: Qt.AlignCenter
-                    text: Helper.capitalizeString(Qt.locale().standaloneMonthName(grid.month)) + " - " + grid.year
-                    subtitle: true
-                    font.weight: Font.Bold
-                }
-
-                MFillLayout {}
-
-                MRButton {
-                    id: next
-                    borderRadius: 4
-                    text: ">"
-
-                    onClicked: {
-                        if (grid.month === 11)
-                            grid.year++;
-                        grid.month = (grid.month + 1) % 12;
-                    }
-                }
-            }
-
-            DayOfWeekRow {
-                id: days
-                Layout.fillWidth: true
-                // Layout.maximumWidth: parent.width * 0.6
-                locale: grid.locale
-
-                delegate: MText {
-                    required property string shortName
-
-                    horizontalAlignment: Text.AlignHCenter
-                    verticalAlignment: Text.AlignVCenter
-
-                    font.weight: Font.DemiBold
-                    text: Helper.capitalizeString(shortName)
-                }
-            }
-
-            MonthGrid {
-                id: grid
                 Layout.fillWidth: true
                 Layout.fillHeight: true
+                Layout.bottomMargin: Settings.item.margin
 
-                delegate: MRectangle {
-                    id: base
-                    required property var model
+                Item {
+                    Layout.preferredWidth: main.width * 0.6
+                    Layout.fillHeight: true
 
-                    MText {
+                    // calendar
+                    ColumnLayout {
                         anchors.fill: parent
 
-                        horizontalAlignment: Text.AlignHCenter
-                        verticalAlignment: Text.AlignVCenter
-                        opacity: base.model.month === grid.month ? 1 : 0.4
+                        // month - year row
+                        RowLayout {
+                            Layout.alignment: Qt.AlignCenter | Qt.AlignLeft
+                            MRButton {
+                                id: pre
+                                borderRadius: 4
+                                text: "<"
 
-                        text: grid.locale.toString(base.model.date, "d")
-                        // color: base.model.today ? Theme.colorOnPrimary : Theme.colorOnSurfaceVariant
+                                onClicked: {
+                                    if (grid.month === 0)
+                                        grid.year--;
+                                    grid.month = (grid.month + 11) % 12;
+                                }
+                            }
+
+                            MFillLayout {}
+
+                            MTitle {
+                                id: month
+                                Layout.alignment: Qt.AlignHCenter
+                                text: Helper.capitalizeString(Qt.locale().standaloneMonthName(grid.month)) + " - " + grid.year
+                                subtitle: true
+                                font.weight: Font.Bold
+                            }
+
+                            MFillLayout {}
+
+                            MRButton {
+                                id: next
+                                borderRadius: 4
+                                text: ">"
+
+                                onClicked: {
+                                    if (grid.month === 11)
+                                        grid.year++;
+                                    grid.month = (grid.month + 1) % 12;
+                                }
+                            }
+                        }
+
+                        // day row
+                        DayOfWeekRow {
+                            id: days
+                            Layout.fillWidth: true
+                            locale: grid.locale
+
+                            delegate: MText {
+                                required property string shortName
+
+                                horizontalAlignment: Text.AlignHCenter
+                                verticalAlignment: Text.AlignVCenter
+
+                                font.weight: Font.DemiBold
+                                text: Helper.capitalizeString(shortName)
+                            }
+                        }
+
+                        // month days grid
+                        MonthGrid {
+                            id: grid
+                            Layout.fillWidth: true
+                            Layout.fillHeight: true
+
+                            delegate: MRectangle {
+                                id: base
+                                required property var model
+
+                                MText {
+                                    anchors.fill: parent
+
+                                    horizontalAlignment: Text.AlignHCenter
+                                    verticalAlignment: Text.AlignVCenter
+                                    opacity: base.model.month === grid.month ? 1 : 0.4
+
+                                    text: grid.locale.toString(base.model.date, "d")
+                                    // color: base.model.today ? Theme.colorOnPrimary : Theme.colorOnSurfaceVariant
+                                }
+
+                                color: base.model.date.getTime() == events.current.getTime() ? Theme.colorPrimary : Theme.colorSurfaceVariant
+                                border.color: model.today ? Theme.colorPrimary : this.color
+                            }
+
+                            onClicked: date => {
+                                events.current = date;
+                            // const today = new Date();
+                            // today.setHours(0, 0, 0, 0);
+                            // SCalendarEvents.addEvent("Other event with long desc\nNew lines too", today, 0)
+                            }
+
+                            Component.onCompleted: {
+                                const today = new Date();
+                                today.setHours(0, 0, 0, 0);
+                                events.current = today;
+                            }
+                        }
                     }
-
-                    color: base.model.date.getTime() == events.current.getTime() ? Theme.colorPrimary : Theme.colorSurfaceVariant
-                    border.color: model.today ? Theme.colorPrimary : this.color
                 }
 
-                onClicked: date => {
-                    events.current = date;
-                // const today = new Date();
-                // today.setHours(0, 0, 0, 0);
-                // SCalendarEvents.addEvent("Other event with long desc\nNew lines too", today, 0)
-                }
+                // side event manager
+                Item {
+                    id: eventManager
+                    Layout.fillWidth: true
+                    Layout.fillHeight: true
 
-                Component.onCompleted: {
-                    const today = new Date();
-                    today.setHours(0, 0, 0, 0);
-                    events.current = today;
+                    ColumnLayout {
+                        anchors.fill: parent
+
+                        Item {
+                            id: eventFactory
+                            Layout.fillWidth: true
+                            Layout.preferredHeight: parent.height * 0.85
+
+                            ColumnLayout {
+                                anchors.fill: parent
+
+                                spacing: Settings.item.margin
+
+                                MText {
+                                    Layout.fillWidth: true
+                                    text: "Day"
+                                }
+
+                                MText {
+                                    id: eventDay
+                                    Layout.fillWidth: true
+
+                                    text: Qt.formatDate(events.current, "dd/MM/yy")
+                                }
+
+                                MText {
+                                    Layout.fillWidth: true
+                                    text: "Duration"
+                                }
+
+                                MTextInput {
+                                    id: eventDuration
+                                    Layout.fillWidth: true
+                                    Layout.maximumWidth: parent.width
+
+                                    placeholderText: "Event Duration"
+                                    text: "0"
+                                }
+
+                                MText {
+                                    Layout.fillWidth: true
+                                    text: "Description"
+                                }
+
+                                MTextArea {
+                                    id: eventDesc
+                                    Layout.fillHeight: true
+                                    Layout.fillWidth: true
+
+                                    placeholderText: "Event Description"
+                                }
+                            }
+                        }
+
+                        MButton {
+                            Layout.fillWidth: true
+                            Layout.fillHeight: true
+
+                            text: "Add Event"
+
+                            onClicked: {
+                                const day = new Date(events.current);
+                                const duration = eventDuration.text;
+                                const desc = eventDesc.text;
+
+                                if (!duration || !desc)
+                                    return;
+
+                                SCalendarEvents.addEvent(desc, day, duration);
+
+                                eventDuration.text = "0";
+                                eventDesc.text = "";
+                            }
+                        }
+                    }
                 }
             }
 
             MDivider {}
 
+            // day event list
             Item {
                 id: events
 
@@ -137,50 +240,29 @@ Item {
                         text: "Events"
                     }
 
-                    RowLayout {
+                    // all event cards
+                    ListView {
+                        id: eventCards
                         Layout.fillWidth: true
                         Layout.fillHeight: true
 
-                        MButton {
-                            Layout.preferredWidth: this.height
-                            Layout.preferredHeight: parent.height / 2
+                        orientation: ListView.Horizontal
+                        clip: true
+                        spacing: 5
 
-                            text: "+"
-                            bgColor: Theme.colorSurfaceVariant
-                            bgColorHovered: Qt.darker(Theme.colorSurfaceVariant, 1.2)
-                            fgColor: Theme.colorOnSurfaceVariant
-                            fgColorHovered: Theme.colorOnSurfaceVariant
-                        }
+                        model: SCalendarEvents.getEventsByDate(events.current)
 
-                        // all event cards
-                        ListView {
-                            id: eventCards
-                            Layout.fillWidth: true
-                            Layout.fillHeight: true
+                        delegate: EventCard {
+                            height: parent.height
+                            width: this.height
 
-                            orientation: ListView.Horizontal
-                            clip: true
-                            spacing: 5
-
-                            model: SCalendarEvents.getEventsByDate(events.current)
-
-                            delegate: EventCard {
-                                height: parent.height
-                                width: this.height
-
-                                required property var modelData
-                                eventDate: modelData.eventDate
-                                desc: modelData.description
-                            }
+                            required property var modelData
+                            eventDate: modelData.eventDate
+                            desc: modelData.description
                         }
                     }
                 }
             }
-        }
-
-        function addEvent(desc: string, calModel: var, hour: int, minute: int, duration: int) {
-            const eventDate = new Date(calModel.year, calModel.month, calModel.day);
-            SCalendarEvents.addEvent(desc, calModel, hour, minute, duration);
         }
     }
 }

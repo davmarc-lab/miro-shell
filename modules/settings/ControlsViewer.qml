@@ -67,6 +67,12 @@ MContentItem {
                         text: "Text Input"
                     }
 
+                    MTextArea {
+                        Layout.fillWidth: true
+
+                        placeholderText: "foo"
+                    }
+
                     MKeyValText {
                         key: "Key"
                         value: "Value"
