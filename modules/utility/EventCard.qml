@@ -55,23 +55,31 @@ MWrapRectangle {
 
                 RowLayout {
                     anchors.fill: parent
-                    anchors.margins: Settings.item.margin
-                    MThemeIcon {
+                    anchors.margins: Settings.item.margin / 2
+                    MThemeIconClick {
                         Layout.fillWidth: true
                         Layout.fillHeight: true
                         // implicitSize: parent.height
-                        name: "play"
+                        name: "delete"
+
+                        onIconClick: {
+                            console.log("Delete")
+                        }
                     }
 
                     MDivider {
                         vertical: true
                     }
 
-                    MThemeIcon {
+                    MThemeIconClick {
                         Layout.fillWidth: true
                         Layout.fillHeight: true
                         // implicitSize: parent.height
-                        name: "pause"
+                        name: "confirm"
+
+                        onIconClick: {
+                            console.log("Confirm")
+                        }
                     }
                 }
             }
