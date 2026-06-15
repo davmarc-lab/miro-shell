@@ -17,7 +17,7 @@
     - [ ] add support for wired networks
 - [ ] Bluetooth devices
 - [ ] Do Not Disturb
-- [ ] Notifications
+- [X] Notifications
     - [X] notification panel
     - [X] notification popup
     - [X] popup auto close

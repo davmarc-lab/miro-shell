@@ -144,20 +144,29 @@ MPopup {
                     anchors.fill: parent
                     anchors.margins: Settings.item.margin
 
-                    // MRectangle {
-                    //     Layout.fillWidth: true
-                    //     Layout.fillHeight: true
-                    //
-                    //     color: "red"
-                    // }
-
-                    MTitle {
+                    RowLayout {
                         Layout.fillWidth: true
                         Layout.alignment: Qt.AlignTop
-                        // Layout.preferredHeight: this.height
 
-                        text: "Notifications"
-                        font.pointSize: Settings.font.titleSize + 8
+                        MTitle {
+                            Layout.fillWidth: true
+                            Layout.alignment: Qt.AlignTop
+                            // Layout.preferredHeight: this.height
+
+                            text: "Notifications"
+                            font.pointSize: Settings.font.titleSize + 8
+                        }
+
+                        MFillLayout {
+                            dy: false
+                        }
+
+                        MSwitch {
+                            id: dnd
+                            checked: Global.enableNotifPopups
+
+                            onClicked: Global.enableNotifPopups = this.checked
+                        }
                     }
 
                     MDivider {

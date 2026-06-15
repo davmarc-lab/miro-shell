@@ -36,17 +36,17 @@ Switch {
             color: Theme.colorSecondary
         }
 
-        MouseArea {
-            anchors.fill: parent
-            onClicked: {
-                if (root.checked) {
-                    root.disable();
-                } else {
-                    root.enable();
-                }
-                root.toggle();
-            }
-        }
+        // MouseArea {
+        //     anchors.fill: parent
+        //     onClicked: {
+        //         if (root.checked) {
+        //             root.disable();
+        //         } else {
+        //             root.enable();
+        //         }
+        //         root.toggle();
+        //     }
+        // }
     }
 
     contentItem: null

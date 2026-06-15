@@ -28,12 +28,17 @@ Singleton {
 
         onNotification: function (notif) {
             notif.tracked = true;
-            root.popups.append(notif);
+            if (Global.enableNotifPopups)
+                root.popups.append(notif);
         }
     }
 
     function hasPopups() {
         return root.popups.count > 0;
+    }
+
+    function clearPopups() {
+        root.popups.clear();
     }
 
     function clear(notification) {
