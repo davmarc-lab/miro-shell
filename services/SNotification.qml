@@ -10,15 +10,10 @@ import qs
 
 Singleton {
     id: root
-    property var notifications: []
 
-    ListModel {
-        id: popupsModel
-    }
+    property alias notifications: notifServer.trackedNotifications
 
-    readonly property ListModel popupsNotifications: popupsModel
-
-    property bool enablePopups: Global.enableNotifPopups
+    property ListModel popups: ListModel {}
 
     property NotificationServer server: NotificationServer {
         id: notifServer
@@ -33,42 +28,36 @@ Singleton {
 
         onNotification: function (notif) {
             notif.tracked = true;
-            root.notifications.push(notif);
+            root.popups.append(notif);
+        }
+    }
 
-            if (root.enablePopups) {
-                root.addPopup(notif);
+    function hasPopups() {
+        return root.popups.count > 0;
+    }
+
+    function clear(notification) {
+        const notifs = root.notifications.values;
+        for (let i = notifs.length - 1; i >= 0; i--) {
+            if (notification == notifs[i]) {
+                this.removePopup(notifs[i]);
+                notifs[i].dismiss();
             }
         }
     }
 
     function clearAll() {
-        for (const notif of root.notifications) {
-            notif.dismiss();
-        }
-        root.notifications = [];
-        root.popupsNotifications.clear();
-    }
-
-    function clear(notification) {
-        const nIndex = root.notifications.indexOf(notification);
-        if (nIndex > -1) {
-            notification.dismiss();
-            root.notifications = root.notifications.filter(n => n != notification);
-            console.log(root.notifications.length)
+        const notifs = root.notifications.values;
+        for (let i = notifs.length - 1; i >= 0; i--) {
+            this.removePopup(notifs[i]);
+            notifs[i].dismiss();
         }
     }
 
-    function addPopup(notification) {
-        console.log(notification)
-        popupsModel.append({
-            notification: notification
-        });
-    }
-
-    function removePopup(notification) {
-        for (let i = 0; i < popupsModel.count; i++) {
-            if (popupsModel.get(i).notification === notification) {
-                popupsModel.remove(i);
+    function removePopup(notif) {
+        for (let i = root.popups.count - 1; i >= 0; i--) {
+            if (root.popups.get(i).id === notif.id) {
+                root.popups.remove(i, 1);
                 break;
             }
         }

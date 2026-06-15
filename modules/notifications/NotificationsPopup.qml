@@ -1,3 +1,4 @@
+import Quickshell
 import Quickshell.Wayland
 
 import QtQuick
@@ -28,26 +29,36 @@ MPopupPane {
 
     color: "transparent"
 
-    property var notifications: SNotification.popupsNotifications
-
     // actual visible
-    visible: notifications.count > 0
+    visible: SNotification.hasPopups()
+
+    mask: Region {
+        x: notifList.x
+        y: notifList.y
+        width: notifList.width
+        height: notifList.contentHeight
+    }
 
     ListView {
         id: notifList
         Layout.fillWidth: true
         Layout.fillHeight: true
+        Layout.alignment: Qt.AlignTop
 
         spacing: Settings.panel.margin / 2
-        model: root.notifications
+        model: SNotification.popups
+
+        clip: false
 
         delegate: NotificationToast {
-            required property var notification
-            notif: notification
+            required property var modelData
+            notif: modelData
 
             width: ListView.view.width
 
-            onDeadToast: SNotification.removePopup(notification)
+            onDeadToast: {
+                SNotification.removePopup(modelData);
+            }
         }
     }
 }

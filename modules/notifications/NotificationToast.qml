@@ -24,7 +24,7 @@ MRectangle {
         anchors.verticalCenter: parent.verticalCenter
 
         MIcon {
-            Layout.margins: Settings.item.margin
+            Layout.margins: Settings.notification.margin
             Layout.alignment: Qt.AlignTop | Qt.AlignHCenter
             implicitSize: 32
 
