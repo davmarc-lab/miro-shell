@@ -16,11 +16,6 @@ import qs.modules.utility
 import qs.modules.settings
 import qs.services
 
-// [General]
-// no-cmake-calls=true
-// buildDir="/run/user/1000/quickshell/vfs/902c254bab61654fb1729c6f186b109a"
-// importPaths="/usr/bin:/usr/lib/qt6/qml"
-
 ShellRoot {
     id: root
 

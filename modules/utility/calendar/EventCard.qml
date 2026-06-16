@@ -59,11 +59,10 @@ MWrapRectangle {
                     MThemeIconClick {
                         Layout.fillWidth: true
                         Layout.fillHeight: true
-                        // implicitSize: parent.height
                         name: "delete"
 
                         onIconClick: {
-                            console.log("Delete")
+                            console.log("Delete");
                         }
                     }
 
@@ -78,7 +77,7 @@ MWrapRectangle {
                         name: "confirm"
 
                         onIconClick: {
-                            console.log("Confirm")
+                            console.log("Confirm");
                         }
                     }
                 }

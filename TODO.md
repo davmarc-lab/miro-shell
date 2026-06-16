@@ -30,7 +30,7 @@
     - [X] calendar basic structure
     - [X] highlight current day
     - [X] move around months
-    - [ ] add events
+    - [X] add events
     - [ ] events in bar??
     - [ ] event dot below day number
     - [ ] change view??
