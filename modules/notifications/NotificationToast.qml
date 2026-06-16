@@ -61,14 +61,17 @@ MRectangle {
                     }
                 }
 
-                MThemeIconClick {
+                MThemeIcon {
+                    id: deleteIcon
                     Layout.preferredWidth: parent.height * 0.7
                     Layout.preferredHeight: width
                     Layout.alignment: Qt.AlignVCenter
 
                     name: "delete.svg"
 
-                    onIconClick: alive.triggered()
+                    HoverHandler {
+                        id: iconHover
+                    }
                 }
             }
 
@@ -82,6 +85,40 @@ MRectangle {
                 color: Theme.colorOnSurface
                 clip: true
                 text: root.notif?.body ?? ""
+            }
+        }
+    }
+
+    containmentMask: deleteIcon
+
+    MouseArea {
+        anchors.fill: parent
+        propagateComposedEvents: true
+        onClicked: {
+            if (iconHover.hovered) {
+                alive.triggered();
+                return;
+            }
+        }
+
+        // stop notification timer
+        onPressed: {
+            if (alive.running)
+                alive.running = false;
+        }
+
+        drag {
+            target: root
+            axis: Drag.XAxis
+        }
+
+        onReleased: {
+            const initialPos = 0;
+            const offset = root.width / 2;
+            if (drag.target.x - initialPos >= offset) {
+                alive.triggered();
+            } else {
+                drag.target.x = initialPos;
             }
         }
     }

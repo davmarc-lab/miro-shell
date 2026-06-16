@@ -32,12 +32,6 @@ MPopupPane {
     // actual visible
     visible: SNotification.hasPopups()
 
-    // // binding loop
-    // onVisibleChanged: {
-    //     if (this.visible)
-    //         SNotification.clearPopups();
-    // }
-
     mask: Region {
         x: notifList.x
         y: notifList.y

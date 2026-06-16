@@ -13,6 +13,7 @@ Item {
     ColumnLayout {
         anchors.fill: parent
         anchors.margins: Settings.item.margin
+        anchors.topMargin: Settings.item.margin / 2
 
         MTitle {
             Layout.alignment: Qt.AlignTop
