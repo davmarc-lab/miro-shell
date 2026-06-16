@@ -40,8 +40,21 @@ Singleton {
         data.events.push({
             description: desc,
             eventDate: eventDate,
-            eventDuration: duration
+            eventDuration: duration,
+            completed: false
         });
+    }
+
+    function compare(a, b) {
+        return a.description == b.description && a.eventDate == b.eventDate && a.eventDuration == b.eventDuration && a.completed == b.completed;
+    }
+
+    function removeEvent(event) {
+        data.events = data.events.filter(e => !compare(e, event));
+    }
+
+    function completeEvent(event) {
+        data.events.filter(e => compare(e, event)).forEach(e => e.completed = true);
     }
 
     function getEvents(): list<var> {

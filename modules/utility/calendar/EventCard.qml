@@ -3,15 +3,15 @@ import QtQuick.Layouts
 
 import qs.common
 import qs.widgets
+import qs.services
 
 MWrapRectangle {
     id: root
+    required property var event
 
-    property string eventDate
-    property string desc: "foo"
-    readonly property date parsedDate: new Date(eventDate)
+    readonly property date parsedDate: new Date(event.eventDate)
 
-    color: Theme.colorPrimary
+    color: event.completed ? Theme.colorSecondary : Theme.colorPrimary
 
     ColumnLayout {
         anchors.fill: parent
@@ -38,7 +38,8 @@ MWrapRectangle {
             Layout.fillWidth: true
             Layout.fillHeight: true
             Layout.alignment: Qt.AlignTop
-            text: root.desc
+
+            text: root.event.description
 
             elide: Text.ElideRight
             wrapMode: Text.Wrap
@@ -62,22 +63,26 @@ MWrapRectangle {
                         name: "delete"
 
                         onIconClick: {
-                            console.log("Delete");
+                            console.warn("EVENTS - Delete -- Send Notification");
+                            SCalendarEvents.removeEvent(root.event);
                         }
                     }
 
                     MDivider {
                         vertical: true
+                        visible: !root.event.completed
                     }
 
                     MThemeIconClick {
                         Layout.fillWidth: true
                         Layout.fillHeight: true
-                        // implicitSize: parent.height
                         name: "confirm"
 
+                        visible: !root.event.completed
+
                         onIconClick: {
-                            console.log("Confirm");
+                            console.warn("EVENTS - Complete -- Send Notification");
+                            SCalendarEvents.completeEvent(root.event);
                         }
                     }
                 }

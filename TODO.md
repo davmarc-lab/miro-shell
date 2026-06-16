@@ -31,6 +31,8 @@
     - [X] highlight current day
     - [X] move around months
     - [X] add events
+    - [X] complete events
+    - [ ] use event index instead of comparing data
     - [ ] events in bar??
     - [ ] event dot below day number
     - [ ] change view??
@@ -43,7 +45,7 @@
 - [ ] Press ESC to close a Popup
 - [X] Press ENTER to press a button (TODO => Add button)
 - [X] Fix battery percentage
-- [ ] Doesn't change workspaces with mouse sometimes
+- [x] Doesn't change workspaces with mouse sometimes
 - [ ] `SystemTray.qml::trimUrl()` needs refactor
 - [X] fix system tray menu icons
 - [ ] volume mixer value reset when next()
@@ -55,22 +57,20 @@
 ## Critical Fix
 - [X] Write to JSON files (JSONAdapter)
 - [ ] Fix Popup focus
-- [ ] Fix Utility => TODO scrollable item
+- [x] Fix Utility => TODO scrollable item
 - [ ] Fix NotificationItem size
 - [ ] Whole code refactor
 - [X] Errors with shell path
 - [ ] Init script doesn't work
 - [ ] Keyboard layout dependencies???
 - [X] Wifi JSON file problem if not exist (i think)
-- [ ] Errors while closing notification toast (not consistent)
+- [x] Errors while closing notification toast (not consistent)
 - [X] Errors during `ClearAll` notification from `RightPanel` (on `dismiss()`)
 - [X] Checkbox in controls viewer doesn't work
-- [ ] Sometimes `segmentation fault` due to Notifications (i think)
+- [x] Sometimes `segmentation fault` due to Notifications (i think)
 
 ## Other features
-
 - [ ] Calendar events in Dock panel
-
 - [ ] Colorscheme picker
 - [ ] Implement colorscheme loader
 - [ ] Implement colorscheme save system

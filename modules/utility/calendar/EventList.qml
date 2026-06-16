@@ -36,8 +36,7 @@ Item {
                 width: this.height
 
                 required property var modelData
-                eventDate: modelData.eventDate
-                desc: modelData.description
+                event: modelData
             }
         }
     }
