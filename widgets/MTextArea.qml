@@ -13,12 +13,14 @@ Item {
     property alias placeholderText: area.placeholderText
     property alias text: area.text
 
+    property alias areaFocus: area.focus
+
     signal escaped
 
     ScrollView {
         anchors.fill: parent
 
-        ScrollBar.vertical.policy: area.contentHeight > area.height ? ScrollBar.AlwaysOn : ScrollBar.AlwaysOff;
+        ScrollBar.vertical.policy: area.contentHeight > area.height ? ScrollBar.AlwaysOn : ScrollBar.AlwaysOff
         ScrollBar.horizontal.policy: ScrollBar.AlwaysOff
 
         TextArea {
@@ -50,5 +52,5 @@ Item {
     }
 
     // lose input focus
-    onEscaped: this.focus = false
+    onEscaped: area.focus = false
 }

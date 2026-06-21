@@ -10,6 +10,10 @@ Item {
 
     property date targetDay: undefined
 
+    function hasFocus(): bool {
+        return hh.focus || mm.focus || eventDuration.focus || eventDesc.areaFocus;
+    }
+
     ColumnLayout {
         anchors.fill: parent
 

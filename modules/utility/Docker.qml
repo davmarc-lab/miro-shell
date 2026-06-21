@@ -7,121 +7,125 @@ import qs.common
 import qs.widgets
 import qs.services
 
-MRectangle {
-    radius: 0
+UtilityPage {
+    MRectangle {
+        radius: 0
 
-    Component.onCompleted: {
-        SDocker.scan();
-    }
-
-    ColumnLayout {
         anchors.fill: parent
-        anchors.margins: Settings.panel.margin
 
-        MTitle {
-            Layout.fillWidth: true
-            // Layout.fillHeight: true
-            text: "Containers"
+        Component.onCompleted: {
+            SDocker.scan();
         }
 
-        ListView {
-            Layout.fillWidth: true
-            Layout.fillHeight: true
-            clip: true
-            model: SDocker.getData()
-            spacing: Settings.item.margin * 2
+        ColumnLayout {
+            anchors.fill: parent
+            anchors.margins: Settings.panel.margin
 
-            delegate: MRectangle {
-                id: item
-                required property var modelData
-                width: ListView.view.width
-                height: childrenRect.height + 2 * Settings.item.margin
-                color: Theme.colorSurface
+            MTitle {
+                Layout.fillWidth: true
+                // Layout.fillHeight: true
+                text: "Containers"
+            }
 
-                ColumnLayout {
-                    anchors.verticalCenter: parent.verticalCenter
-                    anchors.left: parent.left
-                    anchors.right: parent.right
-                    anchors.margins: Settings.item.margin
+            ListView {
+                Layout.fillWidth: true
+                Layout.fillHeight: true
+                clip: true
+                model: SDocker.getData()
+                spacing: Settings.item.margin * 2
 
-                    RowLayout {
-                        Layout.fillWidth: true
+                delegate: MRectangle {
+                    id: item
+                    required property var modelData
+                    width: ListView.view.width
+                    height: childrenRect.height + 2 * Settings.item.margin
+                    color: Theme.colorSurface
 
-                        MTitle {
-                            text: "Name"
-                            subtitle: true
-                        }
-                        MText {
-                            text: item.modelData.Names
-                        }
+                    ColumnLayout {
+                        anchors.verticalCenter: parent.verticalCenter
+                        anchors.left: parent.left
+                        anchors.right: parent.right
+                        anchors.margins: Settings.item.margin
 
-                        MFillLayout {}
+                        RowLayout {
+                            Layout.fillWidth: true
 
-                        MTitle {
-                            text: "ID"
-                            subtitle: true
-                        }
-                        MText {
-                            text: item.modelData.ID
-                        }
+                            MTitle {
+                                text: "Name"
+                                subtitle: true
+                            }
+                            MText {
+                                text: item.modelData.Names
+                            }
 
-                        MFillLayout {}
+                            MFillLayout {}
 
-                        MTitle {
-                            text: "Image"
-                            subtitle: true
-                        }
-                        MText {
-                            text: item.modelData.Image
-                        }
-                    }
+                            MTitle {
+                                text: "ID"
+                                subtitle: true
+                            }
+                            MText {
+                                text: item.modelData.ID
+                            }
 
-                    RowLayout {
-                        Layout.fillWidth: true
+                            MFillLayout {}
 
-                        MTitle {
-                            text: "Size"
-                            subtitle: true
-                        }
-                        MText {
-                            text: item.modelData.Size
-                        }
-
-                        MFillLayout {}
-
-                        MTitle {
-                            text: "State"
-                            subtitle: true
-                        }
-                        MText {
-                            id: state
-                            text: item.modelData.State
+                            MTitle {
+                                text: "Image"
+                                subtitle: true
+                            }
+                            MText {
+                                text: item.modelData.Image
+                            }
                         }
 
-                        MFillLayout {}
+                        RowLayout {
+                            Layout.fillWidth: true
 
-                        MTitle {
-                            text: "Status"
-                            subtitle: true
+                            MTitle {
+                                text: "Size"
+                                subtitle: true
+                            }
+                            MText {
+                                text: item.modelData.Size
+                            }
+
+                            MFillLayout {}
+
+                            MTitle {
+                                text: "State"
+                                subtitle: true
+                            }
+                            MText {
+                                id: state
+                                text: item.modelData.State
+                            }
+
+                            MFillLayout {}
+
+                            MTitle {
+                                text: "Status"
+                                subtitle: true
+                            }
+                            MText {
+                                text: item.modelData.Status
+                            }
                         }
-                        MText {
-                            text: item.modelData.Status
+
+                        MButton {
+                            id: start
+                            visible: state.text === "exited"
+                            text: "Start"
+                            Layout.alignment: Qt.AlignHCenter
                         }
-                    }
 
-                    MButton {
-                        id: start
-                        visible: state.text === "exited"
-                        text: "Start"
-                        Layout.alignment: Qt.AlignHCenter
-                    }
-
-                    MButton {
-                        id: stop
-                        visible: state.text === "running"
-                        text: "Stop"
-                        Layout.alignment: Qt.AlignHCenter
-                        bgColor: Theme.colorError
+                        MButton {
+                            id: stop
+                            visible: state.text === "running"
+                            text: "Stop"
+                            Layout.alignment: Qt.AlignHCenter
+                            bgColor: Theme.colorError
+                        }
                     }
                 }
             }

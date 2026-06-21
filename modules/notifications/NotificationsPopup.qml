@@ -9,7 +9,7 @@ import qs.services
 import qs.widgets
 
 MPopupPane {
-    id: root
+    id: notifsPopup
 
     anchors {
         top: true

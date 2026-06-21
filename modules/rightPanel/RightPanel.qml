@@ -127,7 +127,6 @@ MPopup {
             }
 
             MRectangle {
-                id: notifications
                 Layout.fillHeight: true
                 Layout.fillWidth: true
 
@@ -180,5 +179,9 @@ MPopup {
                 }
             }
         }
+
+        focus: true
+
+        Keys.onEscapePressed: Global.enableRightPanel = false
     }
 }

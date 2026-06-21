@@ -1,3 +1,5 @@
+import Quickshell.Wayland
+
 import QtQuick
 import QtQuick.Layouts
 
@@ -7,6 +9,8 @@ import qs.widgets
 
 MPopup {
     id: root
+
+    readonly property list<string> sources: ["Todo", "Calendar", "Mixer", "Docker"]
 
     onOpenChanged: {
         Global.enableUtility = this.open;
@@ -48,7 +52,7 @@ MPopup {
                         anchors.fill: parent
 
                         onClicked: {
-                            content.setSource("Todo.qml");
+                            content.index = 0;
                         }
                     }
                 }
@@ -66,7 +70,7 @@ MPopup {
                         anchors.fill: parent
 
                         onClicked: {
-                            content.setSource("Calendar.qml");
+                            content.index = 1;
                         }
                     }
                 }
@@ -84,7 +88,7 @@ MPopup {
                         anchors.fill: parent
 
                         onClicked: {
-                            content.setSource("Mixer.qml");
+                            content.index = 2;
                         }
                     }
                 }
@@ -102,23 +106,57 @@ MPopup {
                         anchors.fill: parent
 
                         onClicked: {
-                            content.setSource("Docker.qml");
+                            content.index = 3;
                         }
                     }
                 }
             }
 
             MRectangle {
+                id: content
+                property int index: 0
+
                 Layout.fillWidth: true
                 Layout.fillHeight: true
+
                 radius: 0
 
-                Loader {
-                    id: content
+                Todo {
                     anchors.fill: parent
-                    source: "Todo.qml"
+                    visible: root.sources[content.index].toString() === "Todo"
+                }
+
+                Calendar {
+                    anchors.fill: parent
+                    visible: root.sources[content.index].toString() === "Calendar"
+                    onIsFocusedChanged: console.log(isFocused)
+                }
+
+                Mixer {
+                    anchors.fill: parent
+                    visible: root.sources[content.index].toString() === "Mixer"
+                }
+
+                Docker {
+                    anchors.fill: parent
+                    visible: root.sources[content.index].toString() === "Docker"
                 }
             }
         }
+
+        focus: true
+
+        Keys.onEscapePressed: Global.enableUtility = false
+
+        // Keys.onPressed: event => {
+        //     // next section
+        //     if (event.key === Qt.Key_N && event.modifiers === Qt.ControlModifier) {
+        //         content.index = (content.index + 1) % root.sources.length;
+        //     }
+        //     // prev section
+        //     if (event.key === Qt.Key_P && event.modifiers === Qt.ControlModifier) {
+        //         content.index = (content.index + root.sources.length - 1) % root.sources.length;
+        //     }
+        // }
     }
 }

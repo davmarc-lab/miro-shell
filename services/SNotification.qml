@@ -2,6 +2,7 @@ pragma Singleton
 pragma ComponentBehavior: Bound
 
 import Quickshell
+import Quickshell.Io
 import Quickshell.Services.Notifications
 
 import QtQuick
@@ -11,12 +12,12 @@ import qs
 Singleton {
     id: root
 
-    property alias notifications: notifServer.trackedNotifications
+    property alias notifications: server.trackedNotifications
 
     property ListModel popups: ListModel {}
 
     property NotificationServer server: NotificationServer {
-        id: notifServer
+        id: server
 
         bodySupported: true
         actionsSupported: true
@@ -69,5 +70,17 @@ Singleton {
     }
 
     function init() {
+    }
+
+    IpcHandler {
+        target: "notification"
+
+        function togglePopups(): void {
+            Global.enableNotifPopups = !Global.enableNotifPopups;
+        }
+
+        function isPopupsEnabled(): bool {
+            return Global.enableNotifPopups;
+        }
     }
 }

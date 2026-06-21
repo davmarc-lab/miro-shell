@@ -1,63 +1,65 @@
 pragma ComponentBehavior: Bound
 import QtQuick
 import QtQuick.Layouts
-import QtQuick.Controls
 
-import qs
 import qs.common
 import qs.services
 import qs.widgets
 
 import "./calendar"
 
-Item {
-    id: root
-    anchors.fill: parent
-    anchors.margins: Settings.item.margin
+UtilityPage {
+    isFocused: eventManager.hasFocus()
 
-    property var events: SCalendarEvents.getEvents()
-
-    MRectangle {
+    Item {
+        id: root
         anchors.fill: parent
+        anchors.margins: Settings.item.margin
 
-        color: Theme.colorSurface
+        property var events: SCalendarEvents.getEvents()
 
-        ColumnLayout {
-            id: main
+        MRectangle {
             anchors.fill: parent
-            anchors.margins: Settings.item.margin
 
-            RowLayout {
-                Layout.fillWidth: true
-                Layout.fillHeight: true
-                Layout.bottomMargin: Settings.item.margin
+            color: Theme.colorSurface
 
-                CalendarGrid {
-                    id: calendar
-                    Layout.preferredWidth: main.width * 0.6
-                    Layout.fillHeight: true
+            ColumnLayout {
+                id: main
+                anchors.fill: parent
+                anchors.margins: Settings.item.margin
 
-                    // dayFocus: events.current
-                }
-
-                // side event manager
-                EventManager {
-                    id: eventManager
+                RowLayout {
                     Layout.fillWidth: true
                     Layout.fillHeight: true
+                    Layout.bottomMargin: Settings.item.margin
 
-                    targetDay: calendar.dayFocus
+                    CalendarGrid {
+                        id: calendar
+                        Layout.preferredWidth: main.width * 0.6
+                        Layout.fillHeight: true
+
+                        // dayFocus: events.current
+                    }
+
+                    // side event manager
+                    EventManager {
+                        id: eventManager
+                        Layout.fillWidth: true
+                        Layout.fillHeight: true
+
+                        targetDay: calendar.dayFocus
+                    }
                 }
-            }
 
-            MDivider {}
+                MDivider {}
 
-            // day event list
-            EventList {
-                Layout.preferredHeight: parent.height * 0.4
-                Layout.fillWidth: true
+                // day event list
+                EventList {
+                    Layout.preferredHeight: parent.height * 0.4
+                    Layout.fillWidth: true
 
-                current: calendar.dayFocus
+                    current: calendar.dayFocus
+                }
             }
         }
     }

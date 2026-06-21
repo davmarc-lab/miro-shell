@@ -16,7 +16,7 @@
     - [ ] network icons
     - [ ] add support for wired networks
 - [ ] Bluetooth devices
-- [ ] Do Not Disturb
+- [X] Do Not Disturb
 - [X] Notifications
     - [X] notification panel
     - [X] notification popup
@@ -39,6 +39,7 @@
 
 - [ ] Calendar application to manage events categories and other stuff?
 - [ ] Sample control widgets panel to show
+- [ ] Change Utility and RightPanel component activation (`visible` property should be better)
 
 ## Fix
 - [ ] First time using shell
