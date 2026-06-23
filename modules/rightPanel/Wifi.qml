@@ -1,16 +1,21 @@
 import QtQuick
 
-import qs.widgets
 import qs.common
 import qs.services
+import qs.widgets
 
-MRectangle {
-    id: root
-
-    color: Theme.colorSurface
+ExpandArea {
+    MText {
+        anchors.centerIn: parent
+        visible: SNetwork.getAvailableNetworks().length == 0
+        text: "No WiFi Available"
+    }
 
     ListView {
         id: wifiList
+
+        visible: this.model.length != 0
+
         anchors.fill: parent
         anchors.margins: Settings.item.margin
 

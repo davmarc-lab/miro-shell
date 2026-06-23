@@ -111,6 +111,16 @@ MPopup {
                         Layout.margins: Settings.item.margin
                         Layout.topMargin: 0
 
+                        Wifi {
+                            anchors.fill: parent
+                            visible: itemsArea.current === "Wifi"
+                        }
+
+                        Bluetooth {
+                            anchors.fill: parent
+                            visible: itemsArea.current === "Bluetooth"
+                        }
+
                         Loader {
                             id: bar
                             active: itemsArea.expand

@@ -2,6 +2,7 @@ pragma Singleton
 
 import Quickshell
 import Quickshell.Io
+import Quickshell.Networking
 
 import QtQuick
 
@@ -13,79 +14,21 @@ Singleton {
     readonly property bool wifi: false
     readonly property bool ethernet: false
 
-    readonly property string netData: Settings.cache.base + "network/"
+    function init() {
+        // current networking status
+        // console.log(Networking.connectivity);
 
-    property list<var> detectedNet: []
+        const devs = Networking.devices.values;
+        for (const d of devs) {
+            console.log(d.autoconnect);
+            console.log(d.address);
+            console.log(d.name);
+            console.log(d.type);    // 0 = None, 1 = Wifi, 2 = Wired (DeviceType)
+            console.log(d.state);   // (ConnectionState)
+            // if type = 1 then only ObjectModel<WifiNetwork>
+            console.log(d.networks);    // (ObjectModel<Network>) available networks for this device
 
-    property bool isInit: false
-
-    function init(): void {
-        root.scanWifi();
-        root.isInit = true;
-    }
-
-    function dump(): void {
-        if (detectedNet.length != 0) {
-            console.log(detectedNet.length);
-            for (var elem of detectedNet) {
-                console.log(elem.inUse + " - " + elem.network + " - " + elem.signal + " - " + elem.security + " - ");
-            }
+            // fn disconnect()
         }
-    }
-
-    FileView {
-        id: netFile
-        path: Settings.cache.base + "network/wifi-networks.json"
-
-        blockLoading: false
-        watchChanges: true
-        printErrors: false
-
-        onFileChanged: reload()
-
-        onLoaded: {
-            if (this.text().length > 0) {
-                const parsed = JSON.parse(this.text());
-                if (parsed) {
-                    const ordered = parsed.sort((a, b) => b.signal - a.signal);
-                    const uniq = new Set();
-                    root.detectedNet = [];
-                    ordered.forEach(o => {
-                        if (!uniq.has(o.ssid) && o.ssid.length) {
-                            uniq.add(o.ssid);
-                            root.detectedNet.push(o);
-                        }
-                    });
-                    // console.log("------DBG-------");
-                    // networks.forEach(o => console.log(o.ssid + ", " + o.signal));
-                    // console.log("------END-------");
-                }
-            }
-        }
-
-        onLoadFailed: {}
-    }
-
-    function getAvailableNetworks(): list<var> {
-        if (this.isInit) {
-            return detectedNet;
-        }
-        return [];
-    }
-
-    Process {
-        id: getWifi
-        running: false
-
-        command: ["sh", "-c", Settings.dirs.scripts + "network/get-wifi.sh"]
-        stdout: StdioCollector {
-            onStreamFinished: {
-                getWifi.running = false;
-            }
-        }
-    }
-
-    function scanWifi(): void {
-        getWifi.running = true;
     }
 }

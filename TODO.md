@@ -40,6 +40,8 @@
 - [ ] Calendar application to manage events categories and other stuff?
 - [ ] Sample control widgets panel to show
 - [ ] Change Utility and RightPanel component activation (`visible` property should be better)
+  - [X] Utility
+  - [ ] RightPanel
 
 ## Fix
 - [ ] First time using shell
