@@ -1,3 +1,5 @@
+import Quickshell.Io
+
 import QtQuick
 import QtQuick.Layouts
 
@@ -6,7 +8,18 @@ import qs.widgets
 import qs.services
 
 RowLayout {
+    id: root
     spacing: 3
+
+    property real percentage: SPower.battery.percentage
+
+    onPercentageChanged: {
+        if (percentage <= 0.2) {
+            // send notification
+            // console.log(percentage);
+            // notif.running = true;
+        }
+    }
 
     MThemeIcon {
         id: icon
@@ -22,5 +35,11 @@ RowLayout {
 
         Layout.alignment: Qt.AlignVCenter | Qt.AlignHCenter
         color: Theme.colorOnSurface
+    }
+
+    Process {
+        id: notif
+        running: false
+        command: ["notify-send", "Low Battery", "I will lose consciousness at 0%. Please do not panic."]
     }
 }
