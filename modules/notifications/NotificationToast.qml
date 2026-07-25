@@ -2,6 +2,7 @@ import QtQuick
 import QtQuick.Layouts
 
 import qs.common
+import qs.services
 import qs.widgets
 
 MRectangle {
@@ -96,7 +97,8 @@ MRectangle {
         propagateComposedEvents: true
         onClicked: {
             if (iconHover.hovered) {
-                alive.triggered();
+                // dismiss notif
+                SNotification.clear(root.notif);
                 return;
             }
         }

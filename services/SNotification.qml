@@ -45,9 +45,10 @@ Singleton {
     function clear(notification) {
         const notifs = root.notifications.values;
         for (let i = notifs.length - 1; i >= 0; i--) {
-            if (notification == notifs[i]) {
+            if (notification.id == notifs[i].id) {
                 this.removePopup(notifs[i]);
                 notifs[i].dismiss();
+                return;
             }
         }
     }
