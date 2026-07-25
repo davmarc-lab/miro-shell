@@ -1,10 +1,8 @@
 import Quickshell
-import Quickshell.Hyprland
 import Quickshell.Wayland
 
 import QtQuick.Layouts
 
-import qs
 import qs.widgets
 
 MPanelWindow {

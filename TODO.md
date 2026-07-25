@@ -4,7 +4,6 @@
 - [X] Wallpaper picker
 - [X] **Screen lock**
 - [ ] Phone link
-- [ ] Change Weather API [wttr](https://github.com/chubin/wttr.in#usage) (needs to be evaluated since it could be inaccurate)
 - [X] TODO list
 - [X] System Tray
     - [X] icons
@@ -26,6 +25,8 @@
 - [ ] Volume mixer
     - [X] volume manipulation
     - [ ] better layout (maybe icon on the left, name above and slider below, mute on the right)
+    - [X] volume slider
+    - [ ] fixed slider position and vertical support
 - [ ] Calendar
     - [X] calendar basic structure
     - [X] highlight current day

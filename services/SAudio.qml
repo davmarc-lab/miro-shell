@@ -17,6 +17,7 @@ Singleton {
 
     property bool muted: this.sink.ready ? sink.audio.muted : false
     property int volume: this.sink.ready ? Math.round(this.sink.audio.volume * 100) : -1
+    property real rawVolume: this.sink.ready ? this.sink.audio.volume : -1
 
     PwObjectTracker {
         objects: Pipewire.nodes.values

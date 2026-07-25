@@ -120,6 +120,12 @@ Scope {
                                     id: vol
                                     anchors.centerIn: parent
                                 }
+
+                                MouseArea {
+                                    id: mouse
+                                    anchors.fill: parent
+                                    onClicked: Global.enableVolumeSliderPopup = !Global.enableVolumeSliderPopup
+                                }
                             }
 
                             MRectangle {

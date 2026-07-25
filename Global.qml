@@ -28,6 +28,8 @@ Singleton {
     // misc
     property bool enableBattery: false
 
+    property bool enableVolumeSliderPopup: false
+
     property bool enableWeather: true
 
     // shell

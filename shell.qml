@@ -13,6 +13,7 @@ import qs.modules.powermenu
 import qs.modules.rightPanel
 import qs.modules.notifications
 import qs.modules.utility
+import qs.modules.popup
 import qs.modules.settings
 import qs.services
 
@@ -58,6 +59,11 @@ ShellRoot {
     LazyLoader {
         active: root.init && Global.enableBar
         component: Bar {}
+    }
+
+    LazyLoader {
+        active: root.init && Global.enableVolumeSliderPopup
+        component: VolumeSliderPopup {}
     }
 
     LazyLoader {
