@@ -42,8 +42,15 @@ Singleton {
     }
 
     function getNetworks() {
-        const nets = Networking.devices.values.map(d => d.networks.values).reduce((acc, cur) => acc.concat(cur), []);
-        console.log(nets);
+        return Networking.devices.values.map(d => d.networks.values).reduce((acc, cur) => acc.concat(cur), []);
+    }
+
+    function getAvailableNetworks() {
+        return Networking.devices.values.map(d => {
+            if (d.type === DeviceType.Wifi)
+                d.scannerEnabled = true;
+            return d.networks.values;
+        }).reduce((acc, cur) => acc.concat(cur), []);
     }
 
     IpcHandler {

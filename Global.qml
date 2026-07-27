@@ -8,6 +8,8 @@ import qs.common
 Singleton {
     id: root
 
+    property bool enableFoo: true
+
     // modules loading
     property bool enableBar: true
     property bool enableRightPanel: false
@@ -15,7 +17,6 @@ Singleton {
 
     property bool enableNotifPopups: true
 
-    property bool enableFoo: false
     property bool enableWallpaper: true
 
     property bool enableDock: false
