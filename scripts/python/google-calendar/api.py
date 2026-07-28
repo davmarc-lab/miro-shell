@@ -44,7 +44,7 @@ class CalendarAPI:
             items = data.get("items", [])
             all_events.extend(items)
 
-            # Check if there is another page of events
+            # Scroll pages
             page_token = data.get("nextPageToken")
             if not page_token:
                 break
