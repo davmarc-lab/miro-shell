@@ -4,10 +4,26 @@ from enum import Enum
 
 
 class ISerializable:
+    """Interface to serialize/deserialize data"""
+
     def __init__(self):
         pass
 
+    def deserialize(self) -> Mapping[str, object]:
+        """Deserializes a dictionary in raw data.
+        This method deserializes a dictionary into raw data.
+
+        Returns:
+        """
+        raise NotImplementedError("deserialize()")
+
     def serialize(self) -> Mapping[str, object]:
+        """Serialize raw data.
+        This method serializes raw data into a dictionary.
+
+        Returns:
+            dict[str, object]: the serialized data
+        """
         raise NotImplementedError("serialize()")
 
 

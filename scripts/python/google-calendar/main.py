@@ -1,7 +1,9 @@
+import json
 import os
 import sys
 
-from api import CalendarAPI, Event
+from api import CalendarAPI
+from caltypes import Event
 from dotenv.main import load_dotenv
 
 if __name__ == "__main__":
@@ -21,9 +23,6 @@ if __name__ == "__main__":
     # serialized_event = event.serialize()
     # json_output = json.dumps(serialized_event, indent=4)
     # print(json_output)
-
-    print(Event().serialize())
-    sys.exit(0)
 
     if not os.path.exists(".env"):
         print("environment file missing")
@@ -46,13 +45,6 @@ if __name__ == "__main__":
 
     try:
         events = api.getAllEvents(CALENDAR_ID)
-        print(f"\nSuccessfully retrieved a total of {len(events)} events:\n")
-        for event in events:
-            start = event.get("start", {}).get(
-                "dateTime", event.get("start", {}).get("date")
-            )
-            summary = event.get("summary", "No Title")
-            print(f"- [{start}] {summary}")
     except Exception as e:
         print(f"An error occurred: {e}")
 
