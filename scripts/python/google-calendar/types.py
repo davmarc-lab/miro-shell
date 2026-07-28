@@ -1,7 +1,6 @@
 from collections.abc import Mapping
 from datetime import date, datetime
 from enum import Enum
-from pydoc import doc
 
 
 class ISerializable:
