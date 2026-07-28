@@ -8,7 +8,7 @@ import qs.common
 Singleton {
     id: root
 
-    property bool enableFoo: true
+    property bool enableFoo: false
 
     // modules loading
     property bool enableBar: true
@@ -31,7 +31,7 @@ Singleton {
 
     property bool enableVolumeSliderPopup: false
 
-    property bool enableWeather: true
+    property bool enableWeather: false
 
     // shell
     property bool firstRun: false

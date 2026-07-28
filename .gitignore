@@ -2,3 +2,6 @@
 .direnv
 
 .zed
+
+.env
+__pycache__

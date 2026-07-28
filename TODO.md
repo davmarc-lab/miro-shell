@@ -10,7 +10,7 @@
     - [X] applications menu/actions
     - [X] menu positioning
 - [ ] Wifi Networks
-    - [ ] network list
+    - [X] network list
     - [ ] network interactions
     - [ ] network icons
     - [ ] add support for wired networks
@@ -24,7 +24,7 @@
     - [X] single notification dismiss
 - [ ] Volume mixer
     - [X] volume manipulation
-    - [ ] better layout (maybe icon on the left, name above and slider below, mute on the right)
+    - [X] better layout (maybe icon on the left, name above and slider below, mute on the right)
     - [X] volume slider
     - [ ] fixed slider position and vertical support
 - [ ] Calendar
