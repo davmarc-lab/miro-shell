@@ -53,9 +53,18 @@ class CalendarAPI:
 
         return all_events
 
-    def insertEvent(self, event: Event):
+    def insertEvent(self, event: Event, calendar_id: str):
         # get auth token
-        # prepare event
+        auth_token = self.__client.auth("https://www.googleapis.com/auth/calendar")
+
+        url = "https://www.googleapis.com/calendar/v3/users/me/calendarList"
+        headers = {"Authorization": f"Bearer {auth_token}"}
+        body = event.serialize()
+        try:
+            response = requests.post(url, headers=headers, data=body)
+            print(response)
+        except Exception as e:
+            print(e)
+
         # call inser event api
         # return response status code
-        pass

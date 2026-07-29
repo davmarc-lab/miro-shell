@@ -2,6 +2,7 @@ import os
 import sys
 
 from api import CalendarAPI
+from caltypes import Event, EventDate, Reminder
 from dotenv.main import load_dotenv
 from exception import RequestFailedException
 
@@ -23,29 +24,38 @@ if __name__ == "__main__":
     # json_output = json.dumps(serialized_event, indent=4)
     # print(json_output)
 
-    if not os.path.exists(".env"):
-        print("environment file missing")
-        sys.exit(1)
+    # if not os.path.exists(".env"):
+    #     print("environment file missing")
+    #     sys.exit(1)
 
-    KEY_FILE = "google-key.json"
-    load_dotenv()
+    # KEY_FILE = "google-key.json"
+    # load_dotenv()
 
-    CALENDAR_ID = os.getenv("GOOGLE_EMAIL") or ""
-    if not CALENDAR_ID:
-        print("Google Calendar email not found")
-        sys.exit(2)
+    # CALENDAR_ID = os.getenv("GOOGLE_EMAIL") or ""
+    # if not CALENDAR_ID:
+    #     print("Google Calendar email not found")
+    #     sys.exit(2)
 
     api = CalendarAPI()
-    if not api.health():
-        print("Google Auth Failed")
-        del api
-        sys.exit(3)
-    print("CalendarAPI auth OK")
+    # if not api.health():
+    #     print("Google Auth Failed")
+    #     del api
+    #     sys.exit(3)
+    # print("CalendarAPI auth OK")
 
-    try:
-        events = api.getAllEvents(CALENDAR_ID)
-        print(f"Found: {len(events)}")
-    except RequestFailedException as e:
-        print(e)
+    # try:
+    #     events = api.getAllEvents(CALENDAR_ID)
+    #     print(f"Found: {len(events)}")
+    # except RequestFailedException as e:
+    #     print(e)
 
-    del api
+    start = EventDate()
+    end = EventDate()
+    summary = "Test Events"
+    description = "Sample event"
+
+    event = Event(start, end, summary=summary, description=description)
+    api.insertEvent(event, "primary")
+
+
+    # del api

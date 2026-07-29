@@ -76,6 +76,9 @@ class EventType(Enum):
     OUT_OF_OFFICE = "outOfOffice"
     WORKING_LOCATION = "workingLocation"
 
+    def getValue(self) -> str:
+        return self.value
+
     def serialize(self) -> Mapping[str, object]:
         return {"type": self.value}
 
@@ -127,7 +130,7 @@ class Event:
         self.summary = summary
         self.description = description
         self.color_id = color_id
-        self.event_type = event_type
+        self.event_type = event_type if event_type else EventType.DEFAULT
         self.reminders = reminders or Reminder()
 
     def serialize(self):
@@ -138,6 +141,14 @@ class Event:
             "summary": self.summary,
             "description": self.description,
             "color_id": self.color_id,
-            "eventType": self.event_type,
+            "eventType": self.event_type.getValue(),
             "reminders": self.reminders.serialize(),
         }
+
+    def __str__(self):
+        return self.serialize().__str__()
+
+
+class CreateEventOpts:
+    def __init__(self, args):
+        pass

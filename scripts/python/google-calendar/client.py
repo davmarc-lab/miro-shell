@@ -12,12 +12,8 @@ from utils import base64url_encode, read_key_from_env
 class AuthClient:
     def __init__(self):
         self.__key_data = read_key_from_env()
-        self.__is_authenticated = False
-        self.__token = ""
 
     def auth(self, scope: str, force=False) -> str:
-        if self.__is_authenticated and not force:
-            return self.__token
 
         print("Generating access token via direct JWT signing...")
         client_email = self.__key_data["client_email"]
@@ -69,7 +65,4 @@ class AuthClient:
                 f"Failed to obtain access token: {token_response.text}"
             )
 
-        self.__is_authenticated = True
-        self.__token = token_response.json()["access_token"]
-
-        return self.__token
+        return token_response.json()["access_token"]
