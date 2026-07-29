@@ -1,10 +1,9 @@
-import json
 import os
 import sys
 
 from api import CalendarAPI
-from caltypes import Event
 from dotenv.main import load_dotenv
+from exception import RequestFailedException
 
 if __name__ == "__main__":
     # Serialize in JSON format
@@ -45,7 +44,8 @@ if __name__ == "__main__":
 
     try:
         events = api.getAllEvents(CALENDAR_ID)
-    except Exception as e:
-        print(f"An error occurred: {e}")
+        print(f"Found: {len(events)}")
+    except RequestFailedException as e:
+        print(e)
 
     del api

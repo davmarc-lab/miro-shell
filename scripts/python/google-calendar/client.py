@@ -5,6 +5,7 @@ import requests
 from cryptography.hazmat.primitives import hashes
 from cryptography.hazmat.primitives.asymmetric import padding
 from cryptography.hazmat.primitives.serialization import load_pem_private_key
+from exception import AuthFailedException
 from utils import base64url_encode, read_key_from_env
 
 
@@ -64,7 +65,9 @@ class AuthClient:
         )
 
         if token_response.status_code != 200:
-            raise Exception(f"Failed to obtain access token: {token_response.text}")
+            raise AuthFailedException(
+                f"Failed to obtain access token: {token_response.text}"
+            )
 
         self.__is_authenticated = True
         self.__token = token_response.json()["access_token"]

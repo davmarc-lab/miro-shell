@@ -1,5 +1,7 @@
 import requests
+from caltypes import Event
 from client import AuthClient
+from exception import AuthFailedException, RequestFailedException
 
 
 class CalendarAPI:
@@ -11,8 +13,8 @@ class CalendarAPI:
             auth_token = self.__client.auth(
                 "https://www.googleapis.com/auth/calendar.readonly"
             )
-        except Exception as e:
-            print(f"An error occurred: {e}")
+        except AuthFailedException as e:
+            print(f"Auth failed with error: {e}")
             return False
 
         return len(auth_token) > 0
@@ -38,7 +40,7 @@ class CalendarAPI:
             response = requests.get(url, headers=headers, params=params)
 
             if response.status_code != 200:
-                raise Exception(f"API Error ({response.status_code}): {response.text}")
+                raise RequestFailedException(response.text, response.status_code)
 
             data = response.json()
             items = data.get("items", [])
@@ -50,3 +52,10 @@ class CalendarAPI:
                 break
 
         return all_events
+
+    def insertEvent(self, event: Event):
+        # get auth token
+        # prepare event
+        # call inser event api
+        # return response status code
+        pass
