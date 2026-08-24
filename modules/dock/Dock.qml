@@ -80,7 +80,6 @@ MPopup {
                                 Layout.preferredHeight: childrenRect.height
                                 MText {
                                     anchors.horizontalCenter: parent.horizontalCenter
-                                    font.pointSize: 18
                                     text: STime.date
                                     color: Theme.colorOnPrimary
                                 }

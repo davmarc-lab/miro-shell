@@ -36,6 +36,7 @@ ShellRoot {
         if (Global.enableWeather)
             SWeather.init();
 
+        STodo.init();
         SCalendarEvents.init();
 
         init = true;
