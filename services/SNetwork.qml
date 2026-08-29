@@ -37,6 +37,22 @@ Singleton {
         }
     }
 
+    function connect(wifi) {
+        wifi.connect();
+    }
+
+    function disconnect(wifi) {
+        if (wifi.connected)
+            wifi.disconnect();
+    }
+
+    function forget(wifi) {
+        if (wifi.known) {
+            this.disconnect(wifi);
+            wifi.forget();
+        }
+    }
+
     function getDevices() {
         return Networking.devices.values;
     }
