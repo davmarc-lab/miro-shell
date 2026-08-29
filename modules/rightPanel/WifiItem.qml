@@ -39,8 +39,7 @@ Item {
         anchors.right: parent.right
         anchors.margins: root.itemMargin / 2
         radius: 10
-        color: root.wifi.connected ? Qt.rgba(root.colorAccent.r, root.colorAccent.g, root.colorAccent.b, 0.08) : "transparent"
-        border.color: root.wifi.connected ? root.colorAccent : Theme.colorOutline
+        border.color: root.wifi.connected ? Theme.colorPrimary : Theme.colorOutline
         border.width: root.wifi.connected ? 1.5 : 1
 
         implicitHeight: mainColumn.implicitHeight + root.contentPadding * 2

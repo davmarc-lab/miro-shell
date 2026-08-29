@@ -19,11 +19,13 @@ MPopup {
         Layout.preferredWidth: parent.width * 0.2
         Layout.fillHeight: true
         Layout.topMargin: Settings.bar.size
-
         topRightRadius: 0
         bottomRightRadius: 0
 
         color: Theme.colorSurface
+
+        focus: true
+        Keys.onEscapePressed: root.open = false
 
         ColumnLayout {
             anchors.fill: parent
@@ -189,9 +191,5 @@ MPopup {
                 }
             }
         }
-
-        focus: true
-
-        Keys.onEscapePressed: Global.enableRightPanel = false
     }
 }

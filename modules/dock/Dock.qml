@@ -19,10 +19,12 @@ MPopup {
         Layout.alignment: Qt.AlignTop | Qt.AlignHCenter
         Layout.preferredWidth: root.screen.width * 0.3
         Layout.preferredHeight: root.screen.height * 0.3
-
         Layout.topMargin: Settings.bar.size
 
         color: Theme.colorSurface
+
+        focus: true
+        Keys.onEscapePressed: root.open = false
 
         MRectangle {
             id: back

@@ -20,11 +20,13 @@ MPopup {
         Layout.alignment: Qt.AlignLeft | Qt.AlignVCenter
         Layout.preferredWidth: Settings.utilityPanel.width
         Layout.preferredHeight: Settings.utilityPanel.height
-
         bottomLeftRadius: 0
         topLeftRadius: 0
 
         color: Theme.colorSurface
+
+        focus: true
+        Keys.onEscapePressed: root.open = false
 
         ColumnLayout {
             id: base
@@ -143,20 +145,5 @@ MPopup {
                 }
             }
         }
-
-        focus: true
-
-        Keys.onEscapePressed: Global.enableUtility = false
-
-        // Keys.onPressed: event => {
-        //     // next section
-        //     if (event.key === Qt.Key_N && event.modifiers === Qt.ControlModifier) {
-        //         content.index = (content.index + 1) % root.sources.length;
-        //     }
-        //     // prev section
-        //     if (event.key === Qt.Key_P && event.modifiers === Qt.ControlModifier) {
-        //         content.index = (content.index + root.sources.length - 1) % root.sources.length;
-        //     }
-        // }
     }
 }

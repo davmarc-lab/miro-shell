@@ -46,7 +46,7 @@
 
 ## Fix
 - [ ] First time using shell
-- [ ] Press ESC to close a Popup
+- [X] Press ESC to close a Popup
 - [X] Press ENTER to press a button (TODO => Add button)
 - [X] Fix battery percentage
 - [x] Doesn't change workspaces with mouse sometimes
