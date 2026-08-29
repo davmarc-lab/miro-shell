@@ -128,6 +128,12 @@ MPopup {
                                     Global.enablePowerMenu = true;
                                 }
                             }
+
+                            MButton {
+                                Layout.preferredWidth: Layout.preferredHeight
+                                Layout.preferredHeight: Settings.rightPanel.iconSize
+                                onClicked: SNotification.sendNotification("Foo", "Testing send notification")
+                            }
                         }
                     }
                 }

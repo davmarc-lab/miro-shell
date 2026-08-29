@@ -15,7 +15,7 @@ Singleton {
     property bool enableRightPanel: false
     property bool enableNotification: true
 
-    property bool enableNotifPopups: false
+    property bool enableNotifPopups: true
 
     property bool enableWallpaper: true
 

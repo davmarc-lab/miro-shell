@@ -70,7 +70,24 @@ Singleton {
         }
     }
 
+    function sendNotification(summary, body) {
+        sendNotif.summary = summary;
+        sendNotif.body = body;
+        sendNotif.running = true;
+    }
+
     function init() {
+    }
+
+    Process {
+        id: sendNotif
+        running: false
+
+        property string summary: ""
+        property string body: ""
+        property int ugency: 0
+
+        command: ["notify-send", summary, body]
     }
 
     IpcHandler {

@@ -27,7 +27,8 @@ MRectangle {
         MIcon {
             Layout.margins: Settings.notification.margin
             Layout.alignment: Qt.AlignTop | Qt.AlignHCenter
-            implicitSize: 32
+            Layout.preferredWidth: 32
+            Layout.preferredHeight: width
 
             name: root.notif?.image ?? ""
         }
