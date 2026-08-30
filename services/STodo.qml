@@ -135,6 +135,6 @@ Singleton {
     }
 
     function init() {
-        this.retrieveTodos();
+        // this.retrieveTodos();
     }
 }

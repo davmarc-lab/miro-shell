@@ -5,7 +5,9 @@ import qs.common
 import qs.services
 import qs.widgets
 
-ExpandArea {
+MRectangle {
+    color: Theme.colorSurface
+
     MText {
         anchors.centerIn: parent
         visible: SNetwork.getAvailableNetworks().length == 0
