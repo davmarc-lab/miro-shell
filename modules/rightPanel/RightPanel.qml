@@ -34,8 +34,7 @@ MPopup {
 
             MRectangle {
                 id: controlsBack
-                Layout.preferredHeight: itemsArea.isExpanded() ? panel.height * 0.3 : controls.height + 2 * Settings.item.margin
-                Layout.maximumHeight: parent.height * 0.3
+                Layout.preferredHeight: itemsArea.isExpanded() ? panel.height * 0.3 : controls.height
                 Layout.fillWidth: true
 
                 ColumnLayout {
@@ -65,44 +64,50 @@ MPopup {
                         this.expand = false;
                     }
 
-                    RowLayout {
+                    ColumnLayout {
                         id: controls
                         Layout.fillWidth: true
-                        Layout.margins: Settings.item.margin
-                        spacing: Settings.item.margin
 
-                        // Layout.alignment: Qt.AlignHCenter
+                        RowLayout {
+                            id: topControls
+                            Layout.fillWidth: true
+                            Layout.margins: Settings.item.margin
+                            spacing: Settings.item.margin
 
-                        ControlButton {
-                            id: foo
-                            name: "wifi.svg"
-                            onIconClick: {
-                                itemsArea.tryExpand("Wifi");
-                                if (itemsArea.isExpanded()) {
-                                    // SNetwork.dump();
-                                }
+                            ControlButton {
+                                Layout.fillWidth: true
+                                text: "WiFi"
+                                iconName: "wifi.svg"
+                                onClick: itemsArea.tryExpand("Wifi")
+                            }
+
+                            ControlButton {
+                                Layout.fillWidth: true
+                                text: "Bluetooth"
+                                iconName: "bluetooth.svg"
+                                onClick: itemsArea.tryExpand("Bluetooth")
                             }
                         }
 
-                        ControlButton {
-                            name: "bluetooth.svg"
-                            onIconClick: {
-                                itemsArea.tryExpand("Bluetooth");
-                                // SNetwork.scanWifi();
-                            }
-                        }
+                        RowLayout {
+                            id: botControls
+                            Layout.fillWidth: true
+                            Layout.margins: Settings.item.margin
+                            spacing: Settings.item.margin
 
-                        ControlButton {
-                            name: "moon.svg"
-                            onIconClick: {
-                                itemsArea.tryExpand("Disturb");
+                            ControlButton {
+                                iconName: "moon.svg"
+                                Layout.fillWidth: true
+                                action: false
+                                text: "Do Not Disturb asjdha hadhakjdh ak"
                             }
-                        }
 
-                        ControlButton {
-                            name: "sun.svg"
-                            onIconClick: {
-                                Theme.toggleTheme();
+                            ControlButton {
+                                iconName: "sun.svg"
+                                Layout.fillWidth: true
+                                action: false
+                                text: "Theme"
+                                onClick: Theme.toggleTheme()
                             }
                         }
                     }
@@ -162,7 +167,6 @@ MPopup {
                         MTitle {
                             Layout.fillWidth: true
                             Layout.alignment: Qt.AlignTop
-                            // Layout.preferredHeight: this.height
 
                             text: "Notifications"
                             font.pointSize: Settings.font.titleSize + 8

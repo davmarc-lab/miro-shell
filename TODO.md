@@ -45,6 +45,7 @@
 - [ ] volume mixer value reset when next()
 - [ ] refactor `ColorEdit`
 - [ ] wifi used not tracked
+- [ ] refactor Row and Column layouts (animations)
 
 ## Critical Fix
 - [ ] System Icons support (script that finds the icons path)
