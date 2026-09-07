@@ -3,6 +3,7 @@ import QtQuick.Layouts
 
 import qs
 import qs.common
+import qs.services
 import qs.widgets
 
 MPopup {
@@ -77,7 +78,7 @@ MPopup {
 
                             ControlButton {
                                 Layout.fillWidth: true
-                                text: "WiFi"
+                                text: SNetwork.current
                                 iconName: "wifi.svg"
                                 onClick: itemsArea.tryExpand("Wifi")
                             }

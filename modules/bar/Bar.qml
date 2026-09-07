@@ -22,7 +22,7 @@ Scope {
             required property var modelData
             screen: modelData
 
-            property string opacity: "aa"
+            property string opacity: Settings.bar.transparent ? "00" : "aa"
 
             color: "#" + opacity + Theme.colorSurface.substr(1)
 

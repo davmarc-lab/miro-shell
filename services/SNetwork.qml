@@ -6,23 +6,35 @@ import Quickshell.Networking
 
 import QtQuick
 
-import qs.common
-
 Singleton {
     id: root
 
-    readonly property bool wifi: false
-    readonly property bool ethernet: false
+    property var activeWifi: null
 
-    function init() {}
+    readonly property bool connected: Networking.connectivity == NetworkConnectivity.Full
+    readonly property string current: connected && activeWifi ? activeWifi.name : "WiFi"
+
+    function init() {
+        // initial net scan to check connected wifi network
+        const nets = this.getAvailableNetworks();
+        for (var n of nets) {
+            if (n.connected) {
+                this.activeWifi = n;
+                break;
+            }
+        }
+    }
 
     function connect(wifi) {
         wifi.connect();
+        root.activeWifi = wifi;
     }
 
     function disconnect(wifi) {
-        if (wifi.connected)
+        if (wifi.connected) {
             wifi.disconnect();
+            root.activeWifi = null;
+        }
     }
 
     function forget(wifi) {

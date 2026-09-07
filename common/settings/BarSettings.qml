@@ -8,6 +8,8 @@ JsonObject {
     property int height: 30
     property int width: 30
 
+    property bool transparent: true
+
     property Margins margins: Margins {}
 
     property BarSet align: BarSet {}
