@@ -7,10 +7,6 @@ import qs.widgets
 
 MRectangle {
     id: container
-    Layout.fillHeight: true
-    Layout.fillWidth: true
-    Layout.preferredWidth: parent.width * 0.5
-    Layout.maximumWidth: parent.width * 0.5
 
     readonly property double iconScale: 0.7
 

@@ -67,6 +67,7 @@ MPopup {
                     ColumnLayout {
                         id: controls
                         Layout.fillWidth: true
+                        spacing: 0
 
                         RowLayout {
                             id: topControls
@@ -93,13 +94,14 @@ MPopup {
                             id: botControls
                             Layout.fillWidth: true
                             Layout.margins: Settings.item.margin
+                            Layout.topMargin: 0
                             spacing: Settings.item.margin
 
                             ControlButton {
                                 iconName: "moon.svg"
                                 Layout.fillWidth: true
                                 action: false
-                                text: "Do Not Disturb asjdha hadhakjdh ak"
+                                text: "Do Not Disturb"
                             }
 
                             ControlButton {
@@ -112,6 +114,7 @@ MPopup {
                         }
                     }
 
+                    // here the expanded content is loaded
                     Item {
                         Layout.fillWidth: true
                         Layout.fillHeight: true

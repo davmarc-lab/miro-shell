@@ -1,3 +1,5 @@
+pragma ComponentBehavior: Bound
+
 import Quickshell
 import Quickshell.Wayland
 
@@ -67,7 +69,15 @@ Scope {
                                 }
                             }
 
-                            MediaPlayer {}
+                            Loader {
+                                active: true
+                                visible: SMediaPlayer.currentPlayer != null
+
+                                Layout.fillHeight: true
+                                Layout.preferredWidth: parent.width * 0.5
+
+                                sourceComponent: MediaPlayer {}
+                            }
 
                             MFillLayout {}
                         }
@@ -140,17 +150,19 @@ Scope {
                                 }
                             }
 
-                            MRectangle {
+                            Loader {
+                                active: SSystemTray.itemsCount
+                                visible: this.active
+
                                 Layout.fillHeight: true
-                                Layout.preferredWidth: 100
+                                Layout.minimumWidth: 100
 
-                                SystemTray {
-                                    id: sys
+                                sourceComponent: MRectangle {
                                     anchors.fill: parent
-                                }
-
-                                Component.onCompleted: {
-                                    Layout.preferredWidth = sys.width;
+                                    SystemTray {
+                                        id: sys
+                                        anchors.fill: parent
+                                    }
                                 }
                             }
 
