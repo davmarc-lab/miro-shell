@@ -12,11 +12,11 @@ MRectangle {
     Layout.fillHeight: true
 
     color: Theme.colorSurfaceVariant
-    radius: 0
 
     MThemeIcon {
         id: icon
         anchors.fill: parent
+        anchors.margins: Settings.item.margin / 2
 
         implicitSize: Settings.bar.height
 

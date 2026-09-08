@@ -17,9 +17,11 @@ Singleton {
 
         onFileChanged: reload()
     }
+
     readonly property var themeData: JSON.parse(themeFile.text())
 
     property string themeStyle: "dark"
+    property bool isDark: this.themeStyle == "dark"
 
     function toggleTheme(style = ""): void {
         // simple toggle if no style is passed
@@ -52,7 +54,6 @@ Singleton {
     property string colorOnSurfaceVariant: themeStyle == "dark" ? darkOnSurfaceVariant : lightOnSurfaceVariant
     property string colorOutline: themeStyle == "dark" ? darkOutline : lightOutline
     property string colorShadow: themeStyle == "dark" ? darkShadow : lightShadow
-// primary, primaryHover, onPrimary, secondary, secondaryHover, onSecondary, error, onError, surface, onSurface, surfaceVariant, onSurfaceVariant, outline, shadow
 
     // These properties are used to edit purpose
     property string darkPrimary: root.themeData.dark.mPrimary

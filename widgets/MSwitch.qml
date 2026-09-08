@@ -6,11 +6,11 @@ import qs.common
 Switch {
     id: root
 
-    signal enable
-    signal disable
-
     implicitWidth: indicator.implicitWidth
     implicitHeight: indicator.implicitHeight
+
+    property string bgDisabled: Theme.colorOutline
+    property string bgEnabled: Theme.colorPrimary
 
     indicator: MRectangle {
         id: track
@@ -21,7 +21,7 @@ Switch {
         anchors.fill: parent
 
         radius: height / 2
-        color: root.checked ? Theme.colorPrimary : Theme.colorOutline
+        color: root.checked ? root.bgEnabled : root.bgDisabled
 
         MRectangle {
             id: thumb
@@ -30,23 +30,11 @@ Switch {
             height: width
             anchors.verticalCenter: parent.verticalCenter
 
-            x: root.checked ? track.width - width - 2 : 2
+            x: root.checked ? track.width - width - Settings.item.margin / 2 : Settings.item.margin / 2
 
             radius: height / 2
             color: Theme.colorSecondary
         }
-
-        // MouseArea {
-        //     anchors.fill: parent
-        //     onClicked: {
-        //         if (root.checked) {
-        //             root.disable();
-        //         } else {
-        //             root.enable();
-        //         }
-        //         root.toggle();
-        //     }
-        // }
     }
 
     contentItem: null

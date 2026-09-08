@@ -62,3 +62,4 @@
 - [ ] Implement colorscheme save system
 - [ ] Resource Usage
 - [ ] Refactor RightPanel module
+- [ ] svg color changer script / command

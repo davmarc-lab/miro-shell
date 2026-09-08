@@ -98,18 +98,19 @@ MPopup {
                             Layout.topMargin: 0
                             spacing: Settings.item.margin
 
-                            ControlButton {
+                            ControlSwitch {
                                 iconName: "moon.svg"
                                 Layout.fillWidth: true
-                                action: false
                                 text: "Do Not Disturb"
+                                checked: !Global.enableNotifPopups
+                                onClick: Global.enableNotifPopups = !Global.enableNotifPopups
                             }
 
-                            ControlButton {
+                            ControlSwitch {
                                 iconName: "sun.svg"
                                 Layout.fillWidth: true
-                                action: false
-                                text: "Theme"
+                                text: "Dark Mode"
+                                checked: Theme.isDark
                                 onClick: Theme.toggleTheme()
                             }
                         }
@@ -174,17 +175,6 @@ MPopup {
 
                             text: "Notifications"
                             font.pointSize: Settings.font.titleSize + 8
-                        }
-
-                        MFillLayout {
-                            dy: false
-                        }
-
-                        MSwitch {
-                            id: dnd
-                            checked: Global.enableNotifPopups
-
-                            onClicked: Global.enableNotifPopups = this.checked
                         }
                     }
 
