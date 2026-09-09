@@ -80,7 +80,7 @@ MPopup {
                                 Layout.fillWidth: true
                                 text: SNetwork.current
                                 iconName: "wifi.svg"
-                                onClick: itemsArea.tryExpand("Wifi")
+                                onClick: itemsArea.tryExpand("Network")
                             }
 
                             ControlButton {
@@ -123,9 +123,9 @@ MPopup {
                         Layout.margins: Settings.item.margin
                         Layout.topMargin: 0
 
-                        Wifi {
+                        Network {
                             anchors.fill: parent
-                            visible: itemsArea.current === "Wifi"
+                            visible: itemsArea.current === "Network"
                         }
 
                         Bluetooth {

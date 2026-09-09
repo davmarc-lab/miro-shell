@@ -9,10 +9,11 @@ import QtQuick
 Singleton {
     id: root
 
+    readonly property bool enableWifi: Networking.wifiEnabled
     property var activeWifi: null
 
     readonly property bool connected: Networking.connectivity == NetworkConnectivity.Full
-    readonly property string current: connected && activeWifi ? activeWifi.name : "WiFi"
+    readonly property string current: connected && activeWifi ? activeWifi.name : "Network"
 
     function init() {
         // initial net scan to check connected wifi network
@@ -23,6 +24,10 @@ Singleton {
                 break;
             }
         }
+    }
+
+    function toggleWifi() {
+        Networking.wifiEnabled = !Networking.wifiEnabled;
     }
 
     function connect(wifi) {
