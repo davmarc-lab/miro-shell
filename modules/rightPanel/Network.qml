@@ -1,7 +1,6 @@
 import QtQuick
 import QtQuick.Layouts
 
-import qs
 import qs.common
 import qs.services
 import qs.widgets
@@ -11,7 +10,13 @@ MRectangle {
 
     MText {
         anchors.centerIn: parent
-        visible: SNetwork.getAvailableNetworks().length == 0
+        visible: !SNetwork.enableWifi
+        text: "Wifi Disabled"
+    }
+
+    MText {
+        anchors.centerIn: parent
+        visible: SNetwork.enableWifi && SNetwork.getAvailableNetworks().length == 0
         text: "No Networks Available"
     }
 
@@ -43,7 +48,7 @@ MRectangle {
             Layout.fillHeight: true
 
             model: SNetwork.getAvailableNetworks()
-            spacing: Settings.panel.margin
+            spacing: Settings.item.margin
             clip: true
 
             delegate: WifiItem {
