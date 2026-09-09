@@ -174,7 +174,7 @@ MPopup {
                             Layout.alignment: Qt.AlignTop
 
                             text: "Notifications"
-                            font.pointSize: Settings.font.titleSize + 8
+                            font.pixelSize: Settings.font.titleSize + 8
                         }
                     }
 

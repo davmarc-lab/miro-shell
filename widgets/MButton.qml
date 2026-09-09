@@ -50,5 +50,5 @@ Button {
     icon.source: root.iconPath
     icon.cache: true
 
-    font.pointSize: Settings.font.size
+    font.pixelSize: Settings.font.size
 }

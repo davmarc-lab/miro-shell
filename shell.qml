@@ -5,6 +5,7 @@ import Quickshell
 import QtQuick
 
 import qs
+import qs.common
 import qs.modules.greeter
 import qs.modules.wallpaper
 import qs.modules.bar
@@ -24,6 +25,8 @@ ShellRoot {
 
     Component.onCompleted: {
         Helper.prepareCache();
+
+        Icons.init();
 
         Global.checkFirstRun();
 

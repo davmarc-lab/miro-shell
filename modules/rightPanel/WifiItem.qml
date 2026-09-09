@@ -75,7 +75,7 @@ Item {
 
                 MText {
                     text: root.wifi.signalStrength
-                    font.pointSize: Settings.font.size + 4
+                    font.pixelSize: Settings.font.size + 4
                     Layout.alignment: Qt.AlignVCenter
                 }
 
@@ -85,7 +85,7 @@ Item {
 
                     MText {
                         text: root.wifi.name
-                        font.pointSize: Settings.font.size
+                        font.pixelSize: Settings.font.size
                         font.weight: Font.DemiBold
                         elide: Text.ElideRight
                         Layout.fillWidth: true
@@ -95,7 +95,7 @@ Item {
                         visible: root.wifi.connected
                         text: "Connected"
                         color: root.colorConnected
-                        font.pointSize: Settings.font.size - 2
+                        font.pixelSize: Settings.font.size - 2
                     }
                 }
 

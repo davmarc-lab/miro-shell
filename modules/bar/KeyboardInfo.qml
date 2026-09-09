@@ -8,12 +8,12 @@ import qs.services
 RowLayout {
     spacing: 3
 
-    MThemeIcon {
-        id: icon
-        name: "keyboard"
+    MMaterialIcon {
+        id: foo
+        text: "\ue312"
 
-        Layout.preferredWidth: height
-        Layout.fillHeight: true
+        Layout.alignment: Qt.AlignVCenter
+        color: Theme.colorOnSurface
     }
 
     MText {

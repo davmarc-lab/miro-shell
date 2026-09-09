@@ -12,4 +12,5 @@ JsonObject {
     readonly property string scripts: shell + "scripts/"
 
     readonly property string icons: shell + "assets/icons/"
+    readonly property string fonts: shell + "assets/fonts/"
 }

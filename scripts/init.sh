@@ -2,6 +2,10 @@
 
 CACHE_DIR="$HOME/.cache/quickshell/miro-shell/"
 
+########################
+# Cache Dirs
+########################
+
 # prepare cache dir
 if [[ ! -e $CACHE_DIR ]] then
     mkdir -p $CACHE_DIR

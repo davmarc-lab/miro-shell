@@ -62,13 +62,13 @@ MPopup {
 
                                     MText {
                                         id: hour
-                                        font.pointSize: 40
+                                        font.pixelSize: 40
                                         text: STime.hour
                                         color: Theme.colorOnPrimary
                                     }
 
                                     MText {
-                                        font.pointSize: hour.font.pointSize
+                                        font.pixelSize: hour.font.pixelSize
                                         text: STime.minute
                                         color: Theme.colorOnPrimary
                                     }
