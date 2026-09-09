@@ -8,11 +8,8 @@ import qs.services
 RowLayout {
     spacing: 3
 
-    MMaterialIcon {
-        id: foo
+    MFontIcon {
         text: "\ue312"
-
-        Layout.alignment: Qt.AlignVCenter
         color: Theme.colorOnSurface
     }
 

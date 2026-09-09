@@ -10,6 +10,7 @@ Singleton {
     id: root
 
     readonly property string shellThemeName: shellFont.name
+    readonly property real shellTopSpacingFactor: 0.08
 
     FontLoader {
         id: shellFont
