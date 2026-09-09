@@ -26,13 +26,21 @@ if [[ ! -e "${CACHE_DIR}user/" ]] then
     echo "-- cache: user dir created--"
 fi
 
-touch "${CACHE_DIR}user/data.json"
-echo "-- cache: --user file \"data.json\" created"
+if [[ ! -e "${CACHE_DIR}user/data.json" ]] then
+    touch "${CACHE_DIR}user/data.json"
+    echo "-- cache: --user file \"data.json\" created"
+fi
 
 # create todo cache dir
 if [[ ! -e "${CACHE_DIR}todo/" ]] then
     mkdir "${CACHE_DIR}todo"
     echo "-- cache: todo dir created--"
+fi
+
+# create docker cache dir
+if [[ ! -e "${CACHE_DIR}docker/" ]] then
+    mkdir "${CACHE_DIR}docker"
+    echo "-- cache: docker dir created--"
 fi
 
 # create weather cache dir

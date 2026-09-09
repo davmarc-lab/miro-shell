@@ -25,7 +25,7 @@ RowLayout {
         onUncheck: root.todoUncheck()
     }
 
-    MIconClick {
+    MThemeIconClick {
         Layout.preferredWidth: check.indicator.width - 2
         Layout.preferredHeight: width
         Layout.alignment: Qt.AlignVCenter

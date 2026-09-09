@@ -29,7 +29,7 @@ Singleton {
         id: first
         running: false
 
-        command: ["sh", "-c", Settings.scriptPath + "keyboard/get-layout.sh"]
+        command: ["sh", "-c", Settings.dirs.scripts + "keyboard/get-layout.sh"]
 
         stdout: StdioCollector {
             onStreamFinished: {

@@ -1,12 +1,10 @@
-import Quickshell
-
 import QtQuick
 import QtQuick.Layouts
 
 import qs
 import qs.common
-import qs.widgets
 import qs.services
+import qs.widgets
 
 MPopup {
     id: root
@@ -21,22 +19,23 @@ MPopup {
 
         Layout.preferredWidth: parent.width * 0.2
         Layout.fillHeight: true
-        Layout.topMargin: Settings.barHeight
-
+        Layout.topMargin: Settings.bar.size
         topRightRadius: 0
         bottomRightRadius: 0
 
         color: Theme.colorSurface
 
+        focus: true
+        Keys.onEscapePressed: root.open = false
+
         ColumnLayout {
             anchors.fill: parent
-            anchors.margins: Settings.panelMargin
-            spacing: Settings.panelMargin
+            anchors.margins: Settings.panel.margin
+            spacing: Settings.panel.margin
 
             MRectangle {
                 id: controlsBack
-                Layout.preferredHeight: itemsArea.isExpanded() ? panel.height * 0.3 : controls.height + 2 * Settings.itemMargin
-                Layout.maximumHeight: parent.height * 0.3
+                Layout.preferredHeight: itemsArea.isExpanded() ? panel.height * 0.3 : controls.height
                 Layout.fillWidth: true
 
                 ColumnLayout {
@@ -66,53 +65,73 @@ MPopup {
                         this.expand = false;
                     }
 
-                    RowLayout {
+                    ColumnLayout {
                         id: controls
                         Layout.fillWidth: true
-                        Layout.margins: Settings.itemMargin
-                        spacing: Settings.itemMargin
+                        spacing: 0
 
-                        // Layout.alignment: Qt.AlignHCenter
+                        RowLayout {
+                            id: topControls
+                            Layout.fillWidth: true
+                            Layout.margins: Settings.item.margin
+                            spacing: Settings.item.margin
 
-                        ControlButton {
-                            id: foo
-                            name: "wifi.svg"
-                            onIconClick: {
-                                itemsArea.tryExpand("Wifi");
-                                if (itemsArea.isExpanded()) {
-                                    // SNetwork.dump();
-                                }
+                            ControlButton {
+                                Layout.fillWidth: true
+                                text: SNetwork.current
+                                iconName: "wifi.svg"
+                                onClick: itemsArea.tryExpand("Network")
+                            }
+
+                            ControlButton {
+                                Layout.fillWidth: true
+                                text: "Bluetooth"
+                                iconName: "bluetooth.svg"
+                                onClick: itemsArea.tryExpand("Bluetooth")
                             }
                         }
 
-                        ControlButton {
-                            name: "bluetooth.svg"
-                            onIconClick: {
-                                itemsArea.tryExpand("Bluetooth");
-                                // SNetwork.scanWifi();
-                            }
-                        }
+                        RowLayout {
+                            id: botControls
+                            Layout.fillWidth: true
+                            Layout.margins: Settings.item.margin
+                            Layout.topMargin: 0
+                            spacing: Settings.item.margin
 
-                        ControlButton {
-                            name: "moon.svg"
-                            onIconClick: {
-                                itemsArea.tryExpand("Disturb");
+                            ControlSwitch {
+                                iconName: "moon.svg"
+                                Layout.fillWidth: true
+                                text: "Do Not Disturb"
+                                checked: !Global.enableNotifPopups
+                                onClick: Global.enableNotifPopups = !Global.enableNotifPopups
                             }
-                        }
 
-                        ControlButton {
-                            name: "sun.svg"
-                            onIconClick: {
-                                Theme.toggleTheme();
+                            ControlSwitch {
+                                iconName: "sun.svg"
+                                Layout.fillWidth: true
+                                text: "Dark Mode"
+                                checked: Theme.isDark
+                                onClick: Theme.toggleTheme()
                             }
                         }
                     }
 
+                    // here the expanded content is loaded
                     Item {
                         Layout.fillWidth: true
                         Layout.fillHeight: true
-                        Layout.margins: Settings.itemMargin
+                        Layout.margins: Settings.item.margin
                         Layout.topMargin: 0
+
+                        Network {
+                            anchors.fill: parent
+                            visible: itemsArea.current === "Network"
+                        }
+
+                        Bluetooth {
+                            anchors.fill: parent
+                            visible: itemsArea.current === "Bluetooth"
+                        }
 
                         Loader {
                             id: bar
@@ -130,7 +149,6 @@ MPopup {
             }
 
             MRectangle {
-                id: notifications
                 Layout.fillHeight: true
                 Layout.fillWidth: true
 
@@ -145,22 +163,23 @@ MPopup {
 
                 ColumnLayout {
                     anchors.fill: parent
-                    anchors.margins: Settings.itemMargin
+                    anchors.margins: Settings.item.margin
 
-                    // MRectangle {
-                    //     Layout.fillWidth: true
-                    //     Layout.fillHeight: true
-                    //
-                    //     color: "red"
-                    // }
-
-                    MTitle {
+                    RowLayout {
                         Layout.fillWidth: true
                         Layout.alignment: Qt.AlignTop
-                        // Layout.preferredHeight: this.height
 
-                        text: "Notifications"
-                        font.pointSize: Settings.fontTitle + 8
+                        MTitle {
+                            Layout.fillWidth: true
+                            Layout.alignment: Qt.AlignTop
+
+                            text: "Notifications"
+                            font.pointSize: Settings.font.titleSize + 8
+                        }
+                    }
+
+                    MDivider {
+                        Layout.bottomMargin: Settings.item.margin
                     }
 
                     NotificationsContent {

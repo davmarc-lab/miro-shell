@@ -13,6 +13,7 @@ import qs.modules.powermenu
 import qs.modules.rightPanel
 import qs.modules.notifications
 import qs.modules.utility
+import qs.modules.popup
 import qs.modules.settings
 import qs.services
 
@@ -29,10 +30,14 @@ ShellRoot {
         SWallpaper.init();
         SUser.init();
         SNetwork.init();
-        SNotification.init();
+        if (Global.enableNotification)
+            SNotification.init();
 
         if (Global.enableWeather)
             SWeather.init();
+
+        STodo.init();
+        SCalendarEvents.init();
 
         init = true;
     }
@@ -55,6 +60,11 @@ ShellRoot {
     LazyLoader {
         active: root.init && Global.enableBar
         component: Bar {}
+    }
+
+    LazyLoader {
+        active: root.init && Global.enableVolumeSliderPopup
+        component: VolumeSliderPopup {}
     }
 
     LazyLoader {
@@ -83,7 +93,7 @@ ShellRoot {
     }
 
     LazyLoader {
-        active: root.init && Global.enableNotifPopups
+        active: root.init && Global.enableNotification && Global.enableNotifPopups
         component: NotificationsPopup {}
     }
 

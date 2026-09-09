@@ -5,72 +5,78 @@ import qs.common
 import qs.services
 import qs.widgets
 
-ColumnLayout {
-    spacing: 0
-    Layout.margins: Settings.itemMargin
+UtilityPage {
+    id: root
 
-    RowLayout {
-        id: add
+    isFocused: newTodo.focus
 
-        Layout.fillWidth: true
-        Layout.margins: Settings.itemMargin
-        Layout.bottomMargin: 0
+    ColumnLayout {
 
-        MTextInput {
-            id: newTodo
+        anchors.fill: parent
+        anchors.margins: Settings.item.margin
+
+        spacing: 0
+
+        RowLayout {
+            id: add
 
             Layout.fillWidth: true
-            focus: true
+            Layout.margins: Settings.item.margin
+            Layout.bottomMargin: 0
 
-            leftPadding: 10
+            MTextInput {
+                id: newTodo
 
-            placeholderText: "New Todo item"
-            placeholderTextColor: Theme.colorOnSurfaceVariant
+                Layout.fillWidth: true
+                focus: false
 
-            onAccepted: {
-                newTodoAdd.addTodo();
+                leftPadding: 10
+
+                placeholderText: "New Todo item"
+                placeholderTextColor: Theme.colorOnSurfaceVariant
             }
-        }
 
-        MButton {
-            id: newTodoAdd
-            text: "Add"
+            MButton {
+                id: newTodoAdd
+                text: "Add"
 
-            onPressed: () => addTodo()
+                onPressed: () => addTodo()
 
-            function addTodo() {
-                const text = newTodo.text;
-                if (text.length) {
-                    // add todo
-                    STodo.addTodo(text, false);
-                    newTodo.text = "";
+                function addTodo() {
+                    const text = newTodo.text;
+                    if (text.length) {
+                        // add todo
+                        STodo.addTodo(text, false);
+                        newTodo.text = "";
+                    }
                 }
             }
         }
-    }
 
-    Repeater {
-        model: STodo.getTodo()
+        // change into ListView
+        Repeater {
+            model: STodo.getTodo()
 
-        delegate: TodoItem {
-            id: elem
+            delegate: TodoItem {
+                id: elem
 
-            required property var model
+                required property var model
 
-            Layout.fillWidth: true
-            Layout.leftMargin: 10
-            Layout.rightMargin: Layout.leftMargin
-            Layout.alignment: Qt.AlignTop
+                Layout.fillWidth: true
+                Layout.leftMargin: 10
+                Layout.rightMargin: Layout.leftMargin
+                Layout.alignment: Qt.AlignTop
 
-            text: model.content
-            checked: model.check
+                text: model.content
+                checked: model.check
 
-            onTodoCheck: STodo.checkTodo(model.content, true)
-            onTodoUncheck: STodo.checkTodo(model.content, false)
+                onTodoCheck: STodo.checkTodo(model.content, true)
+                onTodoUncheck: STodo.checkTodo(model.content, false)
 
-            onTodoDelete: STodo.removeTodo(model.content)
+                onTodoDelete: STodo.removeTodo(model.content)
+            }
         }
-    }
 
-    MFillLayout {}
+        MFillLayout {}
+    }
 }

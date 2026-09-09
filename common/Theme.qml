@@ -10,16 +10,18 @@ Singleton {
 
     FileView {
         id: themeFile
-        path: Settings.themesPath + "colorscheme.json"
+        path: Settings.dirs.themes + "colorscheme.json"
 
         blockLoading: true
         watchChanges: true
 
         onFileChanged: reload()
     }
+
     readonly property var themeData: JSON.parse(themeFile.text())
 
     property string themeStyle: "dark"
+    property bool isDark: this.themeStyle == "dark"
 
     function toggleTheme(style = ""): void {
         // simple toggle if no style is passed

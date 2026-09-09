@@ -11,8 +11,8 @@ Singleton {
     property int active: Hyprland.focusedWorkspace.id
     property list<int> urgents: Hyprland.workspaces.values.filter(w => w.urgent).map(w => w.id)
     property list<int> availables: Array.from({
-        length: Settings.numWorkspaces
-    }, (_, i) => i)
+        length: Settings.workspaces.size
+    }, (_, i) => i + 1)
 
     function getAvailables(): list<int> {
         return this.availables;
@@ -31,9 +31,9 @@ Singleton {
     }
 
     function activate(index: int): void {
-        if (index >= 1 && index <= Settings.numWorkspaces) {
+        if (index >= 1 && index <= Settings.workspaces.size) {
             this.active = index;
-            Hyprland.dispatch(`workspace ${index}`);
+            Hyprland.dispatch(`hl.dsp.focus({workspace = ${this.active}})`);
         }
     }
 }

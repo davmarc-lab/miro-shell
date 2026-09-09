@@ -72,7 +72,7 @@ Singleton {
         id: getWeather
         running: false
 
-        command: ["sh", "-c", Settings.scriptPath + "weather/get-weather.sh"]
+        command: ["sh", "-c", Settings.dirs.scripts + "weather/get-weather.sh"]
         stdout: StdioCollector {
             onStreamFinished: {
                 getWeather.running = false;
@@ -92,7 +92,7 @@ Singleton {
     FileView {
         id: weatherData
 
-        path: Settings.cacheDir + "weather/data.json"
+        path: Settings.cache.weather + "data.json"
 
         watchChanges: false
         onFileChanged: reload()

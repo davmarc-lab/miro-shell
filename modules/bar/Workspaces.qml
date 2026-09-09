@@ -12,25 +12,24 @@ import qs.services
 RowLayout {
     id: root
 
-    Layout.fillWidth: true
-    Layout.fillHeight: true
-
     Repeater {
-        model: SWorkspaces.getActives()
+        id: item
+    model: SWorkspaces.getAvailables()
 
-        MRButton {
-            Layout.preferredWidth: 30
+    MRButton {
+        visible: modelData >= 0
+
+        Layout.preferredWidth: (Settings.bar.height - Settings.panel.margin) * (SWorkspaces.isFocused(modelData) ? 0.8 : 0.6)
+            Layout.preferredHeight: this.width
 
             required property int modelData
-            property int wId: modelData
             property HyprlandWorkspace w: Hyprland.workspaces.values[modelData] ?? null
 
-            text: wId
-            fgColor: SWorkspaces.isFocused(wId) ? "lightblue" : Theme.colorOnPrimary
-            bgColor: SWorkspaces.isUrgent(wId) ? Theme.colorError : Theme.colorPrimary
+            text: ""
+            bgColor: SWorkspaces.isFocused(modelData) ? Theme.colorPrimary : Theme.colorSecondary
 
             onClicked: {
-                SWorkspaces.activate(wId);
+                SWorkspaces.activate(modelData);
             }
         }
     }

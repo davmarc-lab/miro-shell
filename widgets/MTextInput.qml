@@ -7,6 +7,7 @@ TextField {
     id: root
 
     property string bgColor: Theme.colorSurface
+    property string borderColor: Theme.colorOutline
     property bool isPassword: false
 
     echoMode: this.isPassword ? TextInput.Password : TextInput.Normal
@@ -14,17 +15,18 @@ TextField {
     signal escaped
 
     color: Theme.colorOnSurface
-    font.pointSize: Settings.fontSize
+    font.pointSize: Settings.font.size
 
-    leftPadding: Settings.itemMargin
-    rightPadding: Settings.itemMargin
-
-    verticalAlignment: TextInput.AlignVCenter
+    leftPadding: Settings.item.margin
+    rightPadding: Settings.item.margin
 
     background: MRectangle {
         color: root.bgColor
-        radius: Settings.itemRadius / 2
+        radius: Settings.item.radius / 2
+        border.color: root.borderColor
     }
+
+    placeholderTextColor: Theme.colorOnSurface
 
     // lose input focus
     onEscaped: this.focus = false

@@ -22,7 +22,7 @@ Singleton {
     Process {
         id: update
         running: false
-        command: ["sh", "-c", Settings.scriptPath + "wallpaper/update.sh " + root.current]
+        command: ["sh", "-c", Settings.dirs.scripts + "wallpaper/update.sh " + root.current]
         stdout: StdioCollector {
             onStreamFinished: {
                 update.running = false;
@@ -33,7 +33,7 @@ Singleton {
     Process {
         id: get
         running: false
-        command: ["sh", "-c", Settings.scriptPath + "wallpaper/get-last.sh"]
+        command: ["sh", "-c", Settings.dirs.scripts + "wallpaper/get-last.sh"]
         stdout: StdioCollector {
             onStreamFinished: {
                 get.running = false;
@@ -77,7 +77,7 @@ Singleton {
         Process {
             id: wpDetect
             running: Global.enableWallpaper
-            command: ["sh", "-c", Settings.scriptPath + "wallpaper/get-all.sh"]
+            command: ["sh", "-c", Settings.dirs.scripts + "wallpaper/get-all.sh"]
             stdout: StdioCollector {
                 onStreamFinished: {
                     wpDetect.running = false;

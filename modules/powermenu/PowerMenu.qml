@@ -52,7 +52,7 @@ MPopup {
 
             PowerMenuButton {
                 command: "systemctl poweroff"
-                keybind: Qt.Key_K
+                keybind: Qt.Key_P
                 text: "Shutdown"
                 icon: "poweroff"
             }

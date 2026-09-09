@@ -15,10 +15,10 @@ MContentItem {
 
     ScrollView {
         width: root.sizex
-        height: root.sizey - (2 * Settings.panelMargin)
+        height: root.sizey - (2 * Settings.panel.margin)
 
         x: (width - content.itemWidth) / 2
-        y: Settings.panelMargin
+        y: Settings.panel.margin
 
         MContentSection {
             id: content
@@ -65,6 +65,12 @@ MContentItem {
 
                     MTextInput {
                         text: "Text Input"
+                    }
+
+                    MTextArea {
+                        Layout.fillWidth: true
+
+                        placeholderText: "foo"
                     }
 
                     MKeyValText {

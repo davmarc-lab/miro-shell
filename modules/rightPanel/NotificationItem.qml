@@ -1,19 +1,19 @@
-import Quickshell.Widgets
-
 import QtQuick
 import QtQuick.Layouts
 
 import qs.common
+import qs.services
 import qs.widgets
 
 MRectangle {
     id: root
-    Layout.fillWidth: true
-    Layout.preferredHeight: layout.implicitHeight
+
+    height: layout.height
 
     required property var notif
 
     color: Theme.colorSurface
+
     RowLayout {
         id: layout
         anchors {
@@ -22,37 +22,56 @@ MRectangle {
         }
         anchors.verticalCenter: parent.verticalCenter
 
-        IconImage {
-            Layout.margins: Settings.itemMargin
+        MIcon {
+            Layout.margins: Settings.notification.margin
+            Layout.alignment: Qt.AlignTop | Qt.AlignHCenter
             implicitSize: 32
 
-            source: root.notif.image
+            name: root.notif.image
         }
 
         ColumnLayout {
             Layout.fillWidth: true
             spacing: 0
 
-            MTitle {
-                id: appName
+            RowLayout {
                 Layout.fillWidth: true
-                Layout.margins: Settings.itemMargin
-                Layout.bottomMargin: 0
-                subtitle: true
+                Layout.fillHeight: true
+                Layout.margins: Settings.notification.margin
 
-                color: Theme.colorOnSurface
-                font.weight: Font.Bold
-                text: {
-                    if (root.notif.summary.length)
-                        return root.notif.summary;
-                    return root.notif.appName;
+                MTitle {
+                    id: appName
+                    Layout.fillWidth: true
+                    Layout.fillHeight: true
+                    Layout.bottomMargin: 0
+                    subtitle: true
+
+                    color: Theme.colorOnSurface
+                    font.weight: Font.Bold
+                    text: {
+                        if (root.notif.summary.length)
+                            return root.notif.summary;
+                        return root.notif.appName;
+                    }
+                }
+
+                MThemeIconClick {
+                    Layout.preferredWidth: parent.height * 0.7
+                    Layout.preferredHeight: width
+                    Layout.alignment: Qt.AlignVCenter
+
+                    name: "delete.svg"
+
+                    onIconClick: {
+                        SNotification.clear(root.notif);
+                    }
                 }
             }
 
             MText {
                 id: content
                 Layout.fillWidth: true
-                Layout.margins: Settings.itemMargin
+                Layout.margins: Settings.notification.margin
                 Layout.topMargin: 0
 
                 color: Theme.colorOnSurface

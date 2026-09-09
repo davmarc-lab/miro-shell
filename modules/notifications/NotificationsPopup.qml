@@ -1,3 +1,6 @@
+import Quickshell
+import Quickshell.Wayland
+
 import QtQuick
 import QtQuick.Layouts
 
@@ -6,7 +9,7 @@ import qs.services
 import qs.widgets
 
 MPopupPane {
-    id: root
+    id: notifsPopup
 
     anchors {
         top: true
@@ -16,35 +19,46 @@ MPopupPane {
     }
 
     margins {
-        top: Settings.barHeight
-        right: Settings.panelMargin
+        top: Settings.bar.size
+        right: Settings.panel.margin
     }
 
-    implicitWidth: Settings.notifPopupSize
+    WlrLayershell.keyboardFocus: WlrKeyboardFocus.None
+
+    implicitWidth: Settings.notification.popup.size
 
     color: "transparent"
 
-    property var notifications: SNotification.popupsNotifications
-
     // actual visible
-    visible: notifications.count > 0
+    visible: SNotification.hasPopups()
+
+    mask: Region {
+        x: notifList.x
+        y: notifList.y
+        width: notifList.width
+        height: notifList.contentHeight
+    }
 
     ListView {
         id: notifList
         Layout.fillWidth: true
         Layout.fillHeight: true
-        Layout.topMargin: Settings.panelMargin
+        Layout.alignment: Qt.AlignTop
 
-        spacing: Settings.panelMargin
-        model: root.notifications
+        spacing: Settings.panel.margin / 2
+        model: SNotification.popups
+
+        clip: false
 
         delegate: NotificationToast {
-            required property var notification
-            notif: notification
+            required property var modelData
+            notif: modelData
 
             width: ListView.view.width
 
-            onDeadToast: SNotification.removePopup(notification)
+            onDeadToast: {
+                SNotification.removePopup(modelData);
+            }
         }
     }
 }

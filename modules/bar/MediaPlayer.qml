@@ -1,94 +1,87 @@
 import QtQuick
 import QtQuick.Layouts
-import QtQuick.Controls
 
+import qs.common
 import qs.services
 import qs.widgets
 
-RowLayout {
-    Layout.preferredWidth: container.width
-    Layout.fillHeight: true
+MRectangle {
+    id: container
 
-    MRectangle {
-        id: container
-        Layout.margins: 4
+    readonly property double iconScale: 0.7
 
-        Layout.preferredWidth: 350
-        Layout.fillHeight: true
+    RowLayout {
+        anchors.verticalCenter: parent.verticalCenter
+        anchors.left: parent.left
+        anchors.right: parent.right
 
-        RowLayout {
-            anchors.fill: parent
-            spacing: 5
-            anchors.leftMargin: 3
-            anchors.rightMargin: anchors.leftMargin
+        anchors.margins: 2
+        anchors.leftMargin: Settings.item.margin
+        anchors.rightMargin: Settings.item.margin
 
-            RowLayout {
-                Layout.fillWidth: true
-                Layout.fillHeight: true
+        spacing: Settings.item.margin
 
-                MIconClick {
-                    Layout.preferredWidth: 20
-                    Layout.preferredHeight: 20
+        MThemeIconClick {
+            implicitSize: parent.height * container.iconScale
+            name: "prev.svg"
 
-                    name: "prev.svg"
-
-                    onIconClick: {
-                        SMediaPlayer.prev();
-                    }
-                }
-
-                MIconClick {
-                    Layout.preferredWidth: 20
-                    Layout.preferredHeight: 20
-
-                    name: "play.svg"
-
-                    onIconClick: {
-                        SMediaPlayer.play();
-                    }
-                    visible: !SMediaPlayer.isPlaying
-                }
-
-                MIconClick {
-                    Layout.preferredWidth: 20
-                    Layout.preferredHeight: 20
-
-                    name: "pause.svg"
-
-                    onIconClick: {
-                        SMediaPlayer.pause();
-                    }
-                    visible: SMediaPlayer.isPlaying
-                }
-
-                MIconClick {
-                    Layout.preferredWidth: 20
-                    Layout.preferredHeight: 20
-
-                    name: "next.svg"
-
-                    onIconClick: {
-                        SMediaPlayer.next();
-                    }
-                }
-            }
-
-            RowLayout {
-                id: content
-
-                Layout.fillWidth: true
-                Layout.fillHeight: true
-                Layout.alignment: Qt.AlignLeft
-
-                MText {
-                    Layout.fillWidth: true
-                    Layout.maximumWidth: container.width
-                    Layout.alignment: Qt.AlignLeft | Qt.AlignVCenter
-
-                    text: SMediaPlayer.barToString()
-                    clip: true
-                }
+            onIconClick: {
+                SMediaPlayer.prev();
             }
         }
+
+        MThemeIconClick {
+            implicitSize: parent.height * container.iconScale
+            name: "play.svg"
+
+            onIconClick: {
+                SMediaPlayer.play();
+            }
+            visible: !SMediaPlayer.isPlaying
+        }
+
+        MThemeIconClick {
+            implicitSize: parent.height * container.iconScale
+            name: "pause.svg"
+
+            onIconClick: {
+                SMediaPlayer.pause();
+            }
+            visible: SMediaPlayer.isPlaying
+        }
+
+        MThemeIconClick {
+            implicitSize: parent.height * container.iconScale
+            name: "next.svg"
+
+            onIconClick: {
+                SMediaPlayer.next();
+            }
+        }
+
+        RowLayout {
+            id: content
+
+            Layout.fillWidth: true
+            Layout.fillHeight: true
+            Layout.alignment: Qt.AlignLeft
+
+            MText {
+                Layout.fillWidth: true
+                Layout.maximumWidth: container.width
+                Layout.alignment: Qt.AlignLeft | Qt.AlignVCenter
+
+                text: SMediaPlayer.barToString()
+                clip: true
+            }
+        }
+
+        // MThemeIcon {
+        //     Layout.fillHeight: true
+        //     Layout.preferredWidth: 20
+        //     name: "prev.svg"
+        // }
+
+        //
     }
 }

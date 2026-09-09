@@ -1,2 +1,7 @@
 .qmlls.ini
 .direnv
+
+.zed
+
+.env
+__pycache__

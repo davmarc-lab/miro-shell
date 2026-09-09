@@ -1,5 +1,4 @@
-import Quickshell.Widgets
-
+import QtQuick
 import QtQuick.Layouts
 
 import qs.common
@@ -13,17 +12,22 @@ MRectangle {
     Layout.fillHeight: true
 
     color: Theme.colorSurfaceVariant
-    radius: 0
 
-    MIconClick {
+    MThemeIcon {
         id: icon
         anchors.fill: parent
+        anchors.margins: Settings.item.margin / 2
 
-        implicitSize: Settings.barHeight
+        implicitSize: Settings.bar.height
 
-        name: "arch-logo.svg"
+        name: "arch-logo"
+    }
 
-        onIconClick: {
+    MouseArea {
+        id: mouse
+        anchors.fill: parent
+
+        onClicked: {
             Global.enableUtility = true;
         }
     }

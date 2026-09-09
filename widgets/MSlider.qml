@@ -27,7 +27,7 @@ Slider {
         width: root.horizontal ? root.availableWidth : thumb.height / 3
         height: root.vertical ? root.availableHeight : thumb.height / 3
 
-        radius: Settings.itemRadius
+        radius: Settings.item.radius
         color: Theme.colorOutline
 
         MRectangle {

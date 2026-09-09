@@ -1,12 +1,15 @@
+pragma ComponentBehavior: Bound
+
 import Quickshell
+import Quickshell.Wayland
 
 import QtQuick
 import QtQuick.Layouts
 
 import qs
+import qs.services
 import qs.common
 import qs.widgets
-import qs.services
 
 Scope {
     Variants {
@@ -14,117 +17,167 @@ Scope {
 
         MPanelWindow {
             id: root
+            WlrLayershell.keyboardFocus: WlrKeyboardFocus.None
 
             required property var modelData
             screen: modelData
 
+            property string opacity: Settings.bar.transparent ? "00" : "aa"
+
+            color: "#" + opacity + Theme.colorSurface.substr(1)
+
             anchors {
-                top: true
-                left: true
-                right: true
+                top: Settings.bar.align.isTop || Settings.bar.align.isVertical
+                left: Settings.bar.align.isLeft || Settings.bar.align.isHorizontal
+                right: Settings.bar.align.isRight || Settings.bar.align.isHorizontal
+                bottom: Settings.bar.align.isBottom || Settings.bar.align.isVertical
             }
 
-            implicitWidth: screen.width
-            implicitHeight: Settings.barHeight
+            implicitWidth: Settings.bar.align.isHorizontal ? screen.width : Settings.bar.width + Settings.bar.margins.left + Settings.bar.margins.right
+            implicitHeight: Settings.bar.align.isHorizontal ? Settings.bar.height + Settings.bar.margins.top + Settings.bar.margins.bottom : screen.height
 
             Item {
-                id: leftSection
+                id: base
 
-                anchors.top: parent.top
-                anchors.bottom: parent.bottom
-                anchors.left: parent.left
-                anchors.right: middleSection.left
+                anchors.fill: parent
 
-                RowLayout {
-                    id: bar
-                    anchors.fill: parent
-
-                    Logo {}
-
-                    Workspaces {}
-
-                    MediaPlayer {}
-
-                    MFillLayout {
-                        dy: false
-                    }
-                }
-            }
-
-            RowLayout {
-                id: middleSection
-
-                anchors.top: parent.top
-                anchors.bottom: parent.bottom
-                anchors.horizontalCenter: parent.horizontalCenter
-
-                MButton {
-                    text: STime.time
-                    onClicked: {
-                        Global.enableDock = !Global.enableDock;
-                    }
-                }
-            }
-
-            Item {
-                id: rightSection
-
-                anchors.top: parent.top
-                anchors.bottom: parent.bottom
-                anchors.left: middleSection.right
-                anchors.right: parent.right
+                anchors.topMargin: Settings.bar.align.isHorizontal ? Settings.bar.margins.top : 0
+                anchors.leftMargin: Settings.bar.align.isVertical ? Settings.bar.margins.left : 0
+                anchors.rightMargin: Settings.bar.align.isVertical ? Settings.bar.margins.right : 0
+                anchors.bottomMargin: Settings.bar.align.isHorizontal ? Settings.bar.margins.bottom : 0
 
                 RowLayout {
-                    id: rightPanel
                     anchors.fill: parent
+                    Item {
+                        id: leftSection
 
-                    Layout.alignment: Qt.AlignVCenter | Qt.AlignRight
-                    Layout.fillWidth: true
-                    Layout.fillHeight: true
-
-                    MFillLayout {}
-
-                    MWrapRectangle {
+                        Layout.fillWidth: true
                         Layout.fillHeight: true
 
                         RowLayout {
                             anchors.fill: parent
-                            anchors.leftMargin: 6
 
-                            KeyboardInfo {}
+                            Logo {}
 
-                            VolumeInfo {}
+                            MRectangle {
+                                Layout.fillHeight: true
+                                Layout.preferredWidth: workspaces.implicitWidth + Settings.item.margin * 2
 
-                            BatteryInfo {}
+                                Workspaces {
+                                    id: workspaces
+                                    anchors.centerIn: parent
+                                }
+                            }
+
+                            Loader {
+                                active: true
+                                visible: SMediaPlayer.currentPlayer != null
+
+                                Layout.fillHeight: true
+                                Layout.preferredWidth: parent.width * 0.5
+
+                                sourceComponent: MediaPlayer {}
+                            }
 
                             MFillLayout {}
                         }
                     }
 
-                    MRectangle {
+                    Item {
+                        id: middleSection
+
                         Layout.fillWidth: true
                         Layout.fillHeight: true
-                        Layout.maximumWidth: 150
 
-                        SystemTray {
+                        RowLayout {
                             anchors.fill: parent
+                            MFillLayout {}
+
+                            Clock {
+                                Layout.alignment: Qt.AlignCenter
+                            }
+
+                            MFillLayout {}
                         }
                     }
 
-                    MIconButton {
+                    Item {
+                        id: rightSection
+
+                        Layout.fillWidth: true
                         Layout.fillHeight: true
-                        Layout.preferredWidth: this.height
-                        iconName: Global.enableRightPanel ? "down-arrow.svg" : "right-arrow.svg"
 
-                        color: Theme.colorSurfaceVariant
-                        onIconClick: {
-                            Global.enableRightPanel = true;
+                        RowLayout {
+                            anchors.fill: parent
+
+                            MFillLayout {}
+
+                            MRectangle {
+                                Layout.fillHeight: true
+                                Layout.preferredWidth: key.implicitWidth + Settings.item.margin * 2
+
+                                KeyboardInfo {
+                                    id: key
+                                    anchors.centerIn: parent
+                                }
+                            }
+
+                            MRectangle {
+                                Layout.fillHeight: true
+                                Layout.preferredWidth: vol.implicitWidth + Settings.item.margin * 2
+
+                                VolumeInfo {
+                                    id: vol
+                                    anchors.centerIn: parent
+                                }
+
+                                MouseArea {
+                                    id: mouse
+                                    anchors.fill: parent
+                                    onClicked: Global.enableVolumeSliderPopup = !Global.enableVolumeSliderPopup
+                                }
+                            }
+
+                            MRectangle {
+                                visible: SPower.isBattery()
+
+                                Layout.fillHeight: true
+                                Layout.preferredWidth: bat.implicitWidth + Settings.item.margin * 2
+
+                                BatteryInfo {
+                                    id: bat
+                                    anchors.centerIn: parent
+                                }
+                            }
+
+                            Loader {
+                                active: SSystemTray.itemsCount
+                                visible: this.active
+
+                                Layout.fillHeight: true
+                                Layout.minimumWidth: 100
+
+                                sourceComponent: MRectangle {
+                                    anchors.fill: parent
+                                    SystemTray {
+                                        id: sys
+                                        anchors.fill: parent
+                                    }
+                                }
+                            }
+
+                            MThemeIconButton {
+                                Layout.fillHeight: true
+                                Layout.preferredWidth: this.height
+                                iconName: Global.enableRightPanel ? "down-arrow.svg" : "right-arrow.svg"
+
+                                color: Theme.colorSurfaceVariant
+                                onIconClick: {
+                                    Global.enableRightPanel = true;
+                                }
+                            }
                         }
                     }
-                }
-
-                MFillLayout {
-                    dy: false
                 }
             }
         }

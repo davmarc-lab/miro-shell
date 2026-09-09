@@ -12,7 +12,7 @@ MRectangle {
 
     ColumnLayout {
         anchors.fill: parent
-        anchors.margins: Settings.panelMargin
+        anchors.margins: Settings.panel.margin
 
         // Location Info
         RowLayout {

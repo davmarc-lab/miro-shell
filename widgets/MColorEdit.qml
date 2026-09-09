@@ -12,9 +12,9 @@ Item {
 
     RowLayout {
         anchors.fill: parent
-        anchors.margins: Settings.itemMargin
+        anchors.margins: Settings.item.margin
 
-        spacing: Settings.itemMargin
+        spacing: Settings.item.margin
 
         MText {
             Layout.alignment: Qt.AlignLeft | Qt.AlignVCenter

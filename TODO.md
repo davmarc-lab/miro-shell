@@ -1,74 +1,65 @@
 # TODO
 
-- [X] Powermenu
-- [X] Wallpaper picker
-- [X] **Screen lock**
+- [ ] **Screen lock**
 - [ ] Phone link
-- [ ] Change Weather API [wttr](https://github.com/chubin/wttr.in#usage) (needs to be evaluated since it could be inaccurate)
-- [X] TODO list
-- [X] System Tray
+- [ ] System Tray
     - [X] icons
     - [X] applications menu/actions
     - [X] menu positioning
+    - [ ] custom menus
 - [ ] Wifi Networks
     - [X] network list
-    - [ ] network interactions
+    - [X] network interactions
     - [ ] network icons
-    - [ ] add support for wired networks
+- [ ] Wired Networks
 - [ ] Bluetooth devices
-- [ ] Do Not Disturb
+    - [ ] on right panel only paired devices
+    - [ ] bluetooth popup to pair new devices to keep everything in order
 - [ ] Notifications
     - [X] notification panel
     - [X] notification popup
     - [X] popup auto close
     - [X] single notification toast dismiss
-    - [ ] single notification dismiss
-- [ ] Weather
-    - [X] prepare Weather service
-    - [ ] position/orginize elements
+    - [X] single notification dismiss
+    - [ ] find notifications default icons
 - [ ] Volume mixer
     - [X] volume manipulation
-    - [ ] better layout (maybe icon on the left, name above and slider below, mute on the right)
+    - [X] better layout (maybe icon on the left, name above and slider below, mute on the right)
+    - [X] volume slider
+    - [ ] fixed slider position and vertical support
 - [ ] Calendar
     - [X] calendar basic structure
     - [X] highlight current day
-    - [ ] move around months
-    - [ ] add events
+    - [X] move around months
+    - [X] add events
+    - [X] complete events
+    - [ ] use event index instead of comparing data
     - [ ] events in bar??
     - [ ] event dot below day number
     - [ ] change view??
-
 - [ ] Calendar application to manage events categories and other stuff?
-- [ ] Sample control widgets panel to show
 
 ## Fix
 - [ ] First time using shell
-- [ ] Press ESC to close a Popup
-- [X] Press ENTER to press a button (TODO => Add button)
-- [X] Fix battery percentage
-- [ ] Doesn't change workspaces with mouse sometimes
 - [ ] `SystemTray.qml::trimUrl()` needs refactor
-- [X] fix system tray menu icons
 - [ ] volume mixer value reset when next()
-- [X] fix slider sizes
-- [X] vertical slider doesn't work
 - [ ] refactor `ColorEdit`
+- [ ] wifi used not tracked
+- [ ] refactor Row and Column layouts (animations)
 
 ## Critical Fix
-- [X] Write to JSON files (JSONAdapter)
+- [ ] System Icons support (script that finds the icons path)
 - [ ] Fix Popup focus
-- [ ] Fix Utility => TODO scrollable item
 - [ ] Fix NotificationItem size
 - [ ] Whole code refactor
+- [ ] Init script doesn't work
+- [ ] Keyboard layout dependencies???
 
 ## Other features
-
+- [ ] Calendar events in Dock panel
 - [ ] Colorscheme picker
 - [ ] Implement colorscheme loader
 - [ ] Implement colorscheme save system
 - [ ] Resource Usage
-- [X] mpd && playerctl
-- [X] Notification popups
-- [X] Volume mixer
-- [X] Keyboard layout
 - [ ] Refactor RightPanel module
+- [ ] svg color changer script / command

@@ -2,92 +2,86 @@ pragma Singleton
 
 import Quickshell
 import Quickshell.Io
+import Quickshell.Networking
 
 import QtQuick
-
-import qs.common
 
 Singleton {
     id: root
 
-    readonly property bool wifi: false
-    readonly property bool ethernet: false
+    property bool enableWifi: false
+    property var activeWifi: null
 
-    readonly property string netData: Settings.cacheDir + "network/"
+    readonly property bool connected: Networking.connectivity == NetworkConnectivity.Full
+    readonly property string current: connected && activeWifi ? activeWifi.name : "Network"
 
-    property list<var> detectedNet: []
+    function init() {
+        root.enableWifi = Networking.wifiEnabled;
 
-    property bool isInit: false
-
-    function init(): void {
-        root.scanWifi();
-        root.isInit = true;
-    }
-
-    function dump(): void {
-        if (detectedNet.length != 0) {
-            console.log(detectedNet.length);
-            for (var elem of detectedNet) {
-                console.log(elem.inUse + " - " + elem.network + " - " + elem.signal + " - " + elem.security + " - ");
+        // initial net scan to check connected wifi network
+        const nets = this.getAvailableNetworks();
+        for (var n of nets) {
+            if (n.connected) {
+                this.activeWifi = n;
+                break;
             }
         }
     }
 
-    FileView {
-        id: netFile
-        path: Settings.cacheDir + "network/wifi-networks.json"
+    // using extra variable to avoid switch flickering while enabling wifi
+    function toggleWifi() {
+        Networking.wifiEnabled = !Networking.wifiEnabled;
+        root.enableWifi = Networking.wifiEnabled;
+    }
 
-        blockLoading: false
-        watchChanges: true
-        printErrors: true
+    function connect(wifi) {
+        wifi.connect();
+        root.activeWifi = wifi;
+    }
 
-        onFileChanged: reload()
-        onPathChanged: reload()
-
-        onLoaded: {
-            if (this.text().length > 0) {
-                const parsed = JSON.parse(this.text());
-                if (parsed) {
-                    const ordered = parsed.sort((a, b) => b.signal - a.signal);
-                    const uniq = new Set();
-                    root.detectedNet = [];
-                    ordered.forEach(o => {
-                        if (!uniq.has(o.ssid) && o.ssid.length) {
-                            uniq.add(o.ssid);
-                            root.detectedNet.push(o);
-                        }
-                    });
-                    // console.log("------DBG-------");
-                    // networks.forEach(o => console.log(o.ssid + ", " + o.signal));
-                    // console.log("------END-------");
-                }
-            }
-        }
-        onLoadFailed: {
-            console.log("failed -> " + this.path);
+    function disconnect(wifi) {
+        if (wifi.connected) {
+            wifi.disconnect();
+            root.activeWifi = null;
         }
     }
 
-    function getAvailableNetworks(): list<var> {
-        if (this.isInit) {
-            return detectedNet;
-        }
-        return [];
-    }
-
-    Process {
-        id: getWifi
-        running: false
-
-        command: ["sh", "-c", Settings.scriptPath + "network/get-wifi.sh"]
-        stdout: StdioCollector {
-            onStreamFinished: {
-                getWifi.running = false;
-            }
+    function forget(wifi) {
+        if (wifi.known) {
+            this.disconnect(wifi);
+            wifi.forget();
         }
     }
 
-    function scanWifi(): void {
-        getWifi.running = true;
+    function getDevices() {
+        return Networking.devices.values;
+    }
+
+    function getNetworks() {
+        return Networking.devices.values.map(d => d.networks.values).reduce((acc, cur) => acc.concat(cur), []);
+    }
+
+    function getAvailableNetworks() {
+        return Networking.devices.values.map(d => {
+            if (d.type === DeviceType.Wifi)
+                d.scannerEnabled = true;
+            return d.networks.values;
+        }).reduce((acc, cur) => acc.concat(cur), []);
+    }
+
+    IpcHandler {
+        target: "network"
+
+        function dumpDevices(): void {
+            console.log(Networking.devices.values);
+        }
+
+        function getDevices() {
+            return root.getDevices();
+        }
+
+        function getNetworks() {
+            root.getNetworks();
+        }
     }
 }

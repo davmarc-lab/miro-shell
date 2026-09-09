@@ -11,7 +11,7 @@ Singleton {
     }
 
     function prepareCache(): void {
-        Quickshell.execDetached(["sh", "-c", `${Settings.scriptPath}/init.sh`]);
+        Quickshell.execDetached(["sh", "-c", `${Settings.dirs.scripts}/init.sh`]);
     }
 
     function capitalizeString(str: string): string {

@@ -1,15 +1,16 @@
+import Quickshell.Wayland
+
 import QtQuick
 import QtQuick.Layouts
-
-import Quickshell
 
 import qs
 import qs.common
 import qs.widgets
-import qs.services
 
 MPopup {
     id: root
+
+    readonly property list<string> sources: ["Todo", "Calendar", "Mixer", "Docker"]
 
     onOpenChanged: {
         Global.enableUtility = this.open;
@@ -17,20 +18,22 @@ MPopup {
 
     MRectangle {
         Layout.alignment: Qt.AlignLeft | Qt.AlignVCenter
-        Layout.preferredWidth: Settings.utilityPanelWidth
-        Layout.preferredHeight: Settings.utilityPanelHeight
-
+        Layout.preferredWidth: Settings.utilityPanel.width
+        Layout.preferredHeight: Settings.utilityPanel.height
         bottomLeftRadius: 0
         topLeftRadius: 0
 
         color: Theme.colorSurface
 
+        focus: true
+        Keys.onEscapePressed: root.open = false
+
         ColumnLayout {
             id: base
             anchors.fill: parent
-            anchors.margins: Settings.panelMargin
+            anchors.margins: Settings.panel.margin
 
-            spacing: Settings.panelMargin
+            spacing: Settings.panel.margin
 
             RowLayout {
                 id: head
@@ -51,43 +54,7 @@ MPopup {
                         anchors.fill: parent
 
                         onClicked: {
-                            content.setSource("Todo.qml");
-                        }
-                    }
-                }
-
-                MRectangle {
-                    Layout.fillWidth: true
-                    Layout.fillHeight: true
-
-                    MText {
-                        anchors.centerIn: parent
-                        text: "Weather"
-                    }
-
-                    MouseArea {
-                        anchors.fill: parent
-
-                        onClicked: {
-                            content.setSource("Weather.qml");
-                        }
-                    }
-                }
-
-                MRectangle {
-                    Layout.fillWidth: true
-                    Layout.fillHeight: true
-
-                    MText {
-                        anchors.centerIn: parent
-                        text: "Mixer"
-                    }
-
-                    MouseArea {
-                        anchors.fill: parent
-
-                        onClicked: {
-                            content.setSource("Mixer.qml");
+                            content.index = 0;
                         }
                     }
                 }
@@ -105,21 +72,76 @@ MPopup {
                         anchors.fill: parent
 
                         onClicked: {
-                            content.setSource("Calendar.qml");
+                            content.index = 1;
+                        }
+                    }
+                }
+
+                MRectangle {
+                    Layout.fillWidth: true
+                    Layout.fillHeight: true
+
+                    MText {
+                        anchors.centerIn: parent
+                        text: "Mixer"
+                    }
+
+                    MouseArea {
+                        anchors.fill: parent
+
+                        onClicked: {
+                            content.index = 2;
+                        }
+                    }
+                }
+
+                MRectangle {
+                    Layout.fillWidth: true
+                    Layout.fillHeight: true
+
+                    MText {
+                        anchors.centerIn: parent
+                        text: "Docker"
+                    }
+
+                    MouseArea {
+                        anchors.fill: parent
+
+                        onClicked: {
+                            content.index = 3;
                         }
                     }
                 }
             }
 
             MRectangle {
+                id: content
+                property int index: 0
+
                 Layout.fillWidth: true
                 Layout.fillHeight: true
+
                 radius: 0
 
-                Loader {
-                    id: content
+                Todo {
                     anchors.fill: parent
-                    source: "Todo.qml"
+                    visible: root.sources[content.index].toString() === "Todo"
+                }
+
+                Calendar {
+                    anchors.fill: parent
+                    visible: root.sources[content.index].toString() === "Calendar"
+                    onIsFocusedChanged: console.log(isFocused)
+                }
+
+                Mixer {
+                    anchors.fill: parent
+                    visible: root.sources[content.index].toString() === "Mixer"
+                }
+
+                Docker {
+                    anchors.fill: parent
+                    visible: root.sources[content.index].toString() === "Docker"
                 }
             }
         }

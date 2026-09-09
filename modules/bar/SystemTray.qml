@@ -1,76 +1,88 @@
 pragma ComponentBehavior: Bound
 
 import Quickshell
-import Quickshell.Widgets
 import Quickshell.Services.SystemTray
 
 import QtQuick
-import QtQuick.Layouts
 
 import qs.common
 import qs.widgets
 import qs.services
 
-ListView {
-    id: systrayList
-    anchors.fill: parent
-    anchors.verticalCenter: parent.verticalCenter
-    anchors.margins: Settings.itemMargin
-    spacing: Settings.itemMargin
+Item {
+    id: root
 
-    clip: true
-    orientation: ListView.Horizontal
+    ListView {
+        id: view
 
-    model: SSystemTray.getItems()
+        anchors.fill: parent
 
-    delegate: Item {
-        id: item
-        width: ListView.view.height
-        height: parent.height
-        anchors.verticalCenter: parent.verticalCenter
-
-        required property SystemTrayItem modelData
-
-        QsMenuAnchor {
-            id: menuOpener
-            menu: item.modelData.menu
-
-            anchor {
-                item: item
-                edges: Edges.Left | Edges.Bottom
-                margins.top: Settings.panelMargin
-            }
+        anchors {
+            topMargin: Settings.bar.align.isHorizontal ? 0 : Settings.item.margin
+            bottomMargin: topMargin
+            leftMargin: Settings.bar.align.isHorizontal ? Settings.item.margin : 0
+            rightMargin: leftMargin
         }
 
-        MouseArea {
-            anchors.fill: icon
+        spacing: 5
 
-            onClicked: {
-                menuOpener.open();
-            }
-        }
+        clip: true
+        orientation: Settings.bar.align.isHorizontal ? ListView.Horizontal : ListView.Vertical
 
-        IconImage {
-            id: icon
-            anchors.centerIn: parent
-            implicitSize: 24
+        model: SSystemTray.getItems()
 
-            source: trimUrl(item.modelData.icon)
+        delegate: Item {
+            id: item
+            width: height
+            height: root.height - Settings.item.margin * 1.4
 
-            function trimUrl(source: string): string {
-                var escape = "?path=";
-                var index = source.indexOf(escape);
-                if (index !== -1) {
-                    var start = source.indexOf("icon/") + 5;
-                    if (start === -1)
-                        return "";
+            anchors.verticalCenter: parent.verticalCenter
 
-                    var dir = item.modelData.icon.substr(index + escape.length) + "/";
-                    var name = source.substr(start, index - start);
-                    return Qt.resolvedUrl(dir + name);
+            required property SystemTrayItem modelData
+
+            MIcon {
+                id: icon
+                anchors.fill: parent
+                implicitSize: parent.height
+
+                visible: item.modelData.icon != ""
+
+                name: trimUrl(item.modelData.icon)
+
+                function trimUrl(source: string): string {
+                    var escape = "?path=";
+                    var index = source.indexOf(escape);
+                    if (index !== -1) {
+                        const start = source.indexOf("icon/") + 5;
+                        if (start === -1)
+                            return "";
+
+                        const dir = item.modelData.icon.substr(index + escape.length) + "/";
+                        const name = source.substr(start, index - start);
+                        return Qt.resolvedUrl(dir + name);
+                    }
+
+                    return source;
                 }
+            }
 
-                return source;
+            QsMenuAnchor {
+                id: menuOpener
+                menu: item.modelData.menu
+
+                anchor {
+                    item: icon
+                    // edges: Edges.Left | Edges.Bottom
+                    margins.top: icon.implicitSize + (view.height - icon.height) / 2
+                }
+            }
+
+            MouseArea {
+                anchors.fill: icon
+
+                onClicked: {
+                    menuOpener.open();
+                }
             }
         }
     }

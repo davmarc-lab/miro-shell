@@ -1,0 +1,36 @@
+{
+    "name": "NeonVoid-Cyberpunk",
+    "dark": {
+        "mPrimary": "#ff003c",
+        "mPrimaryHover": "#d60032",
+        "mOnPrimary": "#ffffff",
+        "mSecondary": "#00ff9f",
+        "mSecondaryHover": "#00cc7e",
+        "mOnSecondary": "#0b0e14",
+        "mError": "#fdf500",
+        "mOnError": "#0b0e14",
+        "mSurface": "#0b0e14",
+        "mOnSurface": "#00f3ff",
+        "mSurfaceVariant": "#1a1d23",
+        "mOnSurfaceVariant": "#94adbc",
+        "mOutline": "#323c4d",
+        "mShadow": "#000000"
+    },
+    "light": {
+        "mPrimary": "#7000ff",
+        "mPrimaryHover": "#5c00d1",
+        "mOnPrimary": "#ffffff",
+        "mSecondary": "#ff0055",
+        "mSecondaryHover": "#d10046",
+        "mOnSecondary": "#ffffff",
+        "mError": "#ff5500",
+        "mOnError": "#ffffff",
+        "mSurface": "#f0f0f5",
+        "mOnSurface": "#1a1d23",
+        "mSurfaceVariant": "#e0e0e9",
+        "mOnSurfaceVariant": "#4a4a5a",
+        "mOutline": "#cfcfd8",
+        "mShadow": "#00000022"
+    }
+}
+

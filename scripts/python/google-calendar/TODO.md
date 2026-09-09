@@ -1,0 +1,1 @@
+- [ ] Store the auth token and everytime check if it's valid (not expired)

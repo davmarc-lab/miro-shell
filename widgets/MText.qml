@@ -3,6 +3,8 @@ import QtQuick
 import qs.common
 
 Text {
-    font.pointSize: Settings.fontSize
+    id: root
+    verticalAlignment: Text.AlignVCenter
+    font.pointSize: Settings.font.size
     color: Theme.colorOnSurface
 }

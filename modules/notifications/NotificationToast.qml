@@ -1,9 +1,8 @@
-import Quickshell.Widgets
-
 import QtQuick
 import QtQuick.Layouts
 
 import qs.common
+import qs.services
 import qs.widgets
 
 MRectangle {
@@ -11,7 +10,7 @@ MRectangle {
     required property var notif
 
     border.color: Theme.colorOutline
-    border.width: Settings.notifPopupBorderSize
+    border.width: Settings.notification.popup.borderSize
 
     height: layout.height
 
@@ -25,20 +24,25 @@ MRectangle {
         }
         anchors.verticalCenter: parent.verticalCenter
 
-        IconImage {
-            Layout.margins: Settings.itemMargin
-            implicitSize: 32
+        MIcon {
+            Layout.margins: Settings.notification.margin
+            Layout.alignment: Qt.AlignTop | Qt.AlignHCenter
+            Layout.preferredWidth: 32
+            Layout.preferredHeight: width
 
-            source: root.notif.image
+            name: root.notif?.image ?? ""
         }
 
         ColumnLayout {
             Layout.fillWidth: true
+            Layout.fillHeight: true
             spacing: 0
 
             RowLayout {
                 Layout.fillWidth: true
-                Layout.margins: Settings.itemMargin
+                Layout.fillHeight: true
+                Layout.topMargin: Settings.notification.margin
+                Layout.rightMargin: Layout.topMargin
                 Layout.bottomMargin: 0
 
                 MTitle {
@@ -49,31 +53,75 @@ MRectangle {
 
                     color: Theme.colorOnSurface
                     font.weight: Font.Bold
+
                     text: {
+                        if (root.notif == null)
+                            return "";
                         if (root.notif.summary.length)
                             return root.notif.summary;
                         return root.notif.appName;
                     }
                 }
 
-                MRButton {
-                    Layout.alignment: Qt.AlignRight
-                    text: "X"
+                MThemeIcon {
+                    id: deleteIcon
+                    Layout.preferredWidth: parent.height * 0.7
+                    Layout.preferredHeight: width
+                    Layout.alignment: Qt.AlignVCenter
 
-                    // trigger timer callback
-                    onClicked: alive.triggered()
+                    name: "delete.svg"
+
+                    HoverHandler {
+                        id: iconHover
+                    }
                 }
             }
 
             MText {
                 id: content
                 Layout.fillWidth: true
-                Layout.margins: Settings.itemMargin
-                Layout.topMargin: 0
+                Layout.rightMargin: Settings.item.margin
+                Layout.bottomMargin: Settings.item.margin
+                wrapMode: Text.Wrap
 
                 color: Theme.colorOnSurface
                 clip: true
-                text: root.notif.body
+                text: root.notif?.body ?? ""
+            }
+        }
+    }
+
+    containmentMask: deleteIcon
+
+    MouseArea {
+        anchors.fill: parent
+        propagateComposedEvents: true
+        onClicked: {
+            if (iconHover.hovered) {
+                // dismiss notif
+                SNotification.clear(root.notif);
+                return;
+            }
+        }
+
+        // stop notification timer
+        onPressed: {
+            if (alive.running)
+                alive.running = false;
+        }
+
+        drag {
+            target: root
+            axis: Drag.XAxis
+        }
+
+        onReleased: {
+            const initialPos = 0;
+            const offset = root.width / 2;
+            if (drag.target.x - initialPos >= offset) {
+                alive.triggered();
+            } else {
+                drag.target.x = initialPos;
             }
         }
     }
@@ -83,7 +131,7 @@ MRectangle {
         running: true
         repeat: false
 
-        interval: Settings.notifPopupTimer * 1000
+        interval: Settings.notification.popup.timer * 1000
 
         onTriggered: root.deadToast()
     }

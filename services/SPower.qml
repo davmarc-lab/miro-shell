@@ -11,4 +11,8 @@ Singleton {
     id: root
 
     readonly property UPowerDevice battery: UPower.displayDevice
+
+    function isBattery() {
+        return root.battery.isLaptopBattery;
+    }
 }

@@ -8,15 +8,15 @@ import qs.common
 Singleton {
     id: root
 
+    property bool enableFoo: false
+
     // modules loading
     property bool enableBar: true
     property bool enableRightPanel: false
-    // property bool enableNotification: true
-    // property bool enableSysTray: false
+    property bool enableNotification: true
 
     property bool enableNotifPopups: true
 
-    property bool enableFoo: false
     property bool enableWallpaper: true
 
     property bool enableDock: false
@@ -29,7 +29,9 @@ Singleton {
     // misc
     property bool enableBattery: false
 
-    property bool enableWeather: true
+    property bool enableVolumeSliderPopup: false
+
+    property bool enableWeather: false
 
     // shell
     property bool firstRun: false
@@ -39,7 +41,7 @@ Singleton {
     FileView {
         id: hFirstRun
 
-        path: Settings.cacheUserDir + "first-run.txt"
+        path: Settings.cache.user + "first-run.txt"
         printErrors: false
 
         onLoadFailed: error => {

@@ -1,11 +1,11 @@
 pragma ComponentBehavior: Bound
 
+import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 
 import qs.common
 import qs.widgets
-import "./theme/"
 
 MContentItem {
     id: root
@@ -15,10 +15,10 @@ MContentItem {
 
     ScrollView {
         width: root.sizex
-        height: root.sizey - (2 * Settings.panelMargin)
+        height: root.sizey - (2 * Settings.panel.margin)
 
         x: (width - content.itemWidth) / 2
-        y: Settings.panelMargin
+        y: Settings.panel.margin
 
         MContentSection {
             id: content
@@ -52,10 +52,10 @@ MContentItem {
                         MTextInput {
                             Layout.alignment: Qt.AlignRight
                             Layout.fillHeight: true
-                            text: Settings.barHeight
+                            text: Settings.bar.height
 
                             onTextEdited: {
-                                Settings.barHeight = this.text;
+                                Settings.bar.height = this.text;
                             }
                         }
                     }
@@ -82,10 +82,10 @@ MContentItem {
                         MTextInput {
                             Layout.alignment: Qt.AlignRight
                             Layout.fillHeight: true
-                            text: Settings.numWorkspaces
+                            text: Settings.workspaces.size
 
                             onTextEdited: {
-                                Settings.numWorkspaces = this.text;
+                                Settings.workspaces.size = this.text;
                             }
                         }
                     }
@@ -112,10 +112,10 @@ MContentItem {
                         MTextInput {
                             Layout.alignment: Qt.AlignRight
                             Layout.fillHeight: true
-                            text: Settings.panelMargin
+                            text: Settings.panel.margin
 
                             onTextEdited: {
-                                Settings.panelMargin = this.text;
+                                Settings.panel.margin = this.text;
                             }
                         }
                     }
@@ -137,10 +137,10 @@ MContentItem {
                         MTextInput {
                             Layout.alignment: Qt.AlignRight
                             Layout.fillHeight: true
-                            text: Settings.itemMargin
+                            text: Settings.item.margin
 
                             onTextEdited: {
-                                Settings.itemMargin = this.text;
+                                Settings.item.margin = this.text;
                             }
                         }
                     }
@@ -162,10 +162,10 @@ MContentItem {
                         MTextInput {
                             Layout.alignment: Qt.AlignRight
                             Layout.fillHeight: true
-                            text: Settings.itemRadius
+                            text: Settings.item.radius
 
                             onTextEdited: {
-                                Settings.itemRadius = this.text;
+                                Settings.item.radius = this.text;
                             }
                         }
                     }
@@ -242,10 +242,10 @@ MContentItem {
                         MTextInput {
                             Layout.alignment: Qt.AlignRight
                             Layout.fillHeight: true
-                            text: Settings.buttonRadius
+                            text: Settings.button.radius
 
                             onTextEdited: {
-                                Settings.buttonRadius = this.text;
+                                Settings.button.radius = this.text;
                             }
                         }
                     }

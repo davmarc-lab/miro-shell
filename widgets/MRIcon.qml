@@ -8,7 +8,7 @@ import qs.common
 Image {
     id: root
     required property string name
-    property string dir: Settings.iconsPath + Theme.themeStyle + "/"
+    property string dir: Settings.dirs.icons + Theme.themeStyle + "/"
 
     source: Qt.resolvedUrl(this.dir + this.name)
 

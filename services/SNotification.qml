@@ -2,6 +2,7 @@ pragma Singleton
 pragma ComponentBehavior: Bound
 
 import Quickshell
+import Quickshell.Io
 import Quickshell.Services.Notifications
 
 import QtQuick
@@ -10,21 +11,17 @@ import qs
 
 Singleton {
     id: root
-    property list<Notif> notifications: []
 
-    ListModel {
-        id: popupsModel
-    }
+    property alias notifications: server.trackedNotifications
 
-    readonly property ListModel popupsNotifications: popupsModel
-
-    property bool enablePopups: Global.enableNotifPopups
+    property ListModel popups: ListModel {}
 
     property NotificationServer server: NotificationServer {
-        id: notifServer
+        id: server
 
         bodySupported: true
         actionsSupported: true
+        imageSupported: true
         keepOnReload: true
 
         bodyMarkupSupported: false
@@ -32,72 +29,76 @@ Singleton {
 
         onNotification: function (notif) {
             notif.tracked = true;
-            const newNotif = notifComp.createObject(root, {
-                notification: notif,
-                popup: true
-            });
-            root.notifications.push(newNotif);
+            if (Global.enableNotifPopups)
+                root.popups.append(notif);
+        }
+    }
 
-            if (root.enablePopups && newNotif.popup) {
-                root.addPopup(newNotif);
+    function hasPopups() {
+        return root.popups.count > 0;
+    }
+
+    function clearPopups() {
+        root.popups.clear();
+    }
+
+    function clear(notification) {
+        const notifs = root.notifications.values;
+        for (let i = notifs.length - 1; i >= 0; i--) {
+            if (notification.id == notifs[i].id) {
+                this.removePopup(notifs[i]);
+                notifs[i].dismiss();
+                return;
             }
         }
     }
 
     function clearAll() {
-        for (var notif of root.notifications) {
-            notif.clear();
+        const notifs = root.notifications.values;
+        for (let i = notifs.length - 1; i >= 0; i--) {
+            this.removePopup(notifs[i]);
+            notifs[i].dismiss();
         }
-        root.notifications = [];
-        root.popupsNotifications.clear();
     }
 
-    function addPopup(notification) {
-        popupsModel.append({
-            notification: notification
-        });
-    }
-
-    function removePopup(notification) {
-        for (let i = 0; i < popupsModel.count; i++) {
-            if (popupsModel.get(i).notification === notification) {
-                popupsModel.remove(i);
+    function removePopup(notif) {
+        for (let i = root.popups.count - 1; i >= 0; i--) {
+            if (root.popups.get(i).id === notif.id) {
+                root.popups.remove(i, 1);
                 break;
             }
         }
     }
 
+    function sendNotification(summary, body) {
+        sendNotif.summary = summary;
+        sendNotif.body = body;
+        sendNotif.running = true;
+    }
+
     function init() {
     }
 
-    component Notif: QtObject {
-        id: wrapper
+    Process {
+        id: sendNotif
+        running: false
 
-        required property Notification notification
+        property string summary: ""
+        property string body: ""
+        property int ugency: 0
 
-        required property bool popup
-
-        property string appName: notification.appName
-        property string appIcon: notification.appIcon
-
-        property string image: notification.image
-        property string summary: notification.summary
-        property string body: notification.body
-        property string urgency: notification.urgency
-
-        property bool tracked: notification.tracked
-
-        // notification actions
-        property list<var> actions: notification.actions ?? []
-
-        function clear() {
-            notification.dismiss();
-        }
+        command: ["notify-send", summary, body]
     }
 
-    Component {
-        id: notifComp
+    IpcHandler {
+        target: "notification"
 
-        Notif {}
+        function togglePopups(): void {
+            Global.enableNotifPopups = !Global.enableNotifPopups;
+        }
+
+        function isPopupsEnabled(): bool {
+            return Global.enableNotifPopups;
+        }
     }
 }
