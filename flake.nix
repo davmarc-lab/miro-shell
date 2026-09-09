@@ -24,8 +24,8 @@
         shellHook = ''
           echo "🚀 Miro-Shell Development Environment"
           echo "------------------------------------"
+          echo "Run 'test-shell' to preview your config."
         '';
       };
     };
 }
-
