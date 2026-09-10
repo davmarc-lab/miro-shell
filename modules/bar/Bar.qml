@@ -124,7 +124,7 @@ Scope {
 
                             MRectangle {
                                 Layout.fillHeight: true
-                                Layout.preferredWidth: vol.implicitWidth + Settings.item.margin * 2
+                                Layout.preferredWidth: vol.implicitWidth + Settings.item.margin
 
                                 VolumeInfo {
                                     id: vol
@@ -176,6 +176,7 @@ Scope {
                                     Global.enableRightPanel = true;
                                 }
                             }
+
                         }
                     }
                 }

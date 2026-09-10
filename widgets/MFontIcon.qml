@@ -23,7 +23,7 @@ Text {
     property int iconGrad: 0
     property int iconOpticalSize: 24
 
-    text: unicode && icon != "A" ? icon : Icons.get(icon)
+    text: unicode && icon != "" ? Icons.get(icon) : icon
 
     font {
         family: Icons.shellThemeName

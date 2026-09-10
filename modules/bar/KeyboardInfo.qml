@@ -10,7 +10,6 @@ RowLayout {
 
     MFontIcon {
         text: "\ue312"
-        color: Theme.colorOnSurface
     }
 
     MText {
