@@ -26,6 +26,16 @@ Item {
     implicitHeight: background.implicitHeight
     height: implicitHeight
 
+    function getSignalIcon(strenght: real): string {
+        if (strenght > 0.75)
+            return "\ue1d8";
+        if (strenght > 0.5)
+            return "\uebe1";
+        if (strenght > 0.25)
+            return "\uebd6";
+        return "\uebe4";
+    }
+
     Behavior on height {
         NumberAnimation {
             duration: 220
@@ -73,10 +83,9 @@ Item {
                 Layout.fillWidth: true
                 spacing: root.spacingMedium
 
-                MText {
-                    text: root.wifi.signalStrength
-                    font.pixelSize: Settings.font.size + 4
-                    Layout.alignment: Qt.AlignVCenter
+                MFontIcon {
+                    icon: root.getSignalIcon(root.wifi.signalStrength)
+                    // Layout.alignment: Qt.AlignVCenter
                 }
 
                 ColumnLayout {

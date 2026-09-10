@@ -171,7 +171,7 @@ Scope {
                                 Layout.preferredWidth: this.height
 
                                 MFontIcon {
-                                    anchors.centerIn: parent
+                                    anchors.fill: parent
                                     iconSize: parent.height * 1.2
                                     icon: Global.enableRightPanel ? "\ue313" : "\ue5cc"
                                 }

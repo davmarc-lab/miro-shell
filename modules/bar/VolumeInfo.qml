@@ -7,6 +7,8 @@ import qs.services
 
 RowLayout {
     spacing: 0
+    Layout.fillHeight: true
+    Layout.fillWidth: true
 
     MFontIcon {
         icon: SAudio.muted ? "\ue04f" : SAudio.volumeIcon
@@ -14,7 +16,7 @@ RowLayout {
 
     MText {
         id: vol
-        text: `${SAudio.volume} %`
+        text: SAudio.volume + " %"
 
         Layout.alignment: Qt.AlignVCenter
         color: Theme.colorOnSurface

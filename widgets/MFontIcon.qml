@@ -7,8 +7,6 @@ Text {
     property int iconSize: Settings.font.iconSize
     property bool unicode: true
 
-    width: Settings.font.size
-    height: width
 
     topPadding: height * Icons.shellTopSpacingFactor
     horizontalAlignment: Text.AlignHCenter
