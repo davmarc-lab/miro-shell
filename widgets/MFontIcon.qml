@@ -4,6 +4,9 @@ import qs.common
 
 Text {
     id: root
+    property int iconSize: Settings.font.iconSize
+    property bool unicode: true
+
     width: Settings.font.size
     height: width
 
@@ -14,21 +17,23 @@ Text {
     color: Theme.colorOnSurface
     renderType: Text.NativeRendering
 
-    property alias icon: root.text
+    property string icon: ""
     property bool iconFilled: Settings.font.iconFill
     property int iconWeight: 400
     property int iconGrad: 0
-    property int iconSize: 24
+    property int iconOpticalSize: 24
+
+    text: unicode && icon != "A" ? icon : Icons.get(icon)
 
     font {
         family: Icons.shellThemeName
-        pixelSize: Settings.font.iconSize
+        pixelSize: root.iconSize
 
         variableAxes: ({
                 "FILL": iconFilled,
                 "wght": iconWeight,
                 "GRAD": iconGrad,
-                "opsz": iconSize
+                "opsz": iconOpticalSize
             })
     }
 }
