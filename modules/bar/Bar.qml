@@ -166,17 +166,21 @@ Scope {
                                 }
                             }
 
-                            MThemeIconButton {
+                            MRectangle {
                                 Layout.fillHeight: true
                                 Layout.preferredWidth: this.height
-                                iconName: Global.enableRightPanel ? "down-arrow.svg" : "right-arrow.svg"
 
-                                color: Theme.colorSurfaceVariant
-                                onIconClick: {
-                                    Global.enableRightPanel = true;
+                                MFontIcon {
+                                    anchors.centerIn: parent
+                                    iconSize: parent.height * 1.2
+                                    icon: Global.enableRightPanel ? "\ue313" : "\ue5cc"
+                                }
+
+                                MouseArea {
+                                    anchors.fill: parent
+                                    onClicked: Global.enableRightPanel = true
                                 }
                             }
-
                         }
                     }
                 }
