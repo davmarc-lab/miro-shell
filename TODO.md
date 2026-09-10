@@ -48,6 +48,7 @@
 - [ ] refactor Row and Column layouts (animations)
 
 ## Critical Fix
+- [ ] Wifi network name bug when toggling enable wifi
 - [ ] System Icons support (script that finds the icons path)
 - [ ] Fix Popup focus
 - [ ] Fix NotificationItem size

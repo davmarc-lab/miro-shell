@@ -9,29 +9,33 @@ import QtQuick
 Singleton {
     id: root
 
-    property bool enableWifi: false
+    property bool enableWifi: Networking.wifiEnabled
     property var activeWifi: null
 
     readonly property bool connected: Networking.connectivity == NetworkConnectivity.Full
-    readonly property string current: connected && activeWifi ? activeWifi.name : "Network"
+    readonly property string current: connected && activeWifi ? activeWifi.name : "Network" ?? ""
 
-    function init() {
-        root.enableWifi = Networking.wifiEnabled;
+    function scanActive() {
+        if (!this.connected)
+            return;
 
-        // initial net scan to check connected wifi network
         const nets = this.getAvailableNetworks();
         for (var n of nets) {
             if (n.connected) {
                 this.activeWifi = n;
-                break;
+                return;
             }
         }
+    }
+
+    function init() {
+        // initial net scan to check connected wifi network
+        this.scanActive();
     }
 
     // using extra variable to avoid switch flickering while enabling wifi
     function toggleWifi() {
         Networking.wifiEnabled = !Networking.wifiEnabled;
-        root.enableWifi = Networking.wifiEnabled;
     }
 
     function connect(wifi) {
@@ -67,6 +71,16 @@ Singleton {
                 d.scannerEnabled = true;
             return d.networks.values;
         }).reduce((acc, cur) => acc.concat(cur), []);
+    }
+
+    function getSignalIcon(strenght: real): string {
+        if (strenght > 0.75)
+            return "\ue1d8";
+        if (strenght > 0.5)
+            return "\uebe1";
+        if (strenght > 0.25)
+            return "\uebd6";
+        return "\uebe4";
     }
 
     IpcHandler {

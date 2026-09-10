@@ -178,7 +178,10 @@ Scope {
 
                                 MouseArea {
                                     anchors.fill: parent
-                                    onClicked: Global.enableRightPanel = true
+                                    onClicked: {
+                                        Global.enableRightPanel = true;
+                                        SNetwork.scanActive();
+                                    }
                                 }
                             }
                         }
