@@ -96,36 +96,65 @@ MPopup {
                             anchors.centerIn: parent
                             rows: 1
                             columns: 4
-                            MThemeIconButton {
-                                Layout.preferredWidth: Layout.preferredHeight
-                                Layout.preferredHeight: Settings.rightPanel.iconSize
-                                iconName: "settings.svg"
 
-                                onIconClick: {
-                                    Global.enableDock = false;
-                                    Global.enableSettings = true;
+                            MRectangle {
+                                Layout.preferredHeight: Settings.rightPanel.iconSize
+                                Layout.preferredWidth: height
+                                color: Theme.colorPrimary
+
+                                MFontIcon {
+                                    anchors.fill: parent
+                                    icon: "\ue8b8"
+                                    color: Theme.colorOnPrimary
+                                }
+
+                                MouseArea {
+                                    anchors.fill: parent
+                                    onClicked: {
+                                        Global.enableDock = false;
+                                        Global.enableSettings = true;
+                                    }
                                 }
                             }
 
-                            MThemeIconButton {
-                                Layout.preferredWidth: Layout.preferredHeight
+                            MRectangle {
                                 Layout.preferredHeight: Settings.rightPanel.iconSize
-                                iconName: "wallpaper.svg"
+                                Layout.preferredWidth: height
+                                color: Theme.colorPrimary
 
-                                onIconClick: {
-                                    Global.enableDock = false;
-                                    Global.enableWPSelector = true;
+                                MFontIcon {
+                                    anchors.fill: parent
+                                    icon: "\ue3f4"
+                                    color: Theme.colorOnPrimary
+                                }
+
+                                MouseArea {
+                                    anchors.fill: parent
+                                    onClicked: {
+                                        Global.enableDock = false;
+                                        Global.enableWPSelector = true;
+                                    }
                                 }
                             }
 
-                            MThemeIconButton {
-                                Layout.preferredWidth: Layout.preferredHeight
+                            MRectangle {
                                 Layout.preferredHeight: Settings.rightPanel.iconSize
-                                iconName: "power.svg"
+                                Layout.preferredWidth: height
+                                color: Theme.colorPrimary
 
-                                onIconClick: {
-                                    Global.enableDock = false;
-                                    Global.enablePowerMenu = true;
+                                MFontIcon {
+                                    anchors.fill: parent
+                                    icon: "\ue8ac"
+                                    iconWeight: 800
+                                    color: Theme.colorOnPrimary
+                                }
+
+                                MouseArea {
+                                    anchors.fill: parent
+                                    onClicked: {
+                                        Global.enableDock = false;
+                                        Global.enablePowerMenu = true;
+                                    }
                                 }
                             }
 
