@@ -22,10 +22,11 @@ MRectangle {
         anchors.margins: Settings.item.margin * 0.8
         spacing: Settings.item.margin * 0.8
 
-        MThemeIcon {
+        MFontIcon {
             height: parent.height
             width: height
-            name: root.iconName
+            icon: root.iconName
+            color: Theme.colorOnPrimary
         }
 
         MScrollableText {

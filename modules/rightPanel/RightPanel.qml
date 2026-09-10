@@ -79,14 +79,14 @@ MPopup {
                             ControlButton {
                                 Layout.fillWidth: true
                                 text: SNetwork.current
-                                iconName: "wifi.svg"
+                                iconName: "\ue63e"
                                 onClick: itemsArea.tryExpand("Network")
                             }
 
                             ControlButton {
                                 Layout.fillWidth: true
                                 text: "Bluetooth"
-                                iconName: "bluetooth.svg"
+                                iconName: "\ue1a7"
                                 onClick: itemsArea.tryExpand("Bluetooth")
                             }
                         }
@@ -99,7 +99,7 @@ MPopup {
                             spacing: Settings.item.margin
 
                             ControlSwitch {
-                                iconName: "moon.svg"
+                                iconName: checked ? "\ue7f8" : "\ue7f7"
                                 Layout.fillWidth: true
                                 text: "Do Not Disturb"
                                 checked: !Global.enableNotifPopups
@@ -107,7 +107,7 @@ MPopup {
                             }
 
                             ControlSwitch {
-                                iconName: "sun.svg"
+                                iconName: checked ? "\ue51c" : "\ue518"
                                 Layout.fillWidth: true
                                 text: "Dark Mode"
                                 checked: Theme.isDark
