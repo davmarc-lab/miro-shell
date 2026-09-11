@@ -25,13 +25,14 @@ RowLayout {
         onUncheck: root.todoUncheck()
     }
 
-    MThemeIconClick {
-        Layout.preferredWidth: check.indicator.width - 2
-        Layout.preferredHeight: width
-        Layout.alignment: Qt.AlignVCenter
+    MFontIcon {
+        icon: "cancel"
+        color: Theme.colorError
 
-        name: "delete.svg"
+        MouseArea {
+            anchors.fill: parent
 
-        onIconClick: root.todoDelete()
+            onClicked: root.todoDelete()
+        }
     }
 }

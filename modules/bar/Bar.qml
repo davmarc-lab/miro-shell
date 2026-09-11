@@ -124,7 +124,7 @@ Scope {
 
                             MRectangle {
                                 Layout.fillHeight: true
-                                Layout.preferredWidth: vol.implicitWidth + Settings.item.margin * 2
+                                Layout.preferredWidth: vol.implicitWidth + Settings.item.margin
 
                                 VolumeInfo {
                                     id: vol
@@ -166,14 +166,22 @@ Scope {
                                 }
                             }
 
-                            MThemeIconButton {
+                            MRectangle {
                                 Layout.fillHeight: true
                                 Layout.preferredWidth: this.height
-                                iconName: Global.enableRightPanel ? "down-arrow.svg" : "right-arrow.svg"
 
-                                color: Theme.colorSurfaceVariant
-                                onIconClick: {
-                                    Global.enableRightPanel = true;
+                                MFontIcon {
+                                    anchors.fill: parent
+                                    iconSize: Settings.bar.height
+                                    icon: Global.enableRightPanel ? "expanded" : "expand"
+                                }
+
+                                MouseArea {
+                                    anchors.fill: parent
+                                    onClicked: {
+                                        Global.enableRightPanel = true;
+                                        SNetwork.scanActive();
+                                    }
                                 }
                             }
                         }

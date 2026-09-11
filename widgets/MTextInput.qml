@@ -15,7 +15,7 @@ TextField {
     signal escaped
 
     color: Theme.colorOnSurface
-    font.pointSize: Settings.font.size
+    font.pixelSize: Settings.font.size
 
     leftPadding: Settings.item.margin
     rightPadding: Settings.item.margin

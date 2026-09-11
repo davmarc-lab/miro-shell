@@ -1,11 +1,11 @@
 import Quickshell
-import Quickshell.Widgets
 
 import QtQuick
 import QtQuick.Layouts
 
 import qs
 import qs.common
+import qs.services
 import qs.widgets
 
 MRectangle {
@@ -47,16 +47,18 @@ MRectangle {
             }
         }
 
-        MThemeIconClick {
+        MFontIcon {
+            // remove the layout marings
             id: volIcon
-            property string streamState: root.node.audio.muted ? "null" : this.val == 0 ? "mute" : this.val < 33 ? "low" : this.val < 66 ? "medium" : "high"
-            property alias val: nodeVol.text
+            leftPadding: -Settings.item.margin / 2
+            icon: SAudio.getAudioLevelIcon(volSlider.value)
 
-            name: "volume-" + streamState
-            implicitSize: 28
-
-            onIconClick: {
-                root.node.audio.muted = !root.node.audio.muted;
+            MouseArea {
+                anchors.fill: parent
+                onClicked: {
+                    root.node.audio.muted = !root.node.audio.muted;
+                    volIcon.icon = root.node.audio.muted ? "volume-mute" : SAudio.getAudioLevelIcon(volSlider.value);
+                }
             }
         }
     }

@@ -56,7 +56,7 @@ GridLayout {
                 }
 
                 text: elem.modelData.text
-                font.pointSize: 20
+                font.pixelSize: 20
                 color: Theme.colorOnSurface
             }
         }

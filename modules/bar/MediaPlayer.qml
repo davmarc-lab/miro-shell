@@ -8,54 +8,47 @@ import qs.widgets
 MRectangle {
     id: container
 
-    readonly property double iconScale: 0.7
-
     RowLayout {
         anchors.verticalCenter: parent.verticalCenter
         anchors.left: parent.left
         anchors.right: parent.right
 
-        anchors.margins: 2
-        anchors.leftMargin: Settings.item.margin
+        anchors.leftMargin: Settings.item.margin / 2
         anchors.rightMargin: Settings.item.margin
 
-        spacing: Settings.item.margin
+        spacing: 0
 
-        MThemeIconClick {
-            implicitSize: parent.height * container.iconScale
-            name: "prev.svg"
-
-            onIconClick: {
-                SMediaPlayer.prev();
+        MFontIcon {
+            icon: "media-prev"
+            MouseArea {
+                anchors.fill: parent
+                onClicked: SMediaPlayer.prev()
             }
         }
 
-        MThemeIconClick {
-            implicitSize: parent.height * container.iconScale
-            name: "play.svg"
-
-            onIconClick: {
-                SMediaPlayer.play();
+        MFontIcon {
+            icon: "media-play"
+            MouseArea {
+                anchors.fill: parent
+                onClicked: SMediaPlayer.play()
             }
             visible: !SMediaPlayer.isPlaying
         }
 
-        MThemeIconClick {
-            implicitSize: parent.height * container.iconScale
-            name: "pause.svg"
-
-            onIconClick: {
-                SMediaPlayer.pause();
+        MFontIcon {
+            icon: "media-pause"
+            MouseArea {
+                anchors.fill: parent
+                onClicked: SMediaPlayer.pause()
             }
             visible: SMediaPlayer.isPlaying
         }
 
-        MThemeIconClick {
-            implicitSize: parent.height * container.iconScale
-            name: "next.svg"
-
-            onIconClick: {
-                SMediaPlayer.next();
+        MFontIcon {
+            icon: "media-next"
+            MouseArea {
+                anchors.fill: parent
+                onClicked: SMediaPlayer.next()
             }
         }
 
@@ -65,6 +58,7 @@ MRectangle {
             Layout.fillWidth: true
             Layout.fillHeight: true
             Layout.alignment: Qt.AlignLeft
+            Layout.leftMargin: Settings.item.margin / 2
 
             MText {
                 Layout.fillWidth: true
@@ -75,13 +69,5 @@ MRectangle {
                 clip: true
             }
         }
-
-        // MThemeIcon {
-        //     Layout.fillHeight: true
-        //     Layout.preferredWidth: 20
-        //     name: "prev.svg"
-        // }
-
-        //
     }
 }

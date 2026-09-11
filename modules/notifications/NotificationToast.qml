@@ -63,14 +63,10 @@ MRectangle {
                     }
                 }
 
-                MThemeIcon {
+                MFontIcon {
                     id: deleteIcon
-                    Layout.preferredWidth: parent.height * 0.7
-                    Layout.preferredHeight: width
-                    Layout.alignment: Qt.AlignVCenter
-
-                    name: "delete.svg"
-
+                    icon: "cancel"
+                    color: Theme.colorError
                     HoverHandler {
                         id: iconHover
                     }

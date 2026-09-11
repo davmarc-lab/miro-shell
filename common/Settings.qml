@@ -8,6 +8,8 @@ import qs.common.settings
 Singleton {
     id: root
 
+    property string iconFontPath: dirs.fonts + "Material-Symbols/material-symbols-rounded.ttf"
+
     readonly property string shellName: "miro"
 
     property CacheDirs cache: CacheDirs {

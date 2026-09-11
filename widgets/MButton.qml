@@ -22,6 +22,8 @@ Button {
     property bool isRound: false
 
     property string iconPath: ""
+    property alias contentFontFamily: label.font.family
+    property alias contentFontSize: label.font.pixelSize
 
     anchors {
         leftMargin: Settings.item.margin
@@ -50,5 +52,5 @@ Button {
     icon.source: root.iconPath
     icon.cache: true
 
-    font.pointSize: Settings.font.size
+    font.pixelSize: Settings.font.size
 }

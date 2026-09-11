@@ -8,12 +8,8 @@ import qs.services
 RowLayout {
     spacing: 3
 
-    MThemeIcon {
-        id: icon
-        name: "keyboard"
-
-        Layout.preferredWidth: height
-        Layout.fillHeight: true
+    MFontIcon {
+        text: "keyboard"
     }
 
     MText {

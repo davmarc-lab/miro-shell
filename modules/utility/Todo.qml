@@ -28,17 +28,24 @@ UtilityPage {
                 id: newTodo
 
                 Layout.fillWidth: true
+                implicitHeight: parent.height
                 focus: false
 
                 leftPadding: 10
 
                 placeholderText: "New Todo item"
                 placeholderTextColor: Theme.colorOnSurfaceVariant
+
+                onAccepted: newTodoAdd.addTodo()
             }
 
-            MButton {
+            MRButton {
                 id: newTodoAdd
-                text: "Add"
+                implicitWidth: height
+
+                contentFontFamily: Icons.fontName
+                contentFontSize: Settings.font.iconSize
+                text: Icons.get("todo-add")
 
                 onPressed: () => addTodo()
 

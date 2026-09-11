@@ -79,14 +79,14 @@ MPopup {
                             ControlButton {
                                 Layout.fillWidth: true
                                 text: SNetwork.current
-                                iconName: "wifi.svg"
+                                iconName: "network"
                                 onClick: itemsArea.tryExpand("Network")
                             }
 
                             ControlButton {
                                 Layout.fillWidth: true
                                 text: "Bluetooth"
-                                iconName: "bluetooth.svg"
+                                iconName: "bluetooth"
                                 onClick: itemsArea.tryExpand("Bluetooth")
                             }
                         }
@@ -99,7 +99,7 @@ MPopup {
                             spacing: Settings.item.margin
 
                             ControlSwitch {
-                                iconName: "moon.svg"
+                                iconName: checked ? "dnd-on" : "dnd-off"
                                 Layout.fillWidth: true
                                 text: "Do Not Disturb"
                                 checked: !Global.enableNotifPopups
@@ -107,7 +107,7 @@ MPopup {
                             }
 
                             ControlSwitch {
-                                iconName: "sun.svg"
+                                iconName: checked ? "dark-mode" : "light-mode"
                                 Layout.fillWidth: true
                                 text: "Dark Mode"
                                 checked: Theme.isDark
@@ -174,7 +174,7 @@ MPopup {
                             Layout.alignment: Qt.AlignTop
 
                             text: "Notifications"
-                            font.pointSize: Settings.font.titleSize + 8
+                            font.pixelSize: Settings.font.titleSize + 8
                         }
                     }
 

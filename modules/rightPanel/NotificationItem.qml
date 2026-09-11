@@ -55,15 +55,12 @@ MRectangle {
                     }
                 }
 
-                MThemeIconClick {
-                    Layout.preferredWidth: parent.height * 0.7
-                    Layout.preferredHeight: width
-                    Layout.alignment: Qt.AlignVCenter
-
-                    name: "delete.svg"
-
-                    onIconClick: {
-                        SNotification.clear(root.notif);
+                MFontIcon {
+                    icon: "cancel"
+                    color: Theme.colorError
+                    MouseArea {
+                        anchors.fill: parent
+                        onClicked: SNotification.clear(root.notif)
                     }
                 }
             }

@@ -6,19 +6,17 @@ import qs.widgets
 import qs.services
 
 RowLayout {
-    spacing: 1
+    spacing: 0
+    Layout.fillHeight: true
+    Layout.fillWidth: true
 
-    MThemeIcon {
-        id: icon
-        name: "sound"
-
-        Layout.preferredWidth: height
-        Layout.fillHeight: true
+    MFontIcon {
+        icon: SAudio.muted ? "volume-off" : SAudio.volumeIcon
     }
 
     MText {
         id: vol
-        text: SAudio.muted ? "M " : `${SAudio.volume} %`
+        text: SAudio.volume + " %"
 
         Layout.alignment: Qt.AlignVCenter
         color: Theme.colorOnSurface

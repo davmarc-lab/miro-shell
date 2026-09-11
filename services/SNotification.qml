@@ -70,9 +70,11 @@ Singleton {
         }
     }
 
-    function sendNotification(summary, body) {
+    function sendNotification(summary, body, urgency = 0, icon = "") {
         sendNotif.summary = summary;
         sendNotif.body = body;
+        sendNotif.urgency = urgency;
+        sendNotif.icon = icon;
         sendNotif.running = true;
     }
 
@@ -85,9 +87,29 @@ Singleton {
 
         property string summary: ""
         property string body: ""
-        property int ugency: 0
+        property string icon: ""
+        property int urgency: 0
 
-        command: ["notify-send", summary, body]
+        command: ["notify-send", "-u", parseUrgency(this.urgency), "-i", chooseIcon(urgency, icon), summary, body]
+
+        function parseUrgency(urgency: int): string {
+            if (urgency <= 0 || urgency > 2)
+                return "low";
+            if (urgency == 1)
+                return "normal";
+            return "critical";
+        }
+
+        function chooseIcon(urgency: int, icon: string): string {
+            if (icon == "") {
+                if (urgency == 0)
+                    return "dialog-information";
+                if (urgency == 1)
+                    return "dialog-warning";
+                return "dialog-error";
+            }
+            return icon;
+        }
     }
 
     IpcHandler {

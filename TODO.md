@@ -7,10 +7,6 @@
     - [X] applications menu/actions
     - [X] menu positioning
     - [ ] custom menus
-- [ ] Wifi Networks
-    - [X] network list
-    - [X] network interactions
-    - [ ] network icons
 - [ ] Wired Networks
 - [ ] Bluetooth devices
     - [ ] on right panel only paired devices
@@ -22,9 +18,6 @@
     - [X] single notification toast dismiss
     - [X] single notification dismiss
     - [ ] find notifications default icons
-- [ ] Volume mixer
-    - [X] volume manipulation
-    - [X] better layout (maybe icon on the left, name above and slider below, mute on the right)
     - [X] volume slider
     - [ ] fixed slider position and vertical support
 - [ ] Calendar
@@ -46,14 +39,17 @@
 - [ ] refactor `ColorEdit`
 - [ ] wifi used not tracked
 - [ ] refactor Row and Column layouts (animations)
+- [ ] `MixerItem` volume icon after toggling mute
 
 ## Critical Fix
+- [ ] Wifi network name bug when toggling enable wifi
 - [ ] System Icons support (script that finds the icons path)
 - [ ] Fix Popup focus
 - [ ] Fix NotificationItem size
 - [ ] Whole code refactor
 - [ ] Init script doesn't work
 - [ ] Keyboard layout dependencies???
+- [ ] `MFontIcon` vertical alignment when toglging is off
 
 ## Other features
 - [ ] Calendar events in Dock panel

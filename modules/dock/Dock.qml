@@ -62,13 +62,13 @@ MPopup {
 
                                     MText {
                                         id: hour
-                                        font.pointSize: 40
+                                        font.pixelSize: 40
                                         text: STime.hour
                                         color: Theme.colorOnPrimary
                                     }
 
                                     MText {
-                                        font.pointSize: hour.font.pointSize
+                                        font.pixelSize: hour.font.pixelSize
                                         text: STime.minute
                                         color: Theme.colorOnPrimary
                                     }
@@ -96,43 +96,84 @@ MPopup {
                             anchors.centerIn: parent
                             rows: 1
                             columns: 4
-                            MThemeIconButton {
-                                Layout.preferredWidth: Layout.preferredHeight
-                                Layout.preferredHeight: Settings.rightPanel.iconSize
-                                iconName: "settings.svg"
 
-                                onIconClick: {
-                                    Global.enableDock = false;
-                                    Global.enableSettings = true;
+                            MRectangle {
+                                id: settings
+                                Layout.preferredHeight: Settings.rightPanel.iconSize
+                                Layout.preferredWidth: height
+                                color: Theme.colorPrimary
+
+                                MFontIcon {
+                                    anchors.fill: parent
+                                    icon: "settings"
+                                    color: Theme.colorOnPrimary
+                                }
+
+                                MouseArea {
+                                    anchors.fill: parent
+                                    onClicked: {
+                                        Global.enableDock = false;
+                                        Global.enableSettings = true;
+                                    }
+                                    hoverEnabled: true
+                                    onEntered: settings.color = Theme.colorPrimaryHover
+                                    onExited: settings.color = Theme.colorPrimary
                                 }
                             }
 
-                            MThemeIconButton {
-                                Layout.preferredWidth: Layout.preferredHeight
+                            MRectangle {
+                                id: wps
                                 Layout.preferredHeight: Settings.rightPanel.iconSize
-                                iconName: "wallpaper.svg"
+                                Layout.preferredWidth: height
+                                color: Theme.colorPrimary
 
-                                onIconClick: {
-                                    Global.enableDock = false;
-                                    Global.enableWPSelector = true;
+                                MFontIcon {
+                                    anchors.fill: parent
+                                    icon: "gallery"
+                                    color: Theme.colorOnPrimary
+                                }
+
+                                MouseArea {
+                                    anchors.fill: parent
+                                    onClicked: {
+                                        Global.enableDock = false;
+                                        Global.enableWPSelector = true;
+                                    }
+                                    hoverEnabled: true
+                                    onEntered: wps.color = Theme.colorPrimaryHover
+                                    onExited: wps.color = Theme.colorPrimary
                                 }
                             }
 
-                            MThemeIconButton {
-                                Layout.preferredWidth: Layout.preferredHeight
+                            MRectangle {
+                                id: power
                                 Layout.preferredHeight: Settings.rightPanel.iconSize
-                                iconName: "power.svg"
+                                Layout.preferredWidth: height
+                                color: Theme.colorPrimary
 
-                                onIconClick: {
-                                    Global.enableDock = false;
-                                    Global.enablePowerMenu = true;
+                                MFontIcon {
+                                    anchors.fill: parent
+                                    icon: "power"
+                                    iconWeight: 800
+                                    color: Theme.colorOnPrimary
+                                }
+
+                                MouseArea {
+                                    anchors.fill: parent
+                                    onClicked: {
+                                        Global.enableDock = false;
+                                        Global.enablePowerMenu = true;
+                                    }
+                                    hoverEnabled: true
+                                    onEntered: power.color = Theme.colorPrimaryHover
+                                    onExited: power.color = Theme.colorPrimary
                                 }
                             }
 
                             MButton {
                                 Layout.preferredWidth: Layout.preferredHeight
                                 Layout.preferredHeight: Settings.rightPanel.iconSize
-                                onClicked: SNotification.sendNotification("Foo", "Testing send notification")
+                                onClicked: SNotification.sendNotification("Foo", "Testing send notification", 2)
                             }
                         }
                     }
