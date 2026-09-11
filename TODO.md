@@ -55,6 +55,7 @@
 - [ ] Whole code refactor
 - [ ] Init script doesn't work
 - [ ] Keyboard layout dependencies???
+- [ ] `MFontIcon` vertical alignment when toglging is off
 
 ## Other features
 - [ ] Calendar events in Dock panel

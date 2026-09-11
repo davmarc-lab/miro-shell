@@ -24,6 +24,10 @@ Singleton {
         objects: Pipewire.nodes.values
     }
 
+    function getAudioLevelIcon(level: real): string {
+        return level > 0 ? (level >= 0.7 ? "\ue050" : (level > 0.3 ? "\ue04d" : "\ue04e")) : "\ue710";
+    }
+
     function getSourceDescription() {
         return this.source.description;
     }
