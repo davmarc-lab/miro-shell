@@ -56,6 +56,8 @@ Singleton {
         "bat-charg-5": "\u{fff3a}"
     }
 
+    readonly property var appIcons: {}
+
     FontLoader {
         id: shellFont
         source: Settings.iconFontPath

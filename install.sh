@@ -28,3 +28,6 @@ if [[ ! -e $MATERIAL_SYMBOLS_ROUND_FILE ]] then
 else
     echo "-- skipping -- Material Symbols Rounded font exists"
 fi
+
+# Papirus icon theme, depends on the package manager
+sudo pacman -S --noconfirm papirus-icon-theme

@@ -172,7 +172,7 @@ Scope {
 
                                 MFontIcon {
                                     anchors.fill: parent
-                                    iconSize: parent.height * 1.2
+                                    iconSize: Settings.bar.height
                                     icon: Global.enableRightPanel ? "expanded" : "expand"
                                 }
 
