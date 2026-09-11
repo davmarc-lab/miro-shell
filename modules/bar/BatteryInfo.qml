@@ -13,20 +13,8 @@ RowLayout {
 
     property real percentage: SPower.battery.percentage
 
-    onPercentageChanged: {
-        if (percentage <= 0.2) {
-            // send notification
-            // console.log(percentage);
-            // notif.running = true;
-        }
-    }
-
-    MThemeIcon {
-        id: icon
-        name: "battery"
-
-        Layout.preferredWidth: height
-        Layout.fillHeight: true
+    MFontIcon {
+        text: SPower.batteryIcon
     }
 
     MText {

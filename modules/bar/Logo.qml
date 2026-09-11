@@ -16,11 +16,11 @@ MRectangle {
     MThemeIcon {
         id: icon
         anchors.fill: parent
-        anchors.margins: Settings.item.margin / 2
+        anchors.margins: Settings.item.margin * .8
 
         implicitSize: Settings.bar.height
 
-        name: "arch-logo"
+        name: "winslop"
     }
 
     MouseArea {
