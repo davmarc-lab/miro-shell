@@ -11,7 +11,7 @@ RowLayout {
     Layout.fillWidth: true
 
     MFontIcon {
-        icon: SAudio.muted ? "\ue04f" : SAudio.volumeIcon
+        icon: SAudio.muted ? "volume-off" : SAudio.volumeIcon
     }
 
     MText {

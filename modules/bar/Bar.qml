@@ -173,7 +173,7 @@ Scope {
                                 MFontIcon {
                                     anchors.fill: parent
                                     iconSize: parent.height * 1.2
-                                    icon: Global.enableRightPanel ? "\ue313" : "\ue5cc"
+                                    icon: Global.enableRightPanel ? "expanded" : "expand"
                                 }
 
                                 MouseArea {

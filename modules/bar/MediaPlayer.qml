@@ -19,7 +19,7 @@ MRectangle {
         spacing: 0
 
         MFontIcon {
-            icon: "\ue045"
+            icon: "media-prev"
             MouseArea {
                 anchors.fill: parent
                 onClicked: SMediaPlayer.prev()
@@ -27,7 +27,7 @@ MRectangle {
         }
 
         MFontIcon {
-            icon: "\ue037"
+            icon: "media-play"
             MouseArea {
                 anchors.fill: parent
                 onClicked: SMediaPlayer.play()
@@ -36,7 +36,7 @@ MRectangle {
         }
 
         MFontIcon {
-            icon: "\ue034"
+            icon: "media-pause"
             MouseArea {
                 anchors.fill: parent
                 onClicked: SMediaPlayer.pause()
@@ -45,7 +45,7 @@ MRectangle {
         }
 
         MFontIcon {
-            icon: "\ue044"
+            icon: "media-next"
             MouseArea {
                 anchors.fill: parent
                 onClicked: SMediaPlayer.next()
@@ -69,13 +69,5 @@ MRectangle {
                 clip: true
             }
         }
-
-        // MThemeIcon {
-        //     Layout.fillHeight: true
-        //     Layout.preferredWidth: 20
-        //     name: "prev.svg"
-        // }
-
-        //
     }
 }

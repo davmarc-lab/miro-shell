@@ -57,7 +57,7 @@ MRectangle {
                 anchors.fill: parent
                 onClicked: {
                     root.node.audio.muted = !root.node.audio.muted;
-                    volIcon.icon = root.node.audio.muted ? "\ue710" : SAudio.getAudioLevelIcon(volSlider.value);
+                    volIcon.icon = root.node.audio.muted ? "volume-mute" : SAudio.getAudioLevelIcon(volSlider.value);
                 }
             }
         }

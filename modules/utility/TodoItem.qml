@@ -26,7 +26,7 @@ RowLayout {
     }
 
     MFontIcon {
-        icon: "\ue5c9"
+        icon: "cancel"
         color: Theme.colorError
 
         MouseArea {

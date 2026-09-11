@@ -43,7 +43,7 @@ UtilityPage {
 
                 contentFontFamily: Icons.fontName
                 contentFontSize: Settings.font.iconSize
-                text: "\uf23a"
+                text: Icons.get("todo-add")
 
                 onPressed: () => addTodo()
 

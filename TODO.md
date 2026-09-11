@@ -39,6 +39,7 @@
 - [ ] refactor `ColorEdit`
 - [ ] wifi used not tracked
 - [ ] refactor Row and Column layouts (animations)
+- [ ] `MixerItem` volume icon after toggling mute
 
 ## Critical Fix
 - [ ] Wifi network name bug when toggling enable wifi

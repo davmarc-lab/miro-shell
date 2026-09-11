@@ -9,7 +9,7 @@ RowLayout {
     spacing: 3
 
     MFontIcon {
-        text: "\ue312"
+        text: "keyboard"
     }
 
     MText {

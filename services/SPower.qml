@@ -12,33 +12,33 @@ Singleton {
     readonly property string batteryIcon: {
         if (battery.state == UPowerDeviceState.Charging) {
             if (battery.percentage > 0.8)
-                return "\ufff3a";
+                return "bat-charg-5";
             if (battery.percentage > 0.6)
-                return "\ufff3b";
+                return "bat-charg-4";
             if (battery.percentage > 0.5)
-                return "\ufff3c";
+                return "bat-charg-3";
             if (battery.percentage > 0.3)
-                return "\ufff3d";
+                return "bat-charg-2";
             if (battery.percentage > 0.2)
-                return "\ufff3e";
-            return "\ufff39";
+                return "bat-charg-1";
+            return "bat-charg-0";
         }
 
         if (battery.percentage > 0.9)
-            return "\uf304";
+            return "bat-7";
         if (battery.percentage > 0.8)
-            return "\uf307";
+            return "bat-6";
         if (battery.percentage > 0.65)
-            return "\uf308";
+            return "bat-5";
         if (battery.percentage > 0.45)
-            return "\uf309";
+            return "bat-4";
         if (battery.percentage > 0.3)
-            return "\uf30a";
+            return "bat-3";
         if (battery.percentage > 0.2)
-            return "\uf30b";
+            return "bat-2";
         if (battery.percentage > 0.1)
-            return "\uf30c";
-        return "\uf30d";
+            return "bat-1";
+        return "bat-0";
     }
 
     function isBattery() {

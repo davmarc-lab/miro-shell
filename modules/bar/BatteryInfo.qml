@@ -14,7 +14,7 @@ RowLayout {
     property real percentage: SPower.battery.percentage
 
     MFontIcon {
-        text: SPower.batteryIcon
+        icon: SPower.batteryIcon
     }
 
     MText {

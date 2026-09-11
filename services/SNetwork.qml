@@ -75,12 +75,12 @@ Singleton {
 
     function getSignalIcon(strenght: real): string {
         if (strenght > 0.75)
-            return "\ue1d8";
+            return "wifi-3";
         if (strenght > 0.5)
-            return "\uebe1";
+            return "wifi-2";
         if (strenght > 0.25)
-            return "\uebd6";
-        return "\uebe4";
+            return "wifi-1";
+        return "wifi-0";
     }
 
     IpcHandler {

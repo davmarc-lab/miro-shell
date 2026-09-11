@@ -79,14 +79,14 @@ MPopup {
                             ControlButton {
                                 Layout.fillWidth: true
                                 text: SNetwork.current
-                                iconName: "\ue63e"
+                                iconName: "network"
                                 onClick: itemsArea.tryExpand("Network")
                             }
 
                             ControlButton {
                                 Layout.fillWidth: true
                                 text: "Bluetooth"
-                                iconName: "\ue1a7"
+                                iconName: "bluetooth"
                                 onClick: itemsArea.tryExpand("Bluetooth")
                             }
                         }
@@ -99,7 +99,7 @@ MPopup {
                             spacing: Settings.item.margin
 
                             ControlSwitch {
-                                iconName: checked ? "\ue7f8" : "\ue7f7"
+                                iconName: checked ? "dnd-on" : "dnd-off"
                                 Layout.fillWidth: true
                                 text: "Do Not Disturb"
                                 checked: !Global.enableNotifPopups
@@ -107,7 +107,7 @@ MPopup {
                             }
 
                             ControlSwitch {
-                                iconName: checked ? "\ue51c" : "\ue518"
+                                iconName: checked ? "dark-mode" : "light-mode"
                                 Layout.fillWidth: true
                                 text: "Dark Mode"
                                 checked: Theme.isDark

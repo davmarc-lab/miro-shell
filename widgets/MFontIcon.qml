@@ -7,7 +7,6 @@ Text {
     property int iconSize: Settings.font.iconSize
     property bool unicode: true
 
-
     topPadding: height * Icons.topSpacingFactor
     horizontalAlignment: Text.AlignHCenter
     verticalAlignment: Text.AlignVCenter
@@ -19,7 +18,7 @@ Text {
     property bool iconFilled: Settings.font.iconFill
     property int iconWeight: 400
     property int iconGrad: 0
-    property int iconOpticalSize: 24
+    property int iconOpticalSize: font.pixelSize
 
     text: unicode && icon != "" ? Icons.get(icon) : icon
 

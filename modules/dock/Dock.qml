@@ -105,7 +105,7 @@ MPopup {
 
                                 MFontIcon {
                                     anchors.fill: parent
-                                    icon: "\ue8b8"
+                                    icon: "settings"
                                     color: Theme.colorOnPrimary
                                 }
 
@@ -129,7 +129,7 @@ MPopup {
 
                                 MFontIcon {
                                     anchors.fill: parent
-                                    icon: "\ue3f4"
+                                    icon: "gallery"
                                     color: Theme.colorOnPrimary
                                 }
 
@@ -153,7 +153,7 @@ MPopup {
 
                                 MFontIcon {
                                     anchors.fill: parent
-                                    icon: "\ue8ac"
+                                    icon: "power"
                                     iconWeight: 800
                                     color: Theme.colorOnPrimary
                                 }
