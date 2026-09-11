@@ -24,7 +24,8 @@ Item {
             MRButton {
                 id: pre
                 borderRadius: 4
-                text: "<"
+                font.family: Icons.fontName
+                text: Icons.get("backward")
 
                 onClicked: {
                     if (grid.month === 0)
@@ -48,7 +49,8 @@ Item {
             MRButton {
                 id: next
                 borderRadius: 4
-                text: ">"
+                font.family: Icons.fontName
+                text: Icons.get("forward")
 
                 onClicked: {
                     if (grid.month === 11)

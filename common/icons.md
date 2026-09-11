@@ -45,7 +45,7 @@ These are best suited for specialized custom shells (like Cyberpunk or Soulsborn
 - **Notification Severity**
   - dialog-information
   - dialog-warning
-  - dialog-error / dialog-critical
+  - dialog-error
   - dialog-question
 
 - **Notification Management**

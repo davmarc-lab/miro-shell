@@ -31,9 +31,8 @@ Item {
                     Layout.fillWidth: true
                     Layout.fillHeight: true
 
-                    MText {
-                        Layout.fillWidth: true
-                        text: "Day"
+                    MFontIcon {
+                        icon: "date"
                     }
 
                     MText {
@@ -48,13 +47,13 @@ Item {
                     Layout.fillWidth: true
                     Layout.fillHeight: true
 
-                    MText {
-                        Layout.fillWidth: true
-                        text: "Time"
+                    MFontIcon {
+                        icon: "time"
                     }
 
                     RowLayout {
                         id: eventTime
+                        Layout.alignment: Qt.AlignHCenter
                         Layout.fillWidth: true
                         Layout.fillHeight: true
 
@@ -88,23 +87,24 @@ Item {
                     }
                 }
 
-                MText {
+                MFontIcon {
                     Layout.fillWidth: true
-                    text: "Duration"
+                    icon: "timer"
                 }
 
                 MTextInput {
                     id: eventDuration
                     Layout.fillWidth: true
-                    Layout.maximumWidth: parent.width
+                    Layout.alignment: Qt.AlignHCenter
+                    Layout.maximumWidth: parent.width / 2
 
                     placeholderText: "Event Duration"
                     text: "0"
                 }
 
-                MText {
+                MFontIcon {
                     Layout.fillWidth: true
-                    text: "Description"
+                    icon: "event-description"
                 }
 
                 MTextArea {
@@ -121,7 +121,8 @@ Item {
             Layout.fillWidth: true
             Layout.fillHeight: true
 
-            text: "Add Event"
+            font.family: Icons.fontName
+            text: Icons.get("event-add")
 
             onClicked: {
                 const day = new Date(root.targetDay);

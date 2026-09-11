@@ -44,10 +44,10 @@ MRectangle {
             width: height
             radius: width / 2
 
-            MThemeIcon {
-                anchors.fill: parent
-                anchors.margins: Settings.item.margin / 2
-                name: "right-arrow.svg"
+            MFontIcon {
+                anchors.centerIn: parent
+                // anchors.margins: Settings.item.margin / 2
+                icon: "expand"
             }
         }
     }
