@@ -27,7 +27,7 @@ MRectangle {
             Layout.alignment: Qt.AlignTop | Qt.AlignHCenter
             implicitSize: 32
 
-            name: root.notif.image
+            name: root.notif ? SNotification.getNotificationIcon(root.notif) : ""
         }
 
         ColumnLayout {

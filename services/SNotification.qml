@@ -70,6 +70,15 @@ Singleton {
         }
     }
 
+    function getNotificationIcon(notif): string {
+        if (notif.image)
+            return notif.image;
+        if (notif.appIcon)
+            return notif.appIcon;
+        // fallback to default notification icon
+        return Quickshell.iconPath("dialog-information");
+    }
+
     function sendNotification(summary, body, urgency = 0, icon = "") {
         sendNotif.summary = summary;
         sendNotif.body = body;

@@ -1,3 +1,5 @@
+import Quickshell
+
 import QtQuick
 import QtQuick.Layouts
 
@@ -30,7 +32,7 @@ MRectangle {
             Layout.preferredWidth: 32
             Layout.preferredHeight: width
 
-            name: root.notif?.image ?? ""
+            name: root.notif ? SNotification.getNotificationIcon(root.notif) : ""
         }
 
         ColumnLayout {
