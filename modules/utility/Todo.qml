@@ -35,6 +35,8 @@ UtilityPage {
 
                 placeholderText: "New Todo item"
                 placeholderTextColor: Theme.colorOnSurfaceVariant
+
+                onAccepted: newTodoAdd.addTodo()
             }
 
             MRButton {
