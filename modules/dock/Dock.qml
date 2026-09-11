@@ -98,6 +98,7 @@ MPopup {
                             columns: 4
 
                             MRectangle {
+                                id: settings
                                 Layout.preferredHeight: Settings.rightPanel.iconSize
                                 Layout.preferredWidth: height
                                 color: Theme.colorPrimary
@@ -114,10 +115,14 @@ MPopup {
                                         Global.enableDock = false;
                                         Global.enableSettings = true;
                                     }
+                                    hoverEnabled: true
+                                    onEntered: settings.color = Theme.colorPrimaryHover
+                                    onExited: settings.color = Theme.colorPrimary
                                 }
                             }
 
                             MRectangle {
+                                id: wps
                                 Layout.preferredHeight: Settings.rightPanel.iconSize
                                 Layout.preferredWidth: height
                                 color: Theme.colorPrimary
@@ -134,10 +139,14 @@ MPopup {
                                         Global.enableDock = false;
                                         Global.enableWPSelector = true;
                                     }
+                                    hoverEnabled: true
+                                    onEntered: wps.color = Theme.colorPrimaryHover
+                                    onExited: wps.color = Theme.colorPrimary
                                 }
                             }
 
                             MRectangle {
+                                id: power
                                 Layout.preferredHeight: Settings.rightPanel.iconSize
                                 Layout.preferredWidth: height
                                 color: Theme.colorPrimary
@@ -155,6 +164,9 @@ MPopup {
                                         Global.enableDock = false;
                                         Global.enablePowerMenu = true;
                                     }
+                                    hoverEnabled: true
+                                    onEntered: power.color = Theme.colorPrimaryHover
+                                    onExited: power.color = Theme.colorPrimary
                                 }
                             }
 
