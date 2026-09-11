@@ -28,6 +28,7 @@ UtilityPage {
                 id: newTodo
 
                 Layout.fillWidth: true
+                implicitHeight: parent.height
                 focus: false
 
                 leftPadding: 10
@@ -36,9 +37,13 @@ UtilityPage {
                 placeholderTextColor: Theme.colorOnSurfaceVariant
             }
 
-            MButton {
+            MRButton {
                 id: newTodoAdd
-                text: "Add"
+                implicitWidth: height
+
+                contentFontFamily: Icons.fontName
+                contentFontSize: Settings.font.iconSize
+                text: "\uf23a"
 
                 onPressed: () => addTodo()
 

@@ -8,7 +8,7 @@ Text {
     property bool unicode: true
 
 
-    topPadding: height * Icons.shellTopSpacingFactor
+    topPadding: height * Icons.topSpacingFactor
     horizontalAlignment: Text.AlignHCenter
     verticalAlignment: Text.AlignVCenter
 
@@ -24,7 +24,7 @@ Text {
     text: unicode && icon != "" ? Icons.get(icon) : icon
 
     font {
-        family: Icons.shellThemeName
+        family: Icons.fontName
         pixelSize: root.iconSize
 
         variableAxes: ({

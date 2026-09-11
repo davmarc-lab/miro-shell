@@ -20,7 +20,7 @@ MPanelWindow {
 
     MFontIcon {
         anchors.centerIn: parent
-        text: "\ue312"
+        text: "\uf23a"
         iconFilled: true
         font.pixelSize: 84
     }
