@@ -43,6 +43,8 @@ ShellRoot {
         STodo.init();
         SCalendarEvents.init();
 
+        SColorscheme.init();
+
         init = true;
     }
 

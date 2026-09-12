@@ -1,36 +1,35 @@
-{ 
-     "name": "Ultra Violet", 
-     "dark": { 
-         "mPrimary": "#a855f7", 
-         "mPrimaryHover": "#c084fc", 
-         "mOnPrimary": "#000000", 
-         "mSecondary": "#3f3f46", 
-         "mSecondaryHover": "#52525b", 
-         "mOnSecondary": "#ffffff", 
-         "mError": "#f43f5e", 
-         "mOnError": "#ffffff", 
-         "mSurface": "#000000", 
-         "mOnSurface": "#fafafa", 
-         "mSurfaceVariant": "#18181b", 
-         "mOnSurfaceVariant": "#a1a1aa", 
-         "mOutline": "#27272a", 
-         "mShadow": "#000000" 
-     }, 
-     "light": { 
-         "mPrimary": "#7e22ce", 
-         "mPrimaryHover": "#9333ea", 
-         "mOnPrimary": "#ffffff", 
-         "mSecondary": "#71717a", 
-         "mSecondaryHover": "#52525b", 
-         "mOnSecondary": "#ffffff", 
-         "mError": "#e11d48", 
-         "mOnError": "#ffffff", 
-         "mSurface": "#ffffff", 
-         "mOnSurface": "#09090b", 
-         "mSurfaceVariant": "#f4f4f5", 
-         "mOnSurfaceVariant": "#3f3f46", 
-         "mOutline": "#e4e4e7", 
-         "mShadow": "#0000001a" 
-     } 
- }
-
+{
+  "name": "Ultra Violet",
+  "dark": {
+    "mPrimary": "#a855f7",
+    "mPrimaryHover": "#c084fc",
+    "mOnPrimary": "#000000",
+    "mSecondary": "#3f3f46",
+    "mSecondaryHover": "#52525b",
+    "mOnSecondary": "#ffffff",
+    "mError": "#f43f5e",
+    "mOnError": "#ffffff",
+    "mSurface": "#000000",
+    "mOnSurface": "#fafafa",
+    "mSurfaceVariant": "#18181b",
+    "mOnSurfaceVariant": "#a1a1aa",
+    "mOutline": "#27272a",
+    "mShadow": "#000000"
+  },
+  "light": {
+    "mPrimary": "#7e22ce",
+    "mPrimaryHover": "#9333ea",
+    "mOnPrimary": "#ffffff",
+    "mSecondary": "#71717a",
+    "mSecondaryHover": "#52525b",
+    "mOnSecondary": "#ffffff",
+    "mError": "#e11d48",
+    "mOnError": "#ffffff",
+    "mSurface": "#ffffff",
+    "mOnSurface": "#09090b",
+    "mSurfaceVariant": "#f4f4f5",
+    "mOnSurfaceVariant": "#3f3f46",
+    "mOutline": "#e4e4e7",
+    "mShadow": "#0000001a"
+  }
+}

@@ -173,7 +173,7 @@ MPopup {
                             MButton {
                                 Layout.preferredWidth: Layout.preferredHeight
                                 Layout.preferredHeight: Settings.rightPanel.iconSize
-                                onClicked: SNotification.sendNotification("Foo", "Testing send notification", 2)
+                                onClicked: console.log(SColorscheme.schemes)
                             }
                         }
                     }
