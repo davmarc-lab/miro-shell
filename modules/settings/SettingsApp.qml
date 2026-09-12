@@ -1,7 +1,8 @@
 pragma ComponentBehavior: Bound
 
+import Quickshell.Widgets
+
 import QtQuick
-import QtQuick.Controls
 import QtQuick.Layouts
 
 import qs
@@ -15,13 +16,10 @@ MFloating {
     color: Theme.colorSurface
 
     title: "Miro Settings"
+    implicitWidth: leftPanel.width + screen.width * .3
+    implicitHeight: screen.height * .5
 
-    // height: Screen.height / 2
-    // width: Screen.width / 2
-
-    // onClosing: {
-    //     Global.enableSettings = false;
-    // }
+    onClosed: Global.enableSettings = false
 
     property var sections: [
         {
@@ -52,7 +50,6 @@ MFloating {
     Item {
         id: leftPanel
 
-        // maximum width of all delegates
         property real maxItemWidth: 0
 
         width: maxItemWidth + (Settings.item.margin * 2)
@@ -66,44 +63,100 @@ MFloating {
 
         MRectangle {
             anchors.fill: parent
-
-            ListView {
-                id: indexList
+            ColumnLayout {
                 anchors.fill: parent
                 anchors.margins: Settings.item.margin
-
-                clip: true
-                model: root.sections
                 spacing: Settings.item.margin
 
-                delegate: IndexItem {
-                    id: item
+                Item {
+                    Layout.fillWidth: true
+                    implicitHeight: shell.height
 
-                    width: leftPanel.maxItemWidth
+                    RowLayout {
+                        anchors.fill: parent
+                        MTitle {
+                            id: shell
+                            text: "Miro"
+                            font.pixelSize: Settings.font.size * 1.5
+                        }
 
-                    required property int index
-                    required property var modelData
+                        MFillLayout {}
 
-                    entry: modelData.text
-                    iconName: modelData.icon
-                    iconFill: modelData.iconFill
-                    open: root.currentSection == index
-
-                    // monitor items width and update the shared maximum
-                    Component.onCompleted: {
-                        if (implicitWidth > leftPanel.maxItemWidth) {
-                            leftPanel.maxItemWidth = implicitWidth;
+                        IconImage {
+                            implicitSize: parent.height
+                            source: Qt.resolvedUrl(Settings.dirs.icons + "miro-shell")
+                            backer.cache: true
                         }
                     }
-                    onImplicitWidthChanged: {
-                        if (implicitWidth > leftPanel.maxItemWidth) {
-                            leftPanel.maxItemWidth = implicitWidth;
+                }
+
+                MDivider {}
+
+                ListView {
+                    id: indexList
+                    Layout.fillHeight: true
+                    Layout.fillWidth: true
+
+                    Layout.topMargin: Settings.item.margin / 2
+                    spacing: Settings.item.margin
+
+                    clip: true
+
+                    interactive: false
+                    MouseArea {
+                        anchors.fill: parent
+                        onPressed: mouse => mouse.accepted = false
+                        onReleased: mouse => mouse.accepted = false
+                        onClicked: mouse => mouse.accepted = false
+                        propagateComposedEvents: true
+
+                        onWheel: wheel => {
+                            if (wheel.angleDelta.y > 0) {
+                                indexList.flick(0, 300);
+                            } else {
+                                indexList.flick(0, -300); // Scroll down
+                            }
                         }
                     }
 
-                    onClicked: {
-                        root.currentSection = index;
+                    model: root.sections
+
+                    delegate: IndexItem {
+                        id: item
+
+                        width: leftPanel.maxItemWidth
+
+                        required property int index
+                        required property var modelData
+
+                        entry: modelData.text
+                        iconName: modelData.icon
+                        iconFill: modelData.iconFill
+                        open: root.currentSection == index
+
+                        Component.onCompleted: {
+                            if (implicitWidth > leftPanel.maxItemWidth) {
+                                leftPanel.maxItemWidth = implicitWidth;
+                            }
+                        }
+                        onImplicitWidthChanged: {
+                            if (implicitWidth > leftPanel.maxItemWidth) {
+                                leftPanel.maxItemWidth = implicitWidth;
+                            }
+                        }
+
+                        onClicked: {
+                            root.currentSection = index;
+                        }
                     }
+                }
+
+                MDivider {}
+
+                MButton {
+                    Layout.fillWidth: true
+                    text: "Close"
+                    onClicked: Global.enableSettings = false
                 }
             }
         }
