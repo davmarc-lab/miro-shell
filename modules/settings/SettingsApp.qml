@@ -8,30 +8,38 @@ import qs
 import qs.common
 import qs.widgets
 
-ApplicationWindow {
+MFloating {
     id: root
 
-    topPadding: 0
-
     visible: Global.enableSettings
-
     color: Theme.colorSurface
 
-    onClosing: {
-        Global.enableSettings = false;
-    }
+    title: "Miro Settings"
+
+    // height: Screen.height / 2
+    // width: Screen.width / 2
+
+    // onClosing: {
+    //     Global.enableSettings = false;
+    // }
 
     property var sections: [
         {
             text: "Theme",
+            icon: "colorscheme",
+            iconFill: false,
             content: "ThemeSettings.qml"
         },
         {
             text: "Interface",
+            icon: "menu",
+            iconFill: true,
             content: "UiSettings.qml"
         },
         {
             text: "Controls",
+            icon: "controls",
+            iconFill: false,
             content: "ControlsViewer.qml"
         }
     ]
@@ -41,104 +49,86 @@ ApplicationWindow {
         contentLoader.source = root.sections[root.currentSection].content;
     }
 
-    MRectangle {
-        anchors.fill: parent
-        implicitWidth: parent.width * 0.6
+    Item {
+        id: leftPanel
 
-        radius: Settings.item.radius
+        // maximum width of all delegates
+        property real maxItemWidth: 0
 
-        color: root.color
+        width: maxItemWidth + (Settings.item.margin * 2)
 
-        RowLayout {
+        anchors {
+            top: parent.top
+            bottom: parent.bottom
+            left: parent.left
+            margins: Settings.panel.margin
+        }
+
+        MRectangle {
             anchors.fill: parent
-            anchors.topMargin: Settings.panel.margin
-            anchors.bottomMargin: anchors.topMargin
-            anchors.leftMargin: Settings.panel.margin
-            anchors.rightMargin: anchors.leftMargin
 
-            spacing: Settings.panel.margin
+            ListView {
+                id: indexList
+                anchors.fill: parent
+                anchors.margins: Settings.item.margin
 
-            Rectangle {
-                id: indexPanel
-                Layout.fillHeight: true
-                Layout.minimumWidth: 200
-                implicitWidth: parent.width * 0.3
+                clip: true
+                model: root.sections
+                spacing: Settings.item.margin
 
-                color: Theme.colorSurfaceVariant
+                delegate: IndexItem {
+                    id: item
 
-                radius: Settings.item.radius
+                    width: leftPanel.maxItemWidth
 
-                // pages section indexing
-                ColumnLayout {
-                    id: pages
-                    anchors {
-                        top: parent.top
-                        // bottom: parent.bottom
-                        left: parent.left
-                        right: parent.right
-                    }
+                    required property int index
+                    required property var modelData
 
-                    anchors.topMargin: Settings.panel.margin
-                    anchors.bottomMargin: anchors.topMargin
-                    anchors.leftMargin: Settings.panel.margin
-                    anchors.rightMargin: anchors.leftMargin
+                    entry: modelData.text
+                    iconName: modelData.icon
+                    iconFill: modelData.iconFill
+                    open: root.currentSection == index
 
-                    Repeater {
-                        model: root.sections
-
-                        delegate: IndexItem {
-                            id: item
-                            required property int index
-                            required property var modelData
-
-                            entry: modelData.text
-
-                            onClicked: {
-                                root.currentSection = index;
-                            }
+                    // monitor items width and update the shared maximum
+                    Component.onCompleted: {
+                        if (implicitWidth > leftPanel.maxItemWidth) {
+                            leftPanel.maxItemWidth = implicitWidth;
                         }
                     }
-                }
-
-                // close buttom at the bottom
-                MButton {
-                    id: close
-
-                    anchors.bottom: parent.bottom
-                    anchors.left: parent.left
-                    anchors.right: parent.right
-
-                    anchors.topMargin: Settings.panel.margin
-                    anchors.bottomMargin: anchors.topMargin
-                    anchors.leftMargin: Settings.panel.margin
-                    anchors.rightMargin: anchors.leftMargin
-
-                    text: "Close"
+                    onImplicitWidthChanged: {
+                        if (implicitWidth > leftPanel.maxItemWidth) {
+                            leftPanel.maxItemWidth = implicitWidth;
+                        }
+                    }
 
                     onClicked: {
-                        Global.enableSettings = false;
+                        root.currentSection = index;
                     }
                 }
             }
+        }
+    }
 
-            Rectangle {
-                id: contentPanel
-                Layout.fillHeight: true
-                Layout.fillWidth: true
+    Item {
+        id: rightPanel
+        anchors {
+            top: parent.top
+            bottom: parent.bottom
+            right: parent.right
+            left: leftPanel.right
+            margins: Settings.panel.margin
+        }
 
-                color: Theme.colorSurfaceVariant
+        MRectangle {
+            anchors.fill: parent
+            Loader {
+                id: contentLoader
+                anchors.fill: parent
 
-                radius: Settings.item.radius
-
-                Loader {
-                    id: contentLoader
-                    anchors.fill: contentPanel
-
-                    active: true
-                    Component.onCompleted: {
-                        if (root.currentSection >= 0)
-                            source = root.sections[root.currentSection].content;
-                    }
+                active: true
+                Component.onCompleted: {
+                    if (root.currentSection >= 0)
+                        source = root.sections[root.currentSection].content;
                 }
             }
         }

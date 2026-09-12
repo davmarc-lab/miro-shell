@@ -18,10 +18,10 @@ MPanelWindow {
         bottom: true
     }
 
-    MFontIcon {
-        anchors.centerIn: parent
-        text: "\uf23a"
-        iconFilled: true
-        font.pixelSize: 84
+    ListView {
+        model: SColorscheme.schemes
+
+        Component.onCompleted: console.log(count)
     }
+
 }

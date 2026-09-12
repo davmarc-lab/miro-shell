@@ -20,7 +20,7 @@ Singleton {
     property bool enableWallpaper: true
 
     property bool enableDock: false
-    property bool enableSettings: false
+    property bool enableSettings: true
     property bool enableWPSelector: false
     property bool enableUtility: false
 
