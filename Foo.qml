@@ -13,15 +13,19 @@ MPanelWindow {
     visible: true
 
     anchors {
-        top: true
+        // top: true
         left: true
-        bottom: true
+        // bottom: true
     }
 
-    ListView {
-        model: SColorscheme.schemes
+    implicitHeight: 400
+    implicitWidth: 120
 
-        Component.onCompleted: console.log(count)
+    color: "red"
+
+    MComboBox {
+        anchors.centerIn: parent
+        width: parent.width * .8
+        height: 40
     }
-
 }

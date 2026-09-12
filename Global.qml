@@ -8,7 +8,7 @@ import qs.common
 Singleton {
     id: root
 
-    property bool enableFoo: false
+    property bool enableFoo: true
 
     // modules loading
     property bool enableBar: true
@@ -20,7 +20,7 @@ Singleton {
     property bool enableWallpaper: true
 
     property bool enableDock: false
-    property bool enableSettings: true
+    property bool enableSettings: false
     property bool enableWPSelector: false
     property bool enableUtility: false
 

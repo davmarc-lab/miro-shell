@@ -41,7 +41,7 @@ MFloating {
             content: "ControlsViewer.qml"
         }
     ]
-    property int currentSection: 2
+    property int currentSection: 0
 
     onCurrentSectionChanged: {
         contentLoader.source = root.sections[root.currentSection].content;
