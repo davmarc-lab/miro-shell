@@ -13,6 +13,9 @@ Singleton {
     readonly property real topSpacingFactor: 0.08
     readonly property var shellIcons: {
         "settings": "\u{e8b8}",
+        "colorscheme": "\u{e40a}",
+        "menu": "\u{e5d2}",
+        "controls": "\u{e30f}",
         "gallery": "\u{e3f4}",
         "power": "\u{e8ac}",
         "forward": "\u{e5e1}",

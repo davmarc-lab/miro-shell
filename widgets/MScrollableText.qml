@@ -9,6 +9,7 @@ Item {
 
     property alias color: content.color
     property alias text: content.text
+    property alias horizontalAlignment: content.horizontalAlignment
 
     clip: true
 

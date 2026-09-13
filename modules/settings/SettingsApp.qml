@@ -1,144 +1,187 @@
 pragma ComponentBehavior: Bound
 
+import Quickshell.Widgets
+
 import QtQuick
-import QtQuick.Controls
 import QtQuick.Layouts
 
 import qs
 import qs.common
 import qs.widgets
 
-ApplicationWindow {
+MFloating {
     id: root
 
-    topPadding: 0
-
     visible: Global.enableSettings
-
     color: Theme.colorSurface
 
-    onClosing: {
-        Global.enableSettings = false;
-    }
+    title: "Miro Settings"
+    implicitWidth: leftPanel.width + screen.width * .3
+    implicitHeight: screen.height * .5
+
+    onClosed: Global.enableSettings = false
 
     property var sections: [
         {
             text: "Theme",
+            icon: "colorscheme",
+            iconFill: false,
             content: "ThemeSettings.qml"
         },
         {
             text: "Interface",
+            icon: "menu",
+            iconFill: true,
             content: "UiSettings.qml"
         },
         {
             text: "Controls",
+            icon: "controls",
+            iconFill: false,
             content: "ControlsViewer.qml"
         }
     ]
-    property int currentSection: 2
+    property int currentSection: 0
 
     onCurrentSectionChanged: {
         contentLoader.source = root.sections[root.currentSection].content;
     }
 
-    MRectangle {
-        anchors.fill: parent
-        implicitWidth: parent.width * 0.6
+    Item {
+        id: leftPanel
 
-        radius: Settings.item.radius
+        property real maxItemWidth: 0
 
-        color: root.color
+        width: maxItemWidth + (Settings.item.margin * 2)
 
-        RowLayout {
+        anchors {
+            top: parent.top
+            bottom: parent.bottom
+            left: parent.left
+            margins: Settings.panel.margin
+        }
+
+        MRectangle {
             anchors.fill: parent
-            anchors.topMargin: Settings.panel.margin
-            anchors.bottomMargin: anchors.topMargin
-            anchors.leftMargin: Settings.panel.margin
-            anchors.rightMargin: anchors.leftMargin
+            ColumnLayout {
+                anchors.fill: parent
+                anchors.margins: Settings.item.margin
+                spacing: Settings.item.margin
 
-            spacing: Settings.panel.margin
+                Item {
+                    Layout.fillWidth: true
+                    implicitHeight: shell.height
 
-            Rectangle {
-                id: indexPanel
-                Layout.fillHeight: true
-                Layout.minimumWidth: 200
-                implicitWidth: parent.width * 0.3
+                    RowLayout {
+                        anchors.fill: parent
+                        MTitle {
+                            id: shell
+                            text: "Miro"
+                            font.pixelSize: Settings.font.size * 1.5
+                        }
 
-                color: Theme.colorSurfaceVariant
+                        MFillLayout {}
 
-                radius: Settings.item.radius
-
-                // pages section indexing
-                ColumnLayout {
-                    id: pages
-                    anchors {
-                        top: parent.top
-                        // bottom: parent.bottom
-                        left: parent.left
-                        right: parent.right
-                    }
-
-                    anchors.topMargin: Settings.panel.margin
-                    anchors.bottomMargin: anchors.topMargin
-                    anchors.leftMargin: Settings.panel.margin
-                    anchors.rightMargin: anchors.leftMargin
-
-                    Repeater {
-                        model: root.sections
-
-                        delegate: IndexItem {
-                            id: item
-                            required property int index
-                            required property var modelData
-
-                            entry: modelData.text
-
-                            onClicked: {
-                                root.currentSection = index;
-                            }
+                        IconImage {
+                            implicitSize: parent.height
+                            source: Qt.resolvedUrl(Settings.dirs.icons + "miro-shell")
+                            backer.cache: true
                         }
                     }
                 }
 
-                // close buttom at the bottom
-                MButton {
-                    id: close
+                MDivider {}
 
-                    anchors.bottom: parent.bottom
-                    anchors.left: parent.left
-                    anchors.right: parent.right
+                ListView {
+                    id: indexList
+                    Layout.fillHeight: true
+                    Layout.fillWidth: true
 
-                    anchors.topMargin: Settings.panel.margin
-                    anchors.bottomMargin: anchors.topMargin
-                    anchors.leftMargin: Settings.panel.margin
-                    anchors.rightMargin: anchors.leftMargin
+                    Layout.topMargin: Settings.item.margin / 2
+                    spacing: Settings.item.margin
 
-                    text: "Close"
+                    clip: true
 
-                    onClicked: {
-                        Global.enableSettings = false;
+                    interactive: false
+                    MouseArea {
+                        anchors.fill: parent
+                        onPressed: mouse => mouse.accepted = false
+                        onReleased: mouse => mouse.accepted = false
+                        onClicked: mouse => mouse.accepted = false
+                        propagateComposedEvents: true
+
+                        onWheel: wheel => {
+                            if (wheel.angleDelta.y > 0) {
+                                indexList.flick(0, 300);
+                            } else {
+                                indexList.flick(0, -300); // Scroll down
+                            }
+                        }
+                    }
+
+                    model: root.sections
+
+                    delegate: IndexItem {
+                        id: item
+
+                        width: leftPanel.maxItemWidth
+
+                        required property int index
+                        required property var modelData
+
+                        entry: modelData.text
+                        iconName: modelData.icon
+                        iconFill: modelData.iconFill
+                        open: root.currentSection == index
+
+                        Component.onCompleted: {
+                            if (implicitWidth > leftPanel.maxItemWidth) {
+                                leftPanel.maxItemWidth = implicitWidth;
+                            }
+                        }
+                        onImplicitWidthChanged: {
+                            if (implicitWidth > leftPanel.maxItemWidth) {
+                                leftPanel.maxItemWidth = implicitWidth;
+                            }
+                        }
+
+                        onClicked: {
+                            root.currentSection = index;
+                        }
                     }
                 }
+
+                MDivider {}
+
+                MButton {
+                    Layout.fillWidth: true
+                    text: "Close"
+                    onClicked: Global.enableSettings = false
+                }
             }
+        }
+    }
 
-            Rectangle {
-                id: contentPanel
-                Layout.fillHeight: true
-                Layout.fillWidth: true
+    Item {
+        id: rightPanel
+        anchors {
+            top: parent.top
+            bottom: parent.bottom
+            right: parent.right
+            left: leftPanel.right
+            margins: Settings.panel.margin
+        }
 
-                color: Theme.colorSurfaceVariant
+        MRectangle {
+            anchors.fill: parent
+            Loader {
+                id: contentLoader
+                anchors.fill: parent
 
-                radius: Settings.item.radius
-
-                Loader {
-                    id: contentLoader
-                    anchors.fill: contentPanel
-
-                    active: true
-                    Component.onCompleted: {
-                        if (root.currentSection >= 0)
-                            source = root.sections[root.currentSection].content;
-                    }
+                active: true
+                Component.onCompleted: {
+                    if (root.currentSection >= 0)
+                        source = root.sections[root.currentSection].content;
                 }
             }
         }

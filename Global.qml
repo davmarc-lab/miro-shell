@@ -8,7 +8,7 @@ import qs.common
 Singleton {
     id: root
 
-    property bool enableFoo: false
+    property bool enableFoo: true
 
     // modules loading
     property bool enableBar: true

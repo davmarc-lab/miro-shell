@@ -13,15 +13,19 @@ MPanelWindow {
     visible: true
 
     anchors {
-        top: true
+        // top: true
         left: true
-        bottom: true
+        // bottom: true
     }
 
-    MFontIcon {
+    implicitHeight: 400
+    implicitWidth: 120
+
+    color: "red"
+
+    MComboBox {
         anchors.centerIn: parent
-        text: "\uf23a"
-        iconFilled: true
-        font.pixelSize: 84
+        width: parent.width * .8
+        height: 40
     }
 }

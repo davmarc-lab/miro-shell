@@ -1,4 +1,5 @@
 import QtQuick.Layouts
+import QtQuick
 
 ColumnLayout {
     id: root

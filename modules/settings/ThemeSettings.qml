@@ -39,6 +39,26 @@ MContentItem {
 
                 RowLayout {
                     anchors.fill: parent
+
+                    MText {
+                        text: "Colorscheme"
+                    }
+
+                    MFillLayout {}
+
+                    ColorschemePicker {
+                        Layout.fillHeight: true
+                        Layout.preferredWidth: parent.width * 0.4
+                    }
+                }
+            }
+
+            MContentItem {
+                sizex: content.itemWidth
+                sizey: content.itemHeight
+
+                RowLayout {
+                    anchors.fill: parent
                     MText {
                         id: themeText
                         text: "Dark Mode"
