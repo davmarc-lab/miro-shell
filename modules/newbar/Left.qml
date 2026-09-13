@@ -48,9 +48,19 @@ Scope {
                 HoverHandler {
                     id: mouse
                 }
+                // decoration
+                MRectangle {
+                    topLeftRadius: 0
+                    topRightRadius: topLeftRadius
+                    bottomLeftRadius: 0
+                    width: parent.width
+                    height: parent.height / 2
+                    color: Theme.colorPrimary
+                }
             }
 
             MRectangle {
+                id: base
                 height: root.height
                 width: root.width
                 topLeftRadius: 0
@@ -69,13 +79,9 @@ Scope {
                     }
                 }
 
-                // Background turns visible on hover, completely clear when idle
-                color: Theme.colorSurfaceVariant
-
                 Workspaces {
                     id: workspaces
                     anchors.centerIn: parent
-                    anchors.top: parent.top
                 }
             }
         }

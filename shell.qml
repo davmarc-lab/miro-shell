@@ -69,10 +69,10 @@ ShellRoot {
         component: Wallpaper {}
     }
 
-    LazyLoader {
-        active: root.init && Global.enableBar
-        component: Bar {}
-    }
+    // LazyLoader {
+    //     active: root.init && Global.enableBar
+    //     component: Bar {}
+    // }
 
     LazyLoader {
         active: root.init && Global.enableVolumeSliderPopup

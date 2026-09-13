@@ -5,6 +5,7 @@ import QtQuick
 
 import qs.common
 import qs.widgets
+import qs.services
 import qs.modules.bar
 
 Scope {
@@ -25,7 +26,7 @@ Scope {
             property bool hovering: mouse.hovered || content.hovered
 
             implicitHeight: root.hovering ? Settings.bar.height : 10
-            implicitWidth: workspaces.implicitWidth + (Settings.item.margin * 2)
+            implicitWidth: foo.width + (Settings.item.margin * 2)
 
             Behavior on implicitHeight {
                 NumberAnimation {
@@ -48,9 +49,18 @@ Scope {
                 HoverHandler {
                     id: mouse
                 }
+                // decoration
+                MRectangle {
+                    topLeftRadius: 0
+                    topRightRadius: topLeftRadius
+                    width: parent.width
+                    height: parent.height / 2
+                    color: Theme.colorPrimary
+                }
             }
 
             MRectangle {
+                id: base
                 height: root.height
                 width: root.width
                 topLeftRadius: 0
@@ -69,13 +79,37 @@ Scope {
                     }
                 }
 
-                // Background turns visible on hover, completely clear when idle
-                color: Theme.colorSurfaceVariant
+                property bool showDate: false
 
-                Workspaces {
-                    id: workspaces
+                Item {
+                    id: foo
+
+                    width: clock.width + media.width
+                    height: parent.height
+
                     anchors.centerIn: parent
-                    anchors.top: parent.top
+
+                    MText {
+                        id: clock
+                        anchors.centerIn: parent
+                        text: base.showDate ? STime.date : STime.time
+                    }
+
+                    Item {
+                        id: media
+                        anchors {
+                            top: parent.top
+                            bottom: parent.bottom
+                            right: clock.left
+                        }
+                        width: 600
+                        MediaPlayer {
+                            anchors.centerIn: parent
+                        }
+                    }
+                }
+                MouseArea {
+                    onClicked: base.showDate = !base.showDate
                 }
             }
         }

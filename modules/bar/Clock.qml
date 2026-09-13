@@ -9,7 +9,7 @@ import qs.widgets
 MRectangle {
 
     Layout.fillHeight: true
-    Layout.preferredWidth: time.contentWidth + Settings.item.margin
+    implicitWidth: time.contentWidth + Settings.item.margin
 
     MText {
         id: time
