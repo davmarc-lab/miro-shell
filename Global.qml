@@ -8,10 +8,10 @@ import qs.common
 Singleton {
     id: root
 
-    property bool enableFoo: true
+    property bool enableFoo: false
 
     // modules loading
-    property bool enableBar: true
+    property bool enableBar: false
     property bool enableRightPanel: false
     property bool enableNotification: true
 

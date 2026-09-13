@@ -9,6 +9,7 @@ import qs
 import qs.common
 import qs.modules.greeter
 import qs.modules.wallpaper
+import qs.modules.newbar
 import qs.modules.bar
 import qs.modules.dock
 import qs.modules.powermenu
@@ -56,6 +57,11 @@ ShellRoot {
     LazyLoader {
         active: root.init && Global.firstRun
         component: Greeter {}
+    }
+
+    LazyLoader {
+        active: root.init && true
+        component: NewBar {}
     }
 
     LazyLoader {
