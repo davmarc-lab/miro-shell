@@ -11,30 +11,8 @@ import qs.modules.bar
 Scope {
     Variants {
         model: Quickshell.screens
-
-        MPanelWindow {
+        HidePanel {
             id: root
-            screen: modelData
-            required property var modelData
-
-            WlrLayershell.layer: WlrLayer.Top
-            exclusionMode: ExclusionMode.Ignore
-            aboveWindows: true
-            WlrLayershell.keyboardFocus: WlrKeyboardFocus.None
-            color: "transparent"
-
-            property bool hovering: mouse.hovered || content.hovered
-
-            implicitHeight: root.hovering ? Settings.bar.height : 10
-            implicitWidth: foo.width + (Settings.item.margin * 2)
-
-            Behavior on implicitHeight {
-                NumberAnimation {
-                    id: mainAnim
-                    duration: 150
-                    easing.type: Easing.Linear
-                }
-            }
 
             anchors {
                 top: true
@@ -43,21 +21,8 @@ Scope {
                 right: false
             }
 
-            // always living item for activation
-            Item {
-                anchors.fill: parent
-                HoverHandler {
-                    id: mouse
-                }
-                // decoration
-                MRectangle {
-                    topLeftRadius: 0
-                    topRightRadius: topLeftRadius
-                    width: parent.width
-                    height: parent.height / 2
-                    color: Theme.colorPrimary
-                }
-            }
+            implicitHeight: root.hovering ? Settings.bar.height : 10
+            implicitWidth: foo.width + (Settings.item.margin * 2)
 
             MRectangle {
                 id: base
@@ -74,7 +39,7 @@ Scope {
                 y: root.hovering ? parent.y : -Settings.bar.height
                 Behavior on y {
                     NumberAnimation {
-                        duration: mainAnim.duration
+                        duration: 150
                         easing.type: Easing.Linear
                     }
                 }
@@ -108,7 +73,9 @@ Scope {
                         }
                     }
                 }
+
                 MouseArea {
+                    anchors.fill: parent
                     onClicked: base.showDate = !base.showDate
                 }
             }
