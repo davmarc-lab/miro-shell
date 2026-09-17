@@ -45,15 +45,16 @@ MPanelWindow {
     // always living item for activation
     MRectangle {
         id: decoration
+        visible: root.decorated
+
+        width: parent.width
+        height: Settings.bar.triggerSize
         anchors {
             top: parent.top
             left: parent.left
             right: parent.right
         }
 
-        visible: root.decorated
-        width: parent.width
-        height: 5
         color: root.decorated ? root.triggerColor : "transparent"
     }
 

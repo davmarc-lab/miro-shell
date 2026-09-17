@@ -8,6 +8,8 @@ JsonObject {
     property int height: 30
     property int width: 30
 
+    property int triggerSize: 5
+
     property bool transparent: true
 
     property Margins margins: Margins {}

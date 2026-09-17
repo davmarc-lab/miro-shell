@@ -22,9 +22,11 @@ Scope {
                 right: false
             }
 
-            implicitHeight: root.hovering ? Settings.bar.height * 2 : 10
+            implicitHeight: player.visible ? Settings.bar.height * 2 : Settings.bar.height
             implicitWidth: Screen.width * 0.2 + Settings.item.margin * 2
-            decorated: false
+
+            topLeftRadius: 0
+            topRightRadius: 0
 
             MRectangle {
                 id: base
@@ -40,25 +42,25 @@ Scope {
                 property bool showDate: false
 
                 ColumnLayout {
-                    visible: false
                     anchors.fill: parent
                     MText {
                         id: clock
                         Layout.alignment: Qt.AlignHCenter
                         text: base.showDate ? STime.date : STime.time
+
+                        MouseArea {
+                            anchors.fill: parent
+                            onClicked: base.showDate = !base.showDate
+                        }
                     }
 
                     MediaPlayer {
+                        id: player
                         visible: SMediaPlayer.currentPlayer != null
                         Layout.alignment: Qt.AlignCenter
                         Layout.fillWidth: true
                         Layout.fillHeight: true
                     }
-                }
-
-                MouseArea {
-                    anchors.fill: parent
-                    onClicked: base.showDate = !base.showDate
                 }
             }
         }

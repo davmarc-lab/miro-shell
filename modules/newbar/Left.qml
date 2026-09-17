@@ -1,5 +1,4 @@
 import Quickshell
-import Quickshell.Wayland
 
 import QtQuick
 
@@ -19,17 +18,18 @@ Scope {
                 right: false
             }
 
-            implicitHeight: root.hovering ? Settings.bar.height : 10
-            implicitWidth: workspaces.implicitWidth + (Settings.item.margin * 2)
+            implicitHeight: Settings.bar.height
+            implicitWidth: workspaces.implicitWidth + Settings.item.margin * 2
+
+            topLeftRadius: 0
+            topRightRadius: 0
+            bottomLeftRadius: 0
 
             MRectangle {
                 id: base
                 anchors.fill: parent
                 topLeftRadius: 0
                 topRightRadius: topLeftRadius
-
-                // visible: root.expanded
-
 
                 Workspaces {
                     id: workspaces
