@@ -70,8 +70,7 @@ Scope {
                             }
 
                             Loader {
-                                active: true
-                                visible: SMediaPlayer.currentPlayer != null
+                                active: SMediaPlayer.currentPlayer != null
 
                                 Layout.fillHeight: true
                                 Layout.preferredWidth: parent.width * 0.5

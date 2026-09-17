@@ -2,6 +2,7 @@ import Quickshell
 import Quickshell.Wayland
 
 import QtQuick
+import QtQuick.Layouts
 
 import qs.common
 import qs.widgets
@@ -21,8 +22,8 @@ Scope {
                 right: false
             }
 
-            implicitHeight: root.hovering ? Settings.bar.height : 10
-            implicitWidth: foo.width + (Settings.item.margin * 2)
+            implicitHeight: root.hovering ? Settings.bar.height * 2 : 10
+            implicitWidth: Screen.width * 0.2 + Settings.item.margin * 2
 
             MRectangle {
                 id: base
@@ -46,31 +47,19 @@ Scope {
 
                 property bool showDate: false
 
-                Item {
-                    id: foo
-
-                    width: clock.width + media.width
-                    height: parent.height
-
-                    anchors.centerIn: parent
-
+                ColumnLayout {
+                    anchors.fill: parent
                     MText {
                         id: clock
-                        anchors.centerIn: parent
+                        Layout.alignment: Qt.AlignHCenter
                         text: base.showDate ? STime.date : STime.time
                     }
 
-                    Item {
-                        id: media
-                        anchors {
-                            top: parent.top
-                            bottom: parent.bottom
-                            right: clock.left
-                        }
-                        width: 600
-                        MediaPlayer {
-                            anchors.centerIn: parent
-                        }
+                    MediaPlayer {
+                        visible: SMediaPlayer.currentPlayer != null
+                        Layout.alignment: Qt.AlignCenter
+                        Layout.fillWidth: true
+                        Layout.fillHeight: true
                     }
                 }
 
