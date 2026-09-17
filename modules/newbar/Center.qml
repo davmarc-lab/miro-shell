@@ -24,6 +24,7 @@ Scope {
 
             implicitHeight: root.hovering ? Settings.bar.height * 2 : 10
             implicitWidth: Screen.width * 0.2 + Settings.item.margin * 2
+            decorated: false
 
             MRectangle {
                 id: base
@@ -36,18 +37,10 @@ Scope {
                     id: content
                 }
 
-                x: parent.x
-                y: root.hovering ? parent.y : -Settings.bar.height
-                Behavior on y {
-                    NumberAnimation {
-                        duration: 150
-                        easing.type: Easing.Linear
-                    }
-                }
-
                 property bool showDate: false
 
                 ColumnLayout {
+                    visible: false
                     anchors.fill: parent
                     MText {
                         id: clock

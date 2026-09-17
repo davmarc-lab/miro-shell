@@ -17,63 +17,67 @@ MPanelWindow {
     WlrLayershell.keyboardFocus: WlrKeyboardFocus.None
     color: "transparent"
 
+    // mouse hovering the content/trigger
     property bool hovering: mouse.hovered || timer.running
-    property bool decorated: true
     property alias outTime: timer.interval
 
+    // animation porperties
+    property alias animDuration: anim.duration
+    property alias animType: anim.easing.type
+
+    // decoration porperties
+    property bool decorated: true
+    property alias triggerHeight: decoration.height
+    property string triggerColor: Theme.colorPrimary
     property alias topLeftRadius: decoration.topLeftRadius
     property alias topRightRadius: decoration.topRightRadius
     property alias bottomLeftRadius: decoration.bottomLeftRadius
     property alias bottomRightRadius: decoration.bottomRightRadius
 
+    // content items
     default property alias items: content.children
 
     Timer {
         id: timer
         interval: 1000
-        running: false
     }
 
     // always living item for activation
-    Item {
-        anchors.fill: parent
-
-        // decoration
-        MRectangle {
-            id: decoration
-            visible: root.decorated && !root.hovering
-            topLeftRadius: 0
-            topRightRadius: topLeftRadius
-            bottomLeftRadius: 0
-            width: parent.width
-            height: parent.height / 2
-            color: Theme.colorPrimary
-
-            Behavior on visible {
-                NumberAnimation {
-                    duration: 150
-                    easing.type: Easing.Linear
-                }
-            }
+    MRectangle {
+        id: decoration
+        anchors {
+            top: parent.top
+            left: parent.left
+            right: parent.right
         }
+
+        visible: root.decorated
+        width: parent.width
+        height: 5
+        color: root.decorated ? root.triggerColor : "transparent"
     }
 
     Item {
         id: content
-        anchors.fill: parent
+        width: root.width
+        height: root.height
 
-        Behavior on implicitHeight {
+        y: root.hovering ? 0 : -root.height
+        clip: true
+
+        visible: y > -root.height
+
+        Behavior on y {
             NumberAnimation {
-                id: mainAnim
-                duration: 150
-                easing.type: Easing.Linear
+                id: anim
+                duration: 250
+                easing.type: Easing.InOutCubic
             }
         }
     }
 
     HoverHandler {
         id: mouse
-
         onHoveredChanged: timer.running = !hovered
     }
 }

@@ -24,20 +24,12 @@ Scope {
 
             MRectangle {
                 id: base
-                height: root.height
-                width: root.width
+                anchors.fill: parent
                 topLeftRadius: 0
                 topRightRadius: topLeftRadius
 
-                x: parent.x
-                y: root.hovering ? parent.y : -Settings.bar.height
-                Behavior on y {
-                    NumberAnimation {
-                        id: mainAnim
-                        duration: 150
-                        easing.type: Easing.Linear
-                    }
-                }
+                // visible: root.expanded
+
 
                 Workspaces {
                     id: workspaces
