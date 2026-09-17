@@ -1,7 +1,9 @@
 import QtQuick
 
 Item {
+    Left {}
+
     Center {}
 
-    Left {}
+    Right {}
 }

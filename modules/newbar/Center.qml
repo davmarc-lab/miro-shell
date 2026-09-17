@@ -17,9 +17,6 @@ Scope {
 
             anchors {
                 top: true
-                bottom: false
-                left: false
-                right: false
             }
 
             implicitHeight: player.visible ? Settings.bar.height * 2 : Settings.bar.height

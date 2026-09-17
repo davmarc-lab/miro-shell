@@ -13,9 +13,7 @@ Scope {
             id: root
             anchors {
                 top: true
-                bottom: false
                 left: true
-                right: false
             }
 
             implicitHeight: Settings.bar.height
@@ -30,6 +28,7 @@ Scope {
                 anchors.fill: parent
                 topLeftRadius: 0
                 topRightRadius: topLeftRadius
+                bottomLeftRadius: 0
 
                 Workspaces {
                     id: workspaces
