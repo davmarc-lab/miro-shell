@@ -31,6 +31,8 @@
     - [ ] event dot below day number
     - [ ] change view??
 - [ ] Calendar application to manage events categories and other stuff?
+- [ ] NewBar
+    - [ ] use `Loaders` maybe can lower ram usage
 
 ## Fix
 - [ ] First time using shell

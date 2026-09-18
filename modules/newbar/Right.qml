@@ -5,8 +5,9 @@ import QtQuick.Layouts
 
 import qs
 import qs.common
-import qs.widgets
 import qs.services
+import qs.types
+import qs.widgets
 import qs.modules.bar
 
 Scope {
@@ -18,6 +19,8 @@ Scope {
                 top: true
                 right: true
             }
+            decorationTop: true
+            dirTransition: Transitions.Direction.Bottom
 
             implicitHeight: Settings.bar.height + Settings.item.margin
             implicitWidth: Screen.width * 0.15 + Settings.item.margin * 2

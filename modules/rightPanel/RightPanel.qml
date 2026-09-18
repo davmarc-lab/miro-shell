@@ -6,186 +6,172 @@ import qs.common
 import qs.services
 import qs.widgets
 
-MPopup {
-    id: root
+MRectangle {
+    id: panel
+    Layout.alignment: Qt.AlignRight
 
-    onOpenChanged: {
-        Global.enableRightPanel = this.open;
-    }
+    topRightRadius: 0
+    bottomRightRadius: 0
 
-    MRectangle {
-        id: panel
-        Layout.alignment: Qt.AlignRight
+    color: Theme.colorSurface
 
-        Layout.preferredWidth: parent.width * 0.2
-        Layout.fillHeight: true
-        Layout.topMargin: Settings.bar.size
-        topRightRadius: 0
-        bottomRightRadius: 0
+    ColumnLayout {
+        anchors.fill: parent
+        anchors.margins: Settings.panel.margin
+        spacing: Settings.panel.margin
 
-        color: Theme.colorSurface
+        MRectangle {
+            id: controlsBack
+            Layout.preferredHeight: itemsArea.isExpanded() ? panel.height * 0.3 : controls.height
+            Layout.fillWidth: true
 
-        focus: true
-        Keys.onEscapePressed: root.open = false
+            ColumnLayout {
+                id: itemsArea
+                anchors.fill: parent
 
-        ColumnLayout {
-            anchors.fill: parent
-            anchors.margins: Settings.panel.margin
-            spacing: Settings.panel.margin
+                property bool expand: false
+                property string current: ""
 
-            MRectangle {
-                id: controlsBack
-                Layout.preferredHeight: itemsArea.isExpanded() ? panel.height * 0.3 : controls.height
-                Layout.fillWidth: true
+                function isExpanded(): bool {
+                    return expand && current != "";
+                }
 
-                ColumnLayout {
-                    id: itemsArea
-                    anchors.fill: parent
-
-                    property bool expand: false
-                    property string current: ""
-
-                    function isExpanded(): bool {
-                        return expand && current != "";
-                    }
-
-                    function tryExpand(name: string): void {
-                        if (name == this.current) {
-                            this.current = "";
-                            this.expand = false;
-                            return;
-                        }
-
-                        this.current = name;
-                        this.expand = true;
-                    }
-
-                    function resetExpand(): void {
+                function tryExpand(name: string): void {
+                    if (name == this.current) {
                         this.current = "";
                         this.expand = false;
+                        return;
                     }
 
-                    ColumnLayout {
-                        id: controls
+                    this.current = name;
+                    this.expand = true;
+                }
+
+                function resetExpand(): void {
+                    this.current = "";
+                    this.expand = false;
+                }
+
+                ColumnLayout {
+                    id: controls
+                    Layout.fillWidth: true
+                    spacing: 0
+
+                    RowLayout {
+                        id: topControls
                         Layout.fillWidth: true
-                        spacing: 0
+                        Layout.margins: Settings.item.margin
+                        spacing: Settings.item.margin
 
-                        RowLayout {
-                            id: topControls
+                        ControlButton {
                             Layout.fillWidth: true
-                            Layout.margins: Settings.item.margin
-                            spacing: Settings.item.margin
-
-                            ControlButton {
-                                Layout.fillWidth: true
-                                text: SNetwork.current
-                                iconName: "network"
-                                onClick: itemsArea.tryExpand("Network")
-                            }
-
-                            ControlButton {
-                                Layout.fillWidth: true
-                                text: "Bluetooth"
-                                iconName: "bluetooth"
-                                onClick: itemsArea.tryExpand("Bluetooth")
-                            }
+                            text: SNetwork.current
+                            iconName: "network"
+                            onClick: itemsArea.tryExpand("Network")
                         }
 
-                        RowLayout {
-                            id: botControls
+                        ControlButton {
                             Layout.fillWidth: true
-                            Layout.margins: Settings.item.margin
-                            Layout.topMargin: 0
-                            spacing: Settings.item.margin
-
-                            ControlSwitch {
-                                iconName: checked ? "dnd-on" : "dnd-off"
-                                Layout.fillWidth: true
-                                text: "Do Not Disturb"
-                                checked: !Global.enableNotifPopups
-                                onClick: Global.enableNotifPopups = !Global.enableNotifPopups
-                            }
-
-                            ControlSwitch {
-                                iconName: checked ? "dark-mode" : "light-mode"
-                                Layout.fillWidth: true
-                                text: "Dark Mode"
-                                checked: Theme.isDark
-                                onClick: Theme.toggleTheme()
-                            }
+                            text: "Bluetooth"
+                            iconName: "bluetooth"
+                            onClick: itemsArea.tryExpand("Bluetooth")
                         }
                     }
 
-                    // here the expanded content is loaded
-                    Item {
+                    RowLayout {
+                        id: botControls
                         Layout.fillWidth: true
-                        Layout.fillHeight: true
                         Layout.margins: Settings.item.margin
                         Layout.topMargin: 0
+                        spacing: Settings.item.margin
 
-                        Network {
-                            anchors.fill: parent
-                            visible: itemsArea.current === "Network"
+                        ControlSwitch {
+                            iconName: checked ? "dnd-on" : "dnd-off"
+                            Layout.fillWidth: true
+                            text: "Do Not Disturb"
+                            checked: !Global.enableNotifPopups
+                            onClick: Global.enableNotifPopups = !Global.enableNotifPopups
                         }
 
-                        Bluetooth {
-                            anchors.fill: parent
-                            visible: itemsArea.current === "Bluetooth"
+                        ControlSwitch {
+                            iconName: checked ? "dark-mode" : "light-mode"
+                            Layout.fillWidth: true
+                            text: "Dark Mode"
+                            checked: Theme.isDark
+                            onClick: Theme.toggleTheme()
                         }
+                    }
+                }
 
-                        Loader {
-                            id: bar
-                            active: itemsArea.expand
-                            anchors.fill: parent
+                // here the expanded content is loaded
+                Item {
+                    Layout.fillWidth: true
+                    Layout.fillHeight: true
+                    Layout.margins: Settings.item.margin
+                    Layout.topMargin: 0
 
-                            source: {
-                                if (itemsArea.current != "")
-                                    return itemsArea.current + ".qml";
-                                return "";
-                            }
+                    Network {
+                        anchors.fill: parent
+                        visible: itemsArea.current === "Network"
+                    }
+
+                    Bluetooth {
+                        anchors.fill: parent
+                        visible: itemsArea.current === "Bluetooth"
+                    }
+
+                    Loader {
+                        id: bar
+                        active: itemsArea.expand
+                        anchors.fill: parent
+
+                        source: {
+                            if (itemsArea.current != "")
+                                return itemsArea.current + ".qml";
+                            return "";
                         }
                     }
                 }
             }
+        }
 
-            MRectangle {
-                Layout.fillHeight: true
-                Layout.fillWidth: true
+        MRectangle {
+            Layout.fillHeight: true
+            Layout.fillWidth: true
 
-                // When mouse click here closes panel expanded from above
-                MouseArea {
-                    anchors.fill: parent
+            // When mouse click here closes panel expanded from above
+            MouseArea {
+                anchors.fill: parent
 
-                    onClicked: {
-                        itemsArea.resetExpand();
-                    }
+                onClicked: {
+                    itemsArea.resetExpand();
                 }
+            }
 
-                ColumnLayout {
-                    anchors.fill: parent
-                    anchors.margins: Settings.item.margin
+            ColumnLayout {
+                anchors.fill: parent
+                anchors.margins: Settings.item.margin
 
-                    RowLayout {
+                RowLayout {
+                    Layout.fillWidth: true
+                    Layout.alignment: Qt.AlignTop
+
+                    MTitle {
                         Layout.fillWidth: true
                         Layout.alignment: Qt.AlignTop
 
-                        MTitle {
-                            Layout.fillWidth: true
-                            Layout.alignment: Qt.AlignTop
-
-                            text: "Notifications"
-                            font.pixelSize: Settings.font.titleSize + 8
-                        }
+                        text: "Notifications"
+                        font.pixelSize: Settings.font.titleSize + 8
                     }
+                }
 
-                    MDivider {
-                        Layout.bottomMargin: Settings.item.margin
-                    }
+                MDivider {
+                    Layout.bottomMargin: Settings.item.margin
+                }
 
-                    NotificationsContent {
-                        Layout.fillWidth: true
-                        Layout.fillHeight: true
-                    }
+                NotificationsContent {
+                    Layout.fillWidth: true
+                    Layout.fillHeight: true
                 }
             }
         }

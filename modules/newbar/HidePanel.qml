@@ -4,6 +4,7 @@ import Quickshell.Wayland
 import QtQuick
 
 import qs.common
+import qs.types
 import qs.widgets
 
 MPanelWindow {
@@ -19,21 +20,23 @@ MPanelWindow {
 
     // mouse hovering the content/trigger
     property bool hovering: decorationHover.hovered || contentMouse.hovered || timer.running
+    readonly property bool collapsed: root.isVertical ? Math.abs(content.x) == root.width : Math.abs(content.y) == root.height
     property alias outTime: timer.interval
 
     property bool isVertical: false
 
     // animation porperties
-    property alias animDuration: anim.duration
-    property alias animType: anim.easing.type
+    property alias animDuration: xanim.duration
+    property alias animType: xanim.easing.type
 
     // decoration porperties
     property bool decorated: true
+    required property int dirTransition
     property bool decorationTop: false
     property bool decorationBottom: false
     property bool decorationRight: false
     property bool decorationLeft: false
-    property alias triggerHeight: decoration.height
+    property int triggerSize: Settings.bar.triggerSize
     property string triggerColor: Theme.colorPrimary
     property alias topLeftRadius: decoration.topLeftRadius
     property alias topRightRadius: decoration.topRightRadius
@@ -43,6 +46,10 @@ MPanelWindow {
     // content items
     default property alias items: content.children
 
+    mask: Region {
+        item: root.collapsed ? decoration : content
+    }
+
     Timer {
         id: timer
         interval: 1000
@@ -51,10 +58,9 @@ MPanelWindow {
     // always living item for activation
     MRectangle {
         id: decoration
-        visible: root.decorated
 
-        width: root.isVertical ? Settings.bar.triggerSize : parent.width
-        height: !root.isVertical ? Settings.bar.triggerSize : parent.height
+        width: root.isVertical ? root.triggerSize : parent.width
+        height: !root.isVertical ? root.triggerSize : parent.height
         anchors {
             top: root.decorationTop ? parent.top : undefined
             bottom: root.decorationBottom ? parent.bottom : undefined
@@ -74,27 +80,34 @@ MPanelWindow {
         width: root.width
         height: root.height
 
-        x: root.hovering && !root.isVertical ? 0 : -root.width
-        y: root.hovering && !root.isVertical ? 0 : -root.height
+        x: root.hovering ? 0 : root.isVertical ? evalDir(root.width) : 0
+        y: root.hovering ? 0 : root.isVertical ? 0 : evalDir(root.height)
 
-        clip: true
+        function evalDir(val: int): int {
+            return val * (root.dirTransition === Transitions.Direction.Top || root.dirTransition === Transitions.Direction.Left ? 1 : -1);
+        }
 
-        visible: root.isVertical ? y > -root.height : x > -root.width
-
-        Behavior on y {
+        Behavior on x {
             NumberAnimation {
-                id: anim
+                id: xanim
                 duration: 250
                 easing.type: Easing.InOutCubic
             }
         }
 
+        Behavior on y {
+            NumberAnimation {
+                id: yanim
+                duration: root.animDuration
+                easing.type: root.animType
+            }
+        }
+
+        visible: !root.collapsed
+
         HoverHandler {
             id: contentMouse
-            onHoveredChanged: {
-                timer.running = !hovered;
-                console.log("HE")
-            }
+            onHoveredChanged: timer.running = !hovered
         }
     }
 }

@@ -4,7 +4,8 @@ import QtQuick
 
 import qs.common
 import qs.widgets
-import qs.modules.bar
+import qs.types
+import qs.modules.rightPanel
 
 Scope {
     Variants {
@@ -15,21 +16,18 @@ Scope {
             anchors {
                 right: true
             }
-
             decorationRight: true
+            dirTransition: Transitions.Direction.Left
 
-            implicitHeight: Screen.height * 0.9
-            implicitWidth: Settings.bar.width
+            animDuration: 350
+            triggerSize: Settings.bar.triggerSize / 2
+            decorated: false
 
-            topRightRadius: 0
-            bottomRightRadius: 0
+            implicitHeight: Screen.height - Settings.bar.triggerSize * 4
+            implicitWidth: Screen.width * 0.2
 
-            MRectangle {
-                id: base
+            RightPanel {
                 anchors.fill: parent
-                topLeftRadius: 0
-                topRightRadius: topLeftRadius
-                bottomLeftRadius: 0
             }
         }
     }

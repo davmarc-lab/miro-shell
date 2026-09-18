@@ -5,8 +5,9 @@ import QtQuick
 import QtQuick.Layouts
 
 import qs.common
-import qs.widgets
 import qs.services
+import qs.types
+import qs.widgets
 import qs.modules.bar
 
 Scope {
@@ -18,6 +19,8 @@ Scope {
             anchors {
                 top: true
             }
+            decorationTop: true
+            dirTransition: Transitions.Direction.Bottom
 
             // height must not be affected when the media is available (binded to item visibility)
             implicitHeight: player.visible ? Settings.bar.height * 2 : Settings.bar.height
@@ -59,7 +62,7 @@ Scope {
 
                     MediaPlayer {
                         id: player
-                        visible: root.isMediaAvailable()
+                        visible: root.isMediaAvailable() && !root.collapsed
                         Layout.alignment: Qt.AlignCenter
                         Layout.fillWidth: true
                         Layout.fillHeight: true

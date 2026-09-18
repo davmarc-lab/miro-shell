@@ -3,6 +3,7 @@ import Quickshell
 import QtQuick
 
 import qs.common
+import qs.types
 import qs.widgets
 import qs.modules.bar
 
@@ -15,6 +16,8 @@ Scope {
                 top: true
                 left: true
             }
+            decorationTop: true
+            dirTransition: Transitions.Direction.Bottom
 
             implicitHeight: Settings.bar.height
             implicitWidth: workspaces.implicitWidth + Settings.item.margin * 2
