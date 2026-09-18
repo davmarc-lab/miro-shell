@@ -19,11 +19,17 @@ Scope {
                 top: true
             }
 
+            // height must not be affected when the media is available (binded to item visibility)
             implicitHeight: player.visible ? Settings.bar.height * 2 : Settings.bar.height
-            implicitWidth: Screen.width * 0.2 + Settings.item.margin * 2
+            // width needs to react when the media becomes available
+            implicitWidth: isMediaAvailable() ? Screen.width * 0.2 + Settings.item.margin * 2 : clock.contentWidth + Settings.item.margin * 2
 
             topLeftRadius: 0
             topRightRadius: 0
+
+            function isMediaAvailable() {
+                return SMediaPlayer.currentPlayer != null;
+            }
 
             MRectangle {
                 id: base
@@ -53,7 +59,7 @@ Scope {
 
                     MediaPlayer {
                         id: player
-                        visible: SMediaPlayer.currentPlayer != null
+                        visible: root.isMediaAvailable()
                         Layout.alignment: Qt.AlignCenter
                         Layout.fillWidth: true
                         Layout.fillHeight: true
