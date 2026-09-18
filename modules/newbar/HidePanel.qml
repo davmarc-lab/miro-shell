@@ -18,8 +18,10 @@ MPanelWindow {
     color: "transparent"
 
     // mouse hovering the content/trigger
-    property bool hovering: decorationHover.hovered || contentMouse.hovered|| timer.running
+    property bool hovering: decorationHover.hovered || contentMouse.hovered || timer.running
     property alias outTime: timer.interval
+
+    property bool isVertical: false
 
     // animation porperties
     property alias animDuration: anim.duration
@@ -27,6 +29,10 @@ MPanelWindow {
 
     // decoration porperties
     property bool decorated: true
+    property bool decorationTop: false
+    property bool decorationBottom: false
+    property bool decorationRight: false
+    property bool decorationLeft: false
     property alias triggerHeight: decoration.height
     property string triggerColor: Theme.colorPrimary
     property alias topLeftRadius: decoration.topLeftRadius
@@ -47,12 +53,13 @@ MPanelWindow {
         id: decoration
         visible: root.decorated
 
-        width: parent.width
-        height: Settings.bar.triggerSize
+        width: root.isVertical ? Settings.bar.triggerSize : parent.width
+        height: !root.isVertical ? Settings.bar.triggerSize : parent.height
         anchors {
-            top: parent.top
-            left: parent.left
-            right: parent.right
+            top: root.decorationTop ? parent.top : undefined
+            bottom: root.decorationBottom ? parent.bottom : undefined
+            right: root.decorationRight ? parent.right : undefined
+            left: root.decorationLeft ? parent.left : undefined
         }
 
         color: root.decorated ? root.triggerColor : "transparent"
@@ -67,10 +74,12 @@ MPanelWindow {
         width: root.width
         height: root.height
 
-        y: root.hovering ? 0 : -root.height
+        x: root.hovering && !root.isVertical ? 0 : -root.width
+        y: root.hovering && !root.isVertical ? 0 : -root.height
+
         clip: true
 
-        visible: y > -root.height
+        visible: root.isVertical ? y > -root.height : x > -root.width
 
         Behavior on y {
             NumberAnimation {
@@ -82,7 +91,10 @@ MPanelWindow {
 
         HoverHandler {
             id: contentMouse
-            onHoveredChanged: timer.running = !hovered
+            onHoveredChanged: {
+                timer.running = !hovered;
+                console.log("HE")
+            }
         }
     }
 }
