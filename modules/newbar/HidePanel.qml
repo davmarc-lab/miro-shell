@@ -18,7 +18,7 @@ MPanelWindow {
     color: "transparent"
 
     // mouse hovering the content/trigger
-    property bool hovering: mouse.hovered || timer.running
+    property bool hovering: decorationHover.hovered || contentMouse.hovered|| timer.running
     property alias outTime: timer.interval
 
     // animation porperties
@@ -56,6 +56,10 @@ MPanelWindow {
         }
 
         color: root.decorated ? root.triggerColor : "transparent"
+
+        HoverHandler {
+            id: decorationHover
+        }
     }
 
     Item {
@@ -75,10 +79,10 @@ MPanelWindow {
                 easing.type: Easing.InOutCubic
             }
         }
-    }
 
-    HoverHandler {
-        id: mouse
-        onHoveredChanged: timer.running = !hovered
+        HoverHandler {
+            id: contentMouse
+            onHoveredChanged: timer.running = !hovered
+        }
     }
 }
