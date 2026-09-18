@@ -33,6 +33,7 @@
 - [ ] Calendar application to manage events categories and other stuff?
 - [ ] NewBar
     - [ ] use `Loaders` maybe can lower ram usage
+    - [ ] add an activation timer to avoid mouse flicks
 
 ## Fix
 - [ ] First time using shell
@@ -51,7 +52,7 @@
 - [ ] Whole code refactor
 - [ ] Init script doesn't work
 - [ ] Keyboard layout dependencies???
-- [ ] `MFontIcon` vertical alignment when toglging is off
+- [ ] `MFontIcon` vertical alignment when toggling is off
 - [ ] vertical `Slider` mouse hitbox
 
 ## Other features
