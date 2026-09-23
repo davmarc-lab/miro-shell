@@ -18,8 +18,13 @@ MPanelWindow {
     WlrLayershell.keyboardFocus: WlrKeyboardFocus.None
     color: "transparent"
 
+    // Tracks if the mouse has hovered over 'decoration' for 1 full second
+    property bool triggerHovered: false
+
+    // Updated hovering logic: active if trigger hover dwell completes, or currently over content, or hide-delay timer is running
     // mouse hovering the content/trigger
-    property bool hovering: decorationHover.hovered || contentMouse.hovered || timer.running
+    property bool hovering: root.triggerHovered || contentMouse.hovered || timer.running
+
     readonly property bool collapsed: root.isVertical ? Math.abs(content.x) == root.width : Math.abs(content.y) == root.height
     property alias outTime: timer.interval
 
@@ -52,7 +57,13 @@ MPanelWindow {
 
     Timer {
         id: timer
-        interval: 1000
+        interval: 350
+    }
+
+    Timer {
+        id: triggerTimer
+        interval: 200
+        onTriggered: root.triggerHovered = true
     }
 
     // always living item for activation
@@ -72,6 +83,14 @@ MPanelWindow {
 
         HoverHandler {
             id: decorationHover
+            onHoveredChanged: {
+                if (hovered) {
+                    triggerTimer.restart();
+                } else {
+                    triggerTimer.stop();
+                    root.triggerHovered = false;
+                }
+            }
         }
     }
 

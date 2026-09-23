@@ -7,142 +7,135 @@ import qs
 import qs.common
 import qs.widgets
 
-MPopup {
+MRectangle {
     id: root
 
     readonly property list<string> sources: ["Todo", "Calendar", "Mixer", "Docker"]
 
-    onOpenChanged: {
-        Global.enableUtility = this.open;
-    }
+    Layout.preferredWidth: Settings.utilityPanel.width
+    Layout.preferredHeight: Settings.utilityPanel.height
+    bottomLeftRadius: 0
+    topLeftRadius: 0
 
-    MRectangle {
-        Layout.alignment: Qt.AlignLeft | Qt.AlignVCenter
-        Layout.preferredWidth: Settings.utilityPanel.width
-        Layout.preferredHeight: Settings.utilityPanel.height
-        bottomLeftRadius: 0
-        topLeftRadius: 0
+    color: Theme.colorSurface
 
-        color: Theme.colorSurface
+    focus: true
+    Keys.onEscapePressed: root.open = false
 
-        focus: true
-        Keys.onEscapePressed: root.open = false
+    ColumnLayout {
+        id: base
+        anchors.fill: parent
+        anchors.margins: Settings.panel.margin
 
-        ColumnLayout {
-            id: base
-            anchors.fill: parent
-            anchors.margins: Settings.panel.margin
+        spacing: Settings.panel.margin
 
-            spacing: Settings.panel.margin
+        RowLayout {
+            id: head
+            Layout.fillWidth: true
+            Layout.alignment: Qt.AlignTop
+            Layout.maximumHeight: parent.height * 0.1
 
-            RowLayout {
-                id: head
+            MRectangle {
                 Layout.fillWidth: true
-                Layout.alignment: Qt.AlignTop
-                Layout.maximumHeight: parent.height * 0.1
+                Layout.fillHeight: true
 
-                MRectangle {
-                    Layout.fillWidth: true
-                    Layout.fillHeight: true
-
-                    MText {
-                        anchors.centerIn: parent
-                        text: "TODO"
-                    }
-
-                    MouseArea {
-                        anchors.fill: parent
-
-                        onClicked: {
-                            content.index = 0;
-                        }
-                    }
+                MText {
+                    anchors.centerIn: parent
+                    text: "TODO"
                 }
 
-                MRectangle {
-                    Layout.fillWidth: true
-                    Layout.fillHeight: true
+                MouseArea {
+                    anchors.fill: parent
 
-                    MText {
-                        anchors.centerIn: parent
-                        text: "Calendar"
-                    }
-
-                    MouseArea {
-                        anchors.fill: parent
-
-                        onClicked: {
-                            content.index = 1;
-                        }
-                    }
-                }
-
-                MRectangle {
-                    Layout.fillWidth: true
-                    Layout.fillHeight: true
-
-                    MText {
-                        anchors.centerIn: parent
-                        text: "Mixer"
-                    }
-
-                    MouseArea {
-                        anchors.fill: parent
-
-                        onClicked: {
-                            content.index = 2;
-                        }
-                    }
-                }
-
-                MRectangle {
-                    Layout.fillWidth: true
-                    Layout.fillHeight: true
-
-                    MText {
-                        anchors.centerIn: parent
-                        text: "Docker"
-                    }
-
-                    MouseArea {
-                        anchors.fill: parent
-
-                        onClicked: {
-                            content.index = 3;
-                        }
+                    onClicked: {
+                        content.index = 0;
                     }
                 }
             }
 
             MRectangle {
-                id: content
-                property int index: 0
-
                 Layout.fillWidth: true
                 Layout.fillHeight: true
 
-                radius: 0
-
-                Todo {
-                    anchors.fill: parent
-                    visible: root.sources[content.index].toString() === "Todo"
+                MText {
+                    anchors.centerIn: parent
+                    text: "Calendar"
                 }
 
-                Calendar {
+                MouseArea {
                     anchors.fill: parent
-                    visible: root.sources[content.index].toString() === "Calendar"
-                    onIsFocusedChanged: console.log(isFocused)
+
+                    onClicked: {
+                        content.index = 1;
+                    }
+                }
+            }
+
+            MRectangle {
+                Layout.fillWidth: true
+                Layout.fillHeight: true
+
+                MText {
+                    anchors.centerIn: parent
+                    text: "Mixer"
                 }
 
-                Mixer {
+                MouseArea {
                     anchors.fill: parent
-                    visible: root.sources[content.index].toString() === "Mixer"
+
+                    onClicked: {
+                        content.index = 2;
+                    }
+                }
+            }
+
+            MRectangle {
+                Layout.fillWidth: true
+                Layout.fillHeight: true
+
+                MText {
+                    anchors.centerIn: parent
+                    text: "Docker"
                 }
 
-                Docker {
+                MouseArea {
                     anchors.fill: parent
-                    visible: root.sources[content.index].toString() === "Docker"
+
+                    onClicked: {
+                        content.index = 3;
+                    }
                 }
+            }
+        }
+
+        MRectangle {
+            id: content
+            property int index: 0
+
+            Layout.fillWidth: true
+            Layout.fillHeight: true
+
+            radius: 0
+
+            Todo {
+                anchors.fill: parent
+                visible: root.sources[content.index].toString() === "Todo"
+            }
+
+            Calendar {
+                anchors.fill: parent
+                visible: root.sources[content.index].toString() === "Calendar"
+                onIsFocusedChanged: console.log(isFocused)
+            }
+
+            Mixer {
+                anchors.fill: parent
+                visible: root.sources[content.index].toString() === "Mixer"
+            }
+
+            Docker {
+                anchors.fill: parent
+                visible: root.sources[content.index].toString() === "Docker"
             }
         }
     }

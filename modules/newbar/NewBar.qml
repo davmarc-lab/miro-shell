@@ -8,4 +8,6 @@ Item {
     Right {}
 
     RightPanel {}
+
+    LeftPanel {}
 }
