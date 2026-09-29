@@ -1,4 +1,5 @@
 import Quickshell
+import Quickshell.Io
 
 import QtQuick
 
@@ -27,6 +28,13 @@ Scope {
 
             RightPanel {
                 anchors.fill: parent
+
+                IpcHandler {
+                    target: "side"
+                    function toggle(): void {
+                        root.toggle();
+                    }
+                }
             }
         }
     }

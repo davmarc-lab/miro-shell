@@ -15,7 +15,6 @@ MPanelWindow {
     WlrLayershell.layer: WlrLayer.Top
     exclusionMode: ExclusionMode.Ignore
     aboveWindows: true
-    WlrLayershell.keyboardFocus: WlrKeyboardFocus.None
     color: "transparent"
 
     // --- hiding logic ---
@@ -58,6 +57,10 @@ MPanelWindow {
         hideTimer.stop();
         root.awaitingEnter = false;
         root.open = false;
+    }
+
+    function toggle() {
+        root.open ? root.hide() : root.peek();
     }
 
     mask: Region {

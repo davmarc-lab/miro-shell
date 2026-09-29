@@ -60,26 +60,10 @@ Singleton {
     }
 
     IpcHandler {
-        target: "utility"
-
-        function toggle(): void {
-            Global.enableUtility = !Global.enableUtility;
-        }
-    }
-
-    IpcHandler {
         target: "dock"
 
         function toggle(): void {
             Global.enableDock = !Global.enableDock;
-        }
-    }
-
-    IpcHandler {
-        target: "side"
-
-        function toggle(): void {
-            Global.enableRightPanel = !Global.enableRightPanel;
         }
     }
 }
