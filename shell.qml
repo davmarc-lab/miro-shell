@@ -2,6 +2,7 @@
 //@ pragma IconTheme Papirus
 
 import Quickshell
+import Quickshell.Io
 
 import QtQuick
 
@@ -10,6 +11,7 @@ import qs.common
 import qs.modules.greeter
 import qs.modules.wallpaper
 import qs.modules.newbar
+import qs.modules.launcher
 import qs.modules.bar
 import qs.modules.dock
 import qs.modules.powermenu
@@ -65,6 +67,11 @@ ShellRoot {
     }
 
     LazyLoader {
+        active: root.init && Global.enableLauncher
+        component: Launcher {}
+    }
+
+    LazyLoader {
         active: root.init && Global.enableWallpaper
         component: Wallpaper {}
     }
@@ -112,5 +119,13 @@ ShellRoot {
     LazyLoader {
         active: root.init && Global.enableUtility
         component: Utility {}
+    }
+
+    // ==== handlers ====
+    IpcHandler {
+        target: "launcher"
+        function toggle(): void {
+            Global.enableLauncher = !Global.enableLauncher;
+        }
     }
 }

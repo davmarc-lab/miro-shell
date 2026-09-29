@@ -19,6 +19,8 @@ Singleton {
 
     property bool enableWallpaper: true
 
+    property bool enableLauncher: false
+
     property bool enableDock: false
     property bool enableSettings: false
     property bool enableWPSelector: false
