@@ -11,13 +11,18 @@
 - [ ] Bluetooth devices
     - [ ] on right panel only paired devices
     - [ ] bluetooth popup to pair new devices to keep everything in order
+- [ ] Launcher
+    - [X] launch applications
+    - [ ] file finder
+    - [ ] command execution
+    - [ ] search on browser
 - [ ] Notifications
     - [X] notification panel
     - [X] notification popup
     - [X] popup auto close
     - [X] single notification toast dismiss
     - [X] single notification dismiss
-    - [ ] find notifications default icons
+    - [X] find notifications default icons
     - [X] volume slider
     - [ ] fixed slider position and vertical support
 - [ ] Calendar
