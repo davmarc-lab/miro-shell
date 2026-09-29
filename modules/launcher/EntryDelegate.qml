@@ -14,6 +14,8 @@ Item {
 
     property int scrollAnimDuration: 450
 
+    signal entryClicked
+
     onSelectedChanged: {
         if (selected)
             timer.start();
@@ -77,8 +79,10 @@ Item {
             }
         }
 
-        HoverHandler {
-            onHoveredChanged: hovered ? root.startScrolls() : root.resetScrolls()
+        MouseArea {
+            anchors.fill: parent
+            onHoveredChanged: containsMouse ? root.startScrolls() : root.resetScrolls()
+            onClicked: root.entryClicked()
         }
 
         border.color: root.selected ? Theme.colorPrimary : Theme.colorOutline

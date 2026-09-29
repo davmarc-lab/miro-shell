@@ -30,6 +30,9 @@ Singleton {
     property UtilityPanelSettings utilityPanel: UtilityPanelSettings {}
     property NotificationSettings notification: NotificationSettings {}
 
+    // user home directory
+    readonly property string homeDir: Quickshell.env("HOME") + "/"
+
     // default user icon
     readonly property string defaultUserIcon: dirs.icons + "user.svg"
 

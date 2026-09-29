@@ -139,7 +139,7 @@ MRectangle {
             Layout.fillHeight: true
             Layout.fillWidth: true
 
-            // When mouse click here closes panel expanded from above
+            // when mouse click here closes panel expanded from above
             MouseArea {
                 anchors.fill: parent
 
