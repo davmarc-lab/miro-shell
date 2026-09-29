@@ -15,6 +15,8 @@ TextField {
     signal escaped
 
     color: Theme.colorOnSurface
+    selectionColor: Theme.colorPrimary
+    selectedTextColor: Theme.colorOnPrimary
     font.pixelSize: Settings.font.size
 
     leftPadding: Settings.item.margin

@@ -12,6 +12,8 @@ Item {
     required property var modelData
     required property bool selected
 
+    property int scrollAnimDuration: 450
+
     onSelectedChanged: {
         if (selected)
             timer.start();
@@ -34,7 +36,7 @@ Item {
     // delay scroll animation
     Timer {
         id: timer
-        interval: 450
+        interval: root.scrollAnimDuration
         running: false
         onTriggered: root.startScrolls()
     }
@@ -79,6 +81,7 @@ Item {
             onHoveredChanged: hovered ? root.startScrolls() : root.resetScrolls()
         }
 
-        border.color: root.selected ? "red" : ""
+        border.color: root.selected ? Theme.colorPrimary : Theme.colorOutline
+        border.width: 2
     }
 }

@@ -45,8 +45,6 @@ MPanelWindow {
         color: Theme.colorSurface
         anchors.fill: parent
 
-        Keys.onEscapePressed: Global.enableLauncher = false
-
         Item {
             id: base
             anchors.fill: parent
