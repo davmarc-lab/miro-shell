@@ -18,24 +18,20 @@ MPanelWindow {
     WlrLayershell.keyboardFocus: WlrKeyboardFocus.None
     color: "transparent"
 
-    // Tracks if the mouse has hovered over 'decoration' for 1 full second
-    property bool triggerHovered: false
-
-    // Updated hovering logic: active if trigger hover dwell completes, or currently over content, or hide-delay timer is running
-    // mouse hovering the content/trigger
-    property bool hovering: root.triggerHovered || contentMouse.hovered || timer.running
-
+    // --- hiding logic ---
+    // normal/force panel visibility
+    property bool open: false
+    // mouse enters the region
+    property bool awaitingEnter: false
     readonly property bool collapsed: root.isVertical ? Math.abs(content.x) == root.width : Math.abs(content.y) == root.height
-    property alias outTime: timer.interval
 
-    property bool isVertical: false
-
-    // animation porperties
+    // --- animation porperties ---
     property alias animDuration: xanim.duration
     property alias animType: xanim.easing.type
 
-    // decoration porperties
+    // --- decoration porperties ---
     property bool decorated: true
+    property bool isVertical: false
     required property int dirTransition
     property bool decorationTop: false
     property bool decorationBottom: false
@@ -51,19 +47,33 @@ MPanelWindow {
     // content items
     default property alias items: content.children
 
+    function peek() {
+        hideTimer.stop();
+        root.open = true;
+        root.awaitingEnter = !contentMouse.hovered;
+    }
+
+    function hide() {
+        triggerTimer.stop();
+        hideTimer.stop();
+        root.awaitingEnter = false;
+        root.open = false;
+    }
+
     mask: Region {
         item: root.collapsed ? decoration : content
     }
 
     Timer {
-        id: timer
+        id: hideTimer
         interval: 350
+        onTriggered: root.open = false
     }
 
     Timer {
         id: triggerTimer
         interval: 200
-        onTriggered: root.triggerHovered = true
+        onTriggered: root.open = true
     }
 
     // always living item for activation
@@ -88,7 +98,9 @@ MPanelWindow {
                     triggerTimer.restart();
                 } else {
                     triggerTimer.stop();
-                    root.triggerHovered = false;
+                    // opened by `peek()` and never entered yet.
+                    if (root.open && !root.awaitingEnter && !contentMouse.hovered)
+                        hideTimer.restart();
                 }
             }
         }
@@ -99,8 +111,8 @@ MPanelWindow {
         width: root.width
         height: root.height
 
-        x: root.hovering ? 0 : root.isVertical ? evalDir(root.width) : 0
-        y: root.hovering ? 0 : root.isVertical ? 0 : evalDir(root.height)
+        x: root.open ? 0 : root.isVertical ? evalDir(root.width) : 0
+        y: root.open ? 0 : root.isVertical ? 0 : evalDir(root.height)
 
         function evalDir(val: int): int {
             return val * (root.dirTransition === Transitions.Direction.Top || root.dirTransition === Transitions.Direction.Left ? 1 : -1);
@@ -126,7 +138,14 @@ MPanelWindow {
 
         HoverHandler {
             id: contentMouse
-            onHoveredChanged: timer.running = !hovered
+            onHoveredChanged: {
+                if (hovered) {
+                    root.awaitingEnter = false;
+                    hideTimer.stop();
+                } else {
+                    hideTimer.restart();
+                }
+            }
         }
     }
 }

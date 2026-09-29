@@ -3,7 +3,6 @@ import Quickshell
 import QtQuick
 
 import qs.common
-import qs.widgets
 import qs.types
 import qs.modules.rightPanel
 
