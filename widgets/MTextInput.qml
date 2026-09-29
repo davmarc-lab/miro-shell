@@ -36,8 +36,4 @@ TextField {
         this.focus = false;
         this.accepted();
     }
-    Keys.onEnterPressed: {
-        this.focus = false;
-        this.accepted();
-    }
 }

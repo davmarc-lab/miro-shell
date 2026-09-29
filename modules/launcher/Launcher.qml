@@ -66,8 +66,13 @@ MPanelWindow {
                     onEscaped: Global.enableLauncher = false
                     Keys.onTabPressed: appList.incrementCurrentIndex()
                     Keys.onBacktabPressed: appList.decrementCurrentIndex()
-                    onAccepted: {
-                        // used to close the popup, could be replaced
+                    Keys.onReturnPressed: {
+                        if (!appList.currentItem) {
+                            // keep the focus active
+                            this.focus = true;
+                            return;
+                        }
+                        appList.currentItem.modelData.execute();
                         this.escaped();
                     }
                 }
