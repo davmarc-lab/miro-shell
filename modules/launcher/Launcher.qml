@@ -1,4 +1,6 @@
+pragma ComponentBehavior: Bound
 import Quickshell
+import Quickshell.Io
 
 import QtQuick
 import QtQuick.Layouts
@@ -24,6 +26,25 @@ MPopup {
         Layout.preferredWidth: 700
         Layout.preferredHeight: 500
 
+        FileView {
+            path: Settings.cache.launcher + "recent-apps.json"
+
+            watchChanges: true
+            onFileChanged: reload()
+            onAdapterUpdated: writeAdapter()
+
+            JsonAdapter {
+                id: jsonFile
+                property list<var> apps: []
+            }
+
+            onLoadFailed: err => {
+                if (err == FileViewError.FileNotFound) {
+                    this.writeAdapter();
+                }
+            }
+        }
+
         Item {
             id: base
             anchors.fill: parent
@@ -48,11 +69,24 @@ MPopup {
                             this.focus = true;
                             return;
                         }
+                        const app = item.modelData;
                         // if working dir is empty use user home dir (see `Settings.qml`)
                         Quickshell.execDetached({
-                            command: item.modelData.command,
-                            workingDirectory: item.modelData.workingDirectory ? item.modelData.workingDirectory : Settings.homeDir
+                            command: app.command,
+                            workingDirectory: app.workingDirectory ? app.workingDirectory : Settings.homeDir
                         });
+
+                        // add app to recent apps
+                        var elem = jsonFile.apps.find(a => a["id"] == app.id);
+                        if (!elem) {
+                            jsonFile.apps.unshift({
+                                id: app.id,
+                                timestamp: Date.now()
+                            });
+                        } else {
+                            elem["timestamp"] = Date.now();
+                        }
+                        jsonFile.apps = [...jsonFile.apps].sort((a, b) => b.timestamp - a.timestamp);
                         this.escaped();
                     }
 
@@ -64,29 +98,48 @@ MPopup {
 
                 ScriptModel {
                     id: filteredModel
-                    values: {
-                        // get all application entries from the system
-                        const apps = [...DesktopEntries.applications.values].filter(app => app.name).sort((a, b) => a.name.localeCompare(b.name));
+                    readonly property var appIndex: [...DesktopEntries.applications.values].filter(app => app.name).sort((a, b) => a.name.localeCompare(b.name)).map((app, i) => ({
+                                app: app,
+                                id: app.id,
+                                alpha: i,
+                                name: app.name.toLowerCase(),
+                                comment: (app.comment || "").toLowerCase()
+                            }))
 
-                        const q = root.query.trim().toLowerCase();
-                        if (q === "")
-                            return apps;
-
-                        // filter by name or comment/description
-                        const filtered = apps.filter(app => {
-                            const nameMatch = app.name && app.name.toLowerCase().includes(q);
-                            const commentMatch = app.comment && app.comment.toLowerCase().includes(q);
-                            return nameMatch || commentMatch;
+                    readonly property var recentMap: {
+                        const map = {};
+                        jsonFile.apps.forEach((a, index) => {
+                            map[a.id] = index;
                         });
-                        if (filtered.length > 0)
-                            return filtered;
+                        return map;
+                    }
+                    values: {
+                        // clean query
+                        const q = root.query.trim().toLowerCase();
+                        // filter string first
+                        const entries = q === "" ? appIndex.slice() : appIndex.filter(e => e.name.includes(q) || e.comment.includes(q));
+
+                        // recency first then alphabetical
+                        const recentFiltered = entries.sort((a, b) => {
+                            const rankA = recentMap[a.id] ?? Infinity;
+                            const rankB = recentMap[b.id] ?? Infinity;
+                            if (rankA !== rankB)
+                                return rankA - rankB;
+                            return a.alpha - b.alpha;
+                        }).map(e => e.app);
 
                         // execute finder application
+                        const finder = [];
                         // execute as command in home dir
+                        const commands = [];
                         // search on default browser
+                        const search = [];
 
-                        return [];
+                        return recentFiltered;
                     }
+
+                    // keep the first selected item
+                    onValuesChanged: appList.currentIndex = 0
                 }
 
                 ListView {
