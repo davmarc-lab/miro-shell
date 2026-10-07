@@ -135,8 +135,16 @@ MPopup {
                         if (recentFiltered.length <= 5) {
                             // execute finder application
                             const finder = [];
+                            finder.push({
+                                icon: "search",
+                                name: "Find in Files: " + "\"" + root.query + "\"",
+                                command: ["quickshell", "ipc", "call", "finder", "findFile", root.query],
+                                skipCache: true
+                            });
+
                             // execute as command in home dir
                             const commands = [];
+
                             // search on default browser
                             const search = [];
                             const url = searchUrl + encodeURIComponent(root.query.trim());
@@ -144,7 +152,7 @@ MPopup {
                                 icon: "firefox",
                                 name: "Search on Google: \"" + root.query + "\"",
                                 command: ["xdg-open", url],
-                                skipCache: true,
+                                skipCache: true
                             });
 
                             // join everything

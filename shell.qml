@@ -1,3 +1,4 @@
+pragma ComponentBehavior: Bound
 //@ pragma UseQApplication
 //@ pragma IconTheme Papirus
 
@@ -102,6 +103,15 @@ ShellRoot {
     }
 
     LazyLoader {
+        id: finder
+        property string query: ""
+        active: root.init && Global.enableFinder
+        component: FinderView {
+            query: finder.query
+        }
+    }
+
+    LazyLoader {
         active: root.init && Global.enableSettings
         component: SettingsApp {}
     }
@@ -126,6 +136,16 @@ ShellRoot {
         target: "launcher"
         function toggle(): void {
             Global.enableLauncher = !Global.enableLauncher;
+        }
+    }
+
+    IpcHandler {
+        target: "finder"
+        function findFile(query: string): void {
+            if (query) {
+                Global.enableFinder = true;
+                finder.query = query;
+            }
         }
     }
 }

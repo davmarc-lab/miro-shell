@@ -31,6 +31,8 @@ Singleton {
     // misc
     property bool enableBattery: false
 
+    property bool enableFinder: false
+
     property bool enableVolumeSliderPopup: false
 
     property bool enableWeather: false
