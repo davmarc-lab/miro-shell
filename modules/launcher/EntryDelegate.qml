@@ -74,7 +74,7 @@ Item {
                 width: parent.width * 0.5
                 height: parent.height
                 visible: text !== ""
-                text: root.modelData.comment
+                text: root.modelData.comment ?? ""
                 color: Theme.colorSecondary
             }
         }

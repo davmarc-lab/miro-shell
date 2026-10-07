@@ -76,17 +76,20 @@ MPopup {
                             workingDirectory: app.workingDirectory ? app.workingDirectory : Settings.homeDir
                         });
 
-                        // add app to recent apps
-                        var elem = jsonFile.apps.find(a => a["id"] == app.id);
-                        if (!elem) {
-                            jsonFile.apps.unshift({
-                                id: app.id,
-                                timestamp: Date.now()
-                            });
-                        } else {
-                            elem["timestamp"] = Date.now();
+                        if (!app.skipCache) {
+                            // add app to recent apps
+                            var elem = jsonFile.apps.find(a => a["id"] == app.id);
+                            if (!elem) {
+                                jsonFile.apps.unshift({
+                                    id: app.id,
+                                    timestamp: Date.now()
+                                });
+                            } else {
+                                elem["timestamp"] = Date.now();
+                            }
+                            jsonFile.apps = [...jsonFile.apps].sort((a, b) => b.timestamp - a.timestamp);
                         }
-                        jsonFile.apps = [...jsonFile.apps].sort((a, b) => b.timestamp - a.timestamp);
+
                         this.escaped();
                     }
 
@@ -98,6 +101,7 @@ MPopup {
 
                 ScriptModel {
                     id: filteredModel
+                    readonly property string searchUrl: "https://www.google.com/search?q="
                     readonly property var appIndex: [...DesktopEntries.applications.values].filter(app => app.name).sort((a, b) => a.name.localeCompare(b.name)).map((app, i) => ({
                                 app: app,
                                 id: app.id,
@@ -120,7 +124,7 @@ MPopup {
                         const entries = q === "" ? appIndex.slice() : appIndex.filter(e => e.name.includes(q) || e.comment.includes(q));
 
                         // recency first then alphabetical
-                        const recentFiltered = entries.sort((a, b) => {
+                        var recentFiltered = entries.sort((a, b) => {
                             const rankA = recentMap[a.id] ?? Infinity;
                             const rankB = recentMap[b.id] ?? Infinity;
                             if (rankA !== rankB)
@@ -128,12 +132,24 @@ MPopup {
                             return a.alpha - b.alpha;
                         }).map(e => e.app);
 
-                        // execute finder application
-                        const finder = [];
-                        // execute as command in home dir
-                        const commands = [];
-                        // search on default browser
-                        const search = [];
+                        if (recentFiltered.length <= 5) {
+                            // execute finder application
+                            const finder = [];
+                            // execute as command in home dir
+                            const commands = [];
+                            // search on default browser
+                            const search = [];
+                            const url = searchUrl + encodeURIComponent(root.query.trim());
+                            search.push({
+                                icon: "firefox",
+                                name: "Search on Google: \"" + root.query + "\"",
+                                command: ["xdg-open", url],
+                                skipCache: true,
+                            });
+
+                            // join everything
+                            recentFiltered = recentFiltered.concat(finder, commands, search);
+                        }
 
                         return recentFiltered;
                     }
