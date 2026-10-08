@@ -14,6 +14,7 @@
 - [ ] Launcher
     - [X] launch applications
     - [ ] file finder
+      - [ ] fuzzy finder process takes time to write to the stdout (use `SplitParser` instead)
     - [ ] command execution
     - [ ] search on browser
 - [ ] Notifications

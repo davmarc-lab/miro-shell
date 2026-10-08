@@ -143,8 +143,8 @@ ShellRoot {
         target: "finder"
         function findFile(query: string): void {
             if (query) {
-                Global.enableFinder = true;
                 finder.query = query;
+                Global.enableFinder = true;
             }
         }
     }

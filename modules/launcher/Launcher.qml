@@ -149,7 +149,7 @@ MPopup {
                             const search = [];
                             const url = searchUrl + encodeURIComponent(root.query.trim());
                             search.push({
-                                icon: "firefox",
+                                icon: "internet-web-browser-symbolic",
                                 name: "Search on Google: \"" + root.query + "\"",
                                 command: ["xdg-open", url],
                                 skipCache: true
