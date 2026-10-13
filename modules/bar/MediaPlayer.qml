@@ -6,7 +6,9 @@ import qs.services
 import qs.widgets
 
 MRectangle {
-    id: container
+    id: root
+
+    signal update
 
     RowLayout {
         anchors.verticalCenter: parent.verticalCenter
@@ -62,11 +64,13 @@ MRectangle {
 
             MText {
                 Layout.fillWidth: true
-                Layout.maximumWidth: container.width
+                Layout.maximumWidth: root.width
                 Layout.alignment: Qt.AlignLeft | Qt.AlignVCenter
 
-                text: SMediaPlayer.barToString()
                 clip: true
+
+                text: SMediaPlayer.barToString()
+                onTextChanged: root.update()
             }
         }
     }

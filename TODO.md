@@ -11,12 +11,11 @@
 - [ ] Bluetooth devices
     - [ ] on right panel only paired devices
     - [ ] bluetooth popup to pair new devices to keep everything in order
-- [ ] Launcher
+- [X] Launcher
     - [X] launch applications
-    - [ ] file finder
-      - [ ] fuzzy finder process takes time to write to the stdout (use `SplitParser` instead)
-    - [ ] command execution
-    - [ ] search on browser
+    - [X] file finder
+      - [X] fuzzy finder process takes time to write to the stdout (use `SplitParser` instead)
+    - [X] search on browser
 - [ ] Notifications
     - [X] notification panel
     - [X] notification popup

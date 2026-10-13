@@ -46,6 +46,12 @@ MPanelWindow {
     // content items
     default property alias items: content.children
 
+    function peekHide(time = 1000) {
+        root.peek();
+        autoHideTimer.interval = time;
+        autoHideTimer.start();
+    }
+
     function peek() {
         hideTimer.stop();
         root.open = true;
@@ -71,6 +77,12 @@ MPanelWindow {
         id: hideTimer
         interval: 350
         onTriggered: root.open = false
+    }
+
+    Timer {
+        id: autoHideTimer
+        running: false
+        onTriggered: hideTimer.start()
     }
 
     Timer {

@@ -66,6 +66,8 @@ Scope {
                         Layout.alignment: Qt.AlignCenter
                         Layout.fillWidth: true
                         Layout.fillHeight: true
+
+                        onUpdate: root.peekHide(2000)
                     }
                 }
             }

@@ -46,6 +46,7 @@ Scope {
                         KeyboardInfo {
                             id: key
                             anchors.centerIn: parent
+                            onUpdate: root.peekHide();
                         }
                     }
 
@@ -56,6 +57,7 @@ Scope {
                         VolumeInfo {
                             id: vol
                             anchors.centerIn: parent
+                            onUpdate: root.peekHide();
                         }
 
                         MouseArea {

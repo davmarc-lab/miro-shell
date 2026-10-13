@@ -36,6 +36,7 @@ Scope {
                 Workspaces {
                     id: workspaces
                     anchors.centerIn: parent
+                    onUpdate: root.peekHide(500)
                 }
             }
         }

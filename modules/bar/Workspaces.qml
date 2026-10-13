@@ -12,9 +12,14 @@ import qs.services
 RowLayout {
     id: root
 
+    signal update
+
     Repeater {
         id: item
     model: SWorkspaces.getAvailables()
+
+    readonly property int currentFocus: SWorkspaces.active
+    onCurrentFocusChanged: root.update()
 
     MRButton {
         visible: modelData >= 0
