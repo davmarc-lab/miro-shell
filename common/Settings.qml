@@ -18,6 +18,8 @@ Singleton {
 
     property ShellDirs dirs: ShellDirs {}
 
+    property DefaultApps defaults: DefaultApps {}
+
     property FontSettings font: FontSettings {}
     property WorkspaceSettings workspaces: WorkspaceSettings {}
     property BarSettings bar: BarSettings {}

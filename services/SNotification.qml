@@ -24,7 +24,7 @@ Singleton {
         imageSupported: true
         keepOnReload: true
 
-        bodyMarkupSupported: false
+        bodyMarkupSupported: true
         persistenceSupported: false
 
         onNotification: function (notif) {
