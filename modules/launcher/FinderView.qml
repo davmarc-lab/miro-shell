@@ -49,7 +49,7 @@ MFloating {
         readonly property regexp fileNameReg: /(?:\/).*\/(.+)/gm
 
         running: false
-        command: ["fd", root.query, Quickshell.env("HOME")]
+        command: ["fd", "-I", root.query, Quickshell.env("HOME")]
 
         // change it with `SplitParser`
         stdout: StdioCollector {
